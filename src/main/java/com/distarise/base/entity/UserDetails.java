@@ -3,12 +3,13 @@ package com.distarise.base.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
-//@Table(name = "USERDETAILS")
+@Table(name = "USERDETAILS")
 public class UserDetails implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -34,5 +35,13 @@ public class UserDetails implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public UserDetails(String userId, String password) {
+        this.userId = userId;
+        this.password = password;
+    }
+
+    public UserDetails() {
     }
 }
