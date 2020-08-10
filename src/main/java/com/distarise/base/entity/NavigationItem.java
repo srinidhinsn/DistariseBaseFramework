@@ -1,14 +1,13 @@
 package com.distarise.base.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "NAVITEM")
-public class NavigationItem {
+public class NavigationItem implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private Long id;
 

@@ -1,39 +1,14 @@
-package com.distarise.base.entity;
+package com.distarise.base.model;
 
-import javax.persistence.*;
-import java.io.Serializable;
-
-@Entity
-@Table(name = "UINAV")
-public class Navigation implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID")
+public class NavigationDto {
     private Long id;
-
-    @Column(name = "CLIENTID")
     private String clientId;
-
-    @Column(name = "ROLENAME")
     private String roleName;
-
-    @Column(name = "PAGETITLE")
     private String pageTitle;
-
-    @Column(name = "PAGEDESCRIPTION")
     private String pageDescription;
-
-    @Column(name = "MODULE")
     private String module;
-
-    @Column(name = "PAGENAME")
     private String pageName;
-
-    @Column(name = "REDIRECTPAGENAME")
     private String redirectPageName;
-
-    @Column(name = "CSSCLASS")
     private String cssClass;
 
     public Long getId() {
@@ -108,7 +83,7 @@ public class Navigation implements Serializable {
         this.cssClass = cssClass;
     }
 
-    public Navigation(Long id, String clientId, String roleName, String pageTitle,
+    public NavigationDto(Long id, String clientId, String roleName, String pageTitle,
                       String pageDescription, String module, String pageName,
                       String redirectPageName, String cssClass) {
         this.id = id;
@@ -122,6 +97,6 @@ public class Navigation implements Serializable {
         this.cssClass = cssClass;
     }
 
-    public Navigation() {
+    public NavigationDto() {
     }
 }

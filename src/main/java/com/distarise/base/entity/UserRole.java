@@ -15,6 +15,7 @@ public class UserRole implements Serializable {
     @Column(name = "CLIENTID")
     private String clientId;
 
+    @Id
     @Column(name="USERID")
     private String userId;
 

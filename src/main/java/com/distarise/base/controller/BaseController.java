@@ -1,6 +1,6 @@
 package com.distarise.base.controller;
 
-import com.distarise.base.model.UserDetailsDto;
+import com.distarise.base.model.UserRoleDto;
 import com.distarise.base.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author NSN
@@ -43,6 +46,25 @@ public class BaseController {
     public String genericController(@PathVariable("module") String module,
                                     @PathVariable("client") String client,
                                     @PathVariable("page") String page,
+                                    HttpServletRequest request,
+                                    //@ModelAttribute UINav uiNav,
+                                    Model model) {
+        HttpSession session = request.getSession();
+        UserRoleDto userRoleDto = null;
+        if (null != session && null != session.getAttribute("userRoleDto")){
+            userRoleDto = (UserRoleDto) session.getAttribute("userRoleDto");
+        }
+
+        userService.
+
+        return "distarise";
+    }
+
+/*
+    @RequestMapping(value = "/{client}/{module}/{page}")
+    public String genericController(@PathVariable("module") String module,
+                                    @PathVariable("client") String client,
+                                    @PathVariable("page") String page,
                                     @ModelAttribute UINav uiNav,
                                     Model model) {
         System.out.println("Module- "+module);
@@ -57,5 +79,5 @@ public class BaseController {
 
         model.addAttribute("client",uiNav);
         return "index";
-    }
+    }*/
 }

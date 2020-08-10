@@ -3,20 +3,19 @@ package com.distarise.base.entity;
 import javax.persistence.Column;
 import java.io.Serializable;
 
-public class UserId implements Serializable {
-
+public class ComponentId implements Serializable {
     @Column(name = "CLIENTID")
     private String clientId;
 
-    @Column(name = "USERID")
-    private String userId;
+    @Column(name = "ID")
+    private String id;
 
-    public UserId(String clientId, String userId) {
+    public ComponentId(String clientId, String id) {
         this.clientId = clientId;
-        this.userId = userId;
+        this.id = id;
     }
 
-    public UserId() {
+    public ComponentId() {
     }
 
     @Override
@@ -24,16 +23,16 @@ public class UserId implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        UserId userId1 = (UserId) o;
+        ComponentId that = (ComponentId) o;
 
-        if (!clientId.equals(userId1.clientId)) return false;
-        return userId.equals(userId1.userId);
+        if (!clientId.equals(that.clientId)) return false;
+        return id.equals(that.id);
     }
 
     @Override
     public int hashCode() {
         int result = clientId.hashCode();
-        result = 31 * result + userId.hashCode();
+        result = 31 * result + id.hashCode();
         return result;
     }
 }
