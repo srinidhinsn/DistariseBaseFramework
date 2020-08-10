@@ -14,12 +14,10 @@ public class UserDetailsDaoImpl implements UserDetailsDao {
     @Autowired
     UserDetailsRepository userDetailsRepository;
 
-    ModelMapper modelMapper = new ModelMapper();
-
     @Override
     public UserDetailsDto getUserDetails(String userId, String password) {
         if (userId != null) {
-            UserDetails userDetails = userDetailsRepository.findUserDetails(userId);
+            UserDetails userDetails = userDetailsRepository.getUserDetails(userId);
             UserDetails userDetails2 = userDetailsRepository.findUserDetailsByUserId(userId);
             System.out.println("Userdetails2  - "+userDetails2.getPassword());
             return modelMapper.map(userDetails, UserDetailsDto.class);

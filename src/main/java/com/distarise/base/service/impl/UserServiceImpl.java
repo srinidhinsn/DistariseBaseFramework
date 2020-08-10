@@ -1,9 +1,8 @@
-package com.distarise.base.service;
+package com.distarise.base.service.impl;
 
 import com.distarise.base.dao.UserDetailsDao;
 import com.distarise.base.model.UserDetailsDto;
-import com.distarise.base.repository.UserDetailsRepository;
-import com.distarise.base.service.impl.UserService;
+import com.distarise.base.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

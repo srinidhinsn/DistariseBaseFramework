@@ -1,18 +1,18 @@
 package com.distarise.base.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "USERDETAILS")
+@IdClass(UserId.class)
 public class UserDetails implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    @Id
+    @Column(name = "CLIENTID")
+    private String clientId;
 
     @Id
     @Column(name = "USERID")
@@ -21,13 +21,14 @@ public class UserDetails implements Serializable {
     @Column(name = "PASSWORD")
     private String password;
 
-    public String getUserId() {
-        return userId;
-    }
+    @Column(name = "TITLE")
+    private String title;
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
+    @Column(name = "FIRSTNAME")
+    private String firstname;
+
+    @Column(name = "LASTNAME")
+    private String lastname;
 
     public String getPassword() {
         return password;
@@ -37,9 +38,53 @@ public class UserDetails implements Serializable {
         this.password = password;
     }
 
-    public UserDetails(String userId, String password) {
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public UserDetails(String clientId, String userId, String password, String title, String firstname, String lastname) {
+        this.clientId = clientId;
         this.userId = userId;
         this.password = password;
+        this.title = title;
+        this.firstname = firstname;
+        this.lastname = lastname;
     }
 
     public UserDetails() {

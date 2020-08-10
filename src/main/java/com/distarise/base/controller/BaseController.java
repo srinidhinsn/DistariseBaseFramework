@@ -1,7 +1,7 @@
 package com.distarise.base.controller;
 
 import com.distarise.base.model.UserDetailsDto;
-import com.distarise.base.service.impl.UserService;
+import com.distarise.base.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,7 +43,8 @@ public class BaseController {
     public String genericController(@PathVariable("module") String module,
                                     @PathVariable("client") String client,
                                     @PathVariable("page") String page,
-                                    @ModelAttribute UINav uiNav) {
+                                    @ModelAttribute UINav uiNav,
+                                    Model model) {
         System.out.println("Module- "+module);
         System.out.println("Client - "+client);
         System.out.println("Page - "+page);
@@ -53,6 +54,8 @@ public class BaseController {
         } else {
             System.out.println("Login failure");
         }
+
+        model.addAttribute("client",uiNav);
         return "index";
     }
 }

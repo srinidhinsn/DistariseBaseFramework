@@ -80,7 +80,6 @@ public class FrameworkAdapter implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry interceptorRegistry) {
-        System.out.println("Interceptor adaptor");
         interceptorRegistry.addInterceptor(frameworkInterceptor);
     }
 

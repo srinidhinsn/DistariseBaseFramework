@@ -1,4 +1,4 @@
-package com.distarise.base.service.impl;
+package com.distarise.base.service;
 
 import com.distarise.base.model.UserDetailsDto;
 import com.distarise.base.repository.UserDetailsRepository;
