@@ -2,6 +2,6 @@ package com.distarise.base.dao;
 
 import org.modelmapper.ModelMapper;
 
-public interface BaseDao {
+public interface AbstractBaseDao {
     ModelMapper modelMapper = new ModelMapper();
 }

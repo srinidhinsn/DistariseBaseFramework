@@ -1,23 +1,28 @@
 package com.distarise.base.entity;
 
-import javax.persistence.*;
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "WIDGET")
 @IdClass(WidgetId.class)
 public class Widget implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
-    private Long id;
+    private String id;
 
     @Id
     @Column(name = "CLIENTID")
     private String clientId;
 
     @Column(name = "NAVITEMID")
-    private Long navigationItemId;
+    private String navigationItemId;
 
     @Column(name = "CSSCLASS")
     private String cssClass;
@@ -26,19 +31,19 @@ public class Widget implements Serializable {
     private String widgetTitle;
 
     @Column(name = "LAYOUTID")
-    private Long layoutId;
+    private String layoutId;
 
     @Column(name = "SORTORDER")
     private Integer sortOrder;
 
     @Column(name = "WIDGETID")
-    private Long widgetId;
+    private String widgetId;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -50,11 +55,11 @@ public class Widget implements Serializable {
         this.clientId = clientId;
     }
 
-    public Long getNavigationItemId() {
+    public String getNavigationItemId() {
         return navigationItemId;
     }
 
-    public void setNavigationItemId(Long navigationItemId) {
+    public void setNavigationItemId(String navigationItemId) {
         this.navigationItemId = navigationItemId;
     }
 
@@ -74,11 +79,11 @@ public class Widget implements Serializable {
         this.widgetTitle = widgetTitle;
     }
 
-    public Long getLayoutId() {
+    public String getLayoutId() {
         return layoutId;
     }
 
-    public void setLayoutId(Long layoutId) {
+    public void setLayoutId(String layoutId) {
         this.layoutId = layoutId;
     }
 
@@ -90,16 +95,16 @@ public class Widget implements Serializable {
         this.sortOrder = sortOrder;
     }
 
-    public Long getWidgetId() {
+    public String getWidgetId() {
         return widgetId;
     }
 
-    public void setWidgetId(Long widgetId) {
+    public void setWidgetId(String widgetId) {
         this.widgetId = widgetId;
     }
 
-    public Widget(Long id, String clientId, Long navigationItemId, String cssClass,
-                  String widgetTitle, Long layoutId, Integer sortOrder, Long widgetId) {
+    public Widget(String id, String clientId, String navigationItemId, String cssClass,
+                  String widgetTitle, String layoutId, Integer sortOrder, String widgetId) {
         this.id = id;
         this.clientId = clientId;
         this.navigationItemId = navigationItemId;

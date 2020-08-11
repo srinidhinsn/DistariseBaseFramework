@@ -2,8 +2,8 @@ package com.distarise.base.model;
 
 
 public class ComponentDto {
-    private Long id;
-    private Long widgetId;
+    private String id;
+    private String widgetId;
     private String clientId;
     private Integer sortOrder;
     private String type;
@@ -12,19 +12,19 @@ public class ComponentDto {
     private String keyOrAction;
     private Boolean visible;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public Long getWidgetId() {
+    public String getWidgetId() {
         return widgetId;
     }
 
-    public void setWidgetId(Long widgetId) {
+    public void setWidgetId(String widgetId) {
         this.widgetId = widgetId;
     }
 
@@ -84,7 +84,7 @@ public class ComponentDto {
         this.visible = visible;
     }
 
-    public ComponentDto(Long id, Long widgetId, String clientId, Integer sortOrder,
+    public ComponentDto(String id, String widgetId, String clientId, Integer sortOrder,
                      String type, String label, Boolean editable, String keyOrAction, Boolean visible) {
         this.id = id;
         this.widgetId = widgetId;

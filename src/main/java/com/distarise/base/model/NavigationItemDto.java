@@ -1,35 +1,17 @@
-package com.distarise.base.entity;
+package com.distarise.base.model;
 
-import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.List;
 
-@Entity
-@Table(name = "NAVITEM")
-public class NavigationItem implements Serializable {
-    @Id
-    @Column(name = "ID")
+public class NavigationItemDto {
     private String id;
-
-    @Column(name = "UINAVID")
     private String navigationId;
-
-    @Column(name = "LABEL")
     private String label;
-
-    @Column(name = "URL")
     private String url;
-
-    @Column(name = "SORTORDER")
     private Integer sortOrder;
-
-    @Column(name = "LAYOUTID")
     private String layoutId;
-
-    @Column(name = "NAVITEMID")
     private String navigationItemId;
+    private List<WidgetDto> widgets;
+
 
     public String getId() {
         return id;
@@ -87,8 +69,17 @@ public class NavigationItem implements Serializable {
         this.navigationItemId = navigationItemId;
     }
 
-    public NavigationItem(String id, String navigationId, String label, String url,
-                          Integer sortOrder, String layoutId, String navigationItemId) {
+    public List<WidgetDto> getWidgets() {
+        return widgets;
+    }
+
+    public void setWidgets(List<WidgetDto> widgets) {
+        this.widgets = widgets;
+    }
+
+    public NavigationItemDto(String id, String navigationId, String label, String url,
+                             Integer sortOrder, String layoutId, String navigationItemId,
+                             List<WidgetDto> widgets) {
         this.id = id;
         this.navigationId = navigationId;
         this.label = label;
@@ -96,8 +87,9 @@ public class NavigationItem implements Serializable {
         this.sortOrder = sortOrder;
         this.layoutId = layoutId;
         this.navigationItemId = navigationItemId;
+        this.widgets = widgets;
     }
 
-    public NavigationItem() {
+    public NavigationItemDto() {
     }
 }

@@ -1,7 +1,11 @@
 package com.distarise.base.model;
 
+import com.distarise.base.entity.NavigationItem;
+
+import java.util.List;
+
 public class NavigationDto {
-    private Long id;
+    private String id;
     private String clientId;
     private String roleName;
     private String pageTitle;
@@ -10,12 +14,14 @@ public class NavigationDto {
     private String pageName;
     private String redirectPageName;
     private String cssClass;
+    private List<NavigationItemDto> navigationItems;
 
-    public Long getId() {
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -83,9 +89,17 @@ public class NavigationDto {
         this.cssClass = cssClass;
     }
 
-    public NavigationDto(Long id, String clientId, String roleName, String pageTitle,
-                      String pageDescription, String module, String pageName,
-                      String redirectPageName, String cssClass) {
+    public List<NavigationItemDto> getNavigationItems() {
+        return navigationItems;
+    }
+
+    public void setNavigationItems(List<NavigationItemDto> navigationItems) {
+        this.navigationItems = navigationItems;
+    }
+
+    public NavigationDto(String id, String clientId, String roleName, String pageTitle,
+                         String pageDescription, String module, String pageName,
+                         String redirectPageName, String cssClass, List<NavigationItemDto> navigationItems) {
         this.id = id;
         this.clientId = clientId;
         this.roleName = roleName;
@@ -95,6 +109,7 @@ public class NavigationDto {
         this.pageName = pageName;
         this.redirectPageName = redirectPageName;
         this.cssClass = cssClass;
+        this.navigationItems = navigationItems;
     }
 
     public NavigationDto() {

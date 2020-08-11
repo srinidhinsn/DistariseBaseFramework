@@ -1,8 +1,8 @@
 INSERT INTO role(clientid, rolename, roledescription)
-	VALUES ('NSN', 'Admin', 'Administrator');
+	VALUES ('distarise', 'admin', 'Administrator');
 
 INSERT INTO role(clientid, rolename, roledescription)
-	VALUES ('NSN', 'DM', 'Digitial Marketing');
+	VALUES ('distarise', 'dm', 'Digitial Marketing');
 
 INSERT INTO role(clientid, rolename, roledescription)
-	VALUES ('NSN', 'Receptionist', 'Receptionist');
+	VALUES ('distarise', 'receptionist', 'Receptionist');

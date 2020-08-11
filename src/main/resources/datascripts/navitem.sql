@@ -1,14 +1,14 @@
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
-	VALUES (1, 1, 'Login', '/base/login', 1, 1, null);
+	VALUES ( 'login', 'distariselogin', 'Login', '/user/login', 1, '3col0row', null);
 
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
-	VALUES (2, 2, 'Home', '/base/home', 1, 1, null);
+	VALUES ('home', 'distariseadminlogin', 'Home', '/base/home', 1, '3col0row', null);
 
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
-	VALUES (3, 2, 'Our Products', '/base/ourProducts', 2, 1, null);
+	VALUES ('ourProducts', 'distariseadminlogin', 'Our Products', '/base/ourProducts', 2, '3col0row', null);
 
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
-	VALUES (4, 2, 'Our Services', '/base/ourServices', 3, 1, null);
+	VALUES ('ourServices', 'distariseadminlogin', 'Our Services', '/base/ourServices', 3, '3col0row', null);
 
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
-	VALUES (5, 2, 'Contact Us', '/base/contactUs', 4, 1, null);
+	VALUES ('contactUs', 'distariseadminlogin', 'Contact Us', '/distarise/contactUs', 4, '3col0row', null);

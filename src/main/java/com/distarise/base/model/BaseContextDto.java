@@ -1,10 +1,12 @@
 package com.distarise.base.model;
 
+import java.util.Optional;
+
 public class BaseContextDto {
     private String clientId;
     private String module;
     private String pageName;
-    private UserRoleDto userRoleDto;
+    private Optional<UserRoleDto> userRoleDto;
 
     public String getClientId() {
         return clientId;
@@ -30,15 +32,15 @@ public class BaseContextDto {
         this.pageName = pageName;
     }
 
-    public UserRoleDto getUserRoleDto() {
+    public Optional<UserRoleDto> getUserRoleDto() {
         return userRoleDto;
     }
 
-    public void setUserRoleDto(UserRoleDto userRoleDto) {
+    public void setUserRoleDto(Optional<UserRoleDto> userRoleDto) {
         this.userRoleDto = userRoleDto;
     }
 
-    public BaseContextDto(String clientId, String module, String pageName, UserRoleDto userRoleDto) {
+    public BaseContextDto(String clientId, String module, String pageName, Optional<UserRoleDto> userRoleDto) {
         this.clientId = clientId;
         this.module = module;
         this.pageName = pageName;

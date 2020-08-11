@@ -1,6 +1,6 @@
 INSERT INTO userrole(clientid, rolename, userid)
-	VALUES ('NSN', 'Admin', 'srinidhi');
+	VALUES ('distarise', 'admin', 'srinidhi');
 
 INSERT INTO userrole(clientid, rolename, userid)
-	VALUES ('NSN', 'DM', 'rajath');
+	VALUES ('distarise', 'dm', 'rajath');
 

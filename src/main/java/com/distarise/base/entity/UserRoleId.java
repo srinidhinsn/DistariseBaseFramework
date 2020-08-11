@@ -1,7 +1,7 @@
 package com.distarise.base.entity;
 
-import javax.persistence.*;
 import java.io.Serializable;
+import javax.persistence.Column;
 
 public class UserRoleId implements Serializable {
 

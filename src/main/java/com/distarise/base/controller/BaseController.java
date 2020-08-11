@@ -1,6 +1,8 @@
 package com.distarise.base.controller;
 
+import com.distarise.base.model.BaseContextDto;
 import com.distarise.base.model.UserRoleDto;
+import com.distarise.base.service.BaseService;
 import com.distarise.base.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
 /**
  * @author NSN
@@ -21,6 +24,9 @@ public class BaseController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    BaseService baseService;
 
     @RequestMapping("/")
     public String viewHome() {
@@ -50,12 +56,9 @@ public class BaseController {
                                     //@ModelAttribute UINav uiNav,
                                     Model model) {
         HttpSession session = request.getSession();
-        UserRoleDto userRoleDto = null;
-        if (null != session && null != session.getAttribute("userRoleDto")){
-            userRoleDto = (UserRoleDto) session.getAttribute("userRoleDto");
-        }
-
-        userService.
+        Optional<UserRoleDto> userRoleDto = Optional.ofNullable((UserRoleDto) session.getAttribute("userRoleDto"));
+        BaseContextDto baseContextDto = new BaseContextDto(client, module, page, userRoleDto);
+        baseService.getPageDetails(baseContextDto);
 
         return "distarise";
     }

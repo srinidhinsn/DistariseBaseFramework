@@ -1,19 +1,24 @@
 package com.distarise.base.entity;
 
-import javax.persistence.*;
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "COMPONENT")
 @IdClass(ComponentId.class)
 public class Component implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
-    private Long id;
+    private String id;
 
     @Column(name = "WIDGETID")
-    private Long widgetId;
+    private String widgetId;
 
     @Id
     @Column(name = "CLIENTID")
@@ -37,19 +42,19 @@ public class Component implements Serializable {
     @Column(name = "VISIBLE")
     private Boolean visible;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public Long getWidgetId() {
+    public String getWidgetId() {
         return widgetId;
     }
 
-    public void setWidgetId(Long widgetId) {
+    public void setWidgetId(String widgetId) {
         this.widgetId = widgetId;
     }
 
@@ -109,7 +114,7 @@ public class Component implements Serializable {
         this.visible = visible;
     }
 
-    public Component(Long id, Long widgetId, String clientId, Integer sortOrder,
+    public Component(String id, String widgetId, String clientId, Integer sortOrder,
                      String type, String label, Boolean editable, String keyOrAction, Boolean visible) {
         this.id = id;
         this.widgetId = widgetId;
