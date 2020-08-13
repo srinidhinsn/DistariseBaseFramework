@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+</head>
+    <body>
+        <div th:fragment="formField(label, id)">
+            <div class="form-group">
+                <label th:text="${label}"></label>
+                <input type="text" class="form-control" id="${id}"  />
+                <small id="smallText" class="form-text text-muted" th:text="${label}"></small>
+            </div>
+        </div>
+    </body>
+</html>

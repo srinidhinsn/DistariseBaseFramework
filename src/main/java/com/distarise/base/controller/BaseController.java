@@ -1,6 +1,7 @@
 package com.distarise.base.controller;
 
 import com.distarise.base.model.BaseContextDto;
+import com.distarise.base.model.PageDetailsDto;
 import com.distarise.base.model.UserRoleDto;
 import com.distarise.base.service.BaseService;
 import com.distarise.base.service.UserService;
@@ -52,14 +53,15 @@ public class BaseController {
     public String genericController(@PathVariable("module") String module,
                                     @PathVariable("client") String client,
                                     @PathVariable("page") String page,
+                                    @ModelAttribute PageDetailsDto pageDetails,
                                     HttpServletRequest request,
-                                    //@ModelAttribute UINav uiNav,
                                     Model model) {
         HttpSession session = request.getSession();
         Optional<UserRoleDto> userRoleDto = Optional.ofNullable((UserRoleDto) session.getAttribute("userRoleDto"));
         BaseContextDto baseContextDto = new BaseContextDto(client, module, page, userRoleDto);
-        baseService.getPageDetails(baseContextDto);
-
+        PageDetailsDto pageDetailsDto = baseService.getPageDetails(baseContextDto);
+        model.addAttribute("pageDetails", pageDetailsDto);
+        model.addAttribute("pageDetails2", new PageDetailsDto());
         return "distarise";
     }
 

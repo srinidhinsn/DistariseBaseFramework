@@ -40,6 +40,7 @@ public class BaseServiceImpl implements BaseService, AbstractBaseService {
 
     @Override
     public PageDetailsDto getPageDetails(BaseContextDto baseContextDto) {
+        PageDetailsDto pageDetailsDto = new PageDetailsDto();
         if (baseContextDto.getUserRoleDto().isPresent()){
 
         } else{
@@ -59,7 +60,9 @@ public class BaseServiceImpl implements BaseService, AbstractBaseService {
             List<ComponentDto> componentDtos = componentService.getComponents(widgetIds, baseContextDto.getClientId());
             componentService.mapComponentsToWidget(widgetDtos, componentDtos);
             widgetService.mapWidgetsToNavigationItems(navigationItemDtos, widgetDtos);
+            pageDetailsDto.setNavigationDto(navigationDto);
+            pageDetailsDto.setClientDto(clientDto);
         }
-        return new PageDetailsDto();
+        return pageDetailsDto;
     }
 }

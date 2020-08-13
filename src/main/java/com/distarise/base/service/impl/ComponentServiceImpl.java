@@ -27,7 +27,7 @@ public class ComponentServiceImpl implements ComponentService {
             List<ComponentDto> componentDtoList = new ArrayList<>();
             widgetDto.setComponentDtos(componentDtoList);
             componentDtos.forEach(componentDto -> {
-                if (componentDto.getWidgetId().equalsIgnoreCase(componentDto.getId())){
+                if (componentDto.getWidgetId().equalsIgnoreCase(widgetDto.getId())){
                     componentDtoList.add(componentDto);
                 }
             });

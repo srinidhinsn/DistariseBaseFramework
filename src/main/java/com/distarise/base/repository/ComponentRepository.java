@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ComponentRepository extends CrudRepository<Component, ComponentId> {
 
-    @Query("from Component where widgetId in (?1) and clientId = ?2")
+    @Query("from Component where widgetId in (?1) and clientId = ?2 order by sortOrder asc")
     List<Component> getComponents(List<String> widgetIds, String clientId);
 }

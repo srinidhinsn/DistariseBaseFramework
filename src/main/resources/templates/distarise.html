@@ -1,66 +1,56 @@
-<html xmlns="http://thymeleaf.org">
+<html>
 
 <head>
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css"></link>
     <link th:href="@{/css/layout.css}" rel="stylesheet" type="text/css"></link>
+    <script type="text/javascript" th:src="@{/js/jquery-3.1.0.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <meta charset="UTF-8" />
 </head>
 
-<body>
-    <div class="container">
-        <form class="form-horizontal" method="post" object="uinav" action="\nsn\user\home">
-            <fieldset>
+<body object="pageDetails">
+<div class="container">
 
-                <!-- Form Name -->
-                <legend>User Login</legend>
 
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="username">Username</label>
-                    <div class="col-md-4">
-                        <input id="username" name="username" type="text" placeholder="Username" class="form-control input-md" required="" />
+        <div th:if="${pageDetails.clientDto.header}">
+            <h2 class="header" th:text="${pageDetails.clientDto.header}"></h2>
+        </div>
 
+
+        <h3 class="header" align="left" th:text="${pageDetails.navigationDto.pageTitle}"></h3>
+
+
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container">
+                <div th:each="navigationItemDto : ${pageDetails.navigationDto.navigationItems}">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <a class="navbar-brand" href="${navigationItemDto.url}">
+                            <div th:text="${navigationItemDto.label}"></div></a>
+                    </nav>
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="container">
+            <div th:each="navigationItemDto : ${pageDetails.navigationDto.navigationItems}">
+                <div th:class="${navigationItemDto.url}==pageDetails.url">
+                    <div class="container">
+                        <div th:each="widgetDto : ${navigationItemDto.widgets}">
+                            <div th:text="${widgetDto.widgetTitle}"></div>
+                                <form method="post" >
+                                    <div th:each="componentDto : ${widgetDto.componentDtos}">
+                                        <div th:replace="|../widgets/${componentDto.type}| :: formField(label=|${componentDto.label}|,id=|${componentDto.id}|)"></div>
+                                    </div>
+                                </form>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <!-- Password input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="password">Password</label>
-                    <div class="col-md-4">
-                        <input id="password" name="password" type="password" placeholder="Password" class="form-control input-md" required="" />
 
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-4">
-                        <!--<h1 th:text="${client.username}"></h1>-->
-                    </div>
-                </div>
 
-                <!-- Multiple Checkboxes (inline) -->
-                <div class="form-group remember-me">
-                    <label class="col-md-4 control-label" for="remember-me"></label>
-                    <div class="col-md-4">
-                        <label class="checkbox-inline" for="remember-me-0">
-      <input type="checkbox" name="remember-me" id="remember-me-0" value="true" />
-      Remember Me
-    </label>
-                    </div>
-                </div>
-
-                <!-- Button -->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="submit"></label>
-                    <div class="col-md-4">
-                        <button id="submit" name="submit" class="btn btn-primary btn-login">Login</button>
-                    </div>
-                </div>
-
-            </fieldset>
-        </form>
-
-        <script type="text/javascript" th:src="@{/js/jquery-3.1.0.min.js}"></script>
-        <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
     </div>
 </body>
-
 </html>

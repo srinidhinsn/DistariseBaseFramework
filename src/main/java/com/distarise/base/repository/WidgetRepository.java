@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface WidgetRepository extends CrudRepository<Widget, WidgetId> {
 
-    @Query("from Widget where navigationItemId in (?1) and clientId = ?2")
+    @Query("from Widget where navigationItemId in (?1) and clientId = ?2 order by sortOrder asc")
     List<Widget> getWidgets(List<String> navigationItemIds, String clientId);
 }
