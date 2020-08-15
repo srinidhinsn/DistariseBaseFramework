@@ -1,10 +1,11 @@
 package com.distarise.base.model;
 
-import java.util.List;
+import java.io.Serializable;
 
-public class PageDetailsDto {
+public class PageDetailsDto implements Serializable {
     private ClientDto clientDto;
     private NavigationDto navigationDto;
+    private String url;
 
     public ClientDto getClientDto() {
         return clientDto;
@@ -22,9 +23,18 @@ public class PageDetailsDto {
         this.navigationDto = navigationDto;
     }
 
-    public PageDetailsDto(ClientDto clientDto, NavigationDto navigationDto) {
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public PageDetailsDto(ClientDto clientDto, NavigationDto navigationDto, String url) {
         this.clientDto = clientDto;
         this.navigationDto = navigationDto;
+        this.url = url;
     }
 
     public PageDetailsDto() {

@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
 </head>
     <body>
-        <div th:fragment="formField(label, id)">
+        <div th:fragment="formField(component, widget, navigationItem, pageDetails)">
             <div class="form-group">
-                <label th:text="${label}"></label>
-                <input type="text" class="form-control" id="${id}"  />
-                <small id="smallText" class="form-text text-muted" th:text="${label}"></small>
+                <label th:text="${component.label}"></label>
+                <input type="text" class="form-control" th:id="${component.id}" th:name="${component.id}"  />
+                <small id="smallText" class="form-text text-muted" th:text="${component.label}"></small>
             </div>
         </div>
     </body>

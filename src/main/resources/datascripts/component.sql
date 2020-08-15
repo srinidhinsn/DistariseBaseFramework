@@ -5,4 +5,4 @@ INSERT INTO component(id, clientid, editable, keyoraction, label, sortorder, typ
 	VALUES ('password', 'distarise', true, null, 'Password', 2, 'password', true, 'login');
 
 INSERT INTO component(id, clientid, editable, keyoraction, label, sortorder, type, visible, widgetid)
-	VALUES ('loginsubmit', 'distarise', true, null, 'Submit', 3, 'button', true, 'login');
+	VALUES ('loginsubmit', 'distarise', true, '/distarise/user/login', 'Login', 3, 'submitbutton', true, 'login');

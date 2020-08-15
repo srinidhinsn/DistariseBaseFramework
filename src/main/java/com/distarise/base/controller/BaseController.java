@@ -1,10 +1,15 @@
 package com.distarise.base.controller;
 
 import com.distarise.base.model.BaseContextDto;
+import com.distarise.base.model.ComponentDto;
 import com.distarise.base.model.PageDetailsDto;
 import com.distarise.base.model.UserRoleDto;
+import com.distarise.base.model.WidgetDto;
 import com.distarise.base.service.BaseService;
 import com.distarise.base.service.UserService;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Optional;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author NSN
@@ -53,18 +59,19 @@ public class BaseController {
     public String genericController(@PathVariable("module") String module,
                                     @PathVariable("client") String client,
                                     @PathVariable("page") String page,
-                                    @ModelAttribute PageDetailsDto pageDetails,
-                                    HttpServletRequest request,
-                                    Model model) {
+                                    Model model,
+                                    HttpServletRequest request) {
         HttpSession session = request.getSession();
+        if (null != request.getParameter("pageDetails")){
+            //PageDetailsDto pageDetailsDto2 = (PageDetailsDto) request.getParameter("pageDetails");
+        }
         Optional<UserRoleDto> userRoleDto = Optional.ofNullable((UserRoleDto) session.getAttribute("userRoleDto"));
         BaseContextDto baseContextDto = new BaseContextDto(client, module, page, userRoleDto);
         PageDetailsDto pageDetailsDto = baseService.getPageDetails(baseContextDto);
+        pageDetailsDto.setUrl(request.getRequestURI());
         model.addAttribute("pageDetails", pageDetailsDto);
-        model.addAttribute("pageDetails2", new PageDetailsDto());
         return "distarise";
     }
-
 /*
     @RequestMapping(value = "/{client}/{module}/{page}")
     public String genericController(@PathVariable("module") String module,
@@ -75,14 +82,10 @@ public class BaseController {
         System.out.println("Module- "+module);
         System.out.println("Client - "+client);
         System.out.println("Page - "+page);
-        UserDetailsDto userDetailsDto = userService.getUserDetails(uiNav.getUsername(), uiNav.getPassword());
-        if (null != userDetailsDto){
-            System.out.println("Login success - "+userDetailsDto.getUserId());
-        } else {
-            System.out.println("Login failure");
-        }
+
 
         model.addAttribute("client",uiNav);
         return "index";
-    }*/
+    }
+    */
 }

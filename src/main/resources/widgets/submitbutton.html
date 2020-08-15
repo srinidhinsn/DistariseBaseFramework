@@ -1,0 +1,11 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+</head>
+    <body>
+        <div th:fragment="formField(component, widget)">
+            <button type="submit" th:onclick="|javascript:onClickSubmitForm('${widget.id}','${component.keyOrAction}')|" th:id="${component.id}" class="btn btn-primary" th:text="${component.label}"></button>
+        </div>
+    </body>
+</html>

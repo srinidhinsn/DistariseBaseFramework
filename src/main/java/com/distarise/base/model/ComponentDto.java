@@ -11,6 +11,7 @@ public class ComponentDto {
     private Boolean editable;
     private String keyOrAction;
     private Boolean visible;
+    private String value;
 
     public String getId() {
         return id;
@@ -84,8 +85,17 @@ public class ComponentDto {
         this.visible = visible;
     }
 
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
     public ComponentDto(String id, String widgetId, String clientId, Integer sortOrder,
-                     String type, String label, Boolean editable, String keyOrAction, Boolean visible) {
+                        String type, String label, Boolean editable, String keyOrAction,
+                        Boolean visible, String value) {
         this.id = id;
         this.widgetId = widgetId;
         this.clientId = clientId;
@@ -95,6 +105,7 @@ public class ComponentDto {
         this.editable = editable;
         this.keyOrAction = keyOrAction;
         this.visible = visible;
+        this.value = value;
     }
 
     public ComponentDto() {
