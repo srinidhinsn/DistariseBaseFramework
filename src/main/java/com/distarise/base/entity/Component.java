@@ -36,6 +36,9 @@ public class Component implements Serializable {
     @Column(name = "EDITABLE")
     private Boolean editable;
 
+    @Column(name = "REDIRECTURL")
+    private String redirectUrl;
+
     @Column(name = "KEYORACTION")
     private String keyOrAction;
 
@@ -98,6 +101,14 @@ public class Component implements Serializable {
         this.editable = editable;
     }
 
+    public String getRedirectUrl() {
+        return redirectUrl;
+    }
+
+    public void setRedirectUrl(String redirectUrl) {
+        this.redirectUrl = redirectUrl;
+    }
+
     public String getKeyOrAction() {
         return keyOrAction;
     }
@@ -115,7 +126,8 @@ public class Component implements Serializable {
     }
 
     public Component(String id, String widgetId, String clientId, Integer sortOrder,
-                     String type, String label, Boolean editable, String keyOrAction, Boolean visible) {
+                     String type, String label, Boolean editable, String redirectUrl,
+                     String keyOrAction, Boolean visible) {
         this.id = id;
         this.widgetId = widgetId;
         this.clientId = clientId;
@@ -125,6 +137,7 @@ public class Component implements Serializable {
         this.editable = editable;
         this.keyOrAction = keyOrAction;
         this.visible = visible;
+        this.redirectUrl = redirectUrl;
     }
 
     public Component() {

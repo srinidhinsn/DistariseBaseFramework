@@ -9,6 +9,7 @@ public class ComponentDto {
     private String type;
     private String label;
     private Boolean editable;
+    private String redirectUrl;
     private String keyOrAction;
     private Boolean visible;
     private String value;
@@ -67,6 +68,14 @@ public class ComponentDto {
 
     public void setEditable(Boolean editable) {
         this.editable = editable;
+    }
+
+    public String getRedirectUrl() {
+        return redirectUrl;
+    }
+
+    public void setRedirectUrl(String redirectUrl) {
+        this.redirectUrl = redirectUrl;
     }
 
     public String getKeyOrAction() {

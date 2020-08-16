@@ -10,33 +10,25 @@
 </head>
 
 <body object="pageDetails">
-<div class="container">
-
+    <div class="container">
 
 
         <div th:if="${pageDetails.clientDto.header}">
-            <nav class="navbar-light navbar-expand-sm bg-light">
-                <!-- Links -->
-                <ul class="navbar-nav navbar-light bg-light">
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="|#|" th:text="${pageDetails.clientDto.header}"></a>
-                    </li>
-                </ul>
-            </nav>
+            <h3 th:text="${pageDetails.clientDto.header}" />
         </div>
 
 
 
-
-        <nav class="navbar navbar-dark bg-dark">
-            <div class="container">
+        <nav class="navbar navbar-light bg-light">
                 <div th:each="navigationItemDto : ${pageDetails.navigationDto.navigationItems}">
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                        <a class="navbar-brand" href="${navigationItemDto.url}">
-                            <div th:text="${navigationItemDto.label}"></div></a>
+                    <nav class="navbar-light bg-light">
+                        <ul class="navbar-nav navbar-light bg-light">
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="${navigationItemDto.url}" th:text="${navigationItemDto.label}"></a>
+                            </li>
+                        </ul>
                     </nav>
                 </div>
-            </div>
         </nav>
 
 
@@ -48,10 +40,12 @@
                             <div class="card-header" th:text="${widgetDto.widgetTitle}"></div>
                             <div class="card-body">
                                 <form method="post" th:id="|${widgetDto.id}|" >
-                                    <input th:type="hidden" th:name="widgetId"
+                                    <input th:type="hidden" th:name="widgetId" th:id="widgetId"
                                            th:value="${pageDetails.navigationDto.id}
                                            +'-'+${navigationItemDto.id}
                                            +'-'+${widgetDto.id}" />
+                                    <input th:type="hidden" th:name="action" th:id="action"
+                                           value="" />
                                     <div th:each="componentDto : ${widgetDto.componentDtos}">
                                         <div th:replace="|../widgets/${componentDto.type}| ::
                                         formField(
@@ -69,6 +63,12 @@
             </div>
         </div>
 
+
+
+
+        <div th:if="${pageDetails.clientDto.footer}">
+            <h15 th:text="${pageDetails.clientDto.footer}" />
+        </div>
 
 
     </div>

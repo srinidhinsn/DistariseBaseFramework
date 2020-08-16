@@ -1,5 +1,7 @@
 package com.distarise.base.adapters;
 
+import com.distarise.base.action.AbstractBaseAction;
+import com.distarise.base.action.BaseAction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -17,6 +19,11 @@ public class FrameworkInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         logger.debug("preHandle-"+httpServletRequest.getRequestURI());
+        if (null != httpServletRequest.getParameter("action")) {
+            Object baseAction = Class.forName(httpServletRequest.getParameter("action"));
+            AbstractBaseAction abstractBaseAction = (AbstractBaseAction) baseAction;
+            abstractBaseAction.executeAction(httpServletRequest);
+        }
         return true;
     }
 
