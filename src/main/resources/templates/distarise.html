@@ -35,12 +35,12 @@
         <div class="container">
             <div th:each="navigationItemDto : ${pageDetails.navigationDto.navigationItems}">
                 <div th:class="${navigationItemDto.url}==pageDetails.url">
-                    <div class="card">
-                        <div th:each="widgetDto : ${navigationItemDto.widgets}">
+                    <div th:each="widgetDto : ${navigationItemDto.widgets}">
+                        <div class="card">
                             <div class="card-header" th:text="${widgetDto.widgetTitle}"></div>
                             <div class="card-body">
                                 <form method="post" th:id="|${widgetDto.id}|" >
-                                    <input th:type="hidden" th:name="widgetId" th:id="widgetId"
+                                    <input th:type="hidden" th:name="actionIdentifier" th:id="actionIdentifier"
                                            th:value="${pageDetails.navigationDto.id}
                                            +'-'+${navigationItemDto.id}
                                            +'-'+${widgetDto.id}" />

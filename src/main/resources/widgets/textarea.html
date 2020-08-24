@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+</head>
+    <body>
+        <div th:fragment="formField(component, widget, navigationItem, pageDetails)">
+            <div class="form-group">
+                <label th:text="${component.label}"></label>
+                <textarea class="form-control" rows="5" cols="4" th:id="${component.id}" th:name="${component.id}" >
+                    testing text area
+                </textarea>
+                <small id="smallText" class="form-text text-muted" th:text="${component.label}"></small>
+            </div>
+        </div>
+    </body>
+</html>

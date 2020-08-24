@@ -23,4 +23,10 @@ public class WidgetDaoImpl implements WidgetDao {
                 .collect(Collectors.toList());
         return widgetDtos;
     }
+
+    @Override
+    public WidgetDto getWidgetById(String clientId, String widgetId){
+        Widget widget = widgetRepository.getWidgetById(clientId, widgetId);
+        return modelMapper.map(widget, WidgetDto.class);
+    }
 }

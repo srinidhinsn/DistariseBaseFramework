@@ -8,4 +8,5 @@ public interface WidgetService extends AbstractBaseService{
     List<WidgetDto> getWidgets(List<String> navigationItemIds, String clientId);
     void mapWidgetsToNavigationItems(List<NavigationItemDto> navigationItemDtos,
                                      List<WidgetDto> widgetDtos);
+    WidgetDto getWidgetById(String clientId, String widgetId);
 }

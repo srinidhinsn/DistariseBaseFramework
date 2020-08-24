@@ -16,6 +16,6 @@ public class NavigationServiceImpl implements NavigationService {
     @Override
     public NavigationDto getNavigationDetails(String clientId, String module,
                                               List<String> roleNames){
-        return navigationDao.getNavigationDetails(module, clientId, roleNames);
+        return navigationDao.getNavigationDetails(clientId, module, roleNames);
     }
 }

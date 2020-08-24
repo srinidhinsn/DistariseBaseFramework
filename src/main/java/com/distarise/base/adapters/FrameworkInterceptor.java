@@ -1,9 +1,15 @@
 package com.distarise.base.adapters;
 
 import com.distarise.base.action.AbstractBaseAction;
-import com.distarise.base.action.BaseAction;
+import com.distarise.base.action.LoginAction;
+import com.distarise.base.model.NavigationDto;
+import com.distarise.base.model.NavigationItemDto;
+import com.distarise.base.model.PageDetailsDto;
+import com.distarise.base.model.WidgetDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,13 +22,28 @@ public class FrameworkInterceptor implements HandlerInterceptor {
 
     private static final Logger logger = LoggerFactory.getLogger(FrameworkInterceptor.class);
 
+    @Autowired
+    LoginAction loginAction;
+
+    @Autowired
+    ApplicationContext applicationContext;
+
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         logger.debug("preHandle-"+httpServletRequest.getRequestURI());
         if (null != httpServletRequest.getParameter("action")) {
-            Object baseAction = Class.forName(httpServletRequest.getParameter("action"));
-            AbstractBaseAction abstractBaseAction = (AbstractBaseAction) baseAction;
+            Class actionClass = Class.forName(httpServletRequest.getParameter("action"));
+            AbstractBaseAction abstractBaseAction = (AbstractBaseAction) applicationContext.getBean(actionClass);
             abstractBaseAction.executeAction(httpServletRequest);
+            WidgetDto widgetDto = abstractBaseAction.executeAction(new WidgetDto());
+            NavigationItemDto navigationItemDto = abstractBaseAction.executeAction(new NavigationItemDto());
+            NavigationDto navigationDto = abstractBaseAction.executeAction(new NavigationDto());
+            PageDetailsDto pageDetailsDto = abstractBaseAction.executeAction(new PageDetailsDto());
+
+            httpServletRequest.setAttribute("widgetDto", widgetDto);
+            httpServletRequest.setAttribute("navigationItemDto", navigationItemDto);
+            httpServletRequest.setAttribute("navigationDto", navigationDto);
+            httpServletRequest.setAttribute("pageDetailsDto", pageDetailsDto);
         }
         return true;
     }
@@ -36,4 +57,5 @@ public class FrameworkInterceptor implements HandlerInterceptor {
     public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
         logger.debug("afterCompletion-"+httpServletRequest.getRequestURI());
     }
+
 }

@@ -1,5 +1,6 @@
 package com.distarise.base.service.impl;
 
+import com.distarise.base.dao.ComponentDao;
 import com.distarise.base.dao.WidgetDao;
 import com.distarise.base.model.NavigationItemDto;
 import com.distarise.base.model.WidgetDto;
@@ -15,6 +16,9 @@ public class WidgetServiceImpl implements WidgetService {
 
     @Autowired
     WidgetDao widgetDao;
+
+    @Autowired
+    ComponentDao componentDao;
 
     @Override
     public List<WidgetDto> getWidgets(List<String> navigationItemIds, String clientId){
@@ -32,5 +36,12 @@ public class WidgetServiceImpl implements WidgetService {
                 }
             });
         });
+    }
+
+    @Override
+    public WidgetDto getWidgetById(String clientId, String widgetId){
+        WidgetDto widgetDto = widgetDao.getWidgetById(clientId, widgetId);
+        widgetDto.setComponentDtos(componentDao.getComponentsByWidgetId(clientId, widgetId));
+        return widgetDto;
     }
 }
