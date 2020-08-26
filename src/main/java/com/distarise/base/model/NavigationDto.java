@@ -2,9 +2,10 @@ package com.distarise.base.model;
 
 import com.distarise.base.entity.NavigationItem;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class NavigationDto {
+public class NavigationDto implements Serializable {
     private String id;
     private String clientId;
     private String roleName;

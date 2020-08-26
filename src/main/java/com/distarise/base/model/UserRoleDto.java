@@ -1,8 +1,9 @@
 package com.distarise.base.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class UserRoleDto {
+public class UserRoleDto implements Serializable {
     private String clientId;
     private String userId;
     private List<String> rolesList;

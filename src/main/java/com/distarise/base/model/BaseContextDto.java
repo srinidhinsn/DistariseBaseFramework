@@ -1,8 +1,9 @@
 package com.distarise.base.model;
 
+import java.io.Serializable;
 import java.util.Optional;
 
-public class BaseContextDto {
+public class BaseContextDto implements Serializable {
     private String clientId;
     private String module;
     private String pageName;

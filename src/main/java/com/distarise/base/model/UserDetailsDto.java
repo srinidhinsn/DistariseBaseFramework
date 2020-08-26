@@ -1,6 +1,8 @@
 package com.distarise.base.model;
 
-public class UserDetailsDto {
+import java.io.Serializable;
+
+public class UserDetailsDto implements Serializable {
     private String clientId;
     private String userId;
     private String password;

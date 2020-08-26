@@ -25,6 +25,15 @@ public class WidgetDaoImpl implements WidgetDao {
     }
 
     @Override
+    public List<WidgetDto> getWidgets(String navigationId, String clientId){
+        List<Widget> widgets = widgetRepository.getWidgets(navigationId, clientId);
+        List<WidgetDto> widgetDtos = widgets.stream()
+                .map(widget -> modelMapper.map(widget, WidgetDto.class))
+                .collect(Collectors.toList());
+        return widgetDtos;
+    }
+
+    @Override
     public WidgetDto getWidgetById(String clientId, String widgetId){
         Widget widget = widgetRepository.getWidgetById(clientId, widgetId);
         return modelMapper.map(widget, WidgetDto.class);

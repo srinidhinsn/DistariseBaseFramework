@@ -1,8 +1,9 @@
 package com.distarise.base.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class WidgetDto {
+public class WidgetDto implements Serializable {
     private String id;
     private String clientId;
     private String navigationItemId;

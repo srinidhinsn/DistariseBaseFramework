@@ -35,15 +35,7 @@ public class FrameworkInterceptor implements HandlerInterceptor {
             Class actionClass = Class.forName(httpServletRequest.getParameter("action"));
             AbstractBaseAction abstractBaseAction = (AbstractBaseAction) applicationContext.getBean(actionClass);
             abstractBaseAction.executeAction(httpServletRequest);
-            WidgetDto widgetDto = abstractBaseAction.executeAction(new WidgetDto());
-            NavigationItemDto navigationItemDto = abstractBaseAction.executeAction(new NavigationItemDto());
-            NavigationDto navigationDto = abstractBaseAction.executeAction(new NavigationDto());
-            PageDetailsDto pageDetailsDto = abstractBaseAction.executeAction(new PageDetailsDto());
-
-            httpServletRequest.setAttribute("widgetDto", widgetDto);
-            httpServletRequest.setAttribute("navigationItemDto", navigationItemDto);
-            httpServletRequest.setAttribute("navigationDto", navigationDto);
-            httpServletRequest.setAttribute("pageDetailsDto", pageDetailsDto);
+            abstractBaseAction.executeAction();
         }
         return true;
     }

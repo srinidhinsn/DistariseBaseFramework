@@ -1,7 +1,10 @@
 package com.distarise.base.model;
 
 
-public class ComponentDto {
+import java.io.Serializable;
+import java.util.List;
+
+public class ComponentDto implements Serializable {
     private String id;
     private String widgetId;
     private String clientId;
@@ -13,6 +16,8 @@ public class ComponentDto {
     private String keyOrAction;
     private Boolean visible;
     private String value;
+    private Boolean multiLevel;
+    private List<ComponentItemDto> componentItemDtos;
 
     public String getId() {
         return id;
@@ -102,9 +107,26 @@ public class ComponentDto {
         this.value = value;
     }
 
+    public Boolean getMultiLevel() {
+        return multiLevel;
+    }
+
+    public void setMultiLevel(Boolean multiLevel) {
+        this.multiLevel = multiLevel;
+    }
+
+    public List<ComponentItemDto> getComponentItemDtos() {
+        return componentItemDtos;
+    }
+
+    public void setComponentItemDtos(List<ComponentItemDto> componentItemDtos) {
+        this.componentItemDtos = componentItemDtos;
+    }
+
     public ComponentDto(String id, String widgetId, String clientId, Integer sortOrder,
                         String type, String label, Boolean editable, String keyOrAction,
-                        Boolean visible, String value) {
+                        Boolean visible, String value, Boolean multiLevel,
+                        List<ComponentItemDto> componentItemDtos) {
         this.id = id;
         this.widgetId = widgetId;
         this.clientId = clientId;
@@ -115,6 +137,8 @@ public class ComponentDto {
         this.keyOrAction = keyOrAction;
         this.visible = visible;
         this.value = value;
+        this.componentItemDtos = componentItemDtos;
+        this.multiLevel = multiLevel;
     }
 
     public ComponentDto() {

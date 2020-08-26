@@ -7,9 +7,10 @@ import org.springframework.stereotype.Service;
 public class LoginAction extends AbstractBaseAction {
 
     @Override
-    public WidgetDto executeAction(WidgetDto widgetDto) {
-        widgetDto = super.executeAction(widgetDto);
+    public void executeAction(){
+        WidgetDto widgetDto = super.executeAction(new WidgetDto());
         System.out.println("ogin actin");
-        return widgetDto;
+        request.setAttribute("widgetDto", widgetDto);
     }
+
 }

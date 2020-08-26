@@ -25,6 +25,11 @@ public class WidgetServiceImpl implements WidgetService {
         return widgetDao.getWidgets(navigationItemIds, clientId);
     }
 
+    @Override
+    public List<WidgetDto> getWidgets(String navigationItemId, String clientId){
+        return widgetDao.getWidgets(navigationItemId, clientId);
+    }
+
     public void mapWidgetsToNavigationItems(List<NavigationItemDto> navigationItemDtos,
                                             List<WidgetDto> widgetDtos){
         navigationItemDtos.forEach(navigationItemDto -> {

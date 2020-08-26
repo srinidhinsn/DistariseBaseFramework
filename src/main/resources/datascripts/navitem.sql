@@ -11,4 +11,4 @@ INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
 	VALUES ('ourServices', 'distariseadminlogin', 'Our Services', '/distarise/base/ourServices', 3, '3col0row', null);
 
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
-	VALUES ('contactUs', 'distariseadminlogin', 'Contact Us', '/distarise/distarise/contactUs', 4, '3col0row', null);
+	VALUES ('contactUs', 'distariseadminlogin', 'Contact Us', '/distarise/base/contactUs', 4, '3col0row', null);

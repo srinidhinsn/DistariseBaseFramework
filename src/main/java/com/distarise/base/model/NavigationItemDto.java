@@ -1,8 +1,9 @@
 package com.distarise.base.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class NavigationItemDto {
+public class NavigationItemDto implements Serializable {
     private String id;
     private String navigationId;
     private String label;

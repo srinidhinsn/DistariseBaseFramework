@@ -1,9 +1,11 @@
 package com.distarise.base.action;
 
+import com.distarise.base.model.ComponentItemDto;
 import com.distarise.base.model.NavigationDto;
 import com.distarise.base.model.NavigationItemDto;
 import com.distarise.base.model.PageDetailsDto;
 import com.distarise.base.model.WidgetDto;
+import com.distarise.base.service.ComponentItemService;
 import com.distarise.base.service.ComponentService;
 import com.distarise.base.service.NavigationItemService;
 import com.distarise.base.service.NavigationService;
@@ -13,10 +15,12 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class AbstractBaseAction implements BaseAction {
-    private HttpServletRequest request = null;
+    public HttpServletRequest request = null;
     private String[] actionIdentifier;
     private String[] url;
     private String clientId;
@@ -36,6 +40,9 @@ public class AbstractBaseAction implements BaseAction {
 
     @Autowired
     ComponentService componentService;
+
+    @Autowired
+    ComponentItemService componentItemService;
 
     @Override
     final public void executeAction(HttpServletRequest httpServletRequest){
@@ -70,16 +77,42 @@ public class AbstractBaseAction implements BaseAction {
     @Override
     public WidgetDto executeAction(WidgetDto widgetDto){
         widgetDto = widgetService.getWidgetById(clientId, widgetId);
+        List<String> componentIds = widgetDto.getComponentDtos().stream().
+                map(componentDto -> componentDto.getId()).collect(Collectors.toList());
+        List<ComponentItemDto> componentItems = componentItemService.getComponentItems(componentIds, clientId);
+        componentItemService.mapComponentItemsToComponents(widgetDto.getComponentDtos(), componentItems);
         widgetDto.getComponentDtos().forEach(componentDto -> {
-            Enumeration<String> params = request.getParameterNames();
-            while (params.hasMoreElements()){
-                String param = params.nextElement();
-                if (param.equalsIgnoreCase(componentDto.getId())){
-                    componentDto.setValue(request.getParameter(param));
+
+            if (componentDto.getMultiLevel()){
+                componentDto.getComponentItemDtos().forEach(componentItemDto -> {
+                    Enumeration<String> params = request.getParameterNames();
+                    componentItemDto.setValue(CHECKBOX_UNCHECKED);
+                    while (params.hasMoreElements()){
+                        String param = params.nextElement();
+                        if (param.equalsIgnoreCase(componentItemDto.getComponentId()+"-"
+                                +componentItemDto.getLabel())){
+                            componentItemDto.setValue(CHECKBOX_CHECKED);
+                            break;
+                        }
+                    };
+                });
+            }
+            else {
+                Enumeration<String> params = request.getParameterNames();
+                while (params.hasMoreElements()) {
+                    String param = params.nextElement();
+                    if (param.equalsIgnoreCase(componentDto.getId())) {
+                        componentDto.setValue(request.getParameter(param));
+                        break;
+                    }
                 }
-            };
+                ;
+            }
         });
         return widgetDto;
     }
+
+    @Override
+    public void executeAction(){}
 
 }

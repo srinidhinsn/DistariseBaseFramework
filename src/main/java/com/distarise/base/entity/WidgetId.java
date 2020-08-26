@@ -10,9 +10,13 @@ public class WidgetId implements Serializable {
     @Column(name = "ID")
     private String id;
 
-    public WidgetId(String clientId, String id) {
+    @Column(name = "NAVITEMID")
+    private String navigationItemId;
+
+    public WidgetId(String clientId, String id, String navigationItemId) {
         this.clientId = clientId;
         this.id = id;
+        this.navigationItemId = navigationItemId;
     }
 
     public WidgetId() {

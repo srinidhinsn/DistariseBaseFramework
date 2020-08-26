@@ -8,9 +8,17 @@ import com.distarise.base.model.WidgetDto;
 import javax.servlet.http.HttpServletRequest;
 
 public interface BaseAction {
+    public final static String WIDGET = "widgetDto";
+    public final static String NAVIGATION = "navigationDto";
+    public final static String PAGE_DETAILS = "pageDetailsDto";
+    public final static String NAVIGATION_ITEM = "navigationItemDto";
+    public final static String CHECKBOX_UNCHECKED = "UNCHECKED";
+    public final static String CHECKBOX_CHECKED = "CHECKED";
+
     void executeAction(HttpServletRequest httpServletRequest);
     PageDetailsDto executeAction(PageDetailsDto pageDetailsDto);
     NavigationDto executeAction(NavigationDto navigationDto);
     NavigationItemDto executeAction(NavigationItemDto navigationItemDto);
     WidgetDto executeAction(WidgetDto widgetDto);
+    void executeAction();
 }
