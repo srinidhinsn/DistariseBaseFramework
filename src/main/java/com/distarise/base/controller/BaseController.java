@@ -1,5 +1,6 @@
 package com.distarise.base.controller;
 
+import com.distarise.base.action.BaseAction;
 import com.distarise.base.model.BaseContextDto;
 import com.distarise.base.model.ComponentDto;
 import com.distarise.base.model.PageDetailsDto;
@@ -62,12 +63,15 @@ public class BaseController {
                                     Model model,
                                     HttpServletRequest request) {
         HttpSession session = request.getSession();
-        if (null != request.getParameter("pageDetails")){
-            //PageDetailsDto pageDetailsDto2 = (PageDetailsDto) request.getParameter("pageDetails");
+        PageDetailsDto pageDetailsDto = null;
+        if (null != request.getAttribute(BaseAction.PAGE_DETAILS)){
+            pageDetailsDto = (PageDetailsDto) request.getAttribute(BaseAction.PAGE_DETAILS);
         }
-        Optional<UserRoleDto> userRoleDto = Optional.ofNullable((UserRoleDto) session.getAttribute("userRoleDto"));
-        BaseContextDto baseContextDto = new BaseContextDto(client, module, page, userRoleDto);
-        PageDetailsDto pageDetailsDto = baseService.getPageDetails(baseContextDto);
+        else{
+            Optional<UserRoleDto> userRoleDto = Optional.ofNullable((UserRoleDto) session.getAttribute("userRoleDto"));
+            BaseContextDto baseContextDto = new BaseContextDto(client, module, page, userRoleDto);
+            pageDetailsDto = baseService.getPageDetails(baseContextDto);
+        }
         pageDetailsDto.setUrl(request.getRequestURI());
         model.addAttribute("pageDetails", pageDetailsDto);
         return "distarise";

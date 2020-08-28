@@ -21,7 +21,7 @@ INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, s
 
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-	VALUES ('textareasample', 'distarise', true, null, null, 'Text Area (textarea)', 2, 'textarea', true, 'samples', true);
+	VALUES ('textareasample', 'distarise', true, null, null, 'Text Area (textarea)', 2, 'textarea', true, 'samples', false);
 
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
@@ -31,4 +31,10 @@ INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, s
 	VALUES ('checkboxsample', 'distarise', true, null, null, 'Checkbox (checkbox)', 4, 'checkbox', true, 'samples', true);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-	VALUES ('submitsample', 'distarise', true, '/distarise/base/home', 'com.distarise.base.action.LoginAction', 'Submit', 5, 'submitbutton', true, 'samples', false);
+	VALUES ('radiosample', 'distarise', true, null, null, 'Radio (radiobutton)', 5, 'radiobutton', true, 'samples', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+	VALUES ('dropdownsample', 'distarise', true, null, null, 'Dropdown (dropdown)', 6, 'dropdown', true, 'samples', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+	VALUES ('submitsample', 'distarise', true, '/distarise/base/home', 'com.distarise.base.action.LoginAction', 'Submit', 7, 'submitbutton', true, 'samples', false);

@@ -8,10 +8,12 @@
             <div class="form-group">
                 <div th:if="${component.componentItemDtos.size()>0}">
                     <label th:for="${component.id}" th:text="${component.label}"></label>
-                    <textarea class="form-control" rows="5" cols="4" th:name="${component.id}"
-                              th:text="${component.componentItemDtos[0].value}" th:id="${component.id}">
-                    </textarea>
-                    <small id="smallText" class="form-text text-muted" th:text="${component.label}"></small>
+                    <div th:each="componentItemDto : ${component.componentItemDtos}">
+                        <input type="radio" class="form-control"
+                               th:text="${componentItemDto.label}" th:value="${componentItemDto.value}"
+                               th:name="${component.id}" th:id="${component.id}">
+                        </input>
+                    </div>
                 </div>
             </div>
         </div>

@@ -15,10 +15,5 @@ public interface BaseAction {
     public final static String CHECKBOX_UNCHECKED = "UNCHECKED";
     public final static String CHECKBOX_CHECKED = "CHECKED";
 
-    void executeAction(HttpServletRequest httpServletRequest);
-    PageDetailsDto executeAction(PageDetailsDto pageDetailsDto);
-    NavigationDto executeAction(NavigationDto navigationDto);
-    NavigationItemDto executeAction(NavigationItemDto navigationItemDto);
-    WidgetDto executeAction(WidgetDto widgetDto);
     void executeAction();
 }

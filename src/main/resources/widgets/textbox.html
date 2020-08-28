@@ -6,7 +6,7 @@
     <body>
         <div th:fragment="formField(component, widget, navigationItem, pageDetails)">
             <div class="form-group">
-                <label th:text="${component.label}"></label>
+                <label th:for="${component.id}" th:text="${component.label}"></label>
                 <input type="text" class="form-control" th:value="${component.value}" th:id="${component.id}" th:name="${component.id}"  />
                 <small id="smallText" class="form-text text-muted" th:text="${component.label}"></small>
             </div>

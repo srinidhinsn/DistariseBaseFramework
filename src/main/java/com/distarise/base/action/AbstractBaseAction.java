@@ -1,10 +1,13 @@
 package com.distarise.base.action;
 
+import com.distarise.base.model.BaseContextDto;
 import com.distarise.base.model.ComponentItemDto;
 import com.distarise.base.model.NavigationDto;
 import com.distarise.base.model.NavigationItemDto;
 import com.distarise.base.model.PageDetailsDto;
+import com.distarise.base.model.UserRoleDto;
 import com.distarise.base.model.WidgetDto;
+import com.distarise.base.service.BaseService;
 import com.distarise.base.service.ComponentItemService;
 import com.distarise.base.service.ComponentService;
 import com.distarise.base.service.NavigationItemService;
@@ -14,16 +17,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
-public class AbstractBaseAction implements BaseAction {
+public class AbstractBaseAction implements BaseAction{
     public HttpServletRequest request = null;
     private String[] actionIdentifier;
     private String[] url;
     private String clientId;
+    private String module;
+    private String page;
     private String widgetId;
     private String navigationId;
     private String navigationItemId;
@@ -44,11 +51,15 @@ public class AbstractBaseAction implements BaseAction {
     @Autowired
     ComponentItemService componentItemService;
 
-    @Override
+    @Autowired
+    BaseService baseService;
+
     final public void executeAction(HttpServletRequest httpServletRequest){
         request = httpServletRequest;
         url = request.getRequestURI().split("/");
         clientId = url[1];
+        module = url[2];
+        page = url[3];
 
         actionIdentifier = request.getParameter("actionIdentifier").split("-");
         navigationId = actionIdentifier[0];
@@ -56,25 +67,24 @@ public class AbstractBaseAction implements BaseAction {
         widgetId = actionIdentifier[2];
     }
 
-    @Override
     public PageDetailsDto executeAction(PageDetailsDto pageDetailsDto){
-
+        HttpSession session = request.getSession();
+        BaseContextDto baseContextDto = new BaseContextDto(clientId, module, page,
+                Optional.ofNullable((UserRoleDto) session.getAttribute("userRoleDto")));
+        pageDetailsDto = baseService.getPageDetails(baseContextDto);
         return pageDetailsDto;
     }
 
-    @Override
     public NavigationDto executeAction(NavigationDto navigationDto){
 
         return navigationDto;
     }
 
-    @Override
     public NavigationItemDto executeAction(NavigationItemDto navigationItemDto){
 
         return navigationItemDto;
     }
 
-    @Override
     public WidgetDto executeAction(WidgetDto widgetDto){
         widgetDto = widgetService.getWidgetById(clientId, widgetId);
         List<String> componentIds = widgetDto.getComponentDtos().stream().
