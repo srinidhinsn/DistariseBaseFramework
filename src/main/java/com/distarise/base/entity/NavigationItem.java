@@ -4,15 +4,18 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "NAVITEM")
+@IdClass(NavigationItemId.class)
 public class NavigationItem implements Serializable {
     @Id
     @Column(name = "ID")
     private String id;
 
+    @Id
     @Column(name = "UINAVID")
     private String navigationId;
 

@@ -17,8 +17,8 @@ public class UserServiceImpl implements UserService {
     BaseService baseService;
 
     @Override
-    public UserDetailsDto getUserDetails(String userId, String password) {
-        return userDetailsDao.getUserDetails(userId, password);
+    public UserDetailsDto getUserDetails(String userId, String password, String clientId) {
+        return userDetailsDao.getUserDetails(userId, password, clientId);
     }
 
 

@@ -14,8 +14,8 @@ public class UserDetailsDaoImpl implements UserDetailsDao {
     UserDetailsRepository userDetailsRepository;
 
     @Override
-    public UserDetailsDto getUserDetails(String userId, String password) {
-        UserDetails userDetails = userDetailsRepository.getUserDetails(userId, password);
+    public UserDetailsDto getUserDetails(String userId, String password, String clientId) {
+        UserDetails userDetails = userDetailsRepository.getUserDetails(userId, password, clientId);
         return modelMapper.map(userDetails, UserDetailsDto.class);
     }
 

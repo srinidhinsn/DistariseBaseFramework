@@ -1,13 +1,4 @@
 INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
-	VALUES (1,'distarise', 'greetings', false, 'greetings', 1, 'Welcome to the configuration', true);
-
-INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
-	VALUES (2,'distarise', 'introduction', false, 'introduction', 1, 'This is web framework', true);
-
-INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
-	VALUES (3,'distarise', 'quality', false, 'quality', 1, 'Quality assurance is our goal', true);
-
-INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
 	VALUES (4,'distarise', 'checkboxsample', false, 'Invoice Module', 1, 'CHECKED', true);
 
 
@@ -35,6 +26,3 @@ INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder,
 
 INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
 	VALUES (11,'distarise', 'dropdownsample', false, 'Country', 3, 'country', true);
-
-INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
-	VALUES (12,'distarise', 'textareasample', false, 'sampleTextArea', 1, '', true);

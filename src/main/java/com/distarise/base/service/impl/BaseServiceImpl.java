@@ -47,7 +47,7 @@ public class BaseServiceImpl implements BaseService, AbstractBaseService {
     public PageDetailsDto getPageDetails(BaseContextDto baseContextDto) {
         PageDetailsDto pageDetailsDto = new PageDetailsDto();
         if (baseContextDto.getUserRoleDto().isPresent()){
-
+            
         } else{
             ClientDto clientDto = clientService.getClientDetails(baseContextDto.getClientId());
             NavigationDto navigationDto = navigationService.getNavigationDetails(baseContextDto.getClientId(),

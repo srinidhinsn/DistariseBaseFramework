@@ -10,6 +10,7 @@ public class UserDetailsDto implements Serializable {
     private String firstname;
     private String lastname;
 
+
     public String getPassword() {
         return password;
     }

@@ -6,7 +6,7 @@ import java.util.List;
 public class UserRoleDto implements Serializable {
     private String clientId;
     private String userId;
-    private List<String> rolesList;
+    private List<UserRoleDto> rolesList;
 
     public String getClientId() {
         return clientId;
@@ -24,15 +24,15 @@ public class UserRoleDto implements Serializable {
         this.userId = userId;
     }
 
-    public List<String> getRolesList() {
+    public List<UserRoleDto> getRolesList() {
         return rolesList;
     }
 
-    public void setRolesList(List<String> rolesList) {
+    public void setRolesList(List<UserRoleDto> rolesList) {
         this.rolesList = rolesList;
     }
 
-    public UserRoleDto(String clientId, String userId, List<String> rolesList) {
+    public UserRoleDto(String clientId, String userId, List<UserRoleDto> rolesList) {
         this.clientId = clientId;
         this.userId = userId;
         this.rolesList = rolesList;

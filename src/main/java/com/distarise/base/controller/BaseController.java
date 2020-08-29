@@ -64,14 +64,16 @@ public class BaseController {
                                     HttpServletRequest request) {
         HttpSession session = request.getSession();
         PageDetailsDto pageDetailsDto = null;
+        Optional<UserRoleDto> userRoleDto = Optional.ofNullable((UserRoleDto) session.getAttribute("userRoleDto"));
+
         if (null != request.getAttribute(BaseAction.PAGE_DETAILS)){
             pageDetailsDto = (PageDetailsDto) request.getAttribute(BaseAction.PAGE_DETAILS);
         }
         else{
-            Optional<UserRoleDto> userRoleDto = Optional.ofNullable((UserRoleDto) session.getAttribute("userRoleDto"));
             BaseContextDto baseContextDto = new BaseContextDto(client, module, page, userRoleDto);
             pageDetailsDto = baseService.getPageDetails(baseContextDto);
         }
+
         pageDetailsDto.setUrl(request.getRequestURI());
         model.addAttribute("pageDetails", pageDetailsDto);
         return "distarise";

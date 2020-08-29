@@ -48,6 +48,10 @@ public class Component implements Serializable {
     @Column(name = "MULTILEVEL")
     private Boolean multiLevel=false;
 
+
+    @Column(name = "VALUE")
+    private String value;
+
     public String getId() {
         return id;
     }
@@ -136,9 +140,17 @@ public class Component implements Serializable {
         this.multiLevel = multiLevel;
     }
 
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
     public Component(String id, String widgetId, String clientId, Integer sortOrder,
                      String type, String label, Boolean editable, String redirectUrl,
-                     String keyOrAction, Boolean visible, Boolean isMultiLevel) {
+                     String keyOrAction, Boolean visible, Boolean isMultiLevel, String value) {
         this.id = id;
         this.widgetId = widgetId;
         this.clientId = clientId;
@@ -150,6 +162,7 @@ public class Component implements Serializable {
         this.visible = visible;
         this.redirectUrl = redirectUrl;
         this.multiLevel = isMultiLevel;
+        this.value = value;
     }
 
     public Component() {

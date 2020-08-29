@@ -30,10 +30,10 @@ public class AbstractBaseAction implements BaseAction{
     private String[] url;
     private String clientId;
     private String module;
-    private String page;
-    private String widgetId;
-    private String navigationId;
-    private String navigationItemId;
+    private String redirectPage;
+    private String sourceWidgetId;
+    private String sourceNavigationId;
+    private String sourceNavigationItemId;
 
 
     @Autowired
@@ -59,17 +59,17 @@ public class AbstractBaseAction implements BaseAction{
         url = request.getRequestURI().split("/");
         clientId = url[1];
         module = url[2];
-        page = url[3];
+        redirectPage = url[3];
 
         actionIdentifier = request.getParameter("actionIdentifier").split("-");
-        navigationId = actionIdentifier[0];
-        navigationItemId = actionIdentifier[1];
-        widgetId = actionIdentifier[2];
+        sourceNavigationId = actionIdentifier[0];
+        sourceNavigationItemId = actionIdentifier[1];
+        sourceWidgetId = actionIdentifier[2];
     }
 
     public PageDetailsDto executeAction(PageDetailsDto pageDetailsDto){
         HttpSession session = request.getSession();
-        BaseContextDto baseContextDto = new BaseContextDto(clientId, module, page,
+        BaseContextDto baseContextDto = new BaseContextDto(clientId, module, redirectPage,
                 Optional.ofNullable((UserRoleDto) session.getAttribute("userRoleDto")));
         pageDetailsDto = baseService.getPageDetails(baseContextDto);
         return pageDetailsDto;
@@ -85,8 +85,32 @@ public class AbstractBaseAction implements BaseAction{
         return navigationItemDto;
     }
 
+    public String getClientId() {
+        return clientId;
+    }
+
+    public String getModule() {
+        return module;
+    }
+
+    public String getRedirectPage() {
+        return redirectPage;
+    }
+
+    public String getSourceWidgetId() {
+        return sourceWidgetId;
+    }
+
+    public String getSourceNavigationId() {
+        return sourceNavigationId;
+    }
+
+    public String getSourceNavigationItemId() {
+        return sourceNavigationItemId;
+    }
+
     public WidgetDto executeAction(WidgetDto widgetDto){
-        widgetDto = widgetService.getWidgetById(clientId, widgetId);
+        widgetDto = widgetService.getWidgetById(clientId, sourceWidgetId);
         List<String> componentIds = widgetDto.getComponentDtos().stream().
                 map(componentDto -> componentDto.getId()).collect(Collectors.toList());
         List<ComponentItemDto> componentItems = componentItemService.getComponentItems(componentIds, clientId);
