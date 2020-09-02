@@ -9,7 +9,7 @@ public class RoleWidgetActionDto implements Serializable {
     private String widgetId;
     private String action;
     private String enabled;
-    private String visible;
+    private Boolean visible;
 
     public String getClientId() {
         return clientId;
@@ -51,16 +51,16 @@ public class RoleWidgetActionDto implements Serializable {
         this.enabled = enabled;
     }
 
-    public String getVisible() {
+    public Boolean getVisible() {
         return visible;
     }
 
-    public void setVisible(String visible) {
+    public void setVisible(Boolean visible) {
         this.visible = visible;
     }
 
     public RoleWidgetActionDto(String clientId, String roleName, String widgetId,
-                               String action, String enabled, String visible) {
+                               String action, String enabled, Boolean visible) {
         this.clientId = clientId;
         this.roleName = roleName;
         this.widgetId = widgetId;

@@ -3,11 +3,11 @@ INSERT INTO uinav(id, clientid, cssclass, module, pagedescription, pagename, pag
 
 
 INSERT INTO uinav(id, clientid, cssclass, module, pagedescription, pagename, pagetitle, redirectpagename, rolename)
-	VALUES ('distariseadminlogin', 'distarise', 'commoncss', 'base', 'Base module page', 'login', 'Login', 'home', null);
+	VALUES ('distariseguestlogin', 'distarise', 'commoncss', 'base', 'Base module page', 'login', 'Login', 'home', 'guest');
 
 
 INSERT INTO uinav(id, clientid, cssclass, module, pagedescription, pagename, pagetitle, redirectpagename, rolename)
-	VALUES ('distariseadminlogin', 'distarise', 'commoncss', 'base', 'Base module page', 'login', 'Login', 'home', 'Admin');
+	VALUES ('distariseadminlogin', 'distarise', 'commoncss', 'base', 'Base module page', 'login', 'Login', 'home', 'admin');
 
 
 INSERT INTO uinav(clientid, cssclass, module, pagedescription, pagename, pagetitle, redirectpagename, rolename)

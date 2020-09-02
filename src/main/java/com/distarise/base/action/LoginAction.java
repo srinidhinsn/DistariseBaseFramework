@@ -1,12 +1,14 @@
 package com.distarise.base.action;
 
-import com.distarise.base.entity.NavigationItem;
-import com.distarise.base.model.PageDetailsDto;
+import com.distarise.base.model.RoleWidgetActionDto;
 import com.distarise.base.model.UserDetailsDto;
 import com.distarise.base.model.WidgetDto;
 import com.distarise.base.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Service
 public class LoginAction extends AbstractBaseAction implements BaseAction {
@@ -25,8 +27,10 @@ public class LoginAction extends AbstractBaseAction implements BaseAction {
                 userDetailsDto.setPassword(componentDto.getValue());
             }
         });
-        UserDetailsDto retrieveUser = userService.getUserDetails(userDetailsDto.getUserId(), userDetailsDto.getPassword(),
+        UserDetailsDto retrievedUser = userService.getUserDetails(userDetailsDto.getUserId(), userDetailsDto.getPassword(),
                 getClientId());
+        HttpSession session = request.getSession(true);
+        session.setAttribute(UserService.USER, retrievedUser);
     }
 
 }

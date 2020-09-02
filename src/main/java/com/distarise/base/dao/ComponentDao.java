@@ -1,6 +1,7 @@
 package com.distarise.base.dao;
 
 import com.distarise.base.model.ComponentDto;
+
 import java.util.List;
 
 public interface ComponentDao extends AbstractBaseDao{

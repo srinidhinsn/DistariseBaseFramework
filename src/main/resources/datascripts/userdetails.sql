@@ -6,3 +6,7 @@ INSERT INTO userdetails(clientid, userid, firstname, lastname, password, title)
 
 INSERT INTO userdetails(clientid, userid, firstname, lastname, password, title)
 	VALUES ('distarise', 'suhas', 'Suhas', 'Sundar', 'suhas', 'Mr.');
+
+
+INSERT INTO userdetails(clientid, userid, firstname, lastname, password, title)
+	VALUES ('distarise', 'guest', '', '', 'guest', 'Mr.');

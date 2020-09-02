@@ -7,8 +7,6 @@ import com.distarise.base.repository.NavigationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
 public class NavigationDaoImpl implements NavigationDao {
 
@@ -17,10 +15,10 @@ public class NavigationDaoImpl implements NavigationDao {
 
     @Override
     public NavigationDto getNavigationDetails(String clientId, String module,
-                                              List<String> roleNames){
+                                              String roleName){
         Navigation navigation = null;
-        if (null != roleNames){
-             navigation = navigationRepository.getNavigationDetails(clientId, module, roleNames);
+        if (null != roleName){
+             navigation = navigationRepository.getNavigationDetails(clientId, module, roleName);
         } else {
             navigation = navigationRepository.getNavigationDetails(clientId, module);
         }

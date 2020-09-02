@@ -5,11 +5,11 @@ import com.distarise.base.dao.WidgetDao;
 import com.distarise.base.model.NavigationItemDto;
 import com.distarise.base.model.WidgetDto;
 import com.distarise.base.service.WidgetService;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class WidgetServiceImpl implements WidgetService {
@@ -21,13 +21,8 @@ public class WidgetServiceImpl implements WidgetService {
     ComponentDao componentDao;
 
     @Override
-    public List<WidgetDto> getWidgets(List<String> navigationItemIds, String clientId){
-        return widgetDao.getWidgets(navigationItemIds, clientId);
-    }
-
-    @Override
-    public List<WidgetDto> getWidgets(String navigationItemId, String clientId){
-        return widgetDao.getWidgets(navigationItemId, clientId);
+    public List<WidgetDto> getWidgets(String navigationItemId, String clientId, List<String> widgetIds){
+        return widgetDao.getWidgets(navigationItemId, clientId, widgetIds);
     }
 
     public void mapWidgetsToNavigationItems(List<NavigationItemDto> navigationItemDtos,

@@ -1,6 +1,7 @@
 package com.distarise.base.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class UserDetailsDto implements Serializable {
     private String clientId;
@@ -9,6 +10,8 @@ public class UserDetailsDto implements Serializable {
     private String title;
     private String firstname;
     private String lastname;
+    private String roleName;
+    private List<RoleWidgetActionDto> roleAccessList;
 
 
     public String getPassword() {
@@ -59,13 +62,32 @@ public class UserDetailsDto implements Serializable {
         this.userId = userId;
     }
 
-    public UserDetailsDto(String clientId, String userId, String password, String title, String firstname, String lastname) {
+    public List<RoleWidgetActionDto> getRoleAccessList() {
+        return roleAccessList;
+    }
+
+    public void setRoleAccessList(List<RoleWidgetActionDto> roleAccessList) {
+        this.roleAccessList = roleAccessList;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
+    public UserDetailsDto(String clientId, String userId, String password, String title, String firstname,
+                          String lastname, String roleName, List<RoleWidgetActionDto> roleAccessList) {
         this.clientId = clientId;
         this.userId = userId;
         this.password = password;
         this.title = title;
         this.firstname = firstname;
         this.lastname = lastname;
+        this.roleName = roleName;
+        this.roleAccessList = roleAccessList;
     }
 
     public UserDetailsDto() {

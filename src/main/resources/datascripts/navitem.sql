@@ -3,7 +3,7 @@ INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
 
 
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
-	VALUES ('login', 'distariseadminlogin', 'Login', '/distarise/base/login', 1, '3col0row', null);
+	VALUES ('login', 'distariseguestlogin', 'Login', '/distarise/base/login', 1, '3col0row', null);
 
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
 	VALUES ('home', 'distariseadminlogin', 'Home', '/distarise/base/home', 1, '3col0row', null);

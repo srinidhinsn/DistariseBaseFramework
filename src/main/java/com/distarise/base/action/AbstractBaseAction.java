@@ -5,13 +5,14 @@ import com.distarise.base.model.ComponentItemDto;
 import com.distarise.base.model.NavigationDto;
 import com.distarise.base.model.NavigationItemDto;
 import com.distarise.base.model.PageDetailsDto;
-import com.distarise.base.model.UserRoleDto;
+import com.distarise.base.model.UserDetailsDto;
 import com.distarise.base.model.WidgetDto;
 import com.distarise.base.service.BaseService;
 import com.distarise.base.service.ComponentItemService;
 import com.distarise.base.service.ComponentService;
 import com.distarise.base.service.NavigationItemService;
 import com.distarise.base.service.NavigationService;
+import com.distarise.base.service.UserService;
 import com.distarise.base.service.WidgetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -70,7 +71,7 @@ public class AbstractBaseAction implements BaseAction{
     public PageDetailsDto executeAction(PageDetailsDto pageDetailsDto){
         HttpSession session = request.getSession();
         BaseContextDto baseContextDto = new BaseContextDto(clientId, module, redirectPage,
-                Optional.ofNullable((UserRoleDto) session.getAttribute("userRoleDto")));
+                (UserDetailsDto) session.getAttribute(UserService.USER));
         pageDetailsDto = baseService.getPageDetails(baseContextDto);
         return pageDetailsDto;
     }

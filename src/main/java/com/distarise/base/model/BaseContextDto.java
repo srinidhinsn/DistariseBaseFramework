@@ -7,7 +7,7 @@ public class BaseContextDto implements Serializable {
     private String clientId;
     private String module;
     private String pageName;
-    private Optional<UserRoleDto> userRoleDto;
+    private UserDetailsDto userDetailsDto;
 
     public String getClientId() {
         return clientId;
@@ -33,19 +33,19 @@ public class BaseContextDto implements Serializable {
         this.pageName = pageName;
     }
 
-    public Optional<UserRoleDto> getUserRoleDto() {
-        return userRoleDto;
+    public UserDetailsDto getUserDetailsDto() {
+        return userDetailsDto;
     }
 
-    public void setUserRoleDto(Optional<UserRoleDto> userRoleDto) {
-        this.userRoleDto = userRoleDto;
+    public void setUserDetailsDto(UserDetailsDto userDetailsDto) {
+        this.userDetailsDto = userDetailsDto;
     }
 
-    public BaseContextDto(String clientId, String module, String pageName, Optional<UserRoleDto> userRoleDto) {
+    public BaseContextDto(String clientId, String module, String pageName, UserDetailsDto userDetailsDto) {
         this.clientId = clientId;
         this.module = module;
         this.pageName = pageName;
-        this.userRoleDto = userRoleDto;
+        this.userDetailsDto = userDetailsDto;
     }
 
     public BaseContextDto() {

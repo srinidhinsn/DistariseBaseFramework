@@ -8,8 +8,8 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "ROLEWIDGET")
-@IdClass(RoleWidgetId.class)
+@Table(name = "ROLEWIDGETACTION")
+@IdClass(RoleWidgetActionId.class)
 public class RoleWidgetAction implements Serializable {
     @Id
     @Column(name = "ROLENAME")
@@ -28,7 +28,7 @@ public class RoleWidgetAction implements Serializable {
     private String action;
 
     @Column(name="VISIBLE")
-    private String visible;
+    private Boolean visible;
 
     public String getRoleName() {
         return roleName;
@@ -54,11 +54,11 @@ public class RoleWidgetAction implements Serializable {
         this.widgetId = widgetId;
     }
 
-    public String getVisible() {
+    public Boolean getVisible() {
         return visible;
     }
 
-    public void setVisible(String visible) {
+    public void setVisible(Boolean visible) {
         this.visible = visible;
     }
 
@@ -70,7 +70,7 @@ public class RoleWidgetAction implements Serializable {
         this.action = action;
     }
 
-    public RoleWidgetAction(String roleName, String clientId, String widgetId, String visible,
+    public RoleWidgetAction(String roleName, String clientId, String widgetId, Boolean visible,
                             String action) {
         this.roleName = roleName;
         this.clientId = clientId;

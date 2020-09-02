@@ -1,12 +1,27 @@
 package com.distarise.base.model;
 
+import com.distarise.base.entity.RoleId;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.List;
 
 public class UserRoleDto implements Serializable {
+
+    private String roleName;
     private String clientId;
     private String userId;
-    private List<UserRoleDto> rolesList;
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
 
     public String getClientId() {
         return clientId;
@@ -24,18 +39,10 @@ public class UserRoleDto implements Serializable {
         this.userId = userId;
     }
 
-    public List<UserRoleDto> getRolesList() {
-        return rolesList;
-    }
-
-    public void setRolesList(List<UserRoleDto> rolesList) {
-        this.rolesList = rolesList;
-    }
-
-    public UserRoleDto(String clientId, String userId, List<UserRoleDto> rolesList) {
+    public UserRoleDto(String roleName, String clientId, String userId) {
+        this.roleName = roleName;
         this.clientId = clientId;
         this.userId = userId;
-        this.rolesList = rolesList;
     }
 
     public UserRoleDto() {

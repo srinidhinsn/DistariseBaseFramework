@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 public interface UserDetailsRepository extends CrudRepository<UserDetails, UserId> {
 
     @Query("select u from UserDetails u where u.userId = :userId and u.password=:password and u.clientId =:clientId")
-    UserDetails getUserDetails(@Param("userId") String userId, @Param("userId") String password,
-                               @Param("clientid")String clientId);
+    UserDetails getUserDetails(@Param("userId") String userId, @Param("password") String password,
+                               @Param("clientId")String clientId);
 
 }

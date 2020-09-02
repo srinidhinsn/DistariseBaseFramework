@@ -4,10 +4,12 @@ import com.distarise.base.dao.ComponentDao;
 import com.distarise.base.model.ComponentDto;
 import com.distarise.base.model.WidgetDto;
 import com.distarise.base.service.ComponentService;
-import java.util.ArrayList;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class ComponentServiceImpl implements ComponentService {
@@ -21,14 +23,21 @@ public class ComponentServiceImpl implements ComponentService {
     }
 
     @Override
-    public void mapComponentsToWidget(List<WidgetDto> widgetDtos,
-                                      List<ComponentDto> componentDtos){
+    public void mapComponentsToWidget(List<WidgetDto> widgetDtos, List<ComponentDto> componentDtos,
+                                      Map<String, List<String>> roleWidgetActions){
         widgetDtos.forEach(widgetDto -> {
             List<ComponentDto> componentDtoList = new ArrayList<>();
             widgetDto.setComponentDtos(componentDtoList);
             componentDtos.forEach(componentDto -> {
                 if (componentDto.getWidgetId().equalsIgnoreCase(widgetDto.getId())){
-                    componentDtoList.add(componentDto);
+                    List<String> allowedActions = roleWidgetActions.get(widgetDto.getId());
+                    if (null != componentDto.getKeyOrAction()){
+                        if (allowedActions.contains(componentDto.getKeyOrAction())){
+                            componentDtoList.add(componentDto);
+                        }
+                    }else {
+                        componentDtoList.add(componentDto);
+                    }
                 }
             });
         });

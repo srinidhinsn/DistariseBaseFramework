@@ -17,6 +17,7 @@ public class Component implements Serializable {
     @Column(name = "ID")
     private String id;
 
+    @Id
     @Column(name = "WIDGETID")
     private String widgetId;
 
