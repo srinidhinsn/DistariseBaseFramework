@@ -19,3 +19,22 @@ INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
 	VALUES ('distarise', 'admin', 'invoice', 'com.distarise.base.action.DemoAction', true);
+
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+	VALUES ('distarise', 'admin', 'invoice', 'com.distarise.base.action.EditAction', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+	VALUES ('distarise', 'dm', 'welcome', '', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+	VALUES ('distarise', 'dm', 'qaassurance', '', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+	VALUES ('distarise', 'dm', 'samples', '', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+	VALUES ('distarise', 'dm', 'invoice', '', false);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+	VALUES ('distarise', 'dm', 'invoice', 'com.distarise.base.action.EditAction', true);

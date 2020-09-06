@@ -49,4 +49,8 @@ INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, s
 
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-	VALUES ('submitinvoice', 'distarise', true, null, 'com.distarise.base.action.DemoAction', 'Add', 3, 'submitbutton', true, 'invoice', false);
+	VALUES ('submitinvoice', 'distarise', true, '/distarise/base/invoice', 'com.distarise.base.action.DemoAction', 'Add', 3, 'submitbutton', true, 'invoice', false);
+
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+	VALUES ('editinvoice', 'distarise', true, '/distarise/base/invoice', 'com.distarise.base.action.EditAction', 'Edit', 3, 'submitbutton', true, 'invoice', false);

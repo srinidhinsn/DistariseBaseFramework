@@ -16,9 +16,18 @@ INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
 
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
 	VALUES ('contactUs', 'distariseadminlogin', 'Contact Us', '/distarise/base/contactUs', 4, '3col0row', null);
-/*
-INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
-	VALUES ('inventory', 'distariseadminlogin', 'Inventory System', '/distarise/base/inventory', 4, '3col0row', null);
-*/
+
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
 	VALUES ('invoice', 'distariseadminlogin', 'Invoice System', '/distarise/base/invoice', 4, '3col0row', null);
+
+INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
+	VALUES ('home', 'distariseadmlogin', 'Home', '/distarise/base/home', 1, '3col0row', null);
+
+INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
+	VALUES ('ourProducts', 'distarisedmlogin', 'Our Products', '/distarise/base/ourProducts', 2, '3col0row', null);
+
+INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
+	VALUES ('ourServices', 'distariseadmlogin', 'Our Services', '/distarise/base/ourServices', 3, '3col0row', null);
+
+INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
+	VALUES ('invoice', 'distariseadmlogin', 'Invoice System', '/distarise/base/invoice', 4, '3col0row', null);
