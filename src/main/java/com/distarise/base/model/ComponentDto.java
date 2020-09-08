@@ -17,6 +17,8 @@ public class ComponentDto implements Serializable {
     private Boolean visible;
     private String value;
     private Boolean multiLevel;
+    private Integer colspan;
+    private Integer rowspan;
     private List<ComponentItemDto> componentItemDtos;
 
     public String getId() {
@@ -123,10 +125,26 @@ public class ComponentDto implements Serializable {
         this.componentItemDtos = componentItemDtos;
     }
 
+    public Integer getColspan() {
+        return colspan;
+    }
+
+    public void setColspan(Integer colspan) {
+        this.colspan = colspan;
+    }
+
+    public Integer getRowspan() {
+        return rowspan;
+    }
+
+    public void setRowspan(Integer rowspan) {
+        this.rowspan = rowspan;
+    }
+
     public ComponentDto(String id, String widgetId, String clientId, Integer sortOrder,
                         String type, String label, Boolean editable, String keyOrAction,
                         Boolean visible, String value, Boolean multiLevel,
-                        List<ComponentItemDto> componentItemDtos) {
+                        Integer rowspan, Integer colspan, List<ComponentItemDto> componentItemDtos) {
         this.id = id;
         this.widgetId = widgetId;
         this.clientId = clientId;
@@ -139,6 +157,8 @@ public class ComponentDto implements Serializable {
         this.value = value;
         this.componentItemDtos = componentItemDtos;
         this.multiLevel = multiLevel;
+        this.rowspan = rowspan;
+        this.colspan = colspan;
     }
 
     public ComponentDto() {

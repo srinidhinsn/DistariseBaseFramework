@@ -1,9 +1,11 @@
 package com.distarise.base.service.impl;
 
+import com.distarise.base.action.BaseAction;
 import com.distarise.base.model.BaseContextDto;
 import com.distarise.base.model.ClientDto;
 import com.distarise.base.model.ComponentDto;
 import com.distarise.base.model.ComponentItemDto;
+import com.distarise.base.model.LayoutDto;
 import com.distarise.base.model.NavigationDto;
 import com.distarise.base.model.NavigationItemDto;
 import com.distarise.base.model.PageDetailsDto;
@@ -15,6 +17,7 @@ import com.distarise.base.service.BaseService;
 import com.distarise.base.service.ClientService;
 import com.distarise.base.service.ComponentItemService;
 import com.distarise.base.service.ComponentService;
+import com.distarise.base.service.LayoutService;
 import com.distarise.base.service.NavigationItemService;
 import com.distarise.base.service.NavigationService;
 import com.distarise.base.service.UserService;
@@ -22,8 +25,10 @@ import com.distarise.base.service.WidgetService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -58,10 +63,16 @@ public class BaseServiceImpl implements BaseService, AbstractBaseService {
     @Autowired
     UserService userService;
 
+    @Autowired
+    LayoutService layoutService;
+
+    @Autowired
+    ApplicationContext applicationContext;
+
     @Override
     public PageDetailsDto getPageDetails(BaseContextDto baseContextDto) {
         PageDetailsDto pageDetailsDto = new PageDetailsDto();
-
+            Map<String, LayoutDto> layoutDtoMap = layoutService.getAllLayoutDesigns();
             UserDetailsDto userDetailsDto = baseContextDto.getUserDetailsDto();
             Map<String, List<String>> allowedWidgetActions = getAllowedWidgetActions(
                     userDetailsDto.getRoleAccessList());
@@ -77,6 +88,7 @@ public class BaseServiceImpl implements BaseService, AbstractBaseService {
             NavigationItemDto navigationItemDto = navigationItemDtos.stream().filter(findNavigationItemDto ->
                     findNavigationItemDto.getId().equalsIgnoreCase(baseContextDto.getPageName())).
                     findAny().orElse(navigationItemDtos.get(0));
+            navigationItemDto.setLayoutDto(layoutDtoMap.get(navigationItemDto.getLayoutId()));
             List<WidgetDto> widgetDtos = widgetService.getWidgets(navigationItemDto.getId(), baseContextDto.getClientId(),
                     allowedWidgetIds);
             logger.debug("widgetDtos size - "+widgetDtos.size());
@@ -89,6 +101,7 @@ public class BaseServiceImpl implements BaseService, AbstractBaseService {
             componentItemService.mapComponentItemsToComponents(componentDtos, componentItemDtos);
             componentService.mapComponentsToWidget(widgetDtos, componentDtos, allowedWidgetActions);
             widgetService.mapWidgetsToNavigationItems(navigationItemDtos, widgetDtos);
+            widgetService.mapLayoutsToWidgets(widgetDtos, layoutDtoMap);
             pageDetailsDto.setNavigationDto(navigationDto);
             pageDetailsDto.setClientDto(clientDto);
 
@@ -111,4 +124,30 @@ public class BaseServiceImpl implements BaseService, AbstractBaseService {
         });
         return allowedWidgetActions;
     }
+
+    @Override
+    public void preloadWidgets(HttpServletRequest request, PageDetailsDto pageDetailsDto, BaseContextDto baseContextDto){
+        List<NavigationItemDto> navigationItemDtos = pageDetailsDto.getNavigationDto().getNavigationItems();
+        NavigationItemDto navigationItemDto = navigationItemDtos
+                .stream().filter(findNavigationItemDto ->
+                findNavigationItemDto.getId().equalsIgnoreCase(baseContextDto.getPageName())).
+                findAny().orElse(navigationItemDtos.get(0));
+
+        navigationItemDto.getWidgets().forEach(widgetDto -> {
+            widgetDto.getComponentDtos().forEach(componentDto -> {
+                if (componentDto.getType().equalsIgnoreCase(AUTO_ACTION)){
+                    try {
+                        Class actionClass = Class.forName(componentDto.getKeyOrAction());
+                        BaseAction abstractBaseAction = (BaseAction) applicationContext.getBean(actionClass);
+                        abstractBaseAction.executeAction(request);
+                        abstractBaseAction.executeAction();
+                    }catch (ClassNotFoundException cnf){
+                        logger.error(cnf.getMessage());
+                    }
+                }
+            });
+        });
+    }
+
+
 }

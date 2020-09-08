@@ -35,30 +35,33 @@
         <div class="container">
             <div th:each="navigationItemDto : ${pageDetails.navigationDto.navigationItems}">
                 <div th:class="${navigationItemDto.url}==pageDetails.url">
-                    <div th:each="widgetDto : ${navigationItemDto.widgets}">
-                        <div class="card">
-                            <div class="card-header" th:text="${widgetDto.widgetTitle}"></div>
-                            <div class="card-body">
-                                <form method="post" th:id="|${widgetDto.id}|" >
-                                    <input th:type="hidden" th:name="actionIdentifier" th:id="actionIdentifier"
-                                           th:value="${pageDetails.navigationDto.id}
-                                           +'-'+${navigationItemDto.id}
-                                           +'-'+${widgetDto.id}" />
-                                    <input th:type="hidden" th:name="action" th:id="action"
-                                           value="" />
-                                    <div th:each="componentDto : ${widgetDto.componentDtos}">
-                                        <div th:replace="|../widgets/${componentDto.type}| ::
-                                        formField(
-                                        component=|${componentDto}|,
-                                        widget=|${widgetDto}|,
-                                        navigationItem=|${navigationItemDto}|,
-                                        pageDetails=|${pageDetails}|
-                                        )"></div>
+                    <!--<table class="table">-->
+
+                            <div th:each="widgetDto : ${navigationItemDto.widgets}">
+                                <div class="card">
+                                    <div class="card-header" th:text="${widgetDto.widgetTitle}"></div>
+                                    <div class="card-body">
+                                        <form method="post" th:id="|${widgetDto.id}|" >
+                                            <input th:type="hidden" th:name="actionIdentifier" th:id="actionIdentifier"
+                                                   th:value="${pageDetails.navigationDto.id}
+                                                       +'-'+${navigationItemDto.id}
+                                                       +'-'+${widgetDto.id}" />
+                                            <input th:type="hidden" th:name="action" th:id="action"
+                                                   value="" />
+                                            <div th:each="componentDto : ${widgetDto.componentDtos}">
+                                                <div th:replace="|../widgets/${componentDto.type}| ::
+                                                    formField(
+                                                    component=|${componentDto}|,
+                                                    widget=|${widgetDto}|,
+                                                    navigationItem=|${navigationItemDto}|,
+                                                    pageDetails=|${pageDetails}|
+                                                    )"></div>
+                                            </div>
+                                        </form>
                                     </div>
-                                </form>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                    <!--</table>-->
                 </div>
             </div>
         </div>

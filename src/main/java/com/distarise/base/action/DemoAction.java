@@ -30,7 +30,6 @@ public class DemoAction extends AbstractBaseAction implements BaseAction {
             }
         });
 
-        request.setAttribute(PAGE_DETAILS, targetPageDetailsDto);
     }
 
 }

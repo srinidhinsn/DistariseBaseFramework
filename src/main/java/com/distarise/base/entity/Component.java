@@ -46,12 +46,17 @@ public class Component implements Serializable {
     @Column(name = "VISIBLE")
     private Boolean visible;
 
-    @Column(name = "MULTILEVEL")
-    private Boolean multiLevel=false;
-
+    @Column(name = "MULTILEVEL", columnDefinition = "boolean default false")
+    private Boolean multiLevel;
 
     @Column(name = "VALUE")
     private String value;
+
+    @Column(name = "COLSPAN", columnDefinition = "integer default 1")
+    private Integer colspan;
+
+    @Column(name = "ROWSPAN", columnDefinition = "integer default 1")
+    private Integer rowspan;
 
     public String getId() {
         return id;
@@ -149,9 +154,26 @@ public class Component implements Serializable {
         this.value = value;
     }
 
+    public Integer getColspan() {
+        return colspan;
+    }
+
+    public void setColspan(Integer colspan) {
+        this.colspan = colspan;
+    }
+
+    public Integer getRowspan() {
+        return rowspan;
+    }
+
+    public void setRowspan(Integer rowspan) {
+        this.rowspan = rowspan;
+    }
+
     public Component(String id, String widgetId, String clientId, Integer sortOrder,
                      String type, String label, Boolean editable, String redirectUrl,
-                     String keyOrAction, Boolean visible, Boolean isMultiLevel, String value) {
+                     String keyOrAction, Boolean visible, Boolean isMultiLevel, String value,
+                     Integer rowspan, Integer colspan) {
         this.id = id;
         this.widgetId = widgetId;
         this.clientId = clientId;
@@ -164,6 +186,8 @@ public class Component implements Serializable {
         this.redirectUrl = redirectUrl;
         this.multiLevel = isMultiLevel;
         this.value = value;
+        this.rowspan = rowspan;
+        this.colspan = colspan;
     }
 
     public Component() {

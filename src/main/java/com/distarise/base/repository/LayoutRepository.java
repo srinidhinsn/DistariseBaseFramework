@@ -5,9 +5,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface LayoutRepository extends CrudRepository<Layout, String> {
 
-    @Query("from Layout where id = ?1")
-    Layout getLayoutDetails(String id);
+    @Query("from Layout")
+    List<Layout> getLayoutDetails();
 }

@@ -12,6 +12,9 @@ public class WidgetDto implements Serializable {
     private String layoutId;
     private Integer sortOrder;
     private String widgetId;
+    private Integer colspan;
+    private Integer rowspan;
+    private LayoutDto layoutDto;
     private List<ComponentDto> componentDtos;
 
     public String getId() {
@@ -86,9 +89,33 @@ public class WidgetDto implements Serializable {
         this.componentDtos = componentDtos;
     }
 
+    public Integer getColspan() {
+        return colspan;
+    }
+
+    public void setColspan(Integer colspan) {
+        this.colspan = colspan;
+    }
+
+    public Integer getRowspan() {
+        return rowspan;
+    }
+
+    public void setRowspan(Integer rowspan) {
+        this.rowspan = rowspan;
+    }
+
+    public LayoutDto getLayoutDto() {
+        return layoutDto;
+    }
+
+    public void setLayoutDto(LayoutDto layoutDto) {
+        this.layoutDto = layoutDto;
+    }
+
     public WidgetDto(String id, String clientId, String navigationItemId, String cssClass,
                      String widgetTitle, String layoutId, Integer sortOrder, String widgetId,
-                     List<ComponentDto> componentDtos) {
+                     Integer rowspan, Integer colspan, LayoutDto layoutDto, List<ComponentDto> componentDtos) {
         this.id = id;
         this.clientId = clientId;
         this.navigationItemId = navigationItemId;
@@ -98,6 +125,9 @@ public class WidgetDto implements Serializable {
         this.sortOrder = sortOrder;
         this.widgetId = widgetId;
         this.componentDtos = componentDtos;
+        this.rowspan = rowspan;
+        this.colspan = colspan;
+        this.layoutDto = layoutDto;
     }
 
     public WidgetDto() {

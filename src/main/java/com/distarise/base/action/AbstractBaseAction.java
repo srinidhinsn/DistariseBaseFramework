@@ -25,7 +25,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
-public class AbstractBaseAction implements BaseAction{
+public abstract class AbstractBaseAction implements BaseAction{
     public HttpServletRequest request = null;
     private String[] actionIdentifier;
     private String[] url;
@@ -61,18 +61,24 @@ public class AbstractBaseAction implements BaseAction{
         clientId = url[1];
         module = url[2];
         redirectPage = url[3];
-
-        actionIdentifier = request.getParameter("actionIdentifier").split("-");
-        sourceNavigationId = actionIdentifier[0];
-        sourceNavigationItemId = actionIdentifier[1];
-        sourceWidgetId = actionIdentifier[2];
+        if (null != request.getParameter("actionIdentifier")) {
+            actionIdentifier = request.getParameter("actionIdentifier").split("-");
+            sourceNavigationId = actionIdentifier[0];
+            sourceNavigationItemId = actionIdentifier[1];
+            sourceWidgetId = actionIdentifier[2];
+        }
     }
 
     public PageDetailsDto executeAction(PageDetailsDto pageDetailsDto){
-        HttpSession session = request.getSession();
-        BaseContextDto baseContextDto = new BaseContextDto(clientId, module, redirectPage,
-                (UserDetailsDto) session.getAttribute(UserService.USER));
-        pageDetailsDto = baseService.getPageDetails(baseContextDto);
+        if (null != request.getAttribute(BaseAction.PAGE_DETAILS)){
+            pageDetailsDto = (PageDetailsDto) request.getAttribute(BaseAction.PAGE_DETAILS);
+        }else {
+            HttpSession session = request.getSession();
+            BaseContextDto baseContextDto = new BaseContextDto(clientId, module, redirectPage,
+                    (UserDetailsDto) session.getAttribute(UserService.USER));
+            pageDetailsDto = baseService.getPageDetails(baseContextDto);
+            request.setAttribute(BaseAction.PAGE_DETAILS, pageDetailsDto);
+        }
         return pageDetailsDto;
     }
 
@@ -148,6 +154,6 @@ public class AbstractBaseAction implements BaseAction{
     }
 
     @Override
-    public void executeAction(){}
+    abstract public void executeAction();
 
 }
