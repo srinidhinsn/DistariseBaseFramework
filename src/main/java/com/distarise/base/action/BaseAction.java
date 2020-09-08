@@ -16,4 +16,5 @@ public interface BaseAction {
     public final static String CHECKBOX_CHECKED = "CHECKED";
 
     void executeAction();
+    void executeAction(HttpServletRequest request);
 }

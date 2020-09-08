@@ -1,6 +1,7 @@
 package com.distarise.base.adapters;
 
 import com.distarise.base.action.AbstractBaseAction;
+import com.distarise.base.action.BaseAction;
 import com.distarise.base.action.LoginAction;
 import com.distarise.base.model.NavigationDto;
 import com.distarise.base.model.NavigationItemDto;
@@ -23,19 +24,20 @@ public class FrameworkInterceptor implements HandlerInterceptor {
     private static final Logger logger = LoggerFactory.getLogger(FrameworkInterceptor.class);
 
     @Autowired
-    LoginAction loginAction;
-
-    @Autowired
     ApplicationContext applicationContext;
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         logger.debug("preHandle-"+httpServletRequest.getRequestURI());
         if (null != httpServletRequest.getParameter("action")) {
-            Class actionClass = Class.forName(httpServletRequest.getParameter("action"));
-            AbstractBaseAction abstractBaseAction = (AbstractBaseAction) applicationContext.getBean(actionClass);
-            abstractBaseAction.executeAction(httpServletRequest);
-            abstractBaseAction.executeAction();
+            try {
+                Class actionClass = Class.forName(httpServletRequest.getParameter("action"));
+                BaseAction abstractBaseAction = (BaseAction) applicationContext.getBean(actionClass);
+                abstractBaseAction.executeAction(httpServletRequest);
+                abstractBaseAction.executeAction();
+            }catch (ClassNotFoundException cnf){
+                logger.error(cnf.getMessage());
+            }
         }
         return true;
     }

@@ -39,6 +39,12 @@ public class Widget implements Serializable {
     @Column(name = "WIDGETID")
     private String widgetId;
 
+    @Column(name = "COLSPAN", columnDefinition = "integer default 1")
+    private Integer colspan;
+
+    @Column(name = "ROWSPAN", columnDefinition = "integer default 1")
+    private Integer rowspan;
+
     public String getId() {
         return id;
     }
@@ -103,8 +109,24 @@ public class Widget implements Serializable {
         this.widgetId = widgetId;
     }
 
+    public Integer getColspan() {
+        return colspan;
+    }
+
+    public void setColspan(Integer colspan) {
+        this.colspan = colspan;
+    }
+
+    public Integer getRowspan() {
+        return rowspan;
+    }
+
+    public void setRowspan(Integer rowspan) {
+        this.rowspan = rowspan;
+    }
     public Widget(String id, String clientId, String navigationItemId, String cssClass,
-                  String widgetTitle, String layoutId, Integer sortOrder, String widgetId) {
+                  String widgetTitle, String layoutId, Integer sortOrder, String widgetId,
+                  Integer rowspan, Integer colspan) {
         this.id = id;
         this.clientId = clientId;
         this.navigationItemId = navigationItemId;
@@ -113,6 +135,8 @@ public class Widget implements Serializable {
         this.layoutId = layoutId;
         this.sortOrder = sortOrder;
         this.widgetId = widgetId;
+        this.rowspan = rowspan;
+        this.colspan = colspan;
     }
 
     public Widget() {

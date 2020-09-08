@@ -2,6 +2,7 @@ package com.distarise.base.service.impl;
 
 import com.distarise.base.dao.ComponentDao;
 import com.distarise.base.dao.WidgetDao;
+import com.distarise.base.model.LayoutDto;
 import com.distarise.base.model.NavigationItemDto;
 import com.distarise.base.model.WidgetDto;
 import com.distarise.base.service.WidgetService;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class WidgetServiceImpl implements WidgetService {
@@ -43,5 +45,10 @@ public class WidgetServiceImpl implements WidgetService {
         WidgetDto widgetDto = widgetDao.getWidgetById(clientId, widgetId);
         widgetDto.setComponentDtos(componentDao.getComponentsByWidgetId(clientId, widgetId));
         return widgetDto;
+    }
+
+    @Override
+    public void mapLayoutsToWidgets(List<WidgetDto> widgetDtos, Map<String, LayoutDto> layoutDtoMap){
+        widgetDtos.forEach(widgetDto -> widgetDto.setLayoutDto(layoutDtoMap.get(widgetDto.getLayoutId())));
     }
 }

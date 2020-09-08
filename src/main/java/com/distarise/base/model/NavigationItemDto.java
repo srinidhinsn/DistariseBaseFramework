@@ -11,6 +11,7 @@ public class NavigationItemDto implements Serializable {
     private Integer sortOrder;
     private String layoutId;
     private String navigationItemId;
+    private LayoutDto layoutDto;
     private List<WidgetDto> widgets;
 
 
@@ -78,9 +79,17 @@ public class NavigationItemDto implements Serializable {
         this.widgets = widgets;
     }
 
+    public LayoutDto getLayoutDto() {
+        return layoutDto;
+    }
+
+    public void setLayoutDto(LayoutDto layoutDto) {
+        this.layoutDto = layoutDto;
+    }
+
     public NavigationItemDto(String id, String navigationId, String label, String url,
                              Integer sortOrder, String layoutId, String navigationItemId,
-                             List<WidgetDto> widgets) {
+                             LayoutDto layoutDto, List<WidgetDto> widgets) {
         this.id = id;
         this.navigationId = navigationId;
         this.label = label;
@@ -88,6 +97,7 @@ public class NavigationItemDto implements Serializable {
         this.sortOrder = sortOrder;
         this.layoutId = layoutId;
         this.navigationItemId = navigationItemId;
+        this.layoutDto = layoutDto;
         this.widgets = widgets;
     }
 

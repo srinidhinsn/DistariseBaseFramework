@@ -39,21 +39,6 @@ public class BaseController {
         return "welcome";
     }
 
-
-    @RequestMapping("/login")
-    public String login(Model model) {
-
-        model.addAttribute("uinav", new UINav());
-        return "index";
-    }
-
-    @RequestMapping("/home")
-    public String home(@ModelAttribute UINav uiNav) {
-        System.out.println("username - "+ uiNav.getUsername());
-        System.out.println("passwrd - "+uiNav.getPassword());
-        return "home";
-    }
-
     @RequestMapping(value = "/{client}/{module}/{page}")
     public String genericController(@PathVariable("module") String module,
                                     @PathVariable("client") String client,
@@ -77,26 +62,13 @@ public class BaseController {
             }
             BaseContextDto baseContextDto = new BaseContextDto(client, module, page, userDetailsDto);
             pageDetailsDto = baseService.getPageDetails(baseContextDto);
+            request.setAttribute(BaseAction.PAGE_DETAILS, pageDetailsDto);
+            baseService.preloadWidgets(request, pageDetailsDto, baseContextDto);
         }
 
         pageDetailsDto.setUrl(request.getRequestURI());
         model.addAttribute("pageDetails", pageDetailsDto);
         return "distarise";
     }
-/*
-    @RequestMapping(value = "/{client}/{module}/{page}")
-    public String genericController(@PathVariable("module") String module,
-                                    @PathVariable("client") String client,
-                                    @PathVariable("page") String page,
-                                    @ModelAttribute UINav uiNav,
-                                    Model model) {
-        System.out.println("Module- "+module);
-        System.out.println("Client - "+client);
-        System.out.println("Page - "+page);
 
-
-        model.addAttribute("client",uiNav);
-        return "index";
-    }
-    */
 }
