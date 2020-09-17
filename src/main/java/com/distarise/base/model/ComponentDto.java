@@ -3,6 +3,7 @@ package com.distarise.base.model;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 public class ComponentDto implements Serializable {
     private String id;
@@ -19,6 +20,7 @@ public class ComponentDto implements Serializable {
     private Boolean multiLevel;
     private Integer colspan;
     private Integer rowspan;
+    private List<Map<String, Object>> objectList;
     private List<ComponentItemDto> componentItemDtos;
 
     public String getId() {
@@ -117,6 +119,14 @@ public class ComponentDto implements Serializable {
         this.multiLevel = multiLevel;
     }
 
+    public List<Map<String, Object>> getObjectList() {
+        return objectList;
+    }
+
+    public void setObjectList(List<Map<String, Object>> objectList) {
+        this.objectList = objectList;
+    }
+
     public List<ComponentItemDto> getComponentItemDtos() {
         return componentItemDtos;
     }
@@ -144,7 +154,8 @@ public class ComponentDto implements Serializable {
     public ComponentDto(String id, String widgetId, String clientId, Integer sortOrder,
                         String type, String label, Boolean editable, String keyOrAction,
                         Boolean visible, String value, Boolean multiLevel,
-                        Integer rowspan, Integer colspan, List<ComponentItemDto> componentItemDtos) {
+                        Integer rowspan, Integer colspan, List<Map<String, Object>> objectList,
+                        List<ComponentItemDto> componentItemDtos) {
         this.id = id;
         this.widgetId = widgetId;
         this.clientId = clientId;
@@ -159,6 +170,7 @@ public class ComponentDto implements Serializable {
         this.multiLevel = multiLevel;
         this.rowspan = rowspan;
         this.colspan = colspan;
+        this.objectList = objectList;
     }
 
     public ComponentDto() {
