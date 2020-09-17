@@ -68,7 +68,7 @@ public class BaseController {
 
         pageDetailsDto.setUrl(request.getRequestURI());
         model.addAttribute("pageDetails", pageDetailsDto);
-        return "distarise";
+        return client;
     }
 
 }

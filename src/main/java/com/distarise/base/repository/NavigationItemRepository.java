@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface NavigationItemRepository extends CrudRepository<NavigationItem, String> {
 
-    @Query("from NavigationItem where navigationId = ?1 order by sortOrder asc")
+    @Query("from NavigationItem where navigationId = ?1 order by sortOrder desc")
     List<NavigationItem> getNavigationItems(String navigationId);
 }

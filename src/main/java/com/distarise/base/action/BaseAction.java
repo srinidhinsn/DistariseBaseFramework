@@ -4,10 +4,12 @@ import com.distarise.base.model.NavigationDto;
 import com.distarise.base.model.NavigationItemDto;
 import com.distarise.base.model.PageDetailsDto;
 import com.distarise.base.model.WidgetDto;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.servlet.http.HttpServletRequest;
 
 public interface BaseAction {
+    public ObjectMapper oMapper = new ObjectMapper();
     public final static String WIDGET = "widgetDto";
     public final static String NAVIGATION = "navigationDto";
     public final static String PAGE_DETAILS = "pageDetailsDto";
