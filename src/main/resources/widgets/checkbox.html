@@ -11,7 +11,7 @@
                     <div th:each="componentItemDto : ${component.componentItemDtos}">
                         <input type="checkbox" class="form-control" th:id="${component.id}"
                                th:text="${componentItemDto.label}" th:value="${componentItemDto.value}"
-                               th:name="|${component.id}-${componentItemDto.label}|" >
+                               th:name="${componentItemDto.id}" >
                         </input>
                     </div>
                 </div>

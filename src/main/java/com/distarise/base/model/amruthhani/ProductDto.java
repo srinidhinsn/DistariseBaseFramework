@@ -18,6 +18,7 @@ public class ProductDto implements Serializable {
     private String subType;
     private String description;
     private BigDecimal gst;
+    private BigDecimal discount;
 
     public String getId() {
         return id;
@@ -113,6 +114,14 @@ public class ProductDto implements Serializable {
 
     public void setGst(BigDecimal gst) {
         this.gst = gst;
+    }
+
+    public BigDecimal getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(BigDecimal discount) {
+        this.discount = discount;
     }
 
     public ProductDto() {

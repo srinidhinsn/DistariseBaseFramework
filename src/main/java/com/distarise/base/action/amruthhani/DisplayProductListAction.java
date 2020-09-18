@@ -33,7 +33,9 @@ public class DisplayProductListAction extends AbstractBaseAction implements Base
                 navigationItemDto.getWidgets().forEach(targetWidgetDto -> {
                     if (targetWidgetDto.getId().equalsIgnoreCase("productlist")){
                         targetWidgetDto.getComponentDtos().forEach(targetComponentDto -> {
-                            targetComponentDto.setObjectList(objectList);
+                            if (targetComponentDto.getId().equalsIgnoreCase("listproduct")){
+                                targetComponentDto.setObjectList(objectList);
+                            }
                         });
                     }
                 });

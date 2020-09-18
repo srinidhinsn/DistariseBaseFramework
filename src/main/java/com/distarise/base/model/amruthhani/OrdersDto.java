@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class OrdersDto implements Serializable {
-    private String id;
+    private Long id;
     private String productId;
     private Integer quantity;
     private Date orderedDate;
@@ -14,13 +14,15 @@ public class OrdersDto implements Serializable {
     private Date deliveryDate;
     private BigDecimal deliveryCharges;
     private BigDecimal totalGst;
-    private BigDecimal invoiceAmount;
+    private BigDecimal price;
+    private BigDecimal finalPrice;
+    private BigDecimal discount;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -80,12 +82,28 @@ public class OrdersDto implements Serializable {
         this.totalGst = totalGst;
     }
 
-    public BigDecimal getInvoiceAmount() {
-        return invoiceAmount;
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    public void setInvoiceAmount(BigDecimal invoiceAmount) {
-        this.invoiceAmount = invoiceAmount;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public BigDecimal getFinalPrice() {
+        return finalPrice;
+    }
+
+    public void setFinalPrice(BigDecimal finalPrice) {
+        this.finalPrice = finalPrice;
+    }
+
+    public BigDecimal getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(BigDecimal discount) {
+        this.discount = discount;
     }
 
     public OrdersDto() {

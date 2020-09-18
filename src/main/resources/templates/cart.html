@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+</head>
+<body>
+<div th:fragment="widget(widget)">
+            <div th:with="product=${widget.componentDtos[0].objectList[0]}, order=${widget.componentDtos[0].objectList[1]}"
+                 class="w3-row-padding w3-grayscale" style="width: auto">
+                <div class="w3-col l3 m6 w3-margin-bottom">
+
+                    <img th:with="image=${#strings.arraySplit(product.image,',')}"
+                         th:src="|/images/${image[0]}|" th:alt="${product.header}" style="width:100%" />
+
+                    <h3 th:text="${product.header}"></h3>
+                    <p class="w3-opacity" th:text="${product.subHeader}"></p>
+
+
+                </div>
+
+                <div class="w3-col l3 m6 w3-margin-bottom" style="text-align:right">
+                    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16" th:text="${widget.widgetTitle}"></h3>
+                    <h3 th:text="${product.header}"></h3>
+                    <p class="w3-opacity" th:text="${product.subHeader}"></p>
+                    <p th:text="${product.description}"></p>
+
+                    <input type="hidden" th:id="orderId"  th:value="${order.id}"></input>
+                    <p th:text="|Total Price per ${order.quantity} unit: Rs.${order.price}/-|"></p>
+                    <p th:text="|Discount : -Rs.${order.discount}/-|"></p>
+                    <p th:text="|GST : Rs.${order.totalGst}/-|"></p>
+                    <p th:text="|Delivery charges : Rs.${order.deliveryCharges}/-|"></p>
+                    <p th:text="|Final Price : Rs.${order.finalPrice}/-|"></p>
+
+                </div>
+                <div class="w3-col l3 m6 w3-margin-bottom" style="text-align:right">
+                    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16" th:text="${widget.widgetTitle}"></h3>
+                    <h3 th:text="${product.header}"></h3>
+                    <p class="w3-opacity" th:text="${product.subHeader}"></p>
+                    <p th:text="${product.description}"></p>
+
+                    <input type="hidden" th:id="orderId"  th:value="${order.id}"></input>
+                    <p th:text="|Total Price per ${order.quantity} unit: Rs.${order.price}/-|"></p>
+                    <p th:text="|Discount : -Rs.${order.discount}/-|"></p>
+                    <p th:text="|GST : Rs.${order.totalGst}/-|"></p>
+                    <p th:text="|Delivery charges : Rs.${order.deliveryCharges}/-|"></p>
+                    <p th:text="|Final Price : Rs.${order.finalPrice}/-|"></p>
+
+                </div>
+                <div class="w3-col l3 m6 w3-margin-bottom" style="text-align:right">
+                    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16" th:text="${widget.widgetTitle}"></h3>
+                    <h3 th:text="${product.header}"></h3>
+                    <p class="w3-opacity" th:text="${product.subHeader}"></p>
+                    <p th:text="${product.description}"></p>
+
+                    <input type="hidden" th:id="orderId"  th:value="${order.id}"></input>
+                    <p th:text="|Total Price per ${order.quantity} unit: Rs.${order.price}/-|"></p>
+                    <p th:text="|Discount : -Rs.${order.discount}/-|"></p>
+                    <p th:text="|GST : Rs.${order.totalGst}/-|"></p>
+                    <p th:text="|Delivery charges : Rs.${order.deliveryCharges}/-|"></p>
+                    <p th:text="|Final Price : Rs.${order.finalPrice}/-|"></p>
+
+                </div>
+
+
+            </div>
+</div>
+</body>
+</html>

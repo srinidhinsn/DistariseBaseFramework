@@ -58,9 +58,11 @@ public abstract class AbstractBaseAction implements BaseAction{
     final public void executeAction(HttpServletRequest httpServletRequest){
         request = httpServletRequest;
         url = request.getRequestURI().split("/");
-        clientId = url[1];
-        module = url[2];
-        redirectPage = url[3];
+        if (url.length == 4) {
+            clientId = url[1];
+            module = url[2];
+            redirectPage = url[3];
+        }
         if (null != request.getParameter("actionIdentifier")) {
             actionIdentifier = request.getParameter("actionIdentifier").split("-");
             sourceNavigationId = actionIdentifier[0];
@@ -122,34 +124,18 @@ public abstract class AbstractBaseAction implements BaseAction{
                 map(componentDto -> componentDto.getId()).collect(Collectors.toList());
         List<ComponentItemDto> componentItems = componentItemService.getComponentItems(componentIds, clientId);
         componentItemService.mapComponentItemsToComponents(widgetDto.getComponentDtos(), componentItems);
-        widgetDto.getComponentDtos().forEach(componentDto -> {
 
-            if (componentDto.getMultiLevel()){
-                componentDto.getComponentItemDtos().forEach(componentItemDto -> {
-                    Enumeration<String> params = request.getParameterNames();
-                    componentItemDto.setValue(CHECKBOX_UNCHECKED);
-                    while (params.hasMoreElements()){
-                        String param = params.nextElement();
-                        if (param.equalsIgnoreCase(componentItemDto.getComponentId()+"-"
-                                +componentItemDto.getLabel())){
-                            componentItemDto.setValue(CHECKBOX_CHECKED);
-                            break;
-                        }
-                    };
-                });
-            }
-            else {
-                Enumeration<String> params = request.getParameterNames();
-                while (params.hasMoreElements()) {
-                    String param = params.nextElement();
-                    if (param.equalsIgnoreCase(componentDto.getId())) {
-                        componentDto.setValue(request.getParameter(param));
-                        break;
-                    }
+        widgetDto.getComponentDtos().forEach(componentDto -> {
+            Enumeration<String> params = request.getParameterNames();
+            while (params.hasMoreElements()) {
+                String param = params.nextElement();
+                if (param.equalsIgnoreCase(componentDto.getId())) {
+                    componentDto.setValue(request.getParameter(param));
+                    break;
                 }
-                ;
-            }
+            };
         });
+
         return widgetDto;
     }
 

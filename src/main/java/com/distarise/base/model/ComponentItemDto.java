@@ -4,6 +4,7 @@ package com.distarise.base.model;
 import java.io.Serializable;
 
 public class ComponentItemDto implements Serializable {
+    private Long id;
     private String componentId;
     private String clientId;
     private Integer sortOrder;
@@ -68,8 +69,17 @@ public class ComponentItemDto implements Serializable {
         this.visible = visible;
     }
 
-    public ComponentItemDto(String componentId, String clientId,
-                         Integer sortOrder, String value, String label, Boolean editable, Boolean visible) {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public ComponentItemDto(Long id, String componentId, String clientId,
+                            Integer sortOrder, String value, String label, Boolean editable, Boolean visible) {
+        this.id = id;
         this.componentId = componentId;
         this.clientId = clientId;
         this.sortOrder = sortOrder;
