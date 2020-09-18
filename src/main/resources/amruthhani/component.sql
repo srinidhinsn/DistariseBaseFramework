@@ -16,3 +16,19 @@ INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, s
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
 	VALUES ('productdetails', 'amruthhani', true, null, null, '', 1, 'custom', true, 'productdetails', false);
 
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+	VALUES ('shipping', 'amruthhani', true, null, null, 'Shipping options', 2, 'radiobutton', true, 'productdetails', true);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel, value)
+	VALUES ('discount1', 'amruthhani', true, null, null, 'Discount rates', 3, 'text', true, 'productdetails', false, '10-19 units, Rs200/- off per unit');
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel, value)
+	VALUES ('discount2', 'amruthhani', true, null, null, '', 4, 'text', true, 'productdetails', false, '20-49 units, Rs300/- off per unit');
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel, value)
+	VALUES ('discount3', 'amruthhani', true, null, null, '', 5, 'text', true, 'productdetails', false, '50+ units, Rs400/- off per unit');
+
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+	VALUES ('cart', 'amruthhani', true, null, null, '', 1, 'custom', true, 'cart', false);
+

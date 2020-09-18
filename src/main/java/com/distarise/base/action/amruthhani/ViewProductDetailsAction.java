@@ -28,9 +28,11 @@ public class ViewProductDetailsAction extends AbstractBaseAction implements Base
         targetPageDetailsDto.getNavigationDto().getNavigationItems().forEach(navigationItemDto -> {
             if (!navigationItemDto.getWidgets().isEmpty()){
                 navigationItemDto.getWidgets().forEach(targetWidgetDto -> {
-                    if (targetWidgetDto.getId().equalsIgnoreCase("productlist")){
+                    if (targetWidgetDto.getId().equalsIgnoreCase("productdetails")){
                         targetWidgetDto.getComponentDtos().forEach(targetComponentDto -> {
-                            targetComponentDto.setObjectList(objectList);
+                            if (targetComponentDto.getId().equalsIgnoreCase("productdetails")){
+                                targetComponentDto.setObjectList(objectList);
+                            }
                         });
                     }
                 });

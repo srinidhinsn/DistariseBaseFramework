@@ -3,7 +3,10 @@ package com.distarise.base.entity.amruthhani;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -13,8 +16,10 @@ import java.sql.Date;
 @Table(name = "ORDERS")
 public class Orders implements Serializable {
     @Id
+    @SequenceGenerator(name = "orderId", initialValue = 1000, allocationSize = 50)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "orderId")
     @Column(name = "ID")
-    private String id;
+    private Long id;
 
     @Column(name = "PRODUCTID")
     private String productId;
@@ -37,14 +42,20 @@ public class Orders implements Serializable {
     @Column(name = "TOTALGST")
     private BigDecimal totalGst;
 
-    @Column(name = "INVOICEAMOUNT")
-    private BigDecimal invoiceAmount;
+    @Column(name = "PRICE")
+    private BigDecimal price;
 
-    public String getId() {
+    @Column(name = "FINALPRICE")
+    private BigDecimal finalPrice;
+
+    @Column(name = "DISCOUNT")
+    private BigDecimal discount;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -104,11 +115,28 @@ public class Orders implements Serializable {
         this.totalGst = totalGst;
     }
 
-    public BigDecimal getInvoiceAmount() {
-        return invoiceAmount;
+
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    public void setInvoiceAmount(BigDecimal invoiceAmount) {
-        this.invoiceAmount = invoiceAmount;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public BigDecimal getFinalPrice() {
+        return finalPrice;
+    }
+
+    public void setFinalPrice(BigDecimal finalPrice) {
+        this.finalPrice = finalPrice;
+    }
+
+    public BigDecimal getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(BigDecimal discount) {
+        this.discount = discount;
     }
 }

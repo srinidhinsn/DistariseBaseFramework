@@ -47,6 +47,9 @@ public class Product {
     @Column(name = "GST")
     private BigDecimal gst;
 
+    @Column(name = "DISCOUNT")
+    private BigDecimal discount;
+
     public String getId() {
         return id;
     }
@@ -143,9 +146,17 @@ public class Product {
         this.gst = gst;
     }
 
+    public BigDecimal getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(BigDecimal discount) {
+        this.discount = discount;
+    }
+
     public Product(String id, String header, String subHeader, String image, Integer quantity,
                    BigDecimal price, String category, String subCategory, String type,
-                   String subType, String description, BigDecimal gst) {
+                   String subType, String description, BigDecimal gst, BigDecimal discount) {
         this.id = id;
         this.header = header;
         this.subHeader = subHeader;
@@ -158,6 +169,7 @@ public class Product {
         this.subType = subType;
         this.description = description;
         this.gst = gst;
+        this.discount = discount;
     }
 
     public Product() {

@@ -5,7 +5,6 @@
 </head>
 <body>
 <div th:fragment="widget(widget)">
-    <form method="post" th:id="|${widget.id}|">
         <input th:type="hidden" th:name="action" th:id="action" value="" />
         <input th:type="hidden" th:name="productId" th:id="productId" value="" />
         <div th:each="componentDto : ${widget.componentDtos}">
@@ -13,7 +12,7 @@
                     <div class="w3-row-padding w3-grayscale">
                         <div class="w3-col l3 m6 w3-margin-bottom" th:if="${componentDto.objectList.size()}>${counter}">
                             <img th:with="image=${#strings.arraySplit(componentDto.objectList[counter].image,',')}"
-                                 th:src="|/images/${image[0]}|" th:alt="${componentDto.objectList[counter].header}" style="width:100%" />
+                                 th:src="|/images/${image[0]}|" th:alt="${componentDto.objectList[counter].header}" style="width:100%; height: 250px;" />
                             <h3 th:text="${componentDto.objectList[counter].header}"></h3>
                             <p class="w3-opacity" th:text="${componentDto.objectList[counter].subHeader}"></p>
                             <p th:text="${componentDto.objectList[counter].description}"></p>
@@ -21,12 +20,12 @@
                             <p><button class="w3-button w3-light-grey w3-block"
                                        th:onclick="|javascript:onClickSubmitForm('${widget.id}',
                                        'com.distarise.base.action.amruthhani.ViewProductDetailsAction',
-                                       '/amruthhani/shopping/productdetails','${componentDto.objectList[counter].subHeader}')|" >
+                                       '/amruthhani/shopping/productdetails','${componentDto.objectList[counter].id}')|" >
                                 View</button></p>
                         </div>
                         <div class="w3-col l3 m6 w3-margin-bottom" th:if="${componentDto.objectList.size()}>${counter+1}">
                             <img th:with="image=${#strings.arraySplit(componentDto.objectList[counter+1].image,',')}"
-                                 th:src="|/images/${image[0]}|" th:alt="${componentDto.objectList[counter+1].header}" style="width:100%" />
+                                 th:src="|/images/${image[0]}|" th:alt="${componentDto.objectList[counter+1].header}" style="width:100%; height: 250px;" />
                             <h3 th:text="${componentDto.objectList[counter+1].header}"></h3>
                             <p class="w3-opacity" th:text="${componentDto.objectList[counter+1].subHeader}"></p>
                             <p th:text="${componentDto.objectList[counter+1].description}"></p>
@@ -39,7 +38,7 @@
                         </div>
                         <div class="w3-col l3 m6 w3-margin-bottom" th:if="${componentDto.objectList.size()}>${counter+2}">
                             <img th:with="image=${#strings.arraySplit(componentDto.objectList[counter+2].image,',')}"
-                                 th:src="|/images/${image[0]}|" th:alt="${componentDto.objectList[counter+2].header}" style="width:100%" />
+                                 th:src="|/images/${image[0]}|" th:alt="${componentDto.objectList[counter+2].header}" style="width:100%; height: 250px;" />
                             <h3 th:text="${componentDto.objectList[counter+2].header}"></h3>
                             <p class="w3-opacity" th:text="${componentDto.objectList[counter+2].subHeader}"></p>
                             <p th:text="${componentDto.objectList[counter+2].description}"></p>
@@ -53,7 +52,7 @@
 
                         <div class="w3-col l3 m6 w3-margin-bottom" th:if="${componentDto.objectList.size()}>${counter+3}">
                             <img th:with="image=${#strings.arraySplit(componentDto.objectList[counter+3].image,',')}"
-                                 th:src="|/images/${image[0]}|" th:alt="${componentDto.objectList[counter+3].header}" style="width:100%" />
+                                 th:src="|/images/${image[0]}|" th:alt="${componentDto.objectList[counter+3].header}" style="width:100%; height: 250px;" />
                             <h3 th:text="${componentDto.objectList[counter+3].header}"></h3>
                             <p class="w3-opacity" th:text="${componentDto.objectList[counter+3].subHeader}"></p>
                             <p th:text="${componentDto.objectList[counter+3].description}"></p>
@@ -68,7 +67,6 @@
                     </div>
             </div>
         </div>
-    </form>
 </div>
 </body>
 </html>

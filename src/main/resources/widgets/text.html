@@ -6,8 +6,12 @@
     <body>
         <div th:fragment="formField(component)">
             <div class="form-group">
-                <label th:for="${component.id}" th:text="${component.label}"></label>
-                <div th:text="${component.value}" th:id="${component.id}" th:name="${component.id}" />
+                <div th:if="${component.label}==null or ${component.label}==''">
+                    <div th:text="${component.value}" th:id="${component.id}" th:name="${component.id}" />
+                </div>
+                <div th:if="${component.label}!=null and ${component.label}!=''">
+                    <b th:text="|${component.label} : |" /><p th:text="${component.value}" th:id="${component.id}" th:name="${component.id}" />
+                </div>
             </div>
         </div>
     </body>

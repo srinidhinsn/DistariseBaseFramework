@@ -11,7 +11,7 @@ INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widge
 	VALUES ('productdetails', 'amruthhani', 'commoncss', '4C0RTTLFBF', 'productdetails', 1, null, 'Product Details');
 
 INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widgetid, widgettitle)
-	VALUES ('cart', 'amruthhani', 'commoncss', '4C0RTTLFBF', 'cart', 1, null, 'Review Orders');
+	VALUES ('cart', 'amruthhani', 'commoncss', '4C0RTTLFBF', 'cart', 1, null, 'Confirm Order');
 
 INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widgetid, widgettitle)
 	VALUES ('revieworders', 'amruthhani', 'commoncss', '4C0RTTLFBF', 'revieworders', 1, null, 'Review Orders');
