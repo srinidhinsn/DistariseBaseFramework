@@ -30,7 +30,7 @@
 
 
 
-                    <div th:each="componentDto : ${widget.componentDtos}" th:if="${componentDto.type}!=custom">
+                    <div  th:each="componentDto : ${widget.componentDtos}" th:if="${componentDto.type}!=custom">
                         <div th:replace="|../widgets/${componentDto.type}| ::
                                                     formField(
                                                     component=|${componentDto}|,
@@ -90,6 +90,8 @@
                                 }
                             });
                         });
+
+
 
 
                     </script>

@@ -27,4 +27,9 @@ public class OrdersDaoImpl implements AbstractBaseDao, OrdersDao {
         return modelMapper.map(orders, OrdersDto.class);
     }
 
+    @Override
+    public OrdersDto findById(Long id){
+        Orders orders = ordersRepository.findById(id);
+        return modelMapper.map(orders, OrdersDto.class);
+    }
 }

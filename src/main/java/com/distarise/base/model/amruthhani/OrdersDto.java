@@ -17,6 +17,10 @@ public class OrdersDto implements Serializable {
     private BigDecimal price;
     private BigDecimal finalPrice;
     private BigDecimal discount;
+    private Long customerId;
+    private String paymentId;
+    private String signature;
+    private String receiptId;
 
     public Long getId() {
         return id;
@@ -104,6 +108,38 @@ public class OrdersDto implements Serializable {
 
     public void setDiscount(BigDecimal discount) {
         this.discount = discount;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getPaymentId() {
+        return paymentId;
+    }
+
+    public void setPaymentId(String paymentId) {
+        this.paymentId = paymentId;
+    }
+
+    public String getSignature() {
+        return signature;
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
+    }
+
+    public String getReceiptId() {
+        return receiptId;
+    }
+
+    public void setReceiptId(String receiptId) {
+        this.receiptId = receiptId;
     }
 
     public OrdersDto() {

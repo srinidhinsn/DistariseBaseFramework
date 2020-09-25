@@ -18,10 +18,10 @@
                             <p th:text="${componentDto.objectList[counter].description}"></p>
                             <p th:text="|Price: Rs.${componentDto.objectList[counter].price}/-|"></p>
                             <p><button class="w3-button w3-light-grey w3-block"
-                                       th:onclick="|javascript:onClickSubmitForm('${widget.id}',
-                                       'com.distarise.base.action.amruthhani.ViewProductDetailsAction',
-                                       '/amruthhani/shopping/productdetails','${componentDto.objectList[counter].id}')|" >
-                                View</button></p>
+                            th:onclick="|javascript:onClickSubmitForm('${widget.id}',
+                            'com.distarise.base.action.amruthhani.ViewProductDetailsAction',
+                            '/amruthhani/shopping/productdetails','${componentDto.objectList[counter].id}')|" >
+                            View</button></p>
                         </div>
                         <div class="w3-col l3 m6 w3-margin-bottom" th:if="${componentDto.objectList.size()}>${counter+1}">
                             <img th:with="image=${#strings.arraySplit(componentDto.objectList[counter+1].image,',')}"

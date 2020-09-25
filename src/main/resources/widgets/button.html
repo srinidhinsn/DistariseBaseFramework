@@ -1,0 +1,12 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+</head>
+    <body>
+        <div th:fragment="formField(component, widget, navigationItem, pageDetails)">
+            <p><button th:onclick="|${component.keyOrAction}(${widget.id})|" th:text="${component.label}">
+                </button></p>
+        </div>
+    </body>
+</html>

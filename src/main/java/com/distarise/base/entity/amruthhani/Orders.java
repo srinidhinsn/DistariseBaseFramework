@@ -51,6 +51,19 @@ public class Orders implements Serializable {
     @Column(name = "DISCOUNT")
     private BigDecimal discount;
 
+    @Column(name = "CUSTOMERID")
+    private Long customerId;
+
+    @Column(name = "PAYMENTID")
+    private String paymentId;
+
+    @Column(name = "SIGNATURE")
+    private String signature;
+
+    @Column(name = "RECEIPTID")
+    private String receiptId;
+
+
     public Long getId() {
         return id;
     }
@@ -138,5 +151,37 @@ public class Orders implements Serializable {
 
     public void setDiscount(BigDecimal discount) {
         this.discount = discount;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getPaymentId() {
+        return paymentId;
+    }
+
+    public void setPaymentId(String paymentId) {
+        this.paymentId = paymentId;
+    }
+
+    public String getSignature() {
+        return signature;
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
+    }
+
+    public String getReceiptId() {
+        return receiptId;
+    }
+
+    public void setReceiptId(String receiptId) {
+        this.receiptId = receiptId;
     }
 }

@@ -18,4 +18,6 @@ public class OrdersServiceImpl implements OrdersService {
         return ordersDao.save(order);
     }
 
+    @Override
+    public OrdersDto findById(Long id){return ordersDao.findById(id);}
 }

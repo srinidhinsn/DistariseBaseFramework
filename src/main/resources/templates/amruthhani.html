@@ -6,6 +6,7 @@
     <link th:href="|/css/${pageDetails.clientDto.id}.css|" rel="stylesheet" type="text/css"></link>
     <script type="text/javascript" th:src="@{/js/jquery-3.1.0.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/popper.min.1.16.0.js}"></script>
+    <!--<script type="text/javascript" th:src="@{/js/checkout.js}"></script>-->
     <script type="text/javascript" th:src="|/js/${pageDetails.clientDto.id}.js|"></script>
     <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
 </head>
@@ -28,8 +29,17 @@
 
 <header class="w3-display-container w3-content w3-wide" style="padding-top: 250px; max-width:1500px;" id="home">
 
+
+    <div class="w3-display-left  w3-center" style="height:50px !important">
+        <img width="3000px" height="10px !important" src="/images/nanokinetics-only.png" alt="Amrutha Hani" style="height: 50px; max-width :350" />
+    </div>
+
     <div class="w3-display-middle  w3-center" style="height:100px">
         <img class="w3-image" th:src="|/images/${pageDetails.clientDto.logo}|" th:alt="${pageDetails.clientDto.header}" width="1500px" height="200px" />
+    </div>
+
+    <div class="w3-display-right  w3-center" style="height:50px">
+        <img width="1500px" height="200px" src="/images/make-in-india.png" alt="Amrutha Hani" style="max-width : 350px; height : 200px" />
     </div>
 </header>
 

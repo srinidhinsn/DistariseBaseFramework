@@ -8,12 +8,16 @@ import com.distarise.base.model.amruthhani.OrdersDto;
 import com.distarise.base.model.amruthhani.ProductDto;
 import com.distarise.base.service.amruthhani.OrdersService;
 import com.distarise.base.service.amruthhani.ProductService;
+import com.razorpay.Order;
+import com.razorpay.RazorpayClient;
+import com.razorpay.RazorpayException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,20 +30,34 @@ public class ConfirmProductAction extends AbstractBaseAction implements BaseActi
     @Autowired
     OrdersService ordersService;
 
+    //Live mode
+    //String apiKey = "rzp_live_VDRkjWUVL6XEzg";
+    //String secretKey ="icegs4aLUdsnnTvEE4frB5TE";
+
+    //Test mode
+    protected static final String apiKey = "rzp_test_caMHPnsa7yJSK3";
+    protected static final String secretKey ="wqYpioxszfVb0z6bTE6SwEKo";
+    protected static final String smsApiKey = "56cd1b28-fe50-11ea-9fa5-0200cd936042";
+
     @Override
     public void executeAction() {
         PageDetailsDto targetPageDetailsDto = super.executeAction(new PageDetailsDto());
         WidgetDto sourceWidgetDto = super.executeAction(new WidgetDto());
         String productId = request.getParameter("productId");
         Integer quantity = Integer.parseInt(request.getParameter("qty"));
-        BigDecimal shippingCharges = BigDecimal.valueOf(Long.parseLong(request.getParameter("shipping")));
+        BigDecimal shippingCharges = new BigDecimal(500);
+        if(null != request.getParameter("shipping")){
+            String shippingChargesString = request.getParameter("shipping");
+            shippingCharges = BigDecimal.valueOf(Long.parseLong(shippingChargesString));
+        }
+
         ProductDto productDto = productService.findById(productId);
         OrdersDto ordersDto = new OrdersDto();
         BigDecimal priceAfterDiscount = new BigDecimal(0);
         ordersDto.setProductId(productId);
         ordersDto.setQuantity(quantity);
         ordersDto.setPrice(productDto.getPrice().multiply(new BigDecimal(quantity)));
-        ordersDto.setDeliveryCharges(shippingCharges);
+        ordersDto.setDeliveryCharges(shippingCharges.add(productDto.getDeliveryCharges()));
         if (quantity < 10){
             ordersDto.setDiscount(new BigDecimal(0));
         }
@@ -56,9 +74,11 @@ public class ConfirmProductAction extends AbstractBaseAction implements BaseActi
         ordersDto.setFinalPrice(priceAfterDiscount.add(ordersDto.getTotalGst()).add(ordersDto.getDeliveryCharges()));
 
         ordersDto = ordersService.save(ordersDto);
-
         List<Map<String, Object>> objectList = new ArrayList<>();
-        objectList.add(oMapper.convertValue(productDto, Map.class));
+        Map<String, Object> productMap = oMapper.convertValue(productDto, Map.class);
+        productMap.put("smsApiKey", ConfirmProductAction.smsApiKey);
+        productMap.put("smsApiKey", ConfirmProductAction.smsApiKey);
+        objectList.add(productMap);
         objectList.add(oMapper.convertValue(ordersDto, Map.class));
 
         targetPageDetailsDto.getNavigationDto().getNavigationItems().forEach(navigationItemDto -> {

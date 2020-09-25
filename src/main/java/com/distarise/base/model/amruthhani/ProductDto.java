@@ -1,7 +1,6 @@
 package com.distarise.base.model.amruthhani;
 
 
-import javax.persistence.Column;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -19,6 +18,7 @@ public class ProductDto implements Serializable {
     private String description;
     private BigDecimal gst;
     private BigDecimal discount;
+    private BigDecimal deliveryCharges;
 
     public String getId() {
         return id;
@@ -122,6 +122,14 @@ public class ProductDto implements Serializable {
 
     public void setDiscount(BigDecimal discount) {
         this.discount = discount;
+    }
+
+    public BigDecimal getDeliveryCharges() {
+        return deliveryCharges;
+    }
+
+    public void setDeliveryCharges(BigDecimal deliveryCharges) {
+        this.deliveryCharges = deliveryCharges;
     }
 
     public ProductDto() {
