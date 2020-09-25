@@ -62,3 +62,19 @@ function verifyOtp(){
 
     xhr.send(data);
 }
+
+function paymentResponseHandler(response){
+    if (response.razorpay_payment_id && response.razorpay_order_id && response.razorpay_signature){
+        document.getElementById('success').innerHTML="Payment done successfully";
+        document.getElementById('sendMail').value = "true";
+        document.getElementById('razorOrderId').value = response.razorpay_order_id ;
+        document.getElementById('razorPaymentId').value = response.razorpay_payment_id;
+        document.getElementById('razorSignature').value = response.razorpay_signature;
+        document.getElementById('action').value= 'com.distarise.base.action.amruthhani.ConfirmOrderAction';
+        document.getElementById('payment').action = '/amruthhani/shopping/payment';
+        document.getElementById('payment').submit();
+    } else {
+        document.getElementById('failure').innerHTML="Payment failure. Please try later";
+    }
+
+}

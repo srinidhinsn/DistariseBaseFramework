@@ -16,7 +16,7 @@ import java.sql.Date;
 @Table(name = "ORDERS")
 public class Orders implements Serializable {
     @Id
-    @SequenceGenerator(name = "orderId", initialValue = 1000, allocationSize = 50)
+    @SequenceGenerator(name = "orderId", initialValue = 1000, allocationSize = 10)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "orderId")
     @Column(name = "ID")
     private Long id;

@@ -31,11 +31,11 @@ public class ConfirmProductAction extends AbstractBaseAction implements BaseActi
     OrdersService ordersService;
 
     //Live mode
-    //String apiKey = "rzp_live_VDRkjWUVL6XEzg";
+    protected static String apiKey = "rzp_live_VDRkjWUVL6XEzg";
     //String secretKey ="icegs4aLUdsnnTvEE4frB5TE";
 
     //Test mode
-    protected static final String apiKey = "rzp_test_caMHPnsa7yJSK3";
+    //protected static final String apiKey = "rzp_test_caMHPnsa7yJSK3";
     protected static final String secretKey ="wqYpioxszfVb0z6bTE6SwEKo";
     protected static final String smsApiKey = "56cd1b28-fe50-11ea-9fa5-0200cd936042";
 

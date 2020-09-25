@@ -18,6 +18,7 @@ public class CustomerDto implements Serializable {
     private String firstName;
     private String lastName;
     private String email;
+    private String completeAddress;
 
     public String getId() {
         return id;
@@ -150,5 +151,13 @@ public class CustomerDto implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getCompleteAddress() {
+        return completeAddress;
+    }
+
+    public void setCompleteAddress(String completeAddress) {
+        this.completeAddress = completeAddress;
     }
 }
