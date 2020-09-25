@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface OrdersDao extends AbstractBaseDao {
     OrdersDto save(OrdersDto ordersDto);
+    OrdersDto findById(Long id);
 }

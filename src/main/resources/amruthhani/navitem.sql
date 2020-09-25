@@ -11,7 +11,13 @@ INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
 	VALUES ('productdetails', 'amruthhaniguestlogin', '', '/amruthhani/shopping/productdetails', 4, '3C0RTTLFBF', null);
 
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
-	VALUES ('cart', 'amruthhaniguestlogin', 'Cart', '/amruthhani/shopping/cart', 3, '3C0RTTLFBF', null);
+	VALUES ('payment', 'amruthhaniguestlogin', '', '/amruthhani/shopping/payment', 4, '3C0RTTLFBF', null);
+
+INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
+	VALUES ('paymentresponse', 'amruthhaniguestlogin', '', '/amruthhani/shopping/paymentresponse', 4, '3C0RTTLFBF', null);
+
+INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
+	VALUES ('cart', 'amruthhaniguestlogin', '', '/amruthhani/shopping/cart', 3, '3C0RTTLFBF', null);
 
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
 	VALUES ('revieworders', 'amruthhaniadminlogin', 'Review orders', '/amruthhani/shopping/revieworders', 2, '3C0RTTLFBF', null);

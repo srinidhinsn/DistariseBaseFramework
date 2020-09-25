@@ -3,7 +3,10 @@ package com.distarise.base.entity.amruthhani;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.io.Serializable;
 
@@ -11,8 +14,13 @@ import java.io.Serializable;
 @Table(name = "CUSTOMER")
 public class Customer implements Serializable {
     @Id
+    @SequenceGenerator(name = "customerId", initialValue = 1000, allocationSize = 50)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customerId")
     @Column(name = "ID")
-    private String id;
+    private Long id;
+
+    @Column(name = "HOUSENO")
+    private String houseNo;
 
     @Column(name = "PHONE1")
     private String phone1;
@@ -47,11 +55,14 @@ public class Customer implements Serializable {
     @Column(name = "LASTNAME")
     private String lastName;
 
-    public String getId() {
+    @Column(name = "EMAIL")
+    private String email;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -143,7 +154,7 @@ public class Customer implements Serializable {
         this.lastName = lastName;
     }
 
-    public Customer(String id, String phone1, String phone2, String addressLine1,
+    public Customer(Long id, String phone1, String phone2, String addressLine1,
                     String addressLine2, String city, String state,
                     String country, String pincode, String title, String firstName,
                     String lastName) {
@@ -161,6 +172,22 @@ public class Customer implements Serializable {
         this.lastName = lastName;
     }
 
+    public String getHouseNo() {
+        return houseNo;
+    }
+
+    public void setHouseNo(String houseNo) {
+        this.houseNo = houseNo;
+    }
+
     public Customer() {
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

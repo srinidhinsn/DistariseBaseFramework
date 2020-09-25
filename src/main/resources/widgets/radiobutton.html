@@ -5,7 +5,7 @@
 </head>
     <body>
         <div th:fragment="formField(component, widget, navigationItem, pageDetails)">
-            <div class="form-group">
+            <div>
                 <div th:if="${component.componentItemDtos.size()>0}">
                     <b><label th:for="${component.id}" th:text="${component.label}"></label></b>
                     <div th:each="componentItemDto : ${component.componentItemDtos}" class="custom-control custom-radio custom-control-inline">

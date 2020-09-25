@@ -50,6 +50,9 @@ public class Product {
     @Column(name = "DISCOUNT")
     private BigDecimal discount;
 
+    @Column(name = "DELIVERYCHARGES", columnDefinition="Decimal(10,2) default '0.00'")
+    private BigDecimal deliveryCharges;
+
     public String getId() {
         return id;
     }
@@ -154,9 +157,18 @@ public class Product {
         this.discount = discount;
     }
 
+    public BigDecimal getDeliveryCharges() {
+        return deliveryCharges;
+    }
+
+    public void setDeliveryCharges(BigDecimal deliveryCharges) {
+        this.deliveryCharges = deliveryCharges;
+    }
+
     public Product(String id, String header, String subHeader, String image, Integer quantity,
                    BigDecimal price, String category, String subCategory, String type,
-                   String subType, String description, BigDecimal gst, BigDecimal discount) {
+                   String subType, String description, BigDecimal gst, BigDecimal discount,
+                   BigDecimal deliveryCharges) {
         this.id = id;
         this.header = header;
         this.subHeader = subHeader;
@@ -170,6 +182,7 @@ public class Product {
         this.description = description;
         this.gst = gst;
         this.discount = discount;
+        this.deliveryCharges = deliveryCharges;
     }
 
     public Product() {

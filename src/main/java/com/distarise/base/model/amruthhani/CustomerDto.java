@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 public class CustomerDto implements Serializable {
     private String id;
+    private String houseNo;
     private String phone1;
     private String phone2;
     private String addressLine1;
@@ -16,6 +17,7 @@ public class CustomerDto implements Serializable {
     private String title;
     private String firstName;
     private String lastName;
+    private String email;
 
     public String getId() {
         return id;
@@ -131,6 +133,22 @@ public class CustomerDto implements Serializable {
         this.lastName = lastName;
     }
 
+    public String getHouseNo() {
+        return houseNo;
+    }
+
+    public void setHouseNo(String houseNo) {
+        this.houseNo = houseNo;
+    }
+
     public CustomerDto() {
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
