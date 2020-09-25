@@ -25,6 +25,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,10 +55,10 @@ public class ConfirmOrderAction extends AbstractBaseAction implements BaseAction
         String otpMatched = request.getParameter("otpMatched");
         String otpSessionId = request.getParameter("otpSessionId");
         String sendMail = request.getParameter("sendMail");
-        sendMail = "true";
         otpMatched = "true";
         ProductDto productDto = productService.findById(productId);
         OrdersDto ordersDto = ordersService.findById(Long.parseLong(orderId));
+        ordersDto.setOrderedDate(new Date());
         Map<String, Object> orderMap = oMapper.convertValue(ordersDto, Map.class);
         List<Map<String, Object>> objectList = new ArrayList<>();
         Map<String, Object> productMap = oMapper.convertValue(productDto, Map.class);
@@ -66,7 +67,6 @@ public class ConfirmOrderAction extends AbstractBaseAction implements BaseAction
         productMap.put("otpSessionId", otpSessionId);
         objectList.add(productMap);
         objectList.add(orderMap);
-
 
         sourceWidgetDto.getComponentDtos().forEach(sourceComponentDto -> {
             if(sourceComponentDto.getId().equalsIgnoreCase("customerId")){
@@ -140,12 +140,20 @@ public class ConfirmOrderAction extends AbstractBaseAction implements BaseAction
             }
         });
 
+        savedCustomerDto.setCompleteAddress(savedCustomerDto.getHouseNo()+","+savedCustomerDto.getPincode());
         Map<String, Object> customerMap = oMapper.convertValue(savedCustomerDto, Map.class);
         if (otpMatched.equalsIgnoreCase("true")) {
             objectList.add(createPaymentOption(ordersDto));
             objectList.add(customerMap);
         } if (sendMail.equalsIgnoreCase("true")){
             sendMail(ordersDto, orderMap, productDto, productMap, savedCustomerDto, customerMap);
+            String paymentId = request.getParameter("razorPaymentId");
+            String receiptId = request.getParameter("razorOrderId");
+            String signature = request.getParameter("razorSignature");
+            ordersDto.setPaymentId(paymentId);
+            ordersDto.setReceiptId(receiptId);
+            ordersDto.setSignature(signature);
+            ordersService.save(ordersDto);
         }
     }
 
@@ -183,7 +191,8 @@ public class ConfirmOrderAction extends AbstractBaseAction implements BaseAction
             message.setFrom(new InternetAddress(user));
             message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));
             message.setSubject("Order confirmation#"+ordersDto.getId());
-            message.setText(orderMap.entrySet().toString());
+            message.setText("Product Id: "+ordersDto.getProductId()+
+            "\nQuantity: "+ordersDto.getQuantity()+"\nTotal price: "+ordersDto.getFinalPrice());
 
             //send the message
             // Used to debug SMTP issues
