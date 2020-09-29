@@ -1,5 +1,6 @@
 package com.distarise.base.action;
 
+import com.distarise.base.controller.BaseController;
 import com.distarise.base.model.BaseContextDto;
 import com.distarise.base.model.ComponentItemDto;
 import com.distarise.base.model.NavigationDto;
@@ -7,6 +8,7 @@ import com.distarise.base.model.NavigationItemDto;
 import com.distarise.base.model.PageDetailsDto;
 import com.distarise.base.model.UserDetailsDto;
 import com.distarise.base.model.WidgetDto;
+import com.distarise.base.service.AbstractBaseService;
 import com.distarise.base.service.BaseService;
 import com.distarise.base.service.ComponentItemService;
 import com.distarise.base.service.ComponentService;
@@ -14,6 +16,8 @@ import com.distarise.base.service.NavigationItemService;
 import com.distarise.base.service.NavigationService;
 import com.distarise.base.service.UserService;
 import com.distarise.base.service.WidgetService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,21 +25,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Enumeration;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
 public abstract class AbstractBaseAction implements BaseAction{
     public HttpServletRequest request = null;
     private String[] actionIdentifier;
-    private String[] url;
     private String clientId;
     private String module;
     private String redirectPage;
     private String sourceWidgetId;
     private String sourceNavigationId;
     private String sourceNavigationItemId;
+    BaseContextDto baseContextDto;
 
+    private static final Logger logger = LoggerFactory.getLogger(AbstractBaseAction.class);
+
+    @Autowired
+    UserService userService;
 
     @Autowired
     NavigationService navigationService;
@@ -57,12 +64,12 @@ public abstract class AbstractBaseAction implements BaseAction{
 
     final public void executeAction(HttpServletRequest httpServletRequest){
         request = httpServletRequest;
-        url = request.getRequestURI().split("/");
-        if (url.length == 4) {
-            clientId = url[1];
-            module = url[2];
-            redirectPage = url[3];
-        }
+        HttpSession session = request.getSession();
+        baseContextDto = (BaseContextDto) session.getAttribute(AbstractBaseService.BASE_CONTEXT);
+        redirectPage = baseContextDto.getPageName();
+        clientId = baseContextDto.getClientId();
+        module = baseContextDto.getModule();
+
         if (null != request.getParameter("actionIdentifier")) {
             actionIdentifier = request.getParameter("actionIdentifier").split("-");
             sourceNavigationId = actionIdentifier[0];
@@ -74,13 +81,12 @@ public abstract class AbstractBaseAction implements BaseAction{
     public PageDetailsDto executeAction(PageDetailsDto pageDetailsDto){
         if (null != request.getAttribute(BaseAction.PAGE_DETAILS)){
             pageDetailsDto = (PageDetailsDto) request.getAttribute(BaseAction.PAGE_DETAILS);
+            logger.debug("Found page details - "+pageDetailsDto.getUrl());
         }else {
-            HttpSession session = request.getSession();
-            BaseContextDto baseContextDto = new BaseContextDto(clientId, module, redirectPage,
-                    (UserDetailsDto) session.getAttribute(UserService.USER));
             pageDetailsDto = baseService.getPageDetails(baseContextDto);
             request.setAttribute(BaseAction.PAGE_DETAILS, pageDetailsDto);
         }
+
         return pageDetailsDto;
     }
 

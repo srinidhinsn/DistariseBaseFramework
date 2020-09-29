@@ -15,7 +15,7 @@
                 <div class="w3-col l3 m6 w3-margin-bottom">
 
                     <img th:with="image=${#strings.arraySplit(product.image,',')}"
-                         th:src="|/images/${image[0]}|" th:alt="${product.header}" style="width:100%" />
+                         th:src="|/images/${image[0]}|" th:alt="${product.header}" style="width:80%; height: 200px;" />
 
                     <h3 th:text="${product.header}"></h3>
                     <p class="w3-opacity" th:text="${product.subHeader}"></p>

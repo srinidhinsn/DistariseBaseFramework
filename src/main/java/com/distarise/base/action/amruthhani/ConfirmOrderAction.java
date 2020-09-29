@@ -157,10 +157,6 @@ public class ConfirmOrderAction extends AbstractBaseAction implements BaseAction
         }
     }
 
-    public static void main(String args[]){
-        //sendMail(ordersDto, orderMap, productDto, productMap, savedCustomerDto, customerMap);
-    }
-
     private void sendMail(OrdersDto ordersDto, Map<String, Object> orderMap,
                           ProductDto productDto, Map<String, Object> productMap,
                           CustomerDto customerDto, Map<String, Object> customerMap){
