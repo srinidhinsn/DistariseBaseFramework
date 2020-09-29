@@ -6,4 +6,5 @@ import org.modelmapper.ModelMapper;
 public interface AbstractBaseService {
     ModelMapper modelMapper = new ModelMapper();
     ObjectMapper oMapper = new ObjectMapper();
+    final static String BASE_CONTEXT = "baseContext";
 }

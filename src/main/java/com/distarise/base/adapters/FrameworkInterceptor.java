@@ -1,13 +1,9 @@
 package com.distarise.base.adapters;
 
-import com.distarise.base.action.AbstractBaseAction;
 import com.distarise.base.action.BaseAction;
-import com.distarise.base.action.LoginAction;
-import com.distarise.base.model.NavigationDto;
-import com.distarise.base.model.NavigationItemDto;
-import com.distarise.base.model.PageDetailsDto;
+import com.distarise.base.model.BaseContextDto;
 import com.distarise.base.model.UserDetailsDto;
-import com.distarise.base.model.WidgetDto;
+import com.distarise.base.service.AbstractBaseService;
 import com.distarise.base.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Arrays;
 
 @Component
 public class FrameworkInterceptor implements HandlerInterceptor {
@@ -37,21 +34,37 @@ public class FrameworkInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         logger.debug("preHandle-"+httpServletRequest.getRequestURI());
         UserDetailsDto userDetailsDto = null;
-        String clientId="";
+        BaseContextDto baseContextDto = null;
+        String clientId;
         String module;
         String redirectPage;
         HttpSession session = httpServletRequest.getSession();
         String[] url = httpServletRequest.getRequestURI().split("/");
-        if (url.length == 4) {
-            clientId = url[1];
-            module = url[2];
-            redirectPage = url[3];
+        logger.debug("URL[]-"+ Arrays.toString(url));
+
+        if (url.length >= 3) {
+            redirectPage = url[url.length-1];
+            module = url[url.length-2];
+            clientId = url[url.length-3];
+            if (null == session.getAttribute(AbstractBaseService.BASE_CONTEXT)){
+                logger.debug("Base context is null. Creating base context");
+                userDetailsDto = userService.getUserDetails(GUEST_USER, GUEST_USER,
+                        clientId);
+                baseContextDto = new BaseContextDto(clientId, module, redirectPage, userDetailsDto);
+                session.setAttribute(AbstractBaseService.BASE_CONTEXT, baseContextDto);
+            } else {
+                baseContextDto = (BaseContextDto) session.getAttribute(AbstractBaseService.BASE_CONTEXT);
+                baseContextDto.setModule(module);
+                baseContextDto.setPageName(redirectPage);
+                baseContextDto.setClientId(clientId);
+                logger.debug("Base context found: Client-"+baseContextDto.getClientId()+
+                        "Module-"+baseContextDto.getModule()+"Page-"+baseContextDto.getPageName());
+                session.setAttribute(AbstractBaseService.BASE_CONTEXT, baseContextDto);
+            }
+        }else {
+            logger.debug("URL does not contains required arguments");
         }
-        if (null == session.getAttribute(UserService.USER)){
-            userDetailsDto = userService.getUserDetails(GUEST_USER, GUEST_USER,
-                    clientId);
-            session.setAttribute(UserService.USER, userDetailsDto);
-        }
+
         if (null != httpServletRequest.getParameter("action")) {
             try {
                 Class actionClass = Class.forName(httpServletRequest.getParameter("action"));

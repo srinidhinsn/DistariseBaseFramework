@@ -1,15 +1,17 @@
 package com.distarise.base.action;
 
+import com.distarise.base.model.BaseContextDto;
 import com.distarise.base.model.PageDetailsDto;
 import com.distarise.base.model.UserDetailsDto;
-import com.distarise.base.service.UserService;
+import com.distarise.base.service.AbstractBaseService;
 import org.springframework.stereotype.Service;
 
 @Service
 public class LoadProfileAction extends AbstractBaseAction implements BaseAction {
     public void executeAction(){
         PageDetailsDto targetPageDetailsDto = super.executeAction(new PageDetailsDto());
-        UserDetailsDto userDetailsDto = (UserDetailsDto) request.getSession().getAttribute(UserService.USER);
+        BaseContextDto baseContextDto = (BaseContextDto) request.getSession().getAttribute(AbstractBaseService.BASE_CONTEXT);
+        UserDetailsDto userDetailsDto = baseContextDto.getUserDetailsDto();
         targetPageDetailsDto.getNavigationDto().getNavigationItems().forEach(navigationItemDto -> {
             if (!navigationItemDto.getWidgets().isEmpty()){
                 navigationItemDto.getWidgets().forEach(targetWidgetDto -> {

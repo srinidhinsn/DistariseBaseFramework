@@ -74,6 +74,10 @@ public class BaseServiceImpl implements BaseService, AbstractBaseService {
         PageDetailsDto pageDetailsDto = new PageDetailsDto();
             Map<String, LayoutDto> layoutDtoMap = layoutService.getAllLayoutDesigns();
             UserDetailsDto userDetailsDto = baseContextDto.getUserDetailsDto();
+            logger.info("Role Name - "+userDetailsDto.getRoleName());
+            logger.info("First Name - "+userDetailsDto.getFirstname());
+            logger.info("Client Name - "+userDetailsDto.getClientId());
+            logger.info("User Id - "+userDetailsDto.getUserId());
             Map<String, List<String>> allowedWidgetActions = getAllowedWidgetActions(
                     userDetailsDto.getRoleAccessList());
             logger.debug("Allowed widget action - "+allowedWidgetActions.entrySet());
