@@ -14,7 +14,10 @@ import com.razorpay.Order;
 import com.razorpay.RazorpayClient;
 import com.razorpay.RazorpayException;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.mail.Message;
@@ -34,6 +37,39 @@ import java.util.Properties;
 @Service
 public class ConfirmOrderAction extends AbstractBaseAction implements BaseAction {
 
+    @Value("${payment.keyid}")
+    private String apiKey;
+
+    @Value("${payment.keysecret}")
+    private String secretKey;
+
+    @Value("${sms.apikey}")
+    private String smsApiKey;
+
+    @Value("${mail.userid}")
+    private String gmailUserId;
+
+    @Value("${mail.password}")
+    private String gmailPassword;
+
+    @Value("${mail.host}")
+    private String host;
+
+    @Value("${mail.ssl}")
+    private String sslEnabled;
+
+    @Value("${mail.port}")
+    private String port;
+
+    @Value("${mail.auth}")
+    private String auth;
+
+    @Value("${mail.clientEmailAddress}")
+    private String clientMailId;
+
+    @Value("${mode.test}")
+    private String testMode;
+
     @Autowired
     ProductService productService;
 
@@ -42,7 +78,7 @@ public class ConfirmOrderAction extends AbstractBaseAction implements BaseAction
 
     @Autowired
     CustomerService customerService;
-
+    private static final Logger logger = LoggerFactory.getLogger(ConfirmOrderAction.class);
     @Override
     public void executeAction() {
         PageDetailsDto targetPageDetailsDto = super.executeAction(new PageDetailsDto());
@@ -55,14 +91,19 @@ public class ConfirmOrderAction extends AbstractBaseAction implements BaseAction
         String otpMatched = request.getParameter("otpMatched");
         String otpSessionId = request.getParameter("otpSessionId");
         String sendMail = request.getParameter("sendMail");
-        otpMatched = "true";
+        if (testMode.equalsIgnoreCase("true") ||
+                testMode.equalsIgnoreCase("T")){
+            otpMatched = "true";
+            sendMail = "true";
+        }
+
         ProductDto productDto = productService.findById(productId);
         OrdersDto ordersDto = ordersService.findById(Long.parseLong(orderId));
         ordersDto.setOrderedDate(new Date());
         Map<String, Object> orderMap = oMapper.convertValue(ordersDto, Map.class);
         List<Map<String, Object>> objectList = new ArrayList<>();
         Map<String, Object> productMap = oMapper.convertValue(productDto, Map.class);
-        productMap.put("smsApiKey", ConfirmProductAction.smsApiKey);
+        productMap.put("smsApiKey", smsApiKey);
         productMap.put("sendMail", sendMail);
         productMap.put("otpSessionId", otpSessionId);
         objectList.add(productMap);
@@ -160,9 +201,6 @@ public class ConfirmOrderAction extends AbstractBaseAction implements BaseAction
     private void sendMail(OrdersDto ordersDto, Map<String, Object> orderMap,
                           ProductDto productDto, Map<String, Object> productMap,
                           CustomerDto customerDto, Map<String, Object> customerMap){
-        String host="smtp.gmail.com";
-        final String user="srinidhinsn@gmail.com";//change accordingly
-        final String password="nsnmay.12345";//change accordingly
 
         String to=customerDto.getEmail();//change accordingly
 
@@ -170,21 +208,22 @@ public class ConfirmOrderAction extends AbstractBaseAction implements BaseAction
         Properties properties = new Properties();
         properties.put("mail.smtp.ssl.trust", host);
         properties.put("mail.smtp.host", host);
-        properties.put("mail.smtp.port", "465");
-        properties.put("mail.smtp.ssl.enable", "true");
-        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.port", port);
+        properties.put("mail.smtp.ssl.enable", sslEnabled);
+        properties.put("mail.smtp.auth", auth);
 
         Session session = Session.getDefaultInstance(properties,
                 new javax.mail.Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(user,password);
+                        return new PasswordAuthentication(gmailUserId,gmailPassword);
                     }
                 });
 
         //Compose the message
         try {
+            //Email to customer
             MimeMessage message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(user));
+            message.setFrom(new InternetAddress(gmailUserId));
             message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));
             message.setSubject("Order confirmation#"+ordersDto.getId());
             message.setText("Product Id: "+ordersDto.getProductId()+
@@ -195,7 +234,22 @@ public class ConfirmOrderAction extends AbstractBaseAction implements BaseAction
             session.setDebug(true);
             Transport.send(message);
 
-            System.out.println("message sent successfully...");
+            logger.debug("message sent successfully to -"+customerDto.getEmail());
+
+
+            //Email to client
+            message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(gmailUserId));
+            message.addRecipient(Message.RecipientType.TO,new InternetAddress(clientMailId));
+            message.setSubject("Order confirmation#"+ordersDto.getId());
+            message.setText("Order details-"+orderMap.entrySet().toString()+"Customer details-"+customerMap.entrySet().toString());
+
+            //send the message
+            // Used to debug SMTP issues
+            session.setDebug(true);
+            Transport.send(message);
+
+            logger.debug("message sent successfully to -"+clientMailId);
 
         } catch (Exception e) {e.printStackTrace();}
     }
@@ -212,12 +266,12 @@ public class ConfirmOrderAction extends AbstractBaseAction implements BaseAction
         map.put("receipt", orders.getId().toString());
 
         map.put("payment_capture", 1);
-        map.put("apiKey", ConfirmProductAction.apiKey);
-        map.put("secretKey", ConfirmProductAction.secretKey);
-        map.put("smsApiKey", ConfirmProductAction.smsApiKey);
+        map.put("apiKey", apiKey);
+        map.put("secretKey", secretKey);
+        map.put("smsApiKey", smsApiKey);
         try {
-            RazorpayClient razorpayClient = new RazorpayClient(ConfirmProductAction.apiKey,
-                    ConfirmProductAction.secretKey);
+            RazorpayClient razorpayClient = new RazorpayClient(apiKey,
+                    secretKey);
             Order order = razorpayClient.Orders.create(options);
             map.put("orderId", (String) order.get("id"));
         } catch (RazorpayException e) {
@@ -226,4 +280,5 @@ public class ConfirmOrderAction extends AbstractBaseAction implements BaseAction
         }
         return map;
     }
+
 }

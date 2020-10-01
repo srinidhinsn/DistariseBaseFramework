@@ -13,6 +13,7 @@ import com.razorpay.RazorpayClient;
 import com.razorpay.RazorpayException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -35,9 +36,18 @@ public class ConfirmProductAction extends AbstractBaseAction implements BaseActi
     //String secretKey ="icegs4aLUdsnnTvEE4frB5TE";
 
     //Test mode
-    protected static final String apiKey = "rzp_test_caMHPnsa7yJSK3";
-    protected static final String secretKey ="wqYpioxszfVb0z6bTE6SwEKo";
-    protected static final String smsApiKey = "56cd1b28-fe50-11ea-9fa5-0200cd936042";
+    //protected static final String apiKey = "rzp_test_caMHPnsa7yJSK3";
+    //protected static final String secretKey ="wqYpioxszfVb0z6bTE6SwEKo";
+    //protected static final String smsApiKey = "56cd1b28-fe50-11ea-9fa5-0200cd936042";
+
+    @Value("${payment.keyid}")
+    private String apiKey;
+
+    @Value("${payment.keysecret}")
+    private String secretKey;
+
+    @Value("${sms.apikey}")
+    private String smsApiKey;
 
     @Override
     public void executeAction() {
@@ -76,8 +86,8 @@ public class ConfirmProductAction extends AbstractBaseAction implements BaseActi
         ordersDto = ordersService.save(ordersDto);
         List<Map<String, Object>> objectList = new ArrayList<>();
         Map<String, Object> productMap = oMapper.convertValue(productDto, Map.class);
-        productMap.put("smsApiKey", ConfirmProductAction.smsApiKey);
-        productMap.put("smsApiKey", ConfirmProductAction.smsApiKey);
+        productMap.put("smsApiKey", smsApiKey);
+        productMap.put("smsApiKey", smsApiKey);
         objectList.add(productMap);
         objectList.add(oMapper.convertValue(ordersDto, Map.class));
 
