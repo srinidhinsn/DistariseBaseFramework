@@ -73,7 +73,7 @@ INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, s
 	VALUES ('otpinfo', 'amruthhani', true, null, null, '', 12, 'text', true, 'cart', false, 'OTP will be sent to the number for verification');
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel, value)
-	VALUES ('phone1', 'amruthhani', true, null, null, 'Phone : +91', 13, 'textbox', true, 'cart', false, '');
+	VALUES ('phone1', 'amruthhani', true, null, null, 'Phone : +91', 13, 'phone', true, 'cart', false, '');
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel, value)
 	VALUES ('authenticate', 'amruthhani', true, '/amruthhani/shopping/payment', 'sendOtp', 'Send OTP', 14, 'button', true, 'cart', false, '');
