@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.distarise.base</groupId>
-    <artifactId>amruthhani</artifactId>
+    <artifactId>distarise</artifactId>
     <version>1</version>
     <build>
         <plugins>
@@ -27,7 +27,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
-        <finalName>amruthhani</finalName>
+        <finalName>distarise</finalName>
     </build>
     <packaging>war</packaging>
 

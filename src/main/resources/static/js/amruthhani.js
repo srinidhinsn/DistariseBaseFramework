@@ -5,8 +5,8 @@ function onClickSubmitForm (id, action, redirectUrl, productId){
     document.getElementById(id).submit();
 }
 function sendOtp(){
-    document.getElementById('action').value= 'com.distarise.base.action.amruthhani.ConfirmOrderAction';
-    document.getElementById('cart').action = '/amruthhani/shopping/payment';
+    document.getElementById('action').value= 'com.distarise.base.action.ecommerce.ConfirmOrderAction';
+    document.getElementById('cart').action = '/ecommerce/shopping/payment';
     var apiKey = document.getElementById('smsApiKey').value;
     var phone = document.getElementById('phone1').value;
     var url = "https://2factor.in/API/V1/"+apiKey+"/SMS/"+phone+"/AUTOGEN";
@@ -33,8 +33,8 @@ function sendOtp(){
 }
 
 function verifyOtp(){
-    document.getElementById('action').value= 'com.distarise.base.action.amruthhani.ConfirmOrderAction';
-    document.getElementById('payment').action = '/amruthhani/shopping/payment';
+    document.getElementById('action').value= 'com.distarise.base.action.ecommerce.ConfirmOrderAction';
+    document.getElementById('payment').action = '/ecommerce/shopping/payment';
     var data = null;
 
     var xhr = new XMLHttpRequest();
@@ -70,8 +70,8 @@ function paymentResponseHandler(response){
         document.getElementById('razorOrderId').value = response.razorpay_order_id ;
         document.getElementById('razorPaymentId').value = response.razorpay_payment_id;
         document.getElementById('razorSignature').value = response.razorpay_signature;
-        document.getElementById('action').value= 'com.distarise.base.action.amruthhani.ConfirmOrderAction';
-        document.getElementById('payment').action = '/amruthhani/shopping/payment';
+        document.getElementById('action').value= 'com.distarise.base.action.ecommerce.ConfirmOrderAction';
+        document.getElementById('payment').action = '/ecommerce/shopping/payment';
         document.getElementById('payment').submit();
     } else {
         document.getElementById('failure').innerHTML="Payment failure. Please try later";
