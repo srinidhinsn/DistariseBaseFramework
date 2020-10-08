@@ -8,7 +8,7 @@ INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, s
 	VALUES ('product', 'ecommerce', true, null, null, 'Dispenser', 3, 'custom', true, 'products', false, null);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-	VALUES ('listproduct', 'ecommerce', true, null, 'com.distarise.base.action.ecommerce.DisplayProductListAction', '', 1, 'autoaction', true, 'productlist', false);
+	VALUES ('listproduct', 'ecommerce', true, null, 'com.distarise.ecommerce.action.DisplayProductListAction', '', 1, 'autoaction', true, 'productlist', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
 	VALUES ('productdetails', 'ecommerce', true, null, null, '', 0, 'custom', true, 'productdetails', false);

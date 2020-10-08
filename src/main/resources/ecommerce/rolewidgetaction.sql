@@ -8,7 +8,7 @@ INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
 	VALUES ('ecommerce', 'guest', 'products', '', true);
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
-	VALUES ('ecommerce', 'guest', 'productlist', 'com.distarise.base.action.ecommerce.DisplayProductListAction', true);
+	VALUES ('ecommerce', 'guest', 'productlist', 'com.distarise.ecommerce.action.DisplayProductListAction', true);
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
 	VALUES ('ecommerce', 'guest', 'productdetails', '', true);
@@ -23,13 +23,13 @@ INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
 	VALUES ('ecommerce', 'guest', 'payment', '', true);
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
-	VALUES ('ecommerce', 'guest', 'payment', 'com.distarise.base.action.ecommerce.ConfirmOrderAction', true);
+	VALUES ('ecommerce', 'guest', 'payment', 'com.distarise.ecommerce.action.ConfirmOrderAction', true);
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
 	VALUES ('ecommerce', 'guest', 'payment', 'verifyOtp', true);
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
-	VALUES ('ecommerce', 'guest', 'cart', 'com.distarise.base.action.ecommerce.ConfirmOrderAction', true);
+	VALUES ('ecommerce', 'guest', 'cart', 'com.distarise.ecommerce.action.ConfirmOrderAction', true);
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
 	VALUES ('ecommerce', 'guest', 'paymentresponse', '', true);
