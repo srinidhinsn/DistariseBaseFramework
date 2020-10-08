@@ -1,0 +1,79 @@
+<html>
+
+<head>
+    <link th:href="|/css/${pageDetails.clientDto.id}.css|" rel="stylesheet" type="text/css"></link>
+    <script type="text/javascript" th:src="@{/js/jquery-3.1.0.min.js}"></script>
+    <script type="text/javascript" th:src="|/js/${pageDetails.clientDto.id}.js|"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <meta charset="UTF-8" />
+</head>
+
+<body object="pageDetails">
+    <div class="container">
+
+
+        <div th:if="${pageDetails.clientDto.header}">
+            <img th:src="|/images/${pageDetails.clientDto.logo}|" th:alt="${pageDetails.clientDto.id}" />
+            <h3 th:text="${pageDetails.clientDto.header}" />
+        </div>
+
+
+
+        <nav class="navbar navbar-light bg-light">
+                <div th:each="navigationItemDto : ${pageDetails.navigationDto.navigationItems}">
+                    <nav class="navbar-light bg-light">
+                        <ul class="navbar-nav navbar-light bg-light">
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="${navigationItemDto.url}" th:text="${navigationItemDto.label}"></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+        </nav>
+
+
+        <div class="container">
+            <div th:each="navigationItemDto : ${pageDetails.navigationDto.navigationItems}">
+                <div th:class="${navigationItemDto.url}==pageDetails.url">
+                    <!--<table class="table">-->
+
+                            <div th:each="widgetDto : ${navigationItemDto.widgets}">
+                                <div class="card">
+                                    <div class="card-header" th:text="${widgetDto.widgetTitle}"></div>
+                                    <div class="card-body">
+                                        <form method="post" th:id="|${widgetDto.id}|" >
+                                            <input th:type="hidden" th:name="actionIdentifier" th:id="actionIdentifier"
+                                                   th:value="${pageDetails.navigationDto.id}
+                                                       +'-'+${navigationItemDto.id}
+                                                       +'-'+${widgetDto.id}" />
+                                            <input th:type="hidden" th:name="action" th:id="action"
+                                                   value="" />
+                                            <div th:each="componentDto : ${widgetDto.componentDtos}">
+                                                <div th:replace="|../widgets/${componentDto.type}| ::
+                                                    formField(
+                                                    component=|${componentDto}|,
+                                                    widget=|${widgetDto}|,
+                                                    navigationItem=|${navigationItemDto}|,
+                                                    pageDetails=|${pageDetails}|
+                                                    )"></div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                    <!--</table>-->
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div th:if="${pageDetails.clientDto.footer}">
+            <h15 th:text="${pageDetails.clientDto.footer}" />
+        </div>
+
+
+    </div>
+</body>
+</html>

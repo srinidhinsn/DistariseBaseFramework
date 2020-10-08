@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+</head>
+<body>
+<div th:fragment="widget(widget,navigationItem,pageDetails)">
+        <input th:type="hidden" th:name="action" th:id="action" value="" />
+        <input th:type="hidden" th:name="productId" th:id="productId" value="" />
+        <input th:type="hidden" th:name="actionIdentifier" th:id="actionIdentifier"
+           th:value="${pageDetails.navigationDto.id}+'-'+${navigationItem.id}+'-'+${widget.id}" />
+
+
+            <div th:with="product=${widget.componentDtos[0].objectList[0]}" class="w3-row-padding w3-grayscale" style="width: auto">
+                <div class="w3-col l3 m6 w3-margin-bottom">
+
+                    <img th:with="image=${#strings.arraySplit(product.image,',')}"
+                         th:src="|/images/${image[0]}|" th:alt="${product.header}" style="width:80%; height: 200px;" />
+
+                    <h3 th:text="${product.header}"></h3>
+                    <p class="w3-opacity" th:text="${product.subHeader}"></p>
+
+                    <div class="qty mt-5" style="padding-bottom: 10px">
+                        <span class="minus bg-dark">-</span>
+                            <input class="count" type="number" style="width:100px" name="qty" id="qty" th:value="1" />
+                        <span class="plus bg-dark">+</span>
+                    </div>
+
+
+
+
+
+                    <div  th:each="componentDto : ${widget.componentDtos}" th:if="${componentDto.type}!=custom">
+                        <div th:replace="|../widgets/${componentDto.type}| ::
+                                                    formField(
+                                                    component=|${componentDto}|,
+                                                    widget=|${widgetDto}|,
+                                                    navigationItem=|${navigationItemDto}|,
+                                                    pageDetails=|${pageDetails}|
+                                                    )"></div>
+                    </div>
+
+
+
+                    <p><button class="w3-button w3-light-grey w3-block"
+                               th:onclick="|javascript:onClickSubmitForm('${widget.id}',
+                                           'com.distarise.base.action.ecommerce.ConfirmProductAction',
+                                           '/amruthhani/shopping/cart','${product.id}')|" >
+                        Buy now</button></p>
+                </div>
+
+
+
+
+
+
+
+
+                    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16" th:text="${widget.widgetTitle}"></h3>
+                    <h3 th:text="${product.header}"></h3>
+                    <p class="w3-opacity" th:text="${product.subHeader}"></p>
+                    <p th:text="${product.description}"></p>
+
+                    <p th:text="|Price per ${product.quantity} unit: Rs.${product.price}/-|"></p>
+                    <p th:text="|Applicable GST : ${product.gst}%|"></p>
+
+
+
+
+
+                    <p>
+                        Due to the current pandemic Nanokinetics is introducing Amrutha Hani, one of its product which is on high demand
+                        which automates the usage of Theertha distribution of every devotee. Devotees can get the sacred Theertha at its
+                        purest form which any intervention from anyone hence ensuring self safety.
+                    </p>
+
+
+
+
+
+                    <script type="text/javascript">
+                        $(document).ready(function(){
+                            $('.count').prop('enabled', true);
+                            $(document).on('click','.plus',function(){
+                                $('.count').val(parseInt($('.count').val()) + 1 );
+                            });
+                            $(document).on('click','.minus',function(){
+                                $('.count').val(parseInt($('.count').val()) - 1 );
+                                if ($('.count').val() == 0) {
+                                    $('.count').val(1);
+                                }
+                            });
+                        });
+
+
+
+
+                    </script>
+            </div>
+</div>
+</body>
+</html>

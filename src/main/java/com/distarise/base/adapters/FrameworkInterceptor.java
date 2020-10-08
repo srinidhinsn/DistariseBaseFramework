@@ -57,6 +57,11 @@ public class FrameworkInterceptor implements HandlerInterceptor {
                 baseContextDto.setModule(module);
                 baseContextDto.setPageName(redirectPage);
                 baseContextDto.setClientId(clientId);
+                if (!baseContextDto.getUserDetailsDto().getClientId().equalsIgnoreCase(baseContextDto.getClientId())){
+                    userDetailsDto = userService.getUserDetails(GUEST_USER, GUEST_USER,
+                            clientId);
+                    baseContextDto.setUserDetailsDto(userDetailsDto);
+                }
                 logger.debug("Base context found: Client-"+baseContextDto.getClientId()+
                         "Module-"+baseContextDto.getModule()+"Page-"+baseContextDto.getPageName());
                 session.setAttribute(AbstractBaseService.BASE_CONTEXT, baseContextDto);

@@ -69,7 +69,7 @@ public class BaseController {
 
         pageDetailsDto.setUrl(request.getRequestURI());
         model.addAttribute("pageDetails", pageDetailsDto);
-        return client;
+        return "client\\"+client+"\\"+client;
     }
 
 }
