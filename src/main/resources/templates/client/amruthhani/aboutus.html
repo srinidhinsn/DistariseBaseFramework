@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+</head>
+<body>
+<div th:fragment="widget(widget)">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16" th:text="${widget.widgetTitle}"></h3>
+    <p>Nanokinetics is one the leading manufactures engineered for best design and viable electronic goods and suppliers.
+        It has multiple products competing with the current market at its best. Our designs are well formed and
+        100% quality is ensured by multi level testing on every product. Quality assurance and customer satisfaction is
+        the main moto of Nanokinetics.
+    </p>
+    <p>
+        Due to the current pandemic Nanokinetics is introducing Amrutha Hani, one of its product which is on high demand
+        which automates the usage of Theertha distribution of every devotee. Devotees can get the sacred Theertha at its
+        purest form which any intervention from anyone hence ensuring self safety.
+    </p>
+    <div th:each="componentDto : ${widgetDto.componentDtos}" th:if="${componentDto.type}=='text'">
+        <div th:replace="|../widgets/${componentDto.type}| ::
+                                                    formField(
+                                                    component=|${componentDto}|,
+                                                    widget=|${widgetDto}|,
+                                                    navigationItem=|${navigationItemDto}|,
+                                                    pageDetails=|${pageDetails}|
+                                                    )"></div>
+    </div>
+</div>
+</body>
+</html>

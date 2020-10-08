@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+</head>
+    <body>
+        <div th:fragment="formField(component)">
+            <div class="form-group">
+                <a th:href="${component.value}" th:id="${component.id}"
+                   class="btn btn-primary btn-lg active" role="button" aria-pressed="true">
+                    <label th:for="${component.id}" th:text="${component.label}"></label></a>
+            </div>
+        </div>
+    </body>
+</html>

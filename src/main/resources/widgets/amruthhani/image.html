@@ -1,0 +1,11 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+</head>
+    <body>
+        <div th:fragment="formField(component)">
+            <img th:src="|/images/${component.value}|" th:alt="${component.label}" />
+        </div>
+    </body>
+</html>

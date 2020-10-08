@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+</head>
+<body>
+<div th:fragment="widget(widget)">
+        <input th:type="hidden" th:name="action" th:id="action" value="" />
+        <input th:type="hidden" th:name="productId" th:id="productId" value="" />
+        <div th:each="componentDto : ${widget.componentDtos}">
+            <div th:each="counter,counterStat : ${#numbers.sequence( 0, componentDto.objectList.size()-1, 4)}">
+                    <div class="w3-row-padding w3-grayscale">
+                        <div class="w3-col l3 m6 w3-margin-bottom" th:if="${componentDto.objectList.size()}>${counter}">
+                            <img th:with="image=${#strings.arraySplit(componentDto.objectList[counter].image,',')}"
+                                 th:src="|/images/${image[0]}|" th:alt="${componentDto.objectList[counter].header}" style="width:80%; height: 200px;" />
+                            <h3 th:text="${componentDto.objectList[counter].header}"></h3>
+                            <p class="w3-opacity" th:text="${componentDto.objectList[counter].subHeader}"></p>
+                            <p th:text="${componentDto.objectList[counter].description}"></p>
+                            <p th:text="|Price: Rs.${componentDto.objectList[counter].price}/-|"></p>
+                            <p><button class="w3-button w3-light-grey w3-block"
+                            th:onclick="|javascript:onClickSubmitForm('${widget.id}',
+                            'com.distarise.base.action.ecommerce.ViewProductDetailsAction',
+                            '/amruthhani/shopping/productdetails','${componentDto.objectList[counter].id}')|" >
+                            View</button></p>
+                        </div>
+                        <div class="w3-col l3 m6 w3-margin-bottom" th:if="${componentDto.objectList.size()}>${counter+1}">
+                            <img th:with="image=${#strings.arraySplit(componentDto.objectList[counter+1].image,',')}"
+                                 th:src="|/images/${image[0]}|" th:alt="${componentDto.objectList[counter+1].header}" style="width:80%; height: 200px;" />
+                            <h3 th:text="${componentDto.objectList[counter+1].header}"></h3>
+                            <p class="w3-opacity" th:text="${componentDto.objectList[counter+1].subHeader}"></p>
+                            <p th:text="${componentDto.objectList[counter+1].description}"></p>
+                            <p th:text="|Price: Rs.${componentDto.objectList[counter+1].price}/-|"></p>
+                            <p><button class="w3-button w3-light-grey w3-block"
+                                       th:onclick="|javascript:onClickSubmitForm('${widget.id}',
+                                       'com.distarise.base.action.ecommerce.ViewProductDetailsAction',
+                                       '/amruthhani/shopping/productdetails','${componentDto.objectList[counter+1].id}')|" >
+                                View</button></p>
+                        </div>
+                        <div class="w3-col l3 m6 w3-margin-bottom" th:if="${componentDto.objectList.size()}>${counter+2}">
+                            <img th:with="image=${#strings.arraySplit(componentDto.objectList[counter+2].image,',')}"
+                                 th:src="|/images/${image[0]}|" th:alt="${componentDto.objectList[counter+2].header}" style="width:80%; height: 200px;" />
+                            <h3 th:text="${componentDto.objectList[counter+2].header}"></h3>
+                            <p class="w3-opacity" th:text="${componentDto.objectList[counter+2].subHeader}"></p>
+                            <p th:text="${componentDto.objectList[counter+2].description}"></p>
+                            <p th:text="|Price: Rs.${componentDto.objectList[counter+2].price}/-|"></p>
+                            <p><button class="w3-button w3-light-grey w3-block"
+                                       th:onclick="|javascript:onClickSubmitForm('${widget.id}',
+                                       'com.distarise.base.action.ecommerce.ViewProductDetailsAction',
+                                       '/amruthhani/shopping/productdetails','${componentDto.objectList[counter+2].id}')|" >
+                                View</button></p>
+                        </div>
+
+                        <div class="w3-col l3 m6 w3-margin-bottom" th:if="${componentDto.objectList.size()}>${counter+3}">
+                            <img th:with="image=${#strings.arraySplit(componentDto.objectList[counter+3].image,',')}"
+                                 th:src="|/images/${image[0]}|" th:alt="${componentDto.objectList[counter+3].header}" style="width:80%; height: 200px;" />
+                            <h3 th:text="${componentDto.objectList[counter+3].header}"></h3>
+                            <p class="w3-opacity" th:text="${componentDto.objectList[counter+3].subHeader}"></p>
+                            <p th:text="${componentDto.objectList[counter+3].description}"></p>
+                            <p th:text="|Price: Rs.${componentDto.objectList[counter+3].price}/-|"></p>
+                            <p><button class="w3-button w3-light-grey w3-block"
+                                       th:onclick="|javascript:onClickSubmitForm('${widget.id}',
+                                       'com.distarise.base.action.ecommerce.ViewProductDetailsAction',
+                                       '/amruthhani/shopping/productdetails','${componentDto.objectList[counter+3].id}')|" >
+                                View</button></p>
+                        </div>
+
+                    </div>
+            </div>
+        </div>
+</div>
+</body>
+</html>

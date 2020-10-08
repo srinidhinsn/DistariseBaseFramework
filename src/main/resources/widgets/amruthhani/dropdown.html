@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+</head>
+    <body>
+        <div th:fragment="formField(component, widget, navigationItem, pageDetails)">
+            <div class="form-group">
+                <div th:if="${component.componentItemDtos.size()>0}" style="text-align: left">
+                    <label style="width: 150px" th:for="${component.id}" th:text="${component.label}"></label>
+                    <select style="width: 200px" th:name="${component.id}" th:id="${component.id}">
+                        <div th:each="componentItemDto : ${component.componentItemDtos}">
+                            <option th:value="${componentItemDto.value}"
+                            th:text="${componentItemDto.label}"/>
+                        </div>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

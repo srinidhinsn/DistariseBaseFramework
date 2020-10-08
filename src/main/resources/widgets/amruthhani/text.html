@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+</head>
+    <body>
+        <div th:fragment="formField(component)">
+            <div >
+                <div class="input-group-prepend" th:if="${component.label}==null or ${component.label}==''">
+                    <!--<div style="text-align:left" th:text="${component.value}" th:id="${component.id}" th:name="${component.id}" />-->
+                    <small id="smallText" style="text-align:left" class="form-text text-muted" th:text="${component.value}"></small>
+                </div>
+                <div style="text-align:left" class="input-group-prepend" th:if="${component.label}!=null and ${component.label}!=''
+                    and null== ${component.value} or ${component.value}==''">
+                    <b th:text="|${component.label} |" />
+                </div>
+                <div style="text-align:left" class="input-group-prepend" th:if="${component.label}!=null and ${component.label}!=''
+                    and null != ${component.value} and ${component.value}!=''">
+                    <b th:text="|${component.label} : |" /><p th:text="|${component.value}|" th:id="${component.id}" th:name="${component.id}" />
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

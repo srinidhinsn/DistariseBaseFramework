@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+</head>
+    <body>
+        <div th:fragment="formField(component, widget, navigationItem, pageDetails)">
+            <div>
+                <div th:if="${component.componentItemDtos.size()>0}">
+                    <b><label th:for="${component.id}" th:text="${component.label}"></label></b>
+                    <div th:each="componentItemDto : ${component.componentItemDtos}" class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input"
+                               th:value="${componentItemDto.value}" th:name="${component.id}" th:id="${componentItemDto.id}" />
+                        <label class="custom-control-label" th:for="${componentItemDto.id}" th:text="${componentItemDto.label}"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
