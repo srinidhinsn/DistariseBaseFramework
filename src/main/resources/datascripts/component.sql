@@ -75,3 +75,36 @@ INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, s
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
 	VALUES ('logout', 'distarise', true, '/distarise/base/login', 'com.distarise.base.action.LogoutAction', 'Logout', 4, 'submitbutton', true, 'account', false);
 
+--Client add page
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+    VALUES ('clientname', 'distarise', true, null, null, 'Client name', 1, 'textbox', true, 'addclient', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+    VALUES ('clientheader', 'distarise', true, null, null, 'Header', 2, 'textbox', true, 'addclient', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+    VALUES ('clientfooter', 'distarise', true, null, null, 'Footer', 3, 'textbox', true, 'addclient', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+    VALUES ('clientlogo', 'distarise', true, null, null, 'Logo file name', 4, 'textbox', true, 'addclient', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+    VALUES ('clientadd', 'distarise', true, '/distarise/base/addnavigation', 'com.distarise.base.action.AddClientAction', 'Save and Continue', 5, 'submitbutton', true, 'addclient', false);
+
+--Navigation add page
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+    VALUES ('clientid', 'distarise', true, '', '', 'Client Id', 1, 'text', true, 'addnavigation', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+    VALUES ('navigationid', 'distarise', true, '', '', 'Navigation Id', 2, 'textbox', true, 'addnavigation', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+    VALUES ('navigationlabel', 'distarise', true, '', '', 'Navigation Name', 3, 'textbox', true, 'addnavigation', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('navigationsortorder', 'distarise', true, '', '', 'Sort Order', 1, 'text', true, 'addnavigation', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('navigationurl', 'distarise', true, '', '', 'URL', 2, 'textbox', true, 'addnavigation', false);

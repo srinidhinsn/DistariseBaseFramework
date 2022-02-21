@@ -31,11 +31,25 @@ INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
 	VALUES ('ourProducts', 'distarisedmlogin', 'Our Products', '/distarise/base/ourProducts', 2, '3C0RTTLFBF', null);
 
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
-	VALUES ('ourServices', 'distariseadmlogin', 'Our Services', '/distarise/base/ourServices', 3, '3C0RTTLFBF', null);
+	VALUES ('ourServices', 'distarisedmlogin', 'Our Services', '/distarise/base/ourServices', 3, '3C0RTTLFBF', null);
 
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
-	VALUES ('invoice', 'distariseadmlogin', 'Invoice System', '/distarise/base/invoice', 4, '3C0RTTLFBF', null);
-
+	VALUES ('invoice', 'distarisedmlogin', 'Invoice System', '/distarise/base/invoice', 4, '3C0RTTLFBF', null);
 
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
-	VALUES ('account', 'distariseadmlogin', 'Profile', '/distarise/base/account', 4, '3C0RTTLFBF', null);
+	VALUES ('account', 'distarisedmlogin', 'Profile', '/distarise/base/account', 4, '3C0RTTLFBF', null);
+
+INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
+    VALUES ('addclient', 'distariseconfiglogin', 'Add/Edit Client', '/distarise/base/addclient', 1, '3C0RTTLFBF', null);
+
+INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
+    VALUES ('addnavigation', 'distariseconfiglogin', 'Add/Edit Navigation', '/distarise/base/addnavigation', 2, '3C0RTTLFBF', null);
+
+INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
+    VALUES ('addwidget', 'distariseconfiglogin', 'Add/Edit Widget', '/distarise/base/addwidget', 3, '3C0RTTLFBF', null);
+
+INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
+    VALUES ('addcomponent', 'distariseconfiglogin', 'Add/Edit Component', '/distarise/base/addcomponent', 4, '3C0RTTLFBF', null);
+
+INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid)
+    VALUES ('addcomponentitem', 'distariseconfiglogin', 'Add/Edit Component Item', '/distarise/base/addcomponentitem', 5, '3C0RTTLFBF', null);

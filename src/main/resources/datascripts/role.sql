@@ -9,3 +9,6 @@ INSERT INTO role(clientid, rolename, roledescription)
 
 INSERT INTO role(clientid, rolename, roledescription)
 	VALUES ('distarise', 'guest', 'Anonymous User');
+
+INSERT INTO role(clientid, rolename, roledescription)
+    VALUES ('distarise', 'config', 'Configuration team');

@@ -19,4 +19,11 @@ public class ClientDaoImpl implements ClientDao, AbstractBaseDao {
         Client client = clientRepository.getClientDetails(clientId);
         return modelMapper.map(client, ClientDto.class);
     }
+
+    @Override
+    public ClientDto saveClientDetails(ClientDto clientDto){
+        Client client = modelMapper.map(clientDto, Client.class);
+        clientRepository.save(client);
+        return clientDto;
+    }
 }

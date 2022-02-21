@@ -4,4 +4,5 @@ import com.distarise.base.model.ClientDto;
 
 public interface ClientService extends AbstractBaseService {
     ClientDto getClientDetails(String clientId);
+    ClientDto saveClientDetails(ClientDto clientDto);
 }

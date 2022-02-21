@@ -24,6 +24,7 @@ public class ComponentDaoImpl implements ComponentDao {
     @Override
     public List<ComponentDto> getComponentsByWidgetId(String clientId, String widgetId){
         List<Component> components = componentRepository.getComponentsByWidgetId(clientId, widgetId);
+
         return convertEntityToDto(components);
     }
 

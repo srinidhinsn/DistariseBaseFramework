@@ -17,4 +17,9 @@ public class ClientServiceImpl implements ClientService {
         ClientDto clientDto = clientDao.getClientDetails(clientId);
         return clientDto;
     }
+
+    @Override
+    public ClientDto saveClientDetails(ClientDto clientDto){
+        return clientDao.saveClientDetails(clientDto);
+    }
 }
