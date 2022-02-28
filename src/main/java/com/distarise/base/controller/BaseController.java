@@ -39,7 +39,7 @@ public class BaseController {
         return "welcome";
     }
 
-    @RequestMapping(value = "/{client}/{module}/{page}")
+    @RequestMapping(value = "/nsn/{client}/{module}/{page}")
     public String genericController(@PathVariable("module") String module,
                                     @PathVariable("client") String client,
                                     @PathVariable("page") String page,

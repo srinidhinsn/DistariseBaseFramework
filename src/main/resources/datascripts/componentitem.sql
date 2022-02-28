@@ -26,3 +26,9 @@ INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder,
 
 INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
 	VALUES (11,'distarise', 'dropdownsample', false, 'Country', 3, 'country', true);
+
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (12,'distarise', 'clientlist', false, 'New client', 1, 'new', true);
+
+

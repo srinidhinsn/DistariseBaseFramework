@@ -58,9 +58,9 @@ public abstract class AbstractBaseAction implements BaseAction{
     final public void executeAction(HttpServletRequest httpServletRequest){
         request = httpServletRequest;
         url = request.getRequestURI().split("/");
-        clientId = url[1];
-        module = url[2];
-        redirectPage = url[3];
+        clientId = url[2];
+        module = url[3];
+        redirectPage = url[4];
         if (null != request.getParameter("actionIdentifier")) {
             actionIdentifier = request.getParameter("actionIdentifier").split("-");
             sourceNavigationId = actionIdentifier[0];

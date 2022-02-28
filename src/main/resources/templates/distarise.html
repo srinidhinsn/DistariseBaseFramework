@@ -1,47 +1,80 @@
 <html>
 
 <head>
+
     <link th:href="|/css/${pageDetails.clientDto.id}.css|" rel="stylesheet" type="text/css"></link>
-    <script type="text/javascript" th:src="@{/js/jquery-3.1.0.min.js}"></script>
+
+    <link rel="stylesheet" href="/vendor/animate/animate.min.css" type="text/css"></link>
+    <link rel="stylesheet" href="/vendor/jquery-scrollbar/css/jquery-scrollbar.css"></link>
+    <link type="text/css" href="/vendor/highlight/css/highlight.min.css" rel="stylesheet"></link>
+
+
     <script type="text/javascript" th:src="|/js/${pageDetails.clientDto.id}.js|"></script>
-    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+
     <meta charset="UTF-8" />
 </head>
 
 <body object="pageDetails">
-    <div class="container">
 
 
-        <div th:if="${pageDetails.clientDto.header}">
-            <img th:src="|/images/${pageDetails.clientDto.logo}|" th:alt="${pageDetails.clientDto.id}" />
-            <h3 th:text="${pageDetails.clientDto.header}" />
-        </div>
+    <main class="main">
+        <aside class="sidebar" id="nav_docs">
+            <div th:if="${pageDetails.clientDto.header}">
+                <img th:src="|/images/${pageDetails.clientDto.logo}|" th:alt="${pageDetails.clientDto.id}" />
+                <div> <b th:text="${pageDetails.clientDto.header}" /></div>
+            </div>
 
 
-
-        <nav class="navbar navbar-light bg-light">
-                <div th:each="navigationItemDto : ${pageDetails.navigationDto.navigationItems}">
-                    <nav class="navbar-light bg-light">
-                        <ul class="navbar-nav navbar-light bg-light">
-                            <li class="nav-item">
-                                <a class="nav-link" th:href="${navigationItemDto.url}" th:text="${navigationItemDto.label}"></a>
+            <div class="scrollbar-inner">
+                <ul class="navigation pr-3">
+                    <li class="navigation-title">Getting started</li>
+                    <div th:each="navigationItemDto : ${pageDetails.navigationDto.navigationItems}">
+                            <li class="navigation-item">
+                                <a class="navigation-link" th:href="${navigationItemDto.url}" th:text="${navigationItemDto.label}"></a>
                             </li>
-                        </ul>
-                    </nav>
+                    </div>
+                </ul>
+            </div>
+
+        </aside>
+        <section class="content">
+            <div class="header">
+                <div class="navigation-trigger d-xl-none" data-action="aside-open" data-target=".sidebar">
+                    <div class="navigation-trigger-inner">
+                        <i class="navigation-trigger-line"></i>
+                        <i class="navigation-trigger-line"></i>
+                        <i class="navigation-trigger-line"></i>
+                    </div>
                 </div>
-        </nav>
 
 
-        <div class="container">
-            <div th:each="navigationItemDto : ${pageDetails.navigationDto.navigationItems}">
-                <div th:class="${navigationItemDto.url}==pageDetails.url">
-                    <!--<table class="table">-->
+                <div class="header-nav ml-auto">
+                    <ul class="nav align-items-center">
+                        <li class="nav-item d-none d-md-inline-block">
+                            <a class="nav-link pl-0 active" href="../">Go to UI Kit</a>
+                        </li>
+                        <li class="nav-item d-none d-md-inline-block">
+                            <a class="nav-link" href="../docs/changelog.html">Changelog</a>
+                        </li>
+                        <li class="nav-item ml-4">
+                            <a href="https://github.com/webpixels/boomerang-ui-kit/archive/master.zip" class="btn btn-sm btn-primary">Download Free</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <br />
+            <div class="container  d-flex align-items-center no-padding">
+                <div th:each="navigationItemDto : ${pageDetails.navigationDto.navigationItems}">
+                    <div th:class="${navigationItemDto.url}==pageDetails.url">
+                        <table class="table">
 
                             <div th:each="widgetDto : ${navigationItemDto.widgets}">
-                                <div class="card">
-                                    <div class="card-header" th:text="${widgetDto.widgetTitle}"></div>
+                                <div class="card bg-secondary">
+                                    <div class="card-title" th:text="${widgetDto.widgetTitle}"></div>
                                     <div class="card-body">
-                                        <form method="post" th:id="|${widgetDto.id}|" >
+                                        <form class="form-primary" method="post" th:id="|${widgetDto.id}|" >
                                             <input th:type="hidden" th:name="actionIdentifier" th:id="actionIdentifier"
                                                    th:value="${pageDetails.navigationDto.id}
                                                        +'-'+${navigationItemDto.id}
@@ -61,19 +94,61 @@
                                     </div>
                                 </div>
                             </div>
-                    <!--</table>-->
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
 
 
 
 
-        <div th:if="${pageDetails.clientDto.footer}">
-            <h15 th:text="${pageDetails.clientDto.footer}" />
-        </div>
+
+            <footer class="px-3 footer bg-white">
+                <div class="container ">
+                    <div class="row align-items-center py-3 border-top">
+                        <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
+                            <div th:if="${pageDetails.clientDto.footer}">
+                                <h15 th:text="${pageDetails.clientDto.footer}" />
+                            </div>
+                        </div>
+                        <div class="col-lg-6 text-center text-lg-right">
+                            <ul class="nav justify-content-center justify-content-lg-end">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="https://instagram.com/webpixelsofficial" target="_blank"><i class="fab fa-instagram"></i></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="https://facebook.com/webpixels" target="_blank"><i class="fab fa-facebook"></i></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="https://github.com/webpixels" target="_blank"><i class="fab fa-github"></i></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="https://dribbble.com/webpixels" target="_blank"><i class="fab fa-dribbble"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </section>
+    </main>
 
 
-    </div>
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/popper/popper.min.js"></script>
+    <script src="/js/bootstrap/bootstrap.min.js"></script>
+    <!-- FontAwesome 5 -->
+    <script src="/vendor/fontawesome/js/fontawesome-all.min.js"></script>
+    <!-- Scripts used only for this demo only - Remove these in your project -->
+    <script src="/vendor/jquery-scrollbar/js/jquery-scrollbar.min.js"></script>
+    <script src="/vendor/jquery-scrollLock/jquery-scrollLock.min.js"></script>
+    <script src="/vendor/sticky-kit/sticky-kit.min.js"></script>
+    <script src="/vendor/highlight/js/highlight.min.js"></script>
+    <script src="/vendor/clipboard-js/clipboard.min.js"></script>
+    <script src="/vendor/holderjs/holder.min.js"></script>
+    <script src="/js/demo.js"></script>
+    <!-- Theme JS -->
+    <script src="/js/theme.js"></script>
+
 </body>
 </html>
