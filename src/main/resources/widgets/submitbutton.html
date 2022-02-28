@@ -4,8 +4,10 @@
     <meta charset="UTF-8" />
 </head>
     <body>
-        <div th:fragment="formField(component, widget, navigationItem, pageDetails)">
+        <div th:fragment="formField(component, widget, navigationItem, pageDetails)" style="float: right; margin-left: 10px">
             <button type="submit" th:onclick="|javascript:onClickSubmitForm('${widget.id}','${component.keyOrAction}','${component.redirectUrl}')|" th:id="${component.id}" class="btn btn-primary" th:text="${component.label}"></button>
+
+            <br /> <br />
         </div>
     </body>
 </html>

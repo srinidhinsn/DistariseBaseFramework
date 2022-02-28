@@ -91,8 +91,9 @@ public class BaseServiceImpl implements BaseService, AbstractBaseService {
             navigationItemDto.setLayoutDto(layoutDtoMap.get(navigationItemDto.getLayoutId()));
             List<WidgetDto> widgetDtos = widgetService.getWidgets(navigationItemDto.getId(), baseContextDto.getClientId(),
                     allowedWidgetIds);
+            List<String> widgetsToDisplay = widgetDtos.stream().map(widgetDto -> widgetDto.getId()).collect(Collectors.toList());
             logger.debug("widgetDtos size - "+widgetDtos.size());
-            List<ComponentDto> componentDtos = componentService.getComponents(allowedWidgetIds, baseContextDto.getClientId());
+            List<ComponentDto> componentDtos = componentService.getComponents(widgetsToDisplay, baseContextDto.getClientId());
             List<String> componentIds = componentDtos.stream().
                     map(componentDto -> componentDto.getId()).collect(Collectors.toList());
             logger.debug("componentIds size - "+componentIds.size());
@@ -109,8 +110,6 @@ public class BaseServiceImpl implements BaseService, AbstractBaseService {
     }
 
     private Map<String, List<String>> getAllowedWidgetActions(List<RoleWidgetActionDto> roleWidgetActionDtoList){
-        List<String> allowedWidgetIds = roleWidgetActionDtoList.stream().
-                map(roleWidgetActionDto -> roleWidgetActionDto.getWidgetId()).collect(Collectors.toList());
         Map<String, List<String>> allowedWidgetActions = new HashMap<>();
         roleWidgetActionDtoList.forEach(roleWidgetActionDto -> {
             if (allowedWidgetActions.containsKey(roleWidgetActionDto.getWidgetId())){
