@@ -68,19 +68,19 @@
             <div class="container  d-flex align-items-center no-padding">
                 <div th:each="navigationItemDto : ${pageDetails.navigationDto.navigationItems}">
                     <div th:class="${navigationItemDto.url}==pageDetails.url">
-                        <table class="table">
-
                             <div th:each="widgetDto : ${navigationItemDto.widgets}">
                                 <div class="card bg-secondary">
                                     <div class="card-title" th:text="${widgetDto.widgetTitle}"></div>
                                     <div class="card-body">
-                                        <form class="form-primary" method="post" th:id="|${widgetDto.id}|" >
+                                        <form class="form-secondary" method="post" th:id="|${widgetDto.id}|" >
                                             <input th:type="hidden" th:name="actionIdentifier" th:id="actionIdentifier"
                                                    th:value="${pageDetails.navigationDto.id}
                                                        +'-'+${navigationItemDto.id}
                                                        +'-'+${widgetDto.id}" />
+
                                             <input th:type="hidden" th:name="action" th:id="action"
                                                    value="" />
+
                                             <div th:each="componentDto : ${widgetDto.componentDtos}">
                                                 <div th:replace="|../widgets/${componentDto.type}| ::
                                                     formField(
@@ -94,7 +94,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </table>
                     </div>
                 </div>
             </div>

@@ -3,6 +3,7 @@ package com.distarise.base.model;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 public class ComponentDto implements Serializable {
     private String id;
@@ -20,6 +21,7 @@ public class ComponentDto implements Serializable {
     private Integer colspan;
     private Integer rowspan;
     private List<ComponentItemDto> componentItemDtos;
+    private List<Map<String, String>> gridValues;
 
     public String getId() {
         return id;
@@ -139,6 +141,14 @@ public class ComponentDto implements Serializable {
 
     public void setRowspan(Integer rowspan) {
         this.rowspan = rowspan;
+    }
+
+    public List<Map<String, String>> getGridValues() {
+        return gridValues;
+    }
+
+    public void setGridValues(List<Map<String, String>> gridValues) {
+        this.gridValues = gridValues;
     }
 
     public ComponentDto(String id, String widgetId, String clientId, Integer sortOrder,

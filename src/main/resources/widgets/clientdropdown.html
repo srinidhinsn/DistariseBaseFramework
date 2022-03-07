@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+</head>
+    <body>
+        <div th:fragment="formField(component, widget, navigationItem, pageDetails)">
+            <div class="form-group">
+                <div th:if="${component.componentItemDtos.size()>0}">
+                    <label th:for="${component.id}" th:text="${component.label}"></label>
+                    <select th:name="${component.id}" th:id="${component.id}"
+                            th:onchange="|javascript:onClickSubmitForm('${widget.id}','${component.keyOrAction}','${component.redirectUrl}')|">
+                        <div th:each="componentItemDto : ${component.componentItemDtos}">
+                            <option th:value="${componentItemDto.value}"
+                            th:text="${componentItemDto.label}" th:selected="${componentItemDto.selected}"/>
+                        </div>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

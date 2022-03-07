@@ -8,6 +8,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ClientRepository extends CrudRepository<Client, String> {
 
-    @Query("from Client where id = ?1")
-    Client getClientDetails(String clientId);
 }

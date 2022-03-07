@@ -37,6 +37,9 @@ public class ComponentItem implements Serializable {
     @Column(name = "VISIBLE")
     private Boolean visible;
 
+    @Column(name = "SELECTED", columnDefinition = "boolean default false")
+    private Boolean selected;
+
     public Long getId() {
         return id;
     }
@@ -99,6 +102,14 @@ public class ComponentItem implements Serializable {
 
     public void setVisible(Boolean visible) {
         this.visible = visible;
+    }
+
+    public Boolean getSelected() {
+        return selected;
+    }
+
+    public void setSelected(Boolean selected) {
+        this.selected = selected;
     }
 
     public ComponentItem(String componentId, String clientId,

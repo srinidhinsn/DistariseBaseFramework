@@ -1,5 +1,6 @@
 package com.distarise.base.action;
 
+import com.distarise.base.adapters.FrameworkInterceptor;
 import com.distarise.base.model.BaseContextDto;
 import com.distarise.base.model.ComponentItemDto;
 import com.distarise.base.model.NavigationDto;
@@ -14,13 +15,19 @@ import com.distarise.base.service.NavigationItemService;
 import com.distarise.base.service.NavigationService;
 import com.distarise.base.service.UserService;
 import com.distarise.base.service.WidgetService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.json.GsonJsonParser;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -55,6 +62,8 @@ public abstract class AbstractBaseAction implements BaseAction{
     @Autowired
     BaseService baseService;
 
+    private static final Logger logger = LoggerFactory.getLogger(AbstractBaseAction.class);
+
     final public void executeAction(HttpServletRequest httpServletRequest){
         request = httpServletRequest;
         url = request.getRequestURI().split("/");
@@ -69,10 +78,10 @@ public abstract class AbstractBaseAction implements BaseAction{
         }
     }
 
-    public PageDetailsDto executeAction(PageDetailsDto pageDetailsDto){
+    public PageDetailsDto executeAction(PageDetailsDto pageDetailsDto) {
         if (null != request.getAttribute(BaseAction.PAGE_DETAILS)){
             pageDetailsDto = (PageDetailsDto) request.getAttribute(BaseAction.PAGE_DETAILS);
-        }else {
+        } else {
             HttpSession session = request.getSession();
             BaseContextDto baseContextDto = new BaseContextDto(clientId, module, redirectPage,
                     (UserDetailsDto) session.getAttribute(UserService.USER));
@@ -125,18 +134,32 @@ public abstract class AbstractBaseAction implements BaseAction{
         widgetDto.getComponentDtos().forEach(componentDto -> {
 
             if (componentDto.getMultiLevel()){
-                componentDto.getComponentItemDtos().forEach(componentItemDto -> {
-                    Enumeration<String> params = request.getParameterNames();
-                    componentItemDto.setValue(CHECKBOX_UNCHECKED);
-                    while (params.hasMoreElements()){
-                        String param = params.nextElement();
-                        if (param.equalsIgnoreCase(componentItemDto.getComponentId()+"-"
-                                +componentItemDto.getLabel())){
-                            componentItemDto.setValue(CHECKBOX_CHECKED);
-                            break;
+                if (componentDto.getType().toUpperCase().contains(CHECKBOX)) {
+                    componentDto.getComponentItemDtos().forEach(componentItemDto -> {
+                        Enumeration<String> params = request.getParameterNames();
+                        componentItemDto.setValue(CHECKBOX_UNCHECKED);
+                        while (params.hasMoreElements()) {
+                            String param = params.nextElement();
+                            if (param.equalsIgnoreCase(componentItemDto.getComponentId() + "-"
+                                    + componentItemDto.getLabel())) {
+                                componentItemDto.setValue(CHECKBOX_CHECKED);
+                            }
                         }
-                    };
-                });
+                        ;
+                    });
+                } else if (componentDto.getType().toUpperCase().contains(DROPDOWN)){
+                    componentDto.getComponentItemDtos().forEach(componentItemDto -> {
+                        Enumeration<String> params = request.getParameterNames();
+                        componentItemDto.setSelected(false);
+                        while (params.hasMoreElements()) {
+                            String param = params.nextElement();
+                            if (param.equals(componentDto.getId())){
+                                componentItemDto.setSelected(true);
+                            }
+                        }
+                        ;
+                    });
+                }
             }
             else {
                 Enumeration<String> params = request.getParameterNames();

@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+</head>
+    <body>
+        <div th:fragment="formField(component, widget, navigationItem, pageDetails)">
+            <div class="form-group">
+                <table class="table table-hover table-cards align-items-center">
+                    <thead>
+                    <tr>
+                        <div th:if="${component.componentItemDtos.size()>0}">
+                             <div th:each="componentItemDto : ${component.componentItemDtos}">
+                                <th scope="col"><div th:text="${componentItemDto.label}"></div></th>
+                            </div>
+                        </div>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <div th:if="${component.gridValues.size()>0}">
+                         <div th:each="gridValue : ${component.gridValues}">
+                            <tr class="bg-white">
+                                <td>
+                                    <div th:if="${component.componentItemDtos.size()>0}">
+                                        <div th:each="componentItemDto : ${component.componentItemDtos}">
+                                            <div th:text="${gridValue.get(componentItemDto.value)}"></div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="table-divider"></tr>
+                         </div>
+                    </div>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </body>
+</html>

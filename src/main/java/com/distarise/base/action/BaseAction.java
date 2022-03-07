@@ -14,6 +14,8 @@ public interface BaseAction {
     public final static String NAVIGATION_ITEM = "navigationItemDto";
     public final static String CHECKBOX_UNCHECKED = "UNCHECKED";
     public final static String CHECKBOX_CHECKED = "CHECKED";
+    public final static String DROPDOWN = "DROPDOWN";
+    public final static String CHECKBOX = "CHECKBOX";
 
     void executeAction();
     void executeAction(HttpServletRequest request);
