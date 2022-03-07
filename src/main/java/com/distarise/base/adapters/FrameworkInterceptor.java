@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Component
 public class FrameworkInterceptor implements HandlerInterceptor {
@@ -29,13 +30,14 @@ public class FrameworkInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         logger.debug("preHandle-"+httpServletRequest.getRequestURI());
-        if (null != httpServletRequest.getParameter("action")) {
+        if (null != httpServletRequest.getParameter("action") &&
+                !httpServletRequest.getParameter("action").isEmpty()) {
             try {
                 Class actionClass = Class.forName(httpServletRequest.getParameter("action"));
                 BaseAction abstractBaseAction = (BaseAction) applicationContext.getBean(actionClass);
                 abstractBaseAction.executeAction(httpServletRequest);
                 abstractBaseAction.executeAction();
-            }catch (ClassNotFoundException cnf){
+            } catch (ClassNotFoundException cnf){
                 logger.error(cnf.getMessage());
             }
         }

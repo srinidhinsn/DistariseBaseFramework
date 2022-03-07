@@ -8,6 +8,9 @@ import com.distarise.base.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class ClientDaoImpl implements ClientDao, AbstractBaseDao {
 
@@ -16,7 +19,7 @@ public class ClientDaoImpl implements ClientDao, AbstractBaseDao {
 
     @Override
     public ClientDto getClientDetails(String clientId){
-        Client client = clientRepository.getClientDetails(clientId);
+        Client client = clientRepository.findOne(clientId);
         return modelMapper.map(client, ClientDto.class);
     }
 
@@ -25,5 +28,15 @@ public class ClientDaoImpl implements ClientDao, AbstractBaseDao {
         Client client = modelMapper.map(clientDto, Client.class);
         clientRepository.save(client);
         return clientDto;
+    }
+
+    @Override
+    public List<ClientDto> getAllClients(){
+        List<ClientDto> clientDtoList = new ArrayList<>();
+        List<Client> clientList = (List<Client>) clientRepository.findAll();
+        clientList.forEach(client -> {
+            clientDtoList.add(modelMapper.map(client, ClientDto.class));
+        });
+        return clientDtoList;
     }
 }

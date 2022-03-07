@@ -1,7 +1,5 @@
 package com.distarise.base.model;
 
-import com.distarise.base.entity.NavigationItem;
-
 import java.io.Serializable;
 import java.util.List;
 

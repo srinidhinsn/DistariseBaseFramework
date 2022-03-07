@@ -7,6 +7,9 @@ import com.distarise.base.repository.NavigationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class NavigationDaoImpl implements NavigationDao {
 
@@ -24,5 +27,15 @@ public class NavigationDaoImpl implements NavigationDao {
         }
 
         return modelMapper.map(navigation, NavigationDto.class);
+    }
+
+    @Override
+    public List<NavigationDto> getAllNavigations(String clientId) {
+        List<Navigation> navigationList = navigationRepository.getAllNavigations(clientId);
+        List<NavigationDto> navigationDtoList = new ArrayList<>();
+        navigationList.forEach(navigation -> {
+            navigationDtoList.add(modelMapper.map(navigation, NavigationDto.class));
+        });
+        return navigationDtoList;
     }
 }

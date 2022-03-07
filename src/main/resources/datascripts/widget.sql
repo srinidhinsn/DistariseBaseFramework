@@ -23,6 +23,9 @@ INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widge
     VALUES ('addclient', 'distarise', 'commoncss', '4C0RTTLFBF', 'addclient', 1, null, 'Add Client');
 
 INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widgetid, widgettitle)
+    VALUES ('addlandingpage', 'distarise', 'commoncss', '4C0RTTLFBF', 'addlandingpage', 1, null, 'Add Landing Page');
+
+INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widgetid, widgettitle)
     VALUES ('addnavigation', 'distarise', 'commoncss', '4C0RTTLFBF', 'addnavigation', 1, null, 'Add Navigation');
 
 INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widgetid, widgettitle)
