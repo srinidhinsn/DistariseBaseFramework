@@ -27,7 +27,7 @@ public class LoadNavigationsActionExt {
         List<NavigationDto> navigationDtoList = new ArrayList<>();
         List<Map<String, String>> gridDetails = new ArrayList<>();
 
-        if (clientId.equalsIgnoreCase("new")){
+        if (clientId.equalsIgnoreCase("new") || clientId.isEmpty()){
             navigationDtoList.add(new NavigationDto());
         } else {
             navigationDtoList = navigationService.getAllNavigations(clientId);
@@ -56,6 +56,10 @@ public class LoadNavigationsActionExt {
             });
             gridDetails.add(gridRow);
         });
+        componentDto.setGridValues(gridDetails);
+        ConfigPageDetailsDto configPageDetailsDto = (ConfigPageDetailsDto) request.getSession().
+                getAttribute(LoadClientListAction.CONFIG_PAGE_DETAILS);
+        configPageDetailsDto.setNavigationDtoList(navigationDtoList);
 
     }
 }

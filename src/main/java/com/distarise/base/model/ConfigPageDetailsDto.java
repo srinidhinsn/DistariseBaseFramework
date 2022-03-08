@@ -1,6 +1,7 @@
 package com.distarise.base.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ConfigPageDetailsDto extends PageDetailsDto {
@@ -15,5 +16,8 @@ public class ConfigPageDetailsDto extends PageDetailsDto {
     }
 
     public ConfigPageDetailsDto() {
+        setClientDto(new ClientDto("","","",""));
+        setNavigationDto(new NavigationDto());
+        setNavigationDtoList(new ArrayList<>());
     }
 }

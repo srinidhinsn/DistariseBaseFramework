@@ -18,16 +18,18 @@
                     </thead>
 
                     <tbody>
-                    <div th:if="${component.gridValues.size()>0}">
+                    <div th:if="${null != component.gridValues and component.gridValues.size()>0}">
                          <div th:each="gridValue : ${component.gridValues}">
-                            <tr class="bg-white">
-                                <td>
-                                    <div th:if="${component.componentItemDtos.size()>0}">
-                                        <div th:each="componentItemDto : ${component.componentItemDtos}">
-                                            <div th:text="${gridValue.get(componentItemDto.value)}"></div>
-                                        </div>
+                            <tr class="bg-white" th:onclick="|javascript:fillForm('${gridValue.get('id')}','${gridValue.get('module')}',
+                            '${gridValue.get('pagedescription')}', '${gridValue.get('pagename')}', '${gridValue.get('pagetitle')}',
+                            '${gridValue.get('redirectpagename')}', '${gridValue.get('rolename')}')|">
+                                <div th:if="${component.componentItemDtos.size()>0}">
+                                    <div th:each="componentItemDto : ${component.componentItemDtos}">
+                                         <td>
+                                             <div th:text="${gridValue.get(componentItemDto.value)}"></div>
+                                         </td>
                                     </div>
-                                </td>
+                                </div>
                             </tr>
                             <tr class="table-divider"></tr>
                          </div>

@@ -55,4 +55,6 @@ INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder,
 INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
     VALUES (20,'distarise', 'navigationgrid', false, 'Role', 9, 'rolename', true);
 
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+    VALUES (30,'distarise', 'landingpage', false, 'New', 1, 'new', true);
 
