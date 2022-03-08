@@ -3,6 +3,7 @@ package com.distarise.base.action;
 import com.distarise.base.actionextension.LoadClientDetailsActionExt;
 import com.distarise.base.model.ClientDto;
 import com.distarise.base.model.ComponentItemDto;
+import com.distarise.base.model.ConfigPageDetailsDto;
 import com.distarise.base.model.PageDetailsDto;
 import com.distarise.base.model.UserDetailsDto;
 import com.distarise.base.model.WidgetDto;
@@ -30,6 +31,7 @@ public class LoadClientListAction extends AbstractBaseAction implements BaseActi
 
     public void executeAction(){
         PageDetailsDto targetPageDetailsDto = super.executeAction(new PageDetailsDto());
+        request.getSession().setAttribute(LoadClientListAction.CONFIG_PAGE_DETAILS,new ConfigPageDetailsDto());
         targetPageDetailsDto.getNavigationDto().getNavigationItems().forEach(navigationItemDto -> {
             if (!navigationItemDto.getWidgets().isEmpty()){
                 navigationItemDto.getWidgets().forEach(targetWidgetDto -> {

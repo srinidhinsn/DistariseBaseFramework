@@ -3,7 +3,6 @@ package com.distarise.base.actionextension;
 import com.distarise.base.action.LoadClientListAction;
 import com.distarise.base.model.ClientDto;
 import com.distarise.base.model.ConfigPageDetailsDto;
-import com.distarise.base.model.PageDetailsDto;
 import com.distarise.base.model.WidgetDto;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +15,7 @@ public class LoadClientDetailsActionExt {
 
     public void preloadClientForm(HttpServletRequest request, WidgetDto targetWidgetDto,
                                   List<ClientDto> clientsList, String client) {
-        if (null != client && !client.equalsIgnoreCase("new")){
+        if (null != client && !client.isEmpty() && !client.equalsIgnoreCase("new")){
 
             ClientDto clientToLoad = clientsList.stream().filter(
                     clientDto -> clientDto.getId().equals(client)).collect(Collectors.toList()).get(0);
@@ -38,7 +37,8 @@ public class LoadClientDetailsActionExt {
                 }
             });
 
-            ConfigPageDetailsDto configPageDetailsDto = new ConfigPageDetailsDto();
+            ConfigPageDetailsDto configPageDetailsDto = (ConfigPageDetailsDto) request.getSession().
+                    getAttribute(LoadClientListAction.CONFIG_PAGE_DETAILS);
             configPageDetailsDto.setClientDto(clientToLoad);
             request.getSession().setAttribute(LoadClientListAction.CONFIG_PAGE_DETAILS,configPageDetailsDto);
         }

@@ -75,8 +75,24 @@ VALUES ('distarise', 'config', 'addclient', 'com.distarise.base.action.AddClient
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
 VALUES ('distarise', 'config', 'addclient', 'com.distarise.base.action.LoadClientListAction', true);
 
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+VALUES ('distarise', 'config', 'addlandingpage', '', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+VALUES ('distarise', 'config', 'savelandingpage', '', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+VALUES ('distarise', 'config', 'savelandingpage', 'com.distarise.base.action.SaveLandingPageAction', true);
+
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
 VALUES ('distarise', 'config', 'addlandingpage', 'com.distarise.base.action.LoadNavigationsAction', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+VALUES ('distarise', 'config', 'addnavigation', '', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+VALUES ('distarise', 'config', 'addnavigation', 'com.distarise.base.action.LoadNavigationItemsAction', true);
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
 VALUES ('distarise', 'config', 'addnavigation', 'com.distarise.base.action.LogoutAction', true);

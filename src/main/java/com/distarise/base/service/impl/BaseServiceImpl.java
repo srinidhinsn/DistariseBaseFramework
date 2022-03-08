@@ -91,11 +91,11 @@ public class BaseServiceImpl implements BaseService, AbstractBaseService {
             navigationItemDto.setLayoutDto(layoutDtoMap.get(navigationItemDto.getLayoutId()));
             List<WidgetDto> widgetDtos = widgetService.getWidgets(navigationItemDto.getId(), baseContextDto.getClientId(),
                     allowedWidgetIds);
-            List<String> widgetsToDisplay = widgetDtos.stream().map(widgetDto -> widgetDto.getId()).collect(Collectors.toList());
+            List<String> widgetsToDisplay = widgetDtos.stream().map(WidgetDto::getId).collect(Collectors.toList());
             logger.debug("widgetDtos size - "+widgetDtos.size());
             List<ComponentDto> componentDtos = componentService.getComponents(widgetsToDisplay, baseContextDto.getClientId());
             List<String> componentIds = componentDtos.stream().
-                    map(componentDto -> componentDto.getId()).collect(Collectors.toList());
+                    map(ComponentDto::getId).collect(Collectors.toList());
             logger.debug("componentIds size - "+componentIds.size());
             List<ComponentItemDto> componentItemDtos = componentItemService.getComponentItems(componentIds, baseContextDto.getClientId());
             logger.debug("componentItemDtos size - "+componentItemDtos.size());
