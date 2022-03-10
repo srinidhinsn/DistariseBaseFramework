@@ -42,4 +42,9 @@ public class ComponentServiceImpl implements ComponentService {
             });
         });
     }
+
+    @Override
+    public List<ComponentDto> getComponentsByWidgetId(String clientId, String selectedWidget) {
+        return componentDao.getComponentsByWidgetId(clientId, selectedWidget);
+    }
 }

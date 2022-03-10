@@ -16,4 +16,7 @@ public interface WidgetRepository extends CrudRepository<Widget, WidgetId> {
 
     @Query("from Widget where clientId = ?1 and id = ?2 order by sortOrder asc")
     Widget getWidgetById(String clientId, String widgetId);
+
+    @Query("from Widget where clientId = ?1 and navigationItemId =?2 order by sortOrder asc")
+    List<Widget> getWidgetByNavigationItemId(String clientId, String navigationItemId);
 }

@@ -18,17 +18,16 @@ public class ComponentDaoImpl implements ComponentDao {
     @Override
     public List<ComponentDto> getComponents(List<String> widgetIds, String clientId){
         List<Component> components = componentRepository.getComponents(widgetIds, clientId);
-        return convertEntityToDto(components);
+        return convertEntityToDtoList(components);
     }
 
     @Override
     public List<ComponentDto> getComponentsByWidgetId(String clientId, String widgetId){
         List<Component> components = componentRepository.getComponentsByWidgetId(clientId, widgetId);
-
-        return convertEntityToDto(components);
+        return convertEntityToDtoList(components);
     }
 
-    private List<ComponentDto> convertEntityToDto(List<Component> components){
+    private List<ComponentDto> convertEntityToDtoList(List<Component> components){
         List<ComponentDto> componentDtos = components.stream()
                 .map(component -> modelMapper.map(component, ComponentDto.class))
                 .collect(Collectors.toList());

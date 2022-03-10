@@ -10,4 +10,6 @@ public interface ComponentService extends AbstractBaseService{
     List<ComponentDto> getComponents(List<String> widgetIds, String clientId);
     void mapComponentsToWidget(List<WidgetDto> widgetDtos, List<ComponentDto> componentDtos,
                                Map<String, List<String>> roleWidgetActions);
+
+    List<ComponentDto> getComponentsByWidgetId(String clientId, String selectedWidget);
 }

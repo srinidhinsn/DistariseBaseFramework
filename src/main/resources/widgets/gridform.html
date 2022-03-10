@@ -7,7 +7,7 @@
         <div th:fragment="formField(component, widget, navigationItem, pageDetails)">
             <div class="form-group">
                 <table class="table table-hover table-cards align-items-center">
-                    <thead>
+                    <thead style="border-bottom: solid; border-width: thin">
                     <tr>
                         <div th:if="${component.componentItemDtos.size()>0}">
                              <div th:each="componentItemDto : ${component.componentItemDtos}">
@@ -20,9 +20,13 @@
                     <tbody>
                     <div th:if="${null != component.gridValues and component.gridValues.size()>0}">
                          <div th:each="gridValue : ${component.gridValues}">
-                            <tr class="bg-white" th:onclick="|javascript:fillForm('${gridValue.get('id')}','${gridValue.get('module')}',
-                            '${gridValue.get('pagedescription')}', '${gridValue.get('pagename')}', '${gridValue.get('pagetitle')}',
-                            '${gridValue.get('redirectpagename')}', '${gridValue.get('rolename')}')|">
+                            <tr th:onclick="|javascript:fillForm('${gridValue.get('formid')}', '${gridValue.get('column1')}','${gridValue.get('column2')}',
+                            '${gridValue.get('column3')}', '${gridValue.get('column4')}', '${gridValue.get('column5')}',
+                            '${gridValue.get('column6')}', '${gridValue.get('column7')}', '${gridValue.get('column8')}',
+                            '${gridValue.get('column9')}', '${gridValue.get('column10')}', '${gridValue.get('column11')}',
+                            '${gridValue.get('column12')}', '${gridValue.get('column13')}', '${gridValue.get('column14')}',
+                            '${gridValue.get('column15')}', '${gridValue.get('column16')}', '${gridValue.get('column17')}',
+                            '${gridValue.get('column18')}', '${gridValue.get('column19')}', '${gridValue.get('column20')}')|">
                                 <div th:if="${component.componentItemDtos.size()>0}">
                                     <div th:each="componentItemDto : ${component.componentItemDtos}">
                                          <td>

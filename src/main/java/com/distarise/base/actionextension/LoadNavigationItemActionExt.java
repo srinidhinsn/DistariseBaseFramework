@@ -7,8 +7,11 @@ import com.distarise.base.model.ConfigPageDetailsDto;
 import com.distarise.base.model.NavigationDto;
 import com.distarise.base.model.NavigationItemDto;
 import com.distarise.base.model.WidgetDto;
+import com.distarise.base.service.ComponentItemService;
+import com.distarise.base.service.ComponentService;
 import com.distarise.base.service.NavigationItemService;
 import com.distarise.base.service.NavigationService;
+import com.distarise.base.service.WidgetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +31,16 @@ public class LoadNavigationItemActionExt {
     @Autowired
     NavigationItemService navigationItemService;
 
-    public List<ComponentItemDto> preloadNavigationList(String clientId) {
+    @Autowired
+    WidgetService widgetService;
+
+    @Autowired
+    ComponentService componentService;
+
+    @Autowired
+    ComponentItemService componentItemService;
+
+    public List<ComponentItemDto> preloadNavigationList(String clientId, String selectedUiNav) {
         if (clientId.equalsIgnoreCase("new") || clientId.isEmpty()){
             return null;
         }
@@ -36,21 +48,166 @@ public class LoadNavigationItemActionExt {
         List<NavigationDto> navigationDtoList = navigationService.getAllNavigations(clientId);
         List<ComponentItemDto> componentItemDtoList = new ArrayList<>();
         for (int i=0; i<navigationDtoList.size(); i++) {
-            componentItemDtoList.add(new ComponentItemDto(30000L+i,
-                    "landingpage", "distarise" , i+1,
+            ComponentItemDto componentItemDto = new ComponentItemDto(30000L+i,
+                    "landingpage", clientId , i+1,
                     navigationDtoList.get(i).getId(), navigationDtoList.get(i).getId(), false, true
-            ));
+            );
+            if (componentItemDto.getValue().equals(selectedUiNav)){
+                componentItemDto.setSelected(true);
+            }
+            componentItemDtoList.add(componentItemDto);
         }
         return componentItemDtoList;
     }
 
-    public void preloadNavigationItemForm(HttpServletRequest request, WidgetDto targetWidgetDto) {
+    public void preloadNavigationItemForm(HttpServletRequest request, String clientId, ComponentDto componentDto) {
+        if (clientId.isEmpty() || clientId.equalsIgnoreCase("new")){
+            return;
+        }
         String selectedUiNav = request.getParameter("landingpage");
         List<NavigationItemDto> navigationItemDtoList = navigationItemService.getNavigationItems(selectedUiNav);
-        targetWidgetDto.getComponentDtos().forEach(componentDto -> {
-            if(componentDto.getId().equalsIgnoreCase("id")){
-                componentDto.setValue();
-            }
+        List<Map<String, String>> gridDetails = new ArrayList<>();
+        navigationItemDtoList.forEach(navigationItemDto -> {
+            Map<String, String> gridRow = new HashMap<>();
+            gridRow.put("formid", "savenavigation");
+            componentDto.getComponentItemDtos().forEach(componentItemDto -> {
+                if (componentItemDto.getValue().equalsIgnoreCase("column2")){
+                    gridRow.put(componentItemDto.getValue(), navigationItemDto.getId());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column3")){
+                    gridRow.put(componentItemDto.getValue(), navigationItemDto.getLabel());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column4")){
+                    gridRow.put(componentItemDto.getValue(), navigationItemDto.getSortOrder().toString());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column5")){
+                    gridRow.put(componentItemDto.getValue(), navigationItemDto.getUrl());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column6")){
+                    gridRow.put(componentItemDto.getValue(), navigationItemDto.getLayoutId());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column7")){
+                    gridRow.put(componentItemDto.getValue(), navigationItemDto.getNavigationItemId());
+                }
+            });
+            componentDto.fillEmptyColumns(gridRow, 8);
+            gridDetails.add(gridRow);
         });
+        componentDto.setGridValues(gridDetails);
+    }
+
+    public List<ComponentItemDto> preloadNavItemList(String clientId, HttpServletRequest request){
+        if (clientId.equalsIgnoreCase("new") || clientId.isEmpty()){
+            return null;
+        }
+        String selectedUiNav = request.getParameter("landingpage");
+        String selectedUiNavItem = request.getParameter("navigationitemlist");
+        List<NavigationItemDto> navigationItemDtoList = navigationItemService.getNavigationItems(selectedUiNav);
+        List<ComponentItemDto> componentItemDtoList = new ArrayList<>();
+
+        for (int i=0; i<navigationItemDtoList.size(); i++) {
+            ComponentItemDto componentItemDto = new ComponentItemDto(60000L + i,
+                    "navigationitemlist", clientId, i + 1,
+                    navigationItemDtoList.get(i).getId(), navigationItemDtoList.get(i).getId(), false, true
+            );
+            if (componentItemDto.getValue().equals(selectedUiNavItem)) {
+                componentItemDto.setSelected(true);
+            }
+            componentItemDtoList.add(componentItemDto);
+        }
+        return componentItemDtoList;
+    }
+
+    public void preloadWidgetForm(HttpServletRequest request, String clientId, ComponentDto componentDto) {
+        if (clientId.isEmpty() || clientId.equalsIgnoreCase("new")){
+            return;
+        }
+        String selectedUiNavItem = request.getParameter("navigationitemlist");
+        List<WidgetDto> widgetDtoList = widgetService.getWidgetByNavigationItemId(clientId, selectedUiNavItem);
+
+        List<Map<String, String>> gridDetails = new ArrayList<>();
+        widgetDtoList.forEach(widgetDto -> {
+            Map<String, String> gridRow = new HashMap<>();
+            gridRow.put("formid", "savewidget");
+            componentDto.getComponentItemDtos().forEach(componentItemDto -> {
+                if (componentItemDto.getValue().equalsIgnoreCase("column2")){
+                    gridRow.put(componentItemDto.getValue(), widgetDto.getId());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column3")){
+                    gridRow.put(componentItemDto.getValue(), widgetDto.getWidgetTitle());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column4")){
+                    gridRow.put(componentItemDto.getValue(), widgetDto.getSortOrder().toString());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column5")){
+                    gridRow.put(componentItemDto.getValue(), widgetDto.getNavigationItemId());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column6")){
+                    gridRow.put(componentItemDto.getValue(), widgetDto.getWidgetId());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column7")){
+                    gridRow.put(componentItemDto.getValue(), widgetDto.getLayoutId());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column8")){
+                    gridRow.put(componentItemDto.getValue(), widgetDto.getCssClass());
+                }
+            });
+            componentDto.fillEmptyColumns(gridRow, 9);
+            gridDetails.add(gridRow);
+        });
+        componentDto.setGridValues(gridDetails);
+    }
+
+    public List<ComponentItemDto> preloadWidgetList(String clientId, HttpServletRequest request){
+        if (clientId.equalsIgnoreCase("new") || clientId.isEmpty()){
+            return null;
+        }
+        String selectedUiNavItem = request.getParameter("navigationitemlist");
+        String selectedWidget = request.getParameter("widgetlist");
+        List<WidgetDto> widgetDtoList = widgetService.getWidgetByNavigationItemId(clientId, selectedUiNavItem);
+        List<ComponentItemDto> componentItemDtoList = new ArrayList<>();
+
+        for (int i=0; i<widgetDtoList.size(); i++) {
+            ComponentItemDto componentItemDto = new ComponentItemDto(90000L + i,
+                    "widgetlist", clientId, i + 1,
+                    widgetDtoList.get(i).getId(), widgetDtoList.get(i).getId(), false, true
+            );
+            if (componentItemDto.getValue().equals(selectedWidget)) {
+                componentItemDto.setSelected(true);
+            }
+            componentItemDtoList.add(componentItemDto);
+        }
+        return componentItemDtoList;
+    }
+
+    public void preloadComponentForm(HttpServletRequest request, String clientId, ComponentDto componentDto) {
+        if (clientId.isEmpty() || clientId.equalsIgnoreCase("new")){
+            return;
+        }
+        String selectedWidget = request.getParameter("widgetlist");
+        List<ComponentDto> componentDtoList = componentService.getComponentsByWidgetId(clientId, selectedWidget);
+
+        List<Map<String, String>> gridDetails = new ArrayList<>();
+        componentDtoList.forEach(targetComponentDto -> {
+            Map<String, String> gridRow = new HashMap<>();
+            gridRow.put("formid", "savecomponent");
+            componentDto.getComponentItemDtos().forEach(componentItemDto -> {
+                if (componentItemDto.getValue().equalsIgnoreCase("column1")){
+                    gridRow.put(componentItemDto.getValue(), targetComponentDto.getId());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column2")){
+                    gridRow.put(componentItemDto.getValue(), targetComponentDto.getEditable().toString());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column3")){
+                    gridRow.put(componentItemDto.getValue(), targetComponentDto.getLabel());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column4")){
+                    gridRow.put(componentItemDto.getValue(), targetComponentDto.getValue());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column5")){
+                    gridRow.put(componentItemDto.getValue(), targetComponentDto.getKeyOrAction());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column6")){
+                    gridRow.put(componentItemDto.getValue(), targetComponentDto.getRedirectUrl());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column7")){
+                    gridRow.put(componentItemDto.getValue(), targetComponentDto.getSortOrder().toString());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column8")){
+                    gridRow.put(componentItemDto.getValue(), targetComponentDto.getType());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column9")){
+                    gridRow.put(componentItemDto.getValue(), targetComponentDto.getVisible().toString());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column10")){
+                    gridRow.put(componentItemDto.getValue(), targetComponentDto.getMultiLevel().toString());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column11")){
+                    gridRow.put(componentItemDto.getValue(), targetComponentDto.getWidgetId());
+                }
+            });
+            componentDto.fillEmptyColumns(gridRow, 12);
+            gridDetails.add(gridRow);
+        });
+        componentDto.setGridValues(gridDetails);
     }
 }

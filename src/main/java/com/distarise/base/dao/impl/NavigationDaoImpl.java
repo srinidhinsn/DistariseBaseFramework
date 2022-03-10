@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class NavigationDaoImpl implements NavigationDao {
@@ -32,10 +33,10 @@ public class NavigationDaoImpl implements NavigationDao {
     @Override
     public List<NavigationDto> getAllNavigations(String clientId) {
         List<Navigation> navigationList = navigationRepository.getAllNavigations(clientId);
-        List<NavigationDto> navigationDtoList = new ArrayList<>();
-        navigationList.forEach(navigation -> {
-            navigationDtoList.add(modelMapper.map(navigation, NavigationDto.class));
-        });
-        return navigationDtoList;
+        return convertEntityListToDtoList(navigationList);
+    }
+
+    private List<NavigationDto> convertEntityListToDtoList(List<Navigation> navigationList){
+        return navigationList.stream().map(navigation -> modelMapper.map(navigation, NavigationDto.class)).collect(Collectors.toList());
     }
 }
