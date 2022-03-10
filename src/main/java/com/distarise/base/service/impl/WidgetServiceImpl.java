@@ -51,4 +51,9 @@ public class WidgetServiceImpl implements WidgetService {
     public void mapLayoutsToWidgets(List<WidgetDto> widgetDtos, Map<String, LayoutDto> layoutDtoMap){
         widgetDtos.forEach(widgetDto -> widgetDto.setLayoutDto(layoutDtoMap.get(widgetDto.getLayoutId())));
     }
+
+    @Override
+    public List<WidgetDto> getWidgetByNavigationItemId(String clientId, String navigationItemId) {
+        return widgetDao.getWidgetByNavigationItemId(clientId, navigationItemId);
+    }
 }

@@ -2,10 +2,12 @@ package com.distarise.base.model;
 
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ComponentDto implements Serializable {
+    private final int gridColumnSize = 20;
     private String id;
     private String widgetId;
     private String clientId;
@@ -172,5 +174,12 @@ public class ComponentDto implements Serializable {
     }
 
     public ComponentDto() {
+    }
+
+    public void fillEmptyColumns(Map<String, String> grid, int start){
+        for (int i=start; i<=gridColumnSize; i++)
+        {
+            grid.put("column"+i,"");
+        }
     }
 }

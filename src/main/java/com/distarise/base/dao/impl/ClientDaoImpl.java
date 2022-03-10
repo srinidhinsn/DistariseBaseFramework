@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class ClientDaoImpl implements ClientDao, AbstractBaseDao {
@@ -32,11 +33,11 @@ public class ClientDaoImpl implements ClientDao, AbstractBaseDao {
 
     @Override
     public List<ClientDto> getAllClients(){
-        List<ClientDto> clientDtoList = new ArrayList<>();
         List<Client> clientList = (List<Client>) clientRepository.findAll();
-        clientList.forEach(client -> {
-            clientDtoList.add(modelMapper.map(client, ClientDto.class));
-        });
-        return clientDtoList;
+        return convertEntityListToDtoList(clientList);
+    }
+
+    private List<ClientDto> convertEntityListToDtoList(List<Client> clientList){
+        return clientList.stream().map(client -> (modelMapper.map(client, ClientDto.class))).collect(Collectors.toList());
     }
 }

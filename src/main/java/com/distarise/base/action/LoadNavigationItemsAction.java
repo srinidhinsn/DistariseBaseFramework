@@ -25,16 +25,41 @@ public class LoadNavigationItemsAction extends AbstractBaseAction implements Bas
         targetPageDetailsDto.getNavigationDto().getNavigationItems().forEach(navigationItemDto -> {
             if (!navigationItemDto.getWidgets().isEmpty()){
                 navigationItemDto.getWidgets().forEach(targetWidgetDto -> {
-                    if (targetWidgetDto.getId().equalsIgnoreCase("addnavigation")){
+                    if (targetWidgetDto.getId().equalsIgnoreCase("addnavigation") ||
+                            targetWidgetDto.getId().equalsIgnoreCase("addwidget") ||
+                            targetWidgetDto.getId().equalsIgnoreCase("addcomponent")){
                         targetWidgetDto.getComponentDtos().forEach(targetComponentDto -> {
+                            //Loading Navigation items
                             if(targetComponentDto.getId().equalsIgnoreCase("landingpage")){
-                                List<ComponentItemDto> uiNavs = loadNavigationItemActionExt.preloadNavigationList(clientId);
+                                String selectedLandingPage = request.getParameter("landingpage");
+                                List<ComponentItemDto> uiNavs = loadNavigationItemActionExt.preloadNavigationList(clientId, selectedLandingPage);
                                 if (null!=uiNavs) {
                                     targetComponentDto.getComponentItemDtos().addAll(uiNavs);
                                 }
-                                loadNavigationItemActionExt.preloadNavigationItemForm(request, targetWidgetDto);
+                            } else if (targetComponentDto.getId().equalsIgnoreCase("navigationitemgrid")){
+                                loadNavigationItemActionExt.preloadNavigationItemForm(request, clientId, targetComponentDto);
                             } else if (targetComponentDto.getId().equalsIgnoreCase("clientid")){
                                 targetComponentDto.setValue(clientId);
+                            }
+
+                            //Loading widgets
+                            else if (targetComponentDto.getId().equalsIgnoreCase("navigationitemlist")){
+                                List<ComponentItemDto> uiNavItems = loadNavigationItemActionExt.preloadNavItemList(clientId, request);
+                                if (null != uiNavItems){
+                                    targetComponentDto.getComponentItemDtos().addAll(uiNavItems);
+                                }
+                            } else if (targetComponentDto.getId().equalsIgnoreCase("widgetsgrid")){
+                                loadNavigationItemActionExt.preloadWidgetForm(request, clientId, targetComponentDto);
+                            }
+
+                            //Loading components
+                            else if (targetComponentDto.getId().equalsIgnoreCase("widgetlist")){
+                                List<ComponentItemDto> widgetList = loadNavigationItemActionExt.preloadWidgetList(clientId, request);
+                                if (null != widgetList){
+                                    targetComponentDto.getComponentItemDtos().addAll(widgetList);
+                                }
+                            } else if (targetComponentDto.getId().equalsIgnoreCase("componentgrid")){
+                                loadNavigationItemActionExt.preloadComponentForm(request, clientId, targetComponentDto);
                             }
                         });
                     }

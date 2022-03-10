@@ -36,24 +36,26 @@ public class LoadNavigationsActionExt {
         navigationDtoList.forEach(navigationDto -> {
             Map<String, String> gridRow = new HashMap<>();
             componentDto.getComponentItemDtos().forEach(componentItemDto -> {
-                if (componentItemDto.getValue().equalsIgnoreCase("clientid")){
+                    gridRow.put("formid", "savelandingpage");
+                if (componentItemDto.getValue().equalsIgnoreCase("column1")){
                     gridRow.put(componentItemDto.getValue(), navigationDto.getClientId());
-                } else  if (componentItemDto.getValue().equalsIgnoreCase("id")){
+                } else  if (componentItemDto.getValue().equalsIgnoreCase("column2")){
                     gridRow.put(componentItemDto.getValue(), navigationDto.getId());
-                } else  if (componentItemDto.getValue().equalsIgnoreCase("module")){
+                } else  if (componentItemDto.getValue().equalsIgnoreCase("column3")){
                     gridRow.put(componentItemDto.getValue(), navigationDto.getModule());
-                } else  if (componentItemDto.getValue().equalsIgnoreCase("pagedescription")){
+                } else  if (componentItemDto.getValue().equalsIgnoreCase("column4")){
                     gridRow.put(componentItemDto.getValue(), navigationDto.getPageDescription());
-                } else  if (componentItemDto.getValue().equalsIgnoreCase("pagename")){
+                } else  if (componentItemDto.getValue().equalsIgnoreCase("column5")){
                     gridRow.put(componentItemDto.getValue(), navigationDto.getPageName());
-                } else  if (componentItemDto.getValue().equalsIgnoreCase("pagetitle")){
+                } else  if (componentItemDto.getValue().equalsIgnoreCase("column6")){
                     gridRow.put(componentItemDto.getValue(), navigationDto.getPageTitle());
-                } else  if (componentItemDto.getValue().equalsIgnoreCase("redirectpagename")){
+                } else  if (componentItemDto.getValue().equalsIgnoreCase("column7")){
                     gridRow.put(componentItemDto.getValue(), navigationDto.getRedirectPageName());
-                } else  if (componentItemDto.getValue().equalsIgnoreCase("rolename")){
+                } else  if (componentItemDto.getValue().equalsIgnoreCase("column8")){
                     gridRow.put(componentItemDto.getValue(), navigationDto.getRoleName());
                 }
             });
+            componentDto.fillEmptyColumns(gridRow, 9);
             gridDetails.add(gridRow);
         });
         componentDto.setGridValues(gridDetails);

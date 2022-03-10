@@ -7,6 +7,7 @@ import com.distarise.base.repository.WidgetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,5 +30,15 @@ public class WidgetDaoImpl implements WidgetDao {
     public WidgetDto getWidgetById(String clientId, String widgetId){
         Widget widget = widgetRepository.getWidgetById(clientId, widgetId);
         return modelMapper.map(widget, WidgetDto.class);
+    }
+
+    @Override
+    public List<WidgetDto> getWidgetByNavigationItemId(String clientId, String navigationItemId) {
+        List<Widget> widgetList = widgetRepository.getWidgetByNavigationItemId(clientId, navigationItemId);
+        return convertEntityListToDtoList(widgetList);
+    }
+
+    private List<WidgetDto> convertEntityListToDtoList(List<Widget> widgetList){
+        return widgetList.stream().map(widget -> modelMapper.map(widget, WidgetDto.class)).collect(Collectors.toList());
     }
 }
