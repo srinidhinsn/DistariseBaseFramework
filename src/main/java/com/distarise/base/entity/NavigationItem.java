@@ -19,6 +19,10 @@ public class NavigationItem implements Serializable {
     @Column(name = "UINAVID")
     private String navigationId;
 
+    @Id
+    @Column(name = "CLIENTID")
+    private String clientId;
+
     @Column(name = "LABEL")
     private String label;
 
@@ -48,6 +52,14 @@ public class NavigationItem implements Serializable {
 
     public void setNavigationId(String navigationId) {
         this.navigationId = navigationId;
+    }
+
+    public String getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
     }
 
     public String getLabel() {
@@ -90,10 +102,11 @@ public class NavigationItem implements Serializable {
         this.navigationItemId = navigationItemId;
     }
 
-    public NavigationItem(String id, String navigationId, String label, String url,
+    public NavigationItem(String id, String navigationId, String clientId, String label, String url,
                           Integer sortOrder, String layoutId, String navigationItemId) {
         this.id = id;
         this.navigationId = navigationId;
+        this.clientId = clientId;
         this.label = label;
         this.url = url;
         this.sortOrder = sortOrder;

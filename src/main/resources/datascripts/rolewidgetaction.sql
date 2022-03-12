@@ -69,7 +69,10 @@ INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
 VALUES ('distarise', 'config', 'addclient', '', true);
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
-VALUES ('distarise', 'config', 'addclient', 'com.distarise.base.action.AddClientAction', true);
+VALUES ('distarise', 'config', 'addclient', 'com.distarise.base.action.SaveClientDetailsAction', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+VALUES ('distarise', 'config', 'addclient', 'com.distarise.base.action.DeleteClientAction', true);
 
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
@@ -77,28 +80,31 @@ VALUES ('distarise', 'config', 'addclient', 'com.distarise.base.action.LoadClien
 
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
-VALUES ('distarise', 'config', 'addlandingpage', '', true);
-
-INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
-VALUES ('distarise', 'config', 'savelandingpage', '', true);
-
-INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
-VALUES ('distarise', 'config', 'savelandingpage', 'com.distarise.base.action.SaveLandingPageAction', true);
-
-INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
-VALUES ('distarise', 'config', 'addlandingpage', 'com.distarise.base.action.LoadNavigationsAction', true);
-
-INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
 VALUES ('distarise', 'config', 'addnavigation', '', true);
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
-VALUES ('distarise', 'config', 'addnavigation', 'com.distarise.base.action.LoadNavigationItemsAction', true);
+VALUES ('distarise', 'config', 'addnavigation', 'com.distarise.base.action.LoadNavigationsAction', true);
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
 VALUES ('distarise', 'config', 'savenavigation', '', true);
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
-VALUES ('distarise', 'config', 'savenavigation', 'com.distarise.base.action.LogoutAction', true);
+VALUES ('distarise', 'config', 'savenavigation', 'com.distarise.base.action.SaveNavigationAction', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+VALUES ('distarise', 'config', 'addnavigationitem', '', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+VALUES ('distarise', 'config', 'addnavigationitem', 'com.distarise.base.action.LoadNavigationItemsAction', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+VALUES ('distarise', 'config', 'savenavigationitem', '', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+VALUES ('distarise', 'config', 'savenavigationitem', 'com.distarise.base.action.SaveNavigationItemAction', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+VALUES ('distarise', 'config', 'savenavigationitem', 'com.distarise.base.action.LogoutAction', true);
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
 VALUES ('distarise', 'config', 'addwidget', '', true);
@@ -110,6 +116,9 @@ INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
 VALUES ('distarise', 'config', 'savewidget', '', true);
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+VALUES ('distarise', 'config', 'savewidget', 'com.distarise.base.action.SaveWidgetAction', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
 VALUES ('distarise', 'config', 'addcomponent', '', true);
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
@@ -117,3 +126,18 @@ VALUES ('distarise', 'config', 'addcomponent', 'com.distarise.base.action.LoadNa
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
 VALUES ('distarise', 'config', 'savecomponent', '', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+VALUES ('distarise', 'config', 'savecomponent', 'com.distarise.base.action.SaveComponentAction', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+VALUES ('distarise', 'config', 'addcomponentitem', '', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+VALUES ('distarise', 'config', 'addcomponentitem', 'com.distarise.base.action.LoadNavigationItemsAction', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+VALUES ('distarise', 'config', 'savecomponentitem', '', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+VALUES ('distarise', 'config', 'savecomponentitem', 'com.distarise.base.action.SaveComponentItemAction', true);

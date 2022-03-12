@@ -29,4 +29,9 @@ public class ClientServiceImpl implements ClientService {
     public List<ClientDto> getAllClients(){
         return clientDao.getAllClients();
     }
+
+    @Override
+    public void deleteClient(ClientDto clientDto) {
+        clientDao.deleteClient(clientDto);
+    }
 }

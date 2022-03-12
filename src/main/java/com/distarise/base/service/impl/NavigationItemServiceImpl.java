@@ -18,4 +18,9 @@ public class NavigationItemServiceImpl implements NavigationItemService {
     public List<NavigationItemDto> getNavigationItems(String navigationId){
         return navigationItemDao.getNavigationItems(navigationId);
     }
+
+    @Override
+    public void saveNavigationItem(NavigationItemDto navigationItemDto) {
+        navigationItemDao.saveNavigationItem(navigationItemDto);
+    }
 }

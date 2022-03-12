@@ -69,7 +69,7 @@ public class LoadNavigationItemActionExt {
         List<Map<String, String>> gridDetails = new ArrayList<>();
         navigationItemDtoList.forEach(navigationItemDto -> {
             Map<String, String> gridRow = new HashMap<>();
-            gridRow.put("formid", "savenavigation");
+            gridRow.put("formid", "savenavigationitem");
             componentDto.getComponentItemDtos().forEach(componentItemDto -> {
                 if (componentItemDto.getValue().equalsIgnoreCase("column2")){
                     gridRow.put(componentItemDto.getValue(), navigationItemDto.getId());
@@ -83,9 +83,13 @@ public class LoadNavigationItemActionExt {
                     gridRow.put(componentItemDto.getValue(), navigationItemDto.getLayoutId());
                 } else if (componentItemDto.getValue().equalsIgnoreCase("column7")){
                     gridRow.put(componentItemDto.getValue(), navigationItemDto.getNavigationItemId());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column8")){
+                    gridRow.put(componentItemDto.getValue(), clientId);
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column9")){
+                    gridRow.put(componentItemDto.getValue(), selectedUiNav);
                 }
             });
-            componentDto.fillEmptyColumns(gridRow, 8);
+            componentDto.fillEmptyColumns(gridRow, 10);
             gridDetails.add(gridRow);
         });
         componentDto.setGridValues(gridDetails);
@@ -117,6 +121,7 @@ public class LoadNavigationItemActionExt {
         if (clientId.isEmpty() || clientId.equalsIgnoreCase("new")){
             return;
         }
+        String selectedUiNav = request.getParameter("landingpage");
         String selectedUiNavItem = request.getParameter("navigationitemlist");
         List<WidgetDto> widgetDtoList = widgetService.getWidgetByNavigationItemId(clientId, selectedUiNavItem);
 
@@ -139,9 +144,15 @@ public class LoadNavigationItemActionExt {
                     gridRow.put(componentItemDto.getValue(), widgetDto.getLayoutId());
                 } else if (componentItemDto.getValue().equalsIgnoreCase("column8")){
                     gridRow.put(componentItemDto.getValue(), widgetDto.getCssClass());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column9")){
+                    gridRow.put(componentItemDto.getValue(), clientId);
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column10")){
+                    gridRow.put(componentItemDto.getValue(), selectedUiNav);
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column11")){
+                    gridRow.put(componentItemDto.getValue(), selectedUiNavItem);
                 }
             });
-            componentDto.fillEmptyColumns(gridRow, 9);
+            componentDto.fillEmptyColumns(gridRow, 12);
             gridDetails.add(gridRow);
         });
         componentDto.setGridValues(gridDetails);
@@ -173,6 +184,8 @@ public class LoadNavigationItemActionExt {
         if (clientId.isEmpty() || clientId.equalsIgnoreCase("new")){
             return;
         }
+        String selectedUiNav = request.getParameter("landingpage");
+        String selectedUiNavItem = request.getParameter("navigationitemlist");
         String selectedWidget = request.getParameter("widgetlist");
         List<ComponentDto> componentDtoList = componentService.getComponentsByWidgetId(clientId, selectedWidget);
 
@@ -203,11 +216,78 @@ public class LoadNavigationItemActionExt {
                     gridRow.put(componentItemDto.getValue(), targetComponentDto.getMultiLevel().toString());
                 } else if (componentItemDto.getValue().equalsIgnoreCase("column11")){
                     gridRow.put(componentItemDto.getValue(), targetComponentDto.getWidgetId());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column12")){
+                    gridRow.put(componentItemDto.getValue(), clientId);
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column13")){
+                    gridRow.put(componentItemDto.getValue(), selectedUiNav);
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column14")){
+                    gridRow.put(componentItemDto.getValue(), selectedUiNavItem);
                 }
             });
-            componentDto.fillEmptyColumns(gridRow, 12);
+            componentDto.fillEmptyColumns(gridRow, 15);
             gridDetails.add(gridRow);
         });
         componentDto.setGridValues(gridDetails);
     }
+
+    public List<ComponentItemDto> preloadComponentList(String clientId, HttpServletRequest request){
+        if (clientId.equalsIgnoreCase("new") || clientId.isEmpty()){
+            return null;
+        }
+        String selectedComponent = request.getParameter("componentlist");
+        String selectedWidget = request.getParameter("widgetlist");
+        List<ComponentDto> sourceComponentDtoList = componentService.getMultilevelComponentsByWidgetId(clientId, selectedWidget);
+        List<ComponentItemDto> componentItemDtoList = new ArrayList<>();
+
+        for (int i=0; i<sourceComponentDtoList.size(); i++) {
+            ComponentItemDto componentItemDto = new ComponentItemDto(140000L + i,
+                    "componentlist", clientId, i + 1,
+                    sourceComponentDtoList.get(i).getId(), sourceComponentDtoList.get(i).getLabel(), false, true
+            );
+            if (componentItemDto.getValue().equals(selectedComponent)) {
+                componentItemDto.setSelected(true);
+            }
+            componentItemDtoList.add(componentItemDto);
+        }
+        return componentItemDtoList;
+    }
+
+    public void preloadComponentItemForm(HttpServletRequest request, String clientId, ComponentDto componentDto) {
+        if (clientId.isEmpty() || clientId.equalsIgnoreCase("new")){
+            return;
+        }
+
+        String selectedComponent = request.getParameter("componentlist");
+        List<ComponentItemDto> componentItemDtoList = componentItemService.getComponentItemsByComponentId(clientId, selectedComponent);
+
+        List<Map<String, String>> gridDetails = new ArrayList<>();
+        componentItemDtoList.forEach(targetComponentItemDto -> {
+            Map<String, String> gridRow = new HashMap<>();
+            gridRow.put("formid", "savecomponentitem");
+            componentDto.getComponentItemDtos().forEach(componentItemDto -> {
+                if (componentItemDto.getValue().equalsIgnoreCase("column2")){
+                    gridRow.put(componentItemDto.getValue(), clientId);
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column3")){
+                    gridRow.put(componentItemDto.getValue(), selectedComponent);
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column4")){
+                    gridRow.put(componentItemDto.getValue(), targetComponentItemDto.getId().toString());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column5")){
+                    gridRow.put(componentItemDto.getValue(), targetComponentItemDto.getEditable().toString());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column6")){
+                    gridRow.put(componentItemDto.getValue(), targetComponentItemDto.getLabel());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column7")){
+                    gridRow.put(componentItemDto.getValue(), targetComponentItemDto.getSortOrder().toString());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column8")){
+                    gridRow.put(componentItemDto.getValue(), targetComponentItemDto.getValue());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column9")){
+                    gridRow.put(componentItemDto.getValue(), targetComponentItemDto.getVisible().toString());
+                }
+            });
+            componentDto.fillEmptyColumns(gridRow, 10);
+            gridDetails.add(gridRow);
+        });
+        componentDto.setGridValues(gridDetails);
+    }
+
+
 }

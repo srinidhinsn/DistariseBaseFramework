@@ -33,4 +33,15 @@ public class ComponentDaoImpl implements ComponentDao {
                 .collect(Collectors.toList());
         return componentDtos;
     }
+
+    @Override
+    public void saveComponent(ComponentDto componentDto) {
+        componentRepository.save(modelMapper.map(componentDto, Component.class));
+    }
+
+    @Override
+    public List<ComponentDto> getMultilevelComponentsByWidgetId(String clientId, String selectedWidget) {
+        List<Component> componentDtoList = componentRepository.getMultiLevelComponentsByWidgetId(clientId, selectedWidget);
+        return convertEntityToDtoList(componentDtoList);
+    }
 }

@@ -28,7 +28,7 @@ public class LoadNavigationsAction extends AbstractBaseAction implements BaseAct
         targetPageDetailsDto.getNavigationDto().getNavigationItems().forEach(navigationItemDto -> {
             if (!navigationItemDto.getWidgets().isEmpty()){
                 navigationItemDto.getWidgets().forEach(targetWidgetDto -> {
-                    if (targetWidgetDto.getId().equalsIgnoreCase("addlandingpage")){
+                    if (targetWidgetDto.getId().equalsIgnoreCase("addnavigation")){
                         targetWidgetDto.getComponentDtos().forEach(targetComponentDto -> {
                             if(targetComponentDto.getId().equalsIgnoreCase("navigationgrid")){
                                 loadNavigationsActionExt.preloadNavigationsForm(request, targetComponentDto, clientId);

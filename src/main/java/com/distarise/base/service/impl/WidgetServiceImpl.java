@@ -56,4 +56,9 @@ public class WidgetServiceImpl implements WidgetService {
     public List<WidgetDto> getWidgetByNavigationItemId(String clientId, String navigationItemId) {
         return widgetDao.getWidgetByNavigationItemId(clientId, navigationItemId);
     }
+
+    @Override
+    public void saveWidget(WidgetDto widgetDto) {
+        widgetDao.saveWidget(widgetDto);
+    }
 }

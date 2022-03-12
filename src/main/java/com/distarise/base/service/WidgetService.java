@@ -15,4 +15,5 @@ public interface WidgetService extends AbstractBaseService{
 
     void mapLayoutsToWidgets(List<WidgetDto> widgetDtos, Map<String, LayoutDto> layoutDtoMap);
     List<WidgetDto> getWidgetByNavigationItemId(String clientId, String navigationItemId) ;
+    void saveWidget(WidgetDto widgetDto);
 }

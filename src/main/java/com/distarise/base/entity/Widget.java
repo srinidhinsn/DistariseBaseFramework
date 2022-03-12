@@ -39,6 +39,9 @@ public class Widget implements Serializable {
     @Column(name = "WIDGETID")
     private String widgetId;
 
+    @Column(name = "REDIRECTURL")
+    private String redirectUrl;
+
     @Column(name = "COLSPAN", columnDefinition = "integer default 1")
     private Integer colspan;
 
@@ -119,6 +122,14 @@ public class Widget implements Serializable {
 
     public Integer getRowspan() {
         return rowspan;
+    }
+
+    public String getRedirectUrl() {
+        return redirectUrl;
+    }
+
+    public void setRedirectUrl(String redirectUrl) {
+        this.redirectUrl = redirectUrl;
     }
 
     public void setRowspan(Integer rowspan) {

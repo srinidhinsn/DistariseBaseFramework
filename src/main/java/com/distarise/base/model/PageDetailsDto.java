@@ -1,11 +1,15 @@
 package com.distarise.base.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class PageDetailsDto implements Serializable {
     private ClientDto clientDto;
     private NavigationDto navigationDto;
     private String url;
+    private List<String> successMessages;
+    private List<String> warningMessages;
+    private List<String> errorMessages;
 
     public ClientDto getClientDto() {
         return clientDto;
@@ -29,6 +33,30 @@ public class PageDetailsDto implements Serializable {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public List<String> getSuccessMessages() {
+        return successMessages;
+    }
+
+    public void setSuccessMessages(List<String> successMessages) {
+        this.successMessages = successMessages;
+    }
+
+    public List<String> getWarningMessages() {
+        return warningMessages;
+    }
+
+    public void setWarningMessages(List<String> warningMessages) {
+        this.warningMessages = warningMessages;
+    }
+
+    public List<String> getErrorMessages() {
+        return errorMessages;
+    }
+
+    public void setErrorMessages(List<String> errorMessages) {
+        this.errorMessages = errorMessages;
     }
 
     public PageDetailsDto(ClientDto clientDto, NavigationDto navigationDto, String url) {

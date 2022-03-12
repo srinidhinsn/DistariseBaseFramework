@@ -1,11 +1,11 @@
 // Theme variables
 
-@import "_variables.scss"; 
+@import "variables";
 
 
 // User's custom variables
 
-@import "_custom-variables.scss"; 
+@import "custom-variables";
  
 
 // Bootstrap variables and functions 
@@ -17,11 +17,11 @@
 
 // Overriden mixins
 
-@import "mixins/_alert.scss";
-@import "mixins/_background-variant.scss";
-@import "mixins/_forms.scss";
-@import "mixins/_modals.scss";
-@import "mixins/_popover.scss"; 
+@import "mixins/alert";
+@import "mixins/background-variant";
+@import "mixins/forms";
+@import "mixins/modals";
+@import "mixins/popover";
 
 
 // Bootstrap components
@@ -62,12 +62,12 @@
 
 // Theme styles
 
-@import "_reboot.scss"; 
-@import "_global.scss";
-@import "_utilities.scss";
-@import "_components.scss";
+@import "reboot";
+@import "global";
+@import "utilities";
+@import "components";
 
 
 // User's custom styles
 
-@import "_custom.scss";
+@import "custom";

@@ -40,4 +40,9 @@ public class ClientDaoImpl implements ClientDao, AbstractBaseDao {
     private List<ClientDto> convertEntityListToDtoList(List<Client> clientList){
         return clientList.stream().map(client -> (modelMapper.map(client, ClientDto.class))).collect(Collectors.toList());
     }
+
+    @Override
+    public void deleteClient(ClientDto clientDto) {
+        clientRepository.delete(modelMapper.map(clientDto, Client.class));
+    }
 }

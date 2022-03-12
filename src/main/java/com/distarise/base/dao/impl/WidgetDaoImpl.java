@@ -41,4 +41,9 @@ public class WidgetDaoImpl implements WidgetDao {
     private List<WidgetDto> convertEntityListToDtoList(List<Widget> widgetList){
         return widgetList.stream().map(widget -> modelMapper.map(widget, WidgetDto.class)).collect(Collectors.toList());
     }
+
+    @Override
+    public void saveWidget(WidgetDto widgetDto) {
+        widgetRepository.save(modelMapper.map(widgetDto, Widget.class));
+    }
 }

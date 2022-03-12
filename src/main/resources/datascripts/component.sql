@@ -84,7 +84,7 @@ INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, s
     VALUES ('clientlist', 'distarise', true, '/nsn/distarise/base/addclient', '', 'Clients', 1, 'configdropdown', true, 'addclient', true);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-    VALUES ('clientname', 'distarise', true, null, null, 'Client name', 2, 'textbox', true, 'addclient', false);
+    VALUES ('clientname', 'distarise', true, null, null, 'id', 2, 'textbox', true, 'addclient', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
     VALUES ('clientheader', 'distarise', true, null, null, 'Header', 3, 'textbox', true, 'addclient', false);
@@ -96,78 +96,93 @@ INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, s
     VALUES ('clientlogo', 'distarise', true, null, null, 'Logo file name', 5, 'textbox', true, 'addclient', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-    VALUES ('clientadd', 'distarise', true, '/nsn/distarise/base/addnavigation', 'com.distarise.base.action.AddClientAction', 'Save and Continue', 6, 'submitbutton', true, 'addclient', false);
-
---Landing page
+    VALUES ('clientadd', 'distarise', true, '/nsn/distarise/base/addnavigation', 'com.distarise.base.action.SaveClientDetailsAction', 'Save', 6, 'submitbutton', true, 'addclient', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-    VALUES ('loadnavigationgrid', 'distarise', true, '', 'com.distarise.base.action.LoadNavigationsAction', '', 0, 'autoaction', true, 'addlandingpage', false);
+    VALUES ('clientdelete', 'distarise', true, '/nsn/distarise/base/addnavigation', 'com.distarise.base.action.DeleteClientAction', 'Delete', 7, 'submitbutton', true, 'addclient', false);
+
+--Navigation page
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-    VALUES ('clientid', 'distarise', true, '', '', 'Client Id : ', 2, 'text', true, 'addlandingpage', false);
+    VALUES ('loadnavigationgrid', 'distarise', true, '', 'com.distarise.base.action.LoadNavigationsAction', '', 0, 'autoaction', true, 'addnavigation', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-    VALUES ('navigationgrid', 'distarise', true, '', '', 'Landing pages', 3, 'gridform', true, 'addlandingpage', true);
+    VALUES ('clientid', 'distarise', true, '', '', 'Client Id : ', 2, 'text', true, 'addnavigation', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-    VALUES ('column2', 'distarise', true, '', '', 'Id', 3, 'textbox', true, 'savelandingpage', false);
+    VALUES ('navigationgrid', 'distarise', true, '', '', 'Landing pages', 3, 'gridform', true, 'addnavigation', true);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-    VALUES ('column3', 'distarise', true, '', '', 'Module', 4, 'textbox', true, 'savelandingpage', false);
+    VALUES ('column1', 'distarise', true, '', '', 'Client Id : ', 2, 'hidden', false, 'savenavigation', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-    VALUES ('column4', 'distarise', true, '', '', 'Page description', 5, 'textbox', true, 'savelandingpage', false);
+    VALUES ('column2', 'distarise', true, '', '', 'Id', 3, 'textbox', true, 'savenavigation', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-    VALUES ('column5', 'distarise', true, '', '', 'Page name', 6, 'textbox', true, 'savelandingpage', false);
+    VALUES ('column3', 'distarise', true, '', '', 'Module', 4, 'textbox', true, 'savenavigation', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-    VALUES ('column6', 'distarise', true, '', '', 'Page title', 7, 'textbox', true, 'savelandingpage', false);
+    VALUES ('column4', 'distarise', true, '', '', 'Page description', 5, 'textbox', true, 'savenavigation', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-    VALUES ('column7', 'distarise', true, '', '', 'Redirect page name', 8, 'textbox', true, 'savelandingpage', false);
+    VALUES ('column5', 'distarise', true, '', '', 'Page name', 6, 'textbox', true, 'savenavigation', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-    VALUES ('column8', 'distarise', true, '', '', 'Role', 9, 'textbox', true, 'savelandingpage', false);
+    VALUES ('column6', 'distarise', true, '', '', 'Page title', 7, 'textbox', true, 'savenavigation', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-    VALUES ('navigationsave', 'distarise', true, '/nsn/distarise/base/addlandingpage', 'com.distarise.base.action.SaveLandingPageAction', 'Save', 10, 'submitbutton', true, 'savelandingpage', false);
-
-
---Navigation add page
+    VALUES ('column7', 'distarise', true, '', '', 'Redirect page name', 8, 'textbox', true, 'savenavigation', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-    VALUES ('loadlandingpages', 'distarise', true, '', 'com.distarise.base.action.LoadNavigationItemsAction', 'Client Id', 4, 'autoaction', true, 'addnavigation', false);
+    VALUES ('column8', 'distarise', true, '', '', 'Role', 9, 'textbox', true, 'savenavigation', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-    VALUES ('clientid', 'distarise', true, '', '', 'Client Id', 4, 'text', true, 'addnavigation', false);
+    VALUES ('navigationsave', 'distarise', true, '/nsn/distarise/base/addnavigation', 'com.distarise.base.action.SaveNavigationAction', 'Save', 10, 'submitbutton', true, 'savenavigation', false);
+
+
+--Navigation item add page
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-    VALUES ('landingpage', 'distarise', true, '/nsn/distarise/base/addnavigation', '', 'Landing page id', 5, 'configdropdown', true, 'addnavigation', true);
+    VALUES ('loadlandingpages', 'distarise', true, '', 'com.distarise.base.action.LoadNavigationItemsAction', 'Client Id', 4, 'autoaction', true, 'addnavigationitem', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-    VALUES ('navigationitemgrid', 'distarise', true, '', '', 'Navigation items', 6, 'gridform', true, 'addnavigation', true);
+    VALUES ('clientid', 'distarise', true, '', '', 'Client Id', 4, 'text', true, 'addnavigationitem', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-    VALUES ('column2', 'distarise', true, '', '', 'Navigation Id', 6, 'textbox', true, 'savenavigation', false);
+    VALUES ('landingpage', 'distarise', true, '/nsn/distarise/base/addnavigationitem', '', 'Landing page id', 5, 'configdropdown', true, 'addnavigationitem', true);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-    VALUES ('column3', 'distarise', true, '', '', 'Navigation Name', 7, 'textbox', true, 'savenavigation', false);
+    VALUES ('navigationitemgrid', 'distarise', true, '', '', 'Navigation items', 6, 'gridform', true, 'addnavigationitem', true);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('column4', 'distarise', true, '', '', 'Sort Order', 8, 'textbox', true, 'savenavigation', false);
+    VALUES ('column2', 'distarise', true, '', '', 'Navigation Id', 6, 'textbox', true, 'savenavigationitem', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('column5', 'distarise', true, '', '', 'URL', 9, 'textbox', true, 'savenavigation', false);
+    VALUES ('column3', 'distarise', true, '', '', 'Navigation Name', 7, 'textbox', true, 'savenavigationitem', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('column6', 'distarise', true, '', '', 'Layout id', 10, 'textbox', true, 'savenavigation', false);
+VALUES ('column4', 'distarise', true, '', '', 'Sort Order', 8, 'textbox', true, 'savenavigationitem', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('column7', 'distarise', true, '', '', 'Navigation item id', 11, 'textbox', true, 'savenavigation', false);
+VALUES ('column5', 'distarise', true, '', '', 'URL', 9, 'textbox', true, 'savenavigationitem', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('logout', 'distarise', true, '/nsn/distarise/base/login', 'com.distarise.base.action.LogoutAction', 'Logout', 4, 'submitbutton', true, 'savenavigation', false);
+VALUES ('column6', 'distarise', true, '', '', 'Layout id', 10, 'textbox', true, 'savenavigationitem', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('column7', 'distarise', true, '', '', 'Navigation item id', 11, 'textbox', true, 'savenavigationitem', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('column8', 'distarise', true, '', '', 'Client id', 12, 'hidden', false, 'savenavigationitem', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('column9', 'distarise', true, '', '', 'Ui Nav id', 12, 'hidden', false, 'savenavigationitem', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('savenavigationitem', 'distarise', true, '/nsn/distarise/base/addnavigationitem', 'com.distarise.base.action.SaveNavigationItemAction', 'Save', 13, 'submitbutton', true, 'savenavigationitem', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('logout', 'distarise', true, '/nsn/distarise/base/login', 'com.distarise.base.action.LogoutAction', 'Logout', 14, 'submitbutton', true, 'savenavigationitem', false);
 
 --Widget add page
 
@@ -206,6 +221,18 @@ VALUES ('column7', 'distarise', true, '', '', 'Layout id', 9, 'textbox', true, '
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
 VALUES ('column8', 'distarise', true, '', '', 'Css class', 10, 'textbox', true, 'savewidget', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('column9', 'distarise', true, '', '', 'client id', 10, 'hidden', false, 'savewidget', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('column10', 'distarise', true, '', '', 'ui nav id', 10, 'hidden', false, 'savewidget', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('column11', 'distarise', true, '', '', 'ui nav item', 10, 'hidden', false, 'savewidget', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('savewidget', 'distarise', true, '/nsn/distarise/base/addwidget', 'com.distarise.base.action.SaveWidgetAction', 'Save', 11, 'submitbutton', true, 'savewidget', false);
 
 --Component add page
 
@@ -258,5 +285,64 @@ INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, s
 VALUES ('column10', 'distarise', true, '', '', 'Multi-level', 12, 'checkbox', true, 'savecomponent', true);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('column11', 'distarise', true, '', '', 'Nested widget id', 13, 'textbox', true, 'savecomponent', false);
+VALUES ('column11', 'distarise', true, '', '', 'Widget id', 13, 'textbox', true, 'savecomponent', false);
 
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('column12', 'distarise', true, '', '', 'client id', 13, 'hidden', false, 'savecomponent', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('column13', 'distarise', true, '', '', 'ui nav id', 13, 'hidden', false, 'savecomponent', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('column14', 'distarise', true, '', '', 'ui nav item id', 13, 'hidden', false, 'savecomponent', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('savecomponent', 'distarise', true, '/nsn/distarise/base/addcomponent', 'com.distarise.base.action.SaveComponentAction', 'Save', 14, 'submitbutton', true, 'savecomponent', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('loadlandingpages', 'distarise', true, '', 'com.distarise.base.action.LoadNavigationItemsAction', 'Client Id', 4, 'autoaction', true, 'addcomponentitem', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('clientid', 'distarise', true, '', '', 'Client Id', 2, 'text', true, 'addcomponentitem', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('landingpage', 'distarise', true, '/nsn/distarise/base/addcomponentitem', '', 'Landing page id', 3, 'configdropdown', true, 'addcomponentitem', true);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('navigationitemlist', 'distarise', true, '/nsn/distarise/base/addcomponentitem', '', 'Navigation Items', 4, 'configdropdown', true, 'addcomponentitem', true);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('widgetlist', 'distarise', true, '/nsn/distarise/base/addcomponentitem', '', 'Widgets', 5, 'configdropdown', true, 'addcomponentitem', true);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('componentlist', 'distarise', true, '/nsn/distarise/base/addcomponentitem', '', 'Multilevel Components', 6, 'configdropdown', true, 'addcomponentitem', true);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('componentitemgrid', 'distarise', true, '', '', 'Multilevel Components', 7, 'gridform', true, 'addcomponentitem', true);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('column2', 'distarise', true, '', '', 'clientid', 5, 'hidden', false, 'savecomponentitem', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('column3', 'distarise', true, '', '', 'componentid', 5, 'hidden', false, 'savecomponentitem', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('column4', 'distarise', true, '', '', 'Id', 5, 'textbox', true, 'savecomponentitem', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('column5', 'distarise', true, '', '', 'Editable', 6, 'checkbox', true, 'savecomponentitem', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('column6', 'distarise', true, '', '', 'Label', 5, 'textbox', true, 'savecomponentitem', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('column7', 'distarise', true, '', '', 'Sort order', 6, 'textbox', true, 'savecomponentitem', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('column8', 'distarise', true, '', '', 'Value', 7, 'textbox', true, 'savecomponentitem', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('column9', 'distarise', true, '', '', 'Visibility', 8, 'checkbox', true, 'savecomponentitem', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('savecomponentitem', 'distarise', true, '/nsn/distarise/base/addcomponentitem', 'com.distarise.base.action.SaveComponentItemAction', 'Save', 8, 'submitbutton', true, 'savecomponentitem', false);

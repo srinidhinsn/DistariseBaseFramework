@@ -2,14 +2,14 @@
 
 <head>
 
-    <link th:href="|/css/${pageDetails.clientDto.id}.css|" rel="stylesheet" type="text/css"></link>
+    <link th:href="|/${pageDetails.clientDto.id}/css/${pageDetails.clientDto.id}.css|" rel="stylesheet" type="text/css"></link>
 
-    <link rel="stylesheet" href="/vendor/animate/animate.min.css" type="text/css"></link>
-    <link rel="stylesheet" href="/vendor/jquery-scrollbar/css/jquery-scrollbar.css"></link>
-    <link type="text/css" href="/vendor/highlight/css/highlight.min.css" rel="stylesheet"></link>
+    <link rel="stylesheet" th:href="|/${pageDetails.clientDto.id}/vendor/animate/animate.min.css|" type="text/css"></link>
+    <link rel="stylesheet" th:href="|/${pageDetails.clientDto.id}/vendor/jquery-scrollbar/css/jquery-scrollbar.css|"></link>
+    <link type="text/css" th:href="|/${pageDetails.clientDto.id}/vendor/highlight/css/highlight.min.css|" rel="stylesheet"></link>
 
 
-    <script type="text/javascript" th:src="|/js/${pageDetails.clientDto.id}.js|"></script>
+    <script type="text/javascript" th:src="|/${pageDetails.clientDto.id}/js/${pageDetails.clientDto.id}.js|"></script>
 
     <meta charset="UTF-8" />
 </head>
@@ -20,7 +20,7 @@
     <main class="main">
         <aside class="sidebar" id="nav_docs">
             <div th:if="${pageDetails.clientDto.header}">
-                <img th:src="|/images/${pageDetails.clientDto.logo}|" th:alt="${pageDetails.clientDto.id}" />
+                <img th:src="|/${pageDetails.clientDto.id}/images/${pageDetails.clientDto.logo}|" th:alt="${pageDetails.clientDto.id}" />
                 <div> <b th:text="${pageDetails.clientDto.header}" /></div>
             </div>
 
@@ -82,7 +82,7 @@
                                                    value="" />
 
                                             <div th:each="componentDto : ${widgetDto.componentDtos}">
-                                                <div th:replace="|../widgets/${componentDto.type}| ::
+                                                <div th:replace="|../componenttypes/${componentDto.type}| ::
                                                     formField(
                                                     component=|${componentDto}|,
                                                     widget=|${widgetDto}|,
@@ -134,21 +134,21 @@
     </main>
 
 
-    <script src="/vendor/jquery/jquery.min.js"></script>
-    <script src="/vendor/popper/popper.min.js"></script>
-    <script src="/js/bootstrap/bootstrap.min.js"></script>
+    <script th:src="|/${pageDetails.clientDto.id}/vendor/jquery/jquery.min.js|"></script>
+    <script th:src="|/${pageDetails.clientDto.id}/vendor/popper/popper.min.js|"></script>
+    <script th:src="|/${pageDetails.clientDto.id}/js/bootstrap/bootstrap.min.js|"></script>
     <!-- FontAwesome 5 -->
-    <script src="/vendor/fontawesome/js/fontawesome-all.min.js"></script>
+    <script th:src="|/${pageDetails.clientDto.id}/vendor/fontawesome/js/fontawesome-all.min.js|"></script>
     <!-- Scripts used only for this demo only - Remove these in your project -->
-    <script src="/vendor/jquery-scrollbar/js/jquery-scrollbar.min.js"></script>
-    <script src="/vendor/jquery-scrollLock/jquery-scrollLock.min.js"></script>
-    <script src="/vendor/sticky-kit/sticky-kit.min.js"></script>
-    <script src="/vendor/highlight/js/highlight.min.js"></script>
-    <script src="/vendor/clipboard-js/clipboard.min.js"></script>
-    <script src="/vendor/holderjs/holder.min.js"></script>
-    <script src="/js/demo.js"></script>
+    <script th:src="|/${pageDetails.clientDto.id}/vendor/jquery-scrollbar/js/jquery-scrollbar.min.js|"></script>
+    <script th:src="|/${pageDetails.clientDto.id}/vendor/jquery-scrollLock/jquery-scrollLock.min.js|"></script>
+    <script th:src="|/${pageDetails.clientDto.id}/vendor/sticky-kit/sticky-kit.min.js|"></script>
+    <script th:src="|/${pageDetails.clientDto.id}/vendor/highlight/js/highlight.min.js|"></script>
+    <script th:src="|/${pageDetails.clientDto.id}/vendor/clipboard-js/clipboard.min.js|"></script>
+    <script th:src="|/${pageDetails.clientDto.id}/vendor/holderjs/holder.min.js|"></script>
+    <script th:src="|/${pageDetails.clientDto.id}/js/demo.js|"></script>
     <!-- Theme JS -->
-    <script src="/js/theme.js"></script>
+    <script th:src="|/${pageDetails.clientDto.id}/js/theme.js|"></script>
 
 </body>
 </html>
