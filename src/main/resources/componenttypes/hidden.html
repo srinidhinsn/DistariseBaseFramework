@@ -1,0 +1,11 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+</head>
+    <body>
+        <div th:fragment="formField(component)">
+            <input type="hidden" th:value="${component.value}" th:id="${component.id}" th:name="${component.id}" />
+        </div>
+    </body>
+</html>

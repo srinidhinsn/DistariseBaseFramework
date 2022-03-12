@@ -25,9 +25,10 @@ public class LoadNavigationItemsAction extends AbstractBaseAction implements Bas
         targetPageDetailsDto.getNavigationDto().getNavigationItems().forEach(navigationItemDto -> {
             if (!navigationItemDto.getWidgets().isEmpty()){
                 navigationItemDto.getWidgets().forEach(targetWidgetDto -> {
-                    if (targetWidgetDto.getId().equalsIgnoreCase("addnavigation") ||
+                    if (targetWidgetDto.getId().equalsIgnoreCase("addnavigationitem") ||
                             targetWidgetDto.getId().equalsIgnoreCase("addwidget") ||
-                            targetWidgetDto.getId().equalsIgnoreCase("addcomponent")){
+                            targetWidgetDto.getId().equalsIgnoreCase("addcomponent") ||
+                            targetWidgetDto.getId().equalsIgnoreCase("addcomponentitem")){
                         targetWidgetDto.getComponentDtos().forEach(targetComponentDto -> {
                             //Loading Navigation items
                             if(targetComponentDto.getId().equalsIgnoreCase("landingpage")){
@@ -60,6 +61,16 @@ public class LoadNavigationItemsAction extends AbstractBaseAction implements Bas
                                 }
                             } else if (targetComponentDto.getId().equalsIgnoreCase("componentgrid")){
                                 loadNavigationItemActionExt.preloadComponentForm(request, clientId, targetComponentDto);
+                            }
+
+                            //Loading Component items
+                            else if (targetComponentDto.getId().equalsIgnoreCase("componentlist")){
+                                List<ComponentItemDto> componentList = loadNavigationItemActionExt.preloadComponentList(clientId, request);
+                                if (null != componentList){
+                                    targetComponentDto.getComponentItemDtos().addAll(componentList);
+                                }
+                            } else if (targetComponentDto.getId().equalsIgnoreCase("componentitemgrid")){
+                                loadNavigationItemActionExt.preloadComponentItemForm(request, clientId, targetComponentDto);
                             }
                         });
                     }

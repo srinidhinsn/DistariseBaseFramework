@@ -36,7 +36,7 @@ public class LoadNavigationsActionExt {
         navigationDtoList.forEach(navigationDto -> {
             Map<String, String> gridRow = new HashMap<>();
             componentDto.getComponentItemDtos().forEach(componentItemDto -> {
-                    gridRow.put("formid", "savelandingpage");
+                    gridRow.put("formid", "savenavigation");
                 if (componentItemDto.getValue().equalsIgnoreCase("column1")){
                     gridRow.put(componentItemDto.getValue(), navigationDto.getClientId());
                 } else  if (componentItemDto.getValue().equalsIgnoreCase("column2")){

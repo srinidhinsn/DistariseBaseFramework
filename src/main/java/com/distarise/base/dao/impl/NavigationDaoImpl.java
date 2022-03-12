@@ -39,4 +39,9 @@ public class NavigationDaoImpl implements NavigationDao {
     private List<NavigationDto> convertEntityListToDtoList(List<Navigation> navigationList){
         return navigationList.stream().map(navigation -> modelMapper.map(navigation, NavigationDto.class)).collect(Collectors.toList());
     }
+
+    @Override
+    public void saveNavigationDetails(NavigationDto navigationDto) {
+        navigationRepository.save(modelMapper.map(navigationDto, Navigation.class));
+    }
 }

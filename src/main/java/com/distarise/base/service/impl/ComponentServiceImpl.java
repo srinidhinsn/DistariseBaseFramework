@@ -47,4 +47,14 @@ public class ComponentServiceImpl implements ComponentService {
     public List<ComponentDto> getComponentsByWidgetId(String clientId, String selectedWidget) {
         return componentDao.getComponentsByWidgetId(clientId, selectedWidget);
     }
+
+    @Override
+    public void saveComponent(ComponentDto componentDto) {
+        componentDao.saveComponent(componentDto);
+    }
+
+    @Override
+    public List<ComponentDto> getMultilevelComponentsByWidgetId(String clientId, String selectedWidget) {
+        return componentDao.getMultilevelComponentsByWidgetId(clientId, selectedWidget);
+    }
 }

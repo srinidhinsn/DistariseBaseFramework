@@ -15,6 +15,7 @@ public class WidgetDto implements Serializable {
     private Integer colspan;
     private Integer rowspan;
     private LayoutDto layoutDto;
+    private String redirectUrl;
     private List<ComponentDto> componentDtos;
 
     public String getId() {
@@ -111,6 +112,14 @@ public class WidgetDto implements Serializable {
 
     public void setLayoutDto(LayoutDto layoutDto) {
         this.layoutDto = layoutDto;
+    }
+
+    public String getRedirectUrl() {
+        return redirectUrl;
+    }
+
+    public void setRedirectUrl(String redirectUrl) {
+        this.redirectUrl = redirectUrl;
     }
 
     public WidgetDto(String id, String clientId, String navigationItemId, String cssClass,

@@ -36,7 +36,7 @@ public class BaseController {
 
     @RequestMapping("/")
     public String viewHome() {
-        return "welcome";
+        return "home";
     }
 
     @RequestMapping(value = "/nsn/{client}/{module}/{page}")

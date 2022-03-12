@@ -34,4 +34,14 @@ public class ComponentItemServiceImpl implements ComponentItemService {
             });
         });
     }
+
+    @Override
+    public List<ComponentItemDto> getComponentItemsByComponentId(String clientId, String selectedComponent) {
+        return componentItemDao.getComponentItemsByComponentId(clientId, selectedComponent);
+    }
+
+    @Override
+    public void saveComponentItem(ComponentItemDto componentItemDto) {
+        componentItemDao.saveComponentItem(componentItemDto);
+    }
 }

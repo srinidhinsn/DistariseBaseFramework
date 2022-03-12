@@ -23,4 +23,9 @@ public class NavigationItemDaoImpl implements NavigationItemDao {
                 collect(Collectors.toList());
         return navigationItemDtos;
     }
+
+    @Override
+    public void saveNavigationItem(NavigationItemDto navigationItemDto) {
+        navigationItemRepository.save(modelMapper.map(navigationItemDto, NavigationItem.class));
+    }
 }

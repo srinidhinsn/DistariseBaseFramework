@@ -77,6 +77,12 @@ INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder,
 VALUES (45,'distarise', 'navigationitemgrid', false, 'Navigation item id', 17, 'column7', true);
 
 INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (46,'distarise', 'navigationitemgrid', false, 'Client id', 18, 'column8', false);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (47,'distarise', 'navigationitemgrid', false, 'Ui Nav id', 18, 'column9', false);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
 VALUES (60,'distarise', 'navigationitemlist', false, 'New', 1, 'new', true);
 
 INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
@@ -100,6 +106,14 @@ VALUES (75,'distarise', 'widgetsgrid', false, 'Layout id', 75, 'column7', true);
 INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
 VALUES (76,'distarise', 'widgetsgrid', false, 'Css class', 76, 'column8', true);
 
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (77,'distarise', 'widgetsgrid', false, 'client id', 76, 'column9', false);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (78,'distarise', 'widgetsgrid', false, 'ui nav id', 76, 'column10', false);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (79,'distarise', 'widgetsgrid', false, 'ui nav item id', 76, 'column11', false);
 
 
 INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
@@ -133,7 +147,16 @@ INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder,
 VALUES (118,'distarise', 'componentgrid', false, 'Multi-level', 118, 'column10', true);
 
 INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
-VALUES (119,'distarise', 'componentgrid', false, 'Nested widget id', 119, 'column11', true);
+VALUES (119,'distarise', 'componentgrid', false, 'Widget id', 119, 'column11', true);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (120,'distarise', 'componentgrid', false, 'client id', 119, 'column12', false);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (121,'distarise', 'componentgrid', false, 'ui nav id', 119, 'column13', false);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (122,'distarise', 'componentgrid', false, 'ui nav item id', 119, 'column14', false);
 
 INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
 VALUES (90,'distarise', 'widgetlist', false, 'New', 1, 'new', true);
@@ -147,3 +170,29 @@ VALUES (94,'distarise', 'column3', false, 'Editable', 1, 'CHECKED', true);
 INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
 VALUES (95,'distarise', 'column10', false, 'Multi-level', 1, 'UNCHECKED', true);
 
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (140,'distarise', 'componentlist', true, 'New', 140, 'new', true);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (150,'distarise', 'componentitemgrid', true, 'clientid', 150, 'column2', false);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (151,'distarise', 'componentitemgrid', true, 'componentid', 151, 'column3', false);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (152,'distarise', 'componentitemgrid', true, 'Id', 152, 'column4', true);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (153,'distarise', 'componentitemgrid', true, 'Editable', 153, 'column5', true);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (154,'distarise', 'componentitemgrid', true, 'Label', 154, 'column6', true);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (155,'distarise', 'componentitemgrid', true, 'Sort order', 155, 'column7', true);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (156,'distarise', 'componentitemgrid', true, 'Value', 156, 'column8', true);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (157,'distarise', 'componentitemgrid', true, 'Visibility', 157, 'column9', true);

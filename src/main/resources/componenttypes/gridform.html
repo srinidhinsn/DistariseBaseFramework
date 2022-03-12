@@ -10,7 +10,7 @@
                     <thead style="border-bottom: solid; border-width: thin">
                     <tr>
                         <div th:if="${component.componentItemDtos.size()>0}">
-                             <div th:each="componentItemDto : ${component.componentItemDtos}">
+                             <div th:each="componentItemDto : ${component.componentItemDtos}" th:if="${componentItemDto.visible}">
                                 <th scope="col"><div th:text="${componentItemDto.label}"></div></th>
                             </div>
                         </div>
@@ -28,7 +28,7 @@
                             '${gridValue.get('column15')}', '${gridValue.get('column16')}', '${gridValue.get('column17')}',
                             '${gridValue.get('column18')}', '${gridValue.get('column19')}', '${gridValue.get('column20')}')|">
                                 <div th:if="${component.componentItemDtos.size()>0}">
-                                    <div th:each="componentItemDto : ${component.componentItemDtos}">
+                                    <div th:each="componentItemDto : ${component.componentItemDtos}" th:if="${componentItemDto.visible}">
                                          <td>
                                              <div th:text="${gridValue.get(componentItemDto.value)}"></div>
                                          </td>

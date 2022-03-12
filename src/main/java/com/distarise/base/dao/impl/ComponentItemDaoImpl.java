@@ -19,9 +19,24 @@ public class ComponentItemDaoImpl implements ComponentItemDao {
     @Override
     public List<ComponentItemDto> getComponentItems(List<String> componentIds, String clientId){
         List<ComponentItem> componentItems = componentItemRepository.getComponents(componentIds, clientId);
-        List<ComponentItemDto> componentItemDtoList = componentItems.stream()
+        List<ComponentItemDto> componentItemDtoList = convertEntityListToDtoList(componentItems);
+        return componentItemDtoList;
+    }
+
+    public  List<ComponentItemDto> convertEntityListToDtoList(List<ComponentItem> componentItemList){
+        return componentItemList.stream()
                 .map(componentItem -> modelMapper.map(componentItem, ComponentItemDto.class))
                 .collect(Collectors.toList());
-        return componentItemDtoList;
+    }
+
+    @Override
+    public List<ComponentItemDto> getComponentItemsByComponentId(String clientId, String selectedComponent) {
+        List<ComponentItem> componentItemList = componentItemRepository.getComponentItemsByComponentId(clientId, selectedComponent);
+        return convertEntityListToDtoList(componentItemList);
+    }
+
+    @Override
+    public void saveComponentItem(ComponentItemDto componentItemDto) {
+        componentItemRepository.save(modelMapper.map(componentItemDto, ComponentItem.class));
     }
 }

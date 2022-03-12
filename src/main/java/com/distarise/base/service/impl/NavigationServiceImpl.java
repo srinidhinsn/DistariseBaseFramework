@@ -24,4 +24,9 @@ public class NavigationServiceImpl implements NavigationService {
     public List<NavigationDto> getAllNavigations(String clientId) {
         return navigationDao.getAllNavigations(clientId);
     }
+
+    @Override
+    public void saveNavigationDetails(NavigationDto navigationDto) {
+        navigationDao.saveNavigationDetails(navigationDto);
+    }
 }

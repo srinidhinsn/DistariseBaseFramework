@@ -6,6 +6,7 @@ import java.util.List;
 public class NavigationItemDto implements Serializable {
     private String id;
     private String navigationId;
+    private String clientId;
     private String label;
     private String url;
     private Integer sortOrder;
@@ -29,6 +30,14 @@ public class NavigationItemDto implements Serializable {
 
     public void setNavigationId(String navigationId) {
         this.navigationId = navigationId;
+    }
+
+    public String getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
     }
 
     public String getLabel() {
@@ -87,11 +96,12 @@ public class NavigationItemDto implements Serializable {
         this.layoutDto = layoutDto;
     }
 
-    public NavigationItemDto(String id, String navigationId, String label, String url,
+    public NavigationItemDto(String id, String navigationId, String clientId, String label, String url,
                              Integer sortOrder, String layoutId, String navigationItemId,
                              LayoutDto layoutDto, List<WidgetDto> widgets) {
         this.id = id;
         this.navigationId = navigationId;
+        this.clientId = clientId;
         this.label = label;
         this.url = url;
         this.sortOrder = sortOrder;

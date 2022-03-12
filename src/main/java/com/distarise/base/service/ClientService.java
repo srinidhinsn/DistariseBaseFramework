@@ -8,4 +8,5 @@ public interface ClientService extends AbstractBaseService {
     ClientDto getClientDetails(String clientId);
     ClientDto saveClientDetails(ClientDto clientDto);
     List<ClientDto> getAllClients();
+    void deleteClient(ClientDto clientDto);
 }

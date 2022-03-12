@@ -16,4 +16,7 @@ public interface ComponentRepository extends CrudRepository<Component, Component
 
     @Query("from Component where clientId = ?1 and widgetId = ?2 order by sortOrder asc")
     List<Component> getComponentsByWidgetId(String clientId, String widgetId);
+
+    @Query("from Component where clientId = ?1 and widgetId = ?2 and multiLevel = true order by sortOrder asc")
+    List<Component> getMultiLevelComponentsByWidgetId(String clientId, String widgetId);
 }

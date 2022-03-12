@@ -155,7 +155,7 @@ public class ComponentDto implements Serializable {
 
     public ComponentDto(String id, String widgetId, String clientId, Integer sortOrder,
                         String type, String label, Boolean editable, String keyOrAction,
-                        Boolean visible, String value, Boolean multiLevel,
+                        Boolean visible, String value, Boolean multiLevel, String redirectUrl,
                         Integer rowspan, Integer colspan, List<ComponentItemDto> componentItemDtos) {
         this.id = id;
         this.widgetId = widgetId;
@@ -167,6 +167,7 @@ public class ComponentDto implements Serializable {
         this.keyOrAction = keyOrAction;
         this.visible = visible;
         this.value = value;
+        this.redirectUrl = redirectUrl;
         this.componentItemDtos = componentItemDtos;
         this.multiLevel = multiLevel;
         this.rowspan = rowspan;
