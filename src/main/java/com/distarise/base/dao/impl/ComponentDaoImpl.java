@@ -41,7 +41,13 @@ public class ComponentDaoImpl implements ComponentDao {
 
     @Override
     public List<ComponentDto> getMultilevelComponentsByWidgetId(String clientId, String selectedWidget) {
-        List<Component> componentDtoList = componentRepository.getMultiLevelComponentsByWidgetId(clientId, selectedWidget);
-        return convertEntityToDtoList(componentDtoList);
+        List<Component> componentList = componentRepository.getMultiLevelComponentsByWidgetId(clientId, selectedWidget);
+        return convertEntityToDtoList(componentList);
+    }
+
+    @Override
+    public List<ComponentDto> getActionsByClientId(String clientId) {
+        List<Component> componentList = componentRepository.getActionsByClientId(clientId);
+        return convertEntityToDtoList(componentList);
     }
 }

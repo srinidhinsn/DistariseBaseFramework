@@ -5,6 +5,8 @@ INSERT INTO uinav(id, clientid, cssclass, module, pagedescription, pagename, pag
 INSERT INTO uinav(id, clientid, cssclass, module, pagedescription, pagename, pagetitle, redirectpagename, rolename)
 	VALUES ('distariseguestlogin', 'distarise', 'commoncss', 'base', 'Base module page', 'login', 'Login', 'home', 'guest');
 
+INSERT INTO uinav(id, clientid, cssclass, module, pagedescription, pagename, pagetitle, redirectpagename, rolename)
+        VALUES ('distariseuserlogin', 'distarise', 'commoncss', 'userrole', 'Base module page', 'login', 'Login', 'addrole', 'guest');
 
 INSERT INTO uinav(id, clientid, cssclass, module, pagedescription, pagename, pagetitle, redirectpagename, rolename)
 	VALUES ('distariseadminlogin', 'distarise', 'commoncss', 'base', 'Base module page', 'login', 'Login', 'home', 'admin');
@@ -15,3 +17,6 @@ INSERT INTO uinav(id, clientid, cssclass, module, pagedescription, pagename, pag
 
 INSERT INTO uinav(id, clientid, cssclass, module, pagedescription, pagename, pagetitle, redirectpagename, rolename)
 VALUES ('distariseconfiglogin', 'distarise', 'commoncss', 'base', 'Base module page', 'login', 'Login', 'addclient', 'config');
+
+INSERT INTO uinav(id, clientid, cssclass, module, pagedescription, pagename, pagetitle, redirectpagename, rolename)
+VALUES ('distariseuserrolelogin', 'distarise', 'commoncss', 'userrole', 'Base module page', 'login', 'Login', 'addrole', 'config');

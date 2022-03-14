@@ -13,4 +13,5 @@ public interface ComponentService extends AbstractBaseService{
     List<ComponentDto> getComponentsByWidgetId(String clientId, String selectedWidget);
     void saveComponent(ComponentDto componentDto);
     List<ComponentDto> getMultilevelComponentsByWidgetId(String clientId, String selectedWidget);
+    List<ComponentDto> getActionsByClientId(String clientId);
 }

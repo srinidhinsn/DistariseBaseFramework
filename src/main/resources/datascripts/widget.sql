@@ -2,6 +2,9 @@ INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widge
 	VALUES ('login', 'distarise', 'commoncss', '4C0RTTLFBF', 'login', 1, null, 'Login', '/nsn/distarise/base/home');
 
 INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widgetid, widgettitle, redirecturl)
+    VALUES ('login', 'distarise', 'commoncss', '4C0RTTLFBF', 'userrolelogin', 1, null, 'Login', '/nsn/distarise/userrole/addrole');
+
+INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widgetid, widgettitle, redirecturl)
 	VALUES ('welcome', 'distarise', 'commoncss', '4C0RTTLFBF', 'home', 1, null, 'Welcome', '');
 
 INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widgetid, widgettitle, redirecturl)
@@ -53,9 +56,15 @@ INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widge
     VALUES ('savecomponentitem', 'distarise', 'commoncss', '4C0RTTLFBF', 'addcomponentitem', 2, null, 'Save Component Item', '/nsn/distarise/base/addcomponentitem');
 
 INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widgetid, widgettitle, redirecturl)
-    VALUES ('addrole', 'distarise', 'commoncss', '4C0RTTLFBF', 'addcomponentitem', 1, null, 'Add Component Item', '/nsn/distarise/base/addcomponentitem');
+    VALUES ('addrole', 'distarise', 'commoncss', '4C0RTTLFBF', 'addrole', 1, null, 'Add Role', '/nsn/distarise/userrole/addrole');
 
 INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widgetid, widgettitle, redirecturl)
-    VALUES ('savecomponentitem', 'distarise', 'commoncss', '4C0RTTLFBF', 'addcomponentitem', 2, null, 'Save Component Item', '/nsn/distarise/base/addcomponentitem');
+    VALUES ('addroleaccess', 'distarise', 'commoncss', '4C0RTTLFBF', 'addroleaccess', 2, null, 'Add Role Access', '/nsn/distarise/userrole/addroleaccess');
+
+INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widgetid, widgettitle, redirecturl)
+    VALUES ('saveroleaccess', 'distarise', 'commoncss', '4C0RTTLFBF', 'addroleaccess', 3, null, 'Save Role Access', '/nsn/distarise/userrole/addroleaccess');
+
+INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widgetid, widgettitle, redirecturl)
+    VALUES ('adduser', 'distarise', 'commoncss', '4C0RTTLFBF', 'adduser', 3, null, 'Add User', '/nsn/distarise/userrole/adduser');
 
 

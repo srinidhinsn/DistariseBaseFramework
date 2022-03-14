@@ -57,4 +57,9 @@ public class ComponentServiceImpl implements ComponentService {
     public List<ComponentDto> getMultilevelComponentsByWidgetId(String clientId, String selectedWidget) {
         return componentDao.getMultilevelComponentsByWidgetId(clientId, selectedWidget);
     }
+
+    @Override
+    public List<ComponentDto> getActionsByClientId(String clientId) {
+        return componentDao.getActionsByClientId(clientId);
+    }
 }

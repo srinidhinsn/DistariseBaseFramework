@@ -6,30 +6,35 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "UINAV")
+@IdClass(NavigationId.class)
 public class Navigation implements Serializable {
 
     @Id
     @Column(name = "ID")
     private String id;
 
+    @Id
     @Column(name = "CLIENTID")
     private String clientId;
 
+    @Id
     @Column(name = "ROLENAME")
     private String roleName;
+
+    @Id
+    @Column(name = "MODULE")
+    private String module;
 
     @Column(name = "PAGETITLE")
     private String pageTitle;
 
     @Column(name = "PAGEDESCRIPTION")
     private String pageDescription;
-
-    @Column(name = "MODULE")
-    private String module;
 
     @Column(name = "PAGENAME")
     private String pageName;

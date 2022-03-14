@@ -196,3 +196,23 @@ VALUES (156,'distarise', 'componentitemgrid', true, 'Value', 156, 'column8', tru
 
 INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
 VALUES (157,'distarise', 'componentitemgrid', true, 'Visibility', 157, 'column9', true);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (170,'distarise', 'rolelist', true, 'New role', 170, 'new', true);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (180,'distarise', 'actionlist', true, 'New action', 180, 'new', true);
+
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (189,'distarise', 'roleaccessgrid', true, 'Client id', 189, 'column1', false);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (190,'distarise', 'roleaccessgrid', true, 'Role name', 190, 'column2', true);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (191,'distarise', 'roleaccessgrid', true, 'Widget name', 191, 'column3', true);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (192,'distarise', 'roleaccessgrid', true, 'Action name', 192, 'column4', true);
+

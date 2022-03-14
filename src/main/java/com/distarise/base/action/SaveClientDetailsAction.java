@@ -17,11 +17,6 @@ public class SaveClientDetailsAction extends AbstractBaseAction implements BaseA
     @Autowired
     private ClientService clientService;
 
-    @Autowired
-    private LoadClientDetailsActionExt loadClientDetailsActionExt;
-
-    public static final String CONFIG_PAGE_DETAILS = "configPageDetailsDto";
-
     public void executeAction() {
         String clientId = request.getParameter("clientname");
         String header = request.getParameter("clientheader");

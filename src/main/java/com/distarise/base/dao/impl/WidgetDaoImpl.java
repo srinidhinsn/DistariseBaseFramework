@@ -27,8 +27,8 @@ public class WidgetDaoImpl implements WidgetDao {
     }
 
     @Override
-    public WidgetDto getWidgetById(String clientId, String widgetId){
-        Widget widget = widgetRepository.getWidgetById(clientId, widgetId);
+    public WidgetDto getWidgetById(String clientId, String widgetId, String navItemId){
+        Widget widget = widgetRepository.getWidgetById(clientId, widgetId, navItemId);
         return modelMapper.map(widget, WidgetDto.class);
     }
 
@@ -45,5 +45,11 @@ public class WidgetDaoImpl implements WidgetDao {
     @Override
     public void saveWidget(WidgetDto widgetDto) {
         widgetRepository.save(modelMapper.map(widgetDto, Widget.class));
+    }
+
+    @Override
+    public List<WidgetDto> getWidgetsByClientId(String clientId) {
+        List<Widget> widgetList = widgetRepository.getWidgetsByClientId(clientId);
+        return widgetList.stream().map(widget -> modelMapper.map(widget, WidgetDto.class)).collect(Collectors.toList());
     }
 }
