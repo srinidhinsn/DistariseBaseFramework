@@ -41,8 +41,8 @@ public class WidgetServiceImpl implements WidgetService {
     }
 
     @Override
-    public WidgetDto getWidgetById(String clientId, String widgetId){
-        WidgetDto widgetDto = widgetDao.getWidgetById(clientId, widgetId);
+    public WidgetDto getWidgetById(String clientId, String widgetId, String navItemId){
+        WidgetDto widgetDto = widgetDao.getWidgetById(clientId, widgetId, navItemId);
         widgetDto.setComponentDtos(componentDao.getComponentsByWidgetId(clientId, widgetId));
         return widgetDto;
     }
@@ -60,5 +60,10 @@ public class WidgetServiceImpl implements WidgetService {
     @Override
     public void saveWidget(WidgetDto widgetDto) {
         widgetDao.saveWidget(widgetDto);
+    }
+
+    @Override
+    public List<WidgetDto> getWidgetsByClientId(String clientId) {
+        return widgetDao.getWidgetsByClientId(clientId);
     }
 }

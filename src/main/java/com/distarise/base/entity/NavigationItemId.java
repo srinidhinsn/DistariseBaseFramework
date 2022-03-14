@@ -1,6 +1,7 @@
 package com.distarise.base.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -11,9 +12,13 @@ public class NavigationItemId implements Serializable {
     @Column(name = "ID")
     private String id;
 
-    public NavigationItemId(String navigationId, String id) {
+    @Column(name = "CLIENTID")
+    private String clientId;
+
+    public NavigationItemId(String navigationId, String id, String clientId) {
         this.navigationId = navigationId;
         this.id = id;
+        this.clientId = clientId;
     }
 
     public NavigationItemId() {

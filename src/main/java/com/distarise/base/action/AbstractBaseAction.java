@@ -126,7 +126,7 @@ public abstract class AbstractBaseAction implements BaseAction{
     }
 
     public WidgetDto executeAction(WidgetDto widgetDto){
-        widgetDto = widgetService.getWidgetById(clientId, sourceWidgetId);
+        widgetDto = widgetService.getWidgetById(clientId, sourceWidgetId, sourceNavigationItemId);
         List<String> componentIds = widgetDto.getComponentDtos().stream().
                 map(componentDto -> componentDto.getId()).collect(Collectors.toList());
         List<ComponentItemDto> componentItems = componentItemService.getComponentItems(componentIds, clientId);

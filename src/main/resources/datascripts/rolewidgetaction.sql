@@ -141,3 +141,27 @@ VALUES ('distarise', 'config', 'savecomponentitem', '', true);
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
 VALUES ('distarise', 'config', 'savecomponentitem', 'com.distarise.base.action.SaveComponentItemAction', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+VALUES ('distarise', 'config', 'addrole', '', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+VALUES ('distarise', 'config', 'addrole', 'com.distarise.base.action.LoadRoleListAction', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+VALUES ('distarise', 'config', 'addrole', 'com.distarise.base.action.SaveRoleAction', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+VALUES ('distarise', 'config', 'addroleaccess', '', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+VALUES ('distarise', 'config', 'saveroleaccess', '', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+VALUES ('distarise', 'config', 'addroleaccess', 'com.distarise.base.action.LoadRoleAccessListAction', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+VALUES ('distarise', 'config', 'saveroleaccess', 'com.distarise.base.action.SaveRoleAccessAction', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+VALUES ('distarise', 'config', 'adduser', '', true);

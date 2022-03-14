@@ -9,4 +9,5 @@ public interface ComponentDao extends AbstractBaseDao{
     List<ComponentDto> getComponentsByWidgetId(String clientId, String widgetId);
     void saveComponent(ComponentDto componentDto);
     List<ComponentDto> getMultilevelComponentsByWidgetId(String clientId, String selectedWidget);
+    List<ComponentDto> getActionsByClientId(String clientId);
 }
