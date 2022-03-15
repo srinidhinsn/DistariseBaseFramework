@@ -65,6 +65,9 @@ INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widge
     VALUES ('saveroleaccess', 'distarise', 'commoncss', '4C0RTTLFBF', 'addroleaccess', 3, null, 'Save Role Access', '/nsn/distarise/userrole/addroleaccess');
 
 INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widgetid, widgettitle, redirecturl)
-    VALUES ('adduser', 'distarise', 'commoncss', '4C0RTTLFBF', 'adduser', 3, null, 'Add User', '/nsn/distarise/userrole/adduser');
+    VALUES ('adduser', 'distarise', 'commoncss', '4C0RTTLFBF', 'adduser', 3, null, 'User Details', '/nsn/distarise/userrole/adduser');
+
+INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widgetid, widgettitle, redirecturl)
+    VALUES ('saveuser', 'distarise', 'commoncss', '4C0RTTLFBF', 'adduser', 4, null, 'Save User', '/nsn/distarise/userrole/adduser');
 
 

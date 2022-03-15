@@ -8,4 +8,6 @@ import java.util.List;
 public interface UserDetailsDao extends AbstractBaseDao {
     UserDetailsDto getUserDetails(String userId, String password, String clientId);
     List<UserRoleDto> getUserRoles(String userId, String clientId);
+    List<UserDetailsDto> getAllUserByClientId(String clientId);
+    void saveUserDetails(UserDetailsDto userDetailsDto);
 }

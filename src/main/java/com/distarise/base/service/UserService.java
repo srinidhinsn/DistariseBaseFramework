@@ -11,4 +11,7 @@ public interface UserService extends AbstractBaseService {
     UserDetailsDto getUserDetails(String userId, String password, String clientId);
     List<UserRoleDto> getUserRoles(String userId, String clientId);
     List<RoleWidgetActionDto> getUserRoleWidgetActions(String userId, String clientId);
+    List<UserDetailsDto> getAllUserByClientId(String clientId);
+    List<UserRoleDto> getAllUserRolesByClientId(String clientId);
+    void saveUserRole(UserDetailsDto userDetailsDto);
 }

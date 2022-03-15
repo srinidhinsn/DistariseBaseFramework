@@ -49,4 +49,19 @@ public class UserDetailsDaoImpl implements UserDetailsDao {
                 userRole -> modelMapper.map(userRole, UserRoleDto.class)).collect(Collectors.toList());
     }
 
+    @Override
+    public List<UserDetailsDto> getAllUserByClientId(String clientId) {
+        List<UserDetails> userDetailsList = userDetailsRepository.getAllUserByClientId(clientId);
+        return convertEntityListToDtoList(userDetailsList);
+    }
+
+    private List<UserDetailsDto> convertEntityListToDtoList(List<UserDetails> userDetailsList) {
+        return userDetailsList.stream().map(userDetails ->
+                modelMapper.map(userDetails, UserDetailsDto.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public void saveUserDetails(UserDetailsDto userDetailsDto) {
+        userDetailsRepository.save(modelMapper.map(userDetailsDto, UserDetails.class));
+    }
 }

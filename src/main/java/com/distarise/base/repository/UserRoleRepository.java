@@ -21,4 +21,6 @@ public interface UserRoleRepository extends CrudRepository<UserRole, UserRoleId>
     @Query("select u from UserRole u where u.userId = :userId and u.clientId =:clientId")
     List<UserRole> getUserRole(@Param("userId") String userId, @Param("clientId") String clientId);
 
+    @Query("from UserRole u where u.clientId =:clientId")
+    List<UserRole> getAllUserRolesByClientId(@Param("clientId")String clientId);
 }

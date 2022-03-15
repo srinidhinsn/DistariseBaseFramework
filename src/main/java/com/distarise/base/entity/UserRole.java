@@ -9,9 +9,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "USERROLE")
-@IdClass(RoleId.class)
+@IdClass(UserRoleId.class)
 public class UserRole implements Serializable {
-    @Id
     @Column(name = "ROLENAME")
     private String roleName;
 

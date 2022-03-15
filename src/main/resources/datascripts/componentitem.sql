@@ -216,3 +216,32 @@ VALUES (191,'distarise', 'roleaccessgrid', true, 'Widget name', 191, 'column3', 
 INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
 VALUES (192,'distarise', 'roleaccessgrid', true, 'Action name', 192, 'column4', true);
 
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (200,'distarise', 'column1', true, 'Mr.', 200, 'Mr.', true);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (201,'distarise', 'column1', true, 'Mrs.', 201, 'Mrs.', true);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (202,'distarise', 'column1', true, 'Ms.', 202, 'Ms.', true);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (210,'distarise', 'userdetailsgrid', true, 'Title', 210, 'column1', true);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (211,'distarise', 'userdetailsgrid', true, 'Username', 211, 'column2', true);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (212,'distarise', 'userdetailsgrid', true, 'Firstname', 212, 'column3', true);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (213,'distarise', 'userdetailsgrid', true, 'Lastname', 213, 'column4', true);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (214,'distarise', 'userdetailsgrid', true, 'Password', 214, 'column5', false);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (215,'distarise', 'userdetailsgrid', true, 'Role', 215, 'column6', true);
+
+
+

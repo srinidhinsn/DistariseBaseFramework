@@ -39,4 +39,19 @@ public class UserServiceImpl implements UserService {
         return userRoleDao.getUserRoleWidgetActions(userId, clientId);
     }
 
+    @Override
+    public List<UserDetailsDto> getAllUserByClientId(String clientId) {
+        return userDetailsDao.getAllUserByClientId(clientId);
+    }
+
+    @Override
+    public List<UserRoleDto> getAllUserRolesByClientId(String clientId) {
+        return userRoleDao.getAllUserRolesByClientId(clientId);
+    }
+
+    @Override
+    public void saveUserRole(UserDetailsDto userDetailsDto) {
+        userDetailsDao.saveUserDetails(userDetailsDto);
+        userRoleDao.saveUserRoleDetails(userDetailsDto);
+    }
 }

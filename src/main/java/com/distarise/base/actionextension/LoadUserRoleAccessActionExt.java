@@ -80,7 +80,7 @@ public class LoadUserRoleAccessActionExt {
         String widget = request.getParameter("widgetlist");
         String action = request.getParameter("actionlist");
         targetWidgetDto.getComponentDtos().forEach(componentDto -> {
-            if (componentDto.getId().equalsIgnoreCase("clientid")){
+            if (componentDto.getId().equalsIgnoreCase("column1")){
                 componentDto.setValue(clientId);
             }else if (componentDto.getId().equalsIgnoreCase("column2")){
                 componentDto.setValue(role);
