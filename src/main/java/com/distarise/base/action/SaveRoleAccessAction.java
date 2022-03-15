@@ -17,7 +17,7 @@ public class SaveRoleAccessAction extends AbstractBaseAction implements BaseActi
         String roleName = request.getParameter("column2");
         String widgetId = request.getParameter("column3");
         String action = request.getParameter("column4");
-        RoleWidgetActionDto roleWidgetActionDto = new RoleWidgetActionDto(clientId, roleName, widgetId, action, null, null);
+        RoleWidgetActionDto roleWidgetActionDto = new RoleWidgetActionDto(clientId, roleName, widgetId, action, null, true);
         roleService.saveRoleWidgetAction(roleWidgetActionDto);
     }
 }

@@ -165,3 +165,12 @@ VALUES ('distarise', 'config', 'saveroleaccess', 'com.distarise.base.action.Save
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
 VALUES ('distarise', 'config', 'adduser', '', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+VALUES ('distarise', 'config', 'adduser', 'com.distarise.base.action.LoadUserDetailsAction', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+VALUES ('distarise', 'config', 'saveuser', '', true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible)
+VALUES ('distarise', 'config', 'saveuser', 'com.distarise.base.action.SaveUserDetailsAction', true);
