@@ -6,7 +6,10 @@ import com.distarise.base.action.LoginAction;
 import com.distarise.base.model.NavigationDto;
 import com.distarise.base.model.NavigationItemDto;
 import com.distarise.base.model.PageDetailsDto;
+import com.distarise.base.model.RoleWidgetActionDto;
+import com.distarise.base.model.UserDetailsDto;
 import com.distarise.base.model.WidgetDto;
+import com.distarise.base.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,15 +33,26 @@ public class FrameworkInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         logger.debug("preHandle-"+httpServletRequest.getRequestURI());
+        String actionIdentifier = httpServletRequest.getParameter("actionIdentifier");
         if (null != httpServletRequest.getParameter("action") &&
                 !httpServletRequest.getParameter("action").isEmpty()) {
             try {
+                String widgetId = actionIdentifier.split("-")[2];
                 Class actionClass = Class.forName(httpServletRequest.getParameter("action"));
+                UserDetailsDto userDetailsDto = (UserDetailsDto) httpServletRequest.getSession().getAttribute(UserService.USER);
+                RoleWidgetActionDto accessExists = userDetailsDto.getRoleAccessList().stream().filter(roleWidgetActionDto ->
+                        roleWidgetActionDto.getAction().equals(actionClass.getName())
+                        && roleWidgetActionDto.getWidgetId().equals(widgetId)).findAny().orElse(null);
+                if (null == accessExists){
+                    throw  new Exception("Not authorised to perform this action");
+                }
                 BaseAction abstractBaseAction = (BaseAction) applicationContext.getBean(actionClass);
                 abstractBaseAction.executeAction(httpServletRequest);
                 abstractBaseAction.executeAction();
             } catch (ClassNotFoundException cnf){
                 logger.error(cnf.getMessage());
+            } catch (Exception e){
+                logger.error(e.getMessage());
             }
         }
         return true;

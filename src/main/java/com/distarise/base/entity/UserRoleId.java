@@ -5,11 +5,22 @@ import javax.persistence.Column;
 
 public class UserRoleId implements Serializable {
 
+    @Column(name = "ROLENAME")
+    private String roleName;
+
     @Column(name = "CLIENTID")
     private String clientId;
 
     @Column(name="USERID")
     private String userId;
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
 
     public String getClientId() {
         return clientId;
@@ -31,6 +42,7 @@ public class UserRoleId implements Serializable {
     }
 
     public UserRoleId(String roleName, String clientId, String userId) {
+        this.roleName = roleName;
         this.clientId = clientId;
         this.userId = userId;
     }
@@ -42,13 +54,14 @@ public class UserRoleId implements Serializable {
 
         UserRoleId that = (UserRoleId) o;
 
+        if (!roleName.equals(that.roleName)) return false;
         if (!clientId.equals(that.clientId)) return false;
         return userId.equals(that.userId);
     }
 
     @Override
     public int hashCode() {
-        int result = userId.hashCode();
+        int result = roleName.hashCode();
         result = 31 * result + clientId.hashCode();
         result = 31 * result + userId.hashCode();
         return result;

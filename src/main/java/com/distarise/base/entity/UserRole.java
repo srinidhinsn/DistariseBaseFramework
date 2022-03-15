@@ -11,6 +11,7 @@ import javax.persistence.Table;
 @Table(name = "USERROLE")
 @IdClass(UserRoleId.class)
 public class UserRole implements Serializable {
+    @Id
     @Column(name = "ROLENAME")
     private String roleName;
 
