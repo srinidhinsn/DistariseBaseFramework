@@ -96,10 +96,13 @@ INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, s
     VALUES ('clientlogo', 'distarise', true, null, null, 'Logo file name', 5, 'textbox', true, 'addclient', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-    VALUES ('clientadd', 'distarise', true, '/nsn/distarise/base/addnavigation', 'com.distarise.base.action.SaveClientDetailsAction', 'Save', 6, 'submitbutton', true, 'addclient', false);
+    VALUES ('staticfolder', 'distarise', true, null, null, 'Static folder name', 6, 'textbox', true, 'addclient', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-    VALUES ('clientdelete', 'distarise', true, '/nsn/distarise/base/addnavigation', 'com.distarise.base.action.DeleteClientAction', 'Delete', 7, 'submitbutton', true, 'addclient', false);
+    VALUES ('clientadd', 'distarise', true, '/nsn/distarise/base/addnavigation', 'com.distarise.base.action.SaveClientDetailsAction', 'Save', 7, 'submitbutton', true, 'addclient', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+    VALUES ('clientdelete', 'distarise', true, '/nsn/distarise/base/addnavigation', 'com.distarise.base.action.DeleteClientAction', 'Delete', 8, 'submitbutton', true, 'addclient', false);
 
 --Navigation page
 

@@ -28,6 +28,8 @@ public class LoadClientDetailsActionExt {
                     componentDto.setValue(clientToLoad.getFooter());
                 } else if (componentDto.getId().equals("clientlogo")){
                     componentDto.setValue(clientToLoad.getLogo());
+                } else if (componentDto.getId().equals("staticfolder")){
+                    componentDto.setValue(clientToLoad.getStaticFolder());
                 } else if (componentDto.getId().equals("clientlist")){
                     componentDto.getComponentItemDtos().forEach(componentItemDto -> {
                         if (componentDto.getClientId().equals(client)){

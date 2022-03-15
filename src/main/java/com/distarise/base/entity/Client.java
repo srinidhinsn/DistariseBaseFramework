@@ -18,6 +18,9 @@ public class Client {
     @Column(name = "FOOTER")
     private String footer;
 
+    @Column(name = "STATICFOLDER")
+    private String staticFolder;
+
     @Column(name = "LOGO")
     private String logo;
 
@@ -53,11 +56,20 @@ public class Client {
         this.logo = logo;
     }
 
-    public Client(String id, String header, String footer, String logo) {
+    public String getStaticFolder() {
+        return staticFolder;
+    }
+
+    public void setStaticFolder(String staticFolder) {
+        this.staticFolder = staticFolder;
+    }
+
+    public Client(String id, String header, String footer, String logo, String staticFolder) {
         this.id = id;
         this.header = header;
         this.footer = footer;
         this.logo = logo;
+        this.staticFolder = staticFolder;
     }
 
     public Client() {
