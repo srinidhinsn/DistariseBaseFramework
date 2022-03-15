@@ -22,7 +22,8 @@ public class SaveClientDetailsAction extends AbstractBaseAction implements BaseA
         String header = request.getParameter("clientheader");
         String footer = request.getParameter("clientfooter");
         String logo = request.getParameter("clientlogo");
-        ClientDto clientDto = new ClientDto(clientId, header, footer, logo);
+        String staticFolder = request.getParameter("staticfolder");
+        ClientDto clientDto = new ClientDto(clientId, header, footer, logo, staticFolder);
         clientService.saveClientDetails(clientDto);
     }
 }

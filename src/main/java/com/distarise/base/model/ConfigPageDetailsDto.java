@@ -16,7 +16,7 @@ public class ConfigPageDetailsDto extends PageDetailsDto {
     }
 
     public ConfigPageDetailsDto() {
-        setClientDto(new ClientDto("","","",""));
+        setClientDto(new ClientDto("","","","", ""));
         setNavigationDto(new NavigationDto());
         setNavigationDtoList(new ArrayList<>());
     }

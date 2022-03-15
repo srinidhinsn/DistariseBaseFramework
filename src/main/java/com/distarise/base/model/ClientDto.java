@@ -7,6 +7,7 @@ public class ClientDto implements Serializable {
     private String header;
     private String footer;
     private String logo;
+    private String staticFolder;
 
     public String getId() {
         return id;
@@ -40,11 +41,20 @@ public class ClientDto implements Serializable {
         this.logo = logo;
     }
 
-    public ClientDto(String id, String header, String footer, String logo) {
+    public String getStaticFolder() {
+        return staticFolder;
+    }
+
+    public void setStaticFolder(String staticFolder) {
+        this.staticFolder = staticFolder;
+    }
+
+    public ClientDto(String id, String header, String footer, String logo, String staticFolder) {
         this.id = id;
         this.header = header;
         this.footer = footer;
         this.logo = logo;
+        this.staticFolder = staticFolder;
     }
 
     public ClientDto() {
