@@ -73,9 +73,12 @@ public class LoadUserDetailsAction extends AbstractBaseAction implements BaseAct
         userDetailsDtoList.forEach(userDetailsDto -> {
             userRoleDtoList.forEach(userRoleDto -> {
                 if (userDetailsDto.getUserId().equals(userRoleDto.getUserId())){
-                    userDetailsDto.setRoleName(userRoleDto.getRoleName());
+                    userDetailsDto.setRoleName(userDetailsDto.getRoleName()+","+userRoleDto.getRoleName());
                 }
             });
+            if (null != userDetailsDto.getRoleName() && !userDetailsDto.getRoleName().isEmpty()){
+                userDetailsDto.setRoleName(userDetailsDto.getRoleName().replaceFirst("null,",""));
+            }
         });
     }
 }
