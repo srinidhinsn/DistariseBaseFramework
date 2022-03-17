@@ -59,6 +59,11 @@ public class BaseController {
                 session.setAttribute(UserService.USER, userDetailsDto);
             } else {
                 userDetailsDto = (UserDetailsDto) session.getAttribute(UserService.USER);
+                if (!userDetailsDto.getClientId().equals(client)){
+                    userDetailsDto = userService.getUserDetails(GUEST_USER, GUEST_USER,
+                            client);
+                    session.setAttribute(UserService.USER, userDetailsDto);
+                }
             }
             BaseContextDto baseContextDto = new BaseContextDto(client, module, page, userDetailsDto);
             pageDetailsDto = baseService.getPageDetails(baseContextDto);

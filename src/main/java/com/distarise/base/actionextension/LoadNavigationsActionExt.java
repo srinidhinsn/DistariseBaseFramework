@@ -38,7 +38,7 @@ public class LoadNavigationsActionExt {
             componentDto.getComponentItemDtos().forEach(componentItemDto -> {
                     gridRow.put("formid", "savenavigation");
                 if (componentItemDto.getValue().equalsIgnoreCase("column1")){
-                    gridRow.put(componentItemDto.getValue(), navigationDto.getClientId());
+                    gridRow.put(componentItemDto.getValue(), clientId);
                 } else  if (componentItemDto.getValue().equalsIgnoreCase("column2")){
                     gridRow.put(componentItemDto.getValue(), navigationDto.getId());
                 } else  if (componentItemDto.getValue().equalsIgnoreCase("column3")){
@@ -59,9 +59,6 @@ public class LoadNavigationsActionExt {
             gridDetails.add(gridRow);
         });
         componentDto.setGridValues(gridDetails);
-        ConfigPageDetailsDto configPageDetailsDto = (ConfigPageDetailsDto) request.getSession().
-                getAttribute(LoadClientListAction.CONFIG_PAGE_DETAILS);
-        configPageDetailsDto.setNavigationDtoList(navigationDtoList);
 
     }
 }

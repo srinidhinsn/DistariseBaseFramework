@@ -95,8 +95,8 @@ INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, s
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
     VALUES ('clientlogo', 'distarise', true, null, null, 'Logo file name', 5, 'textbox', true, 'addclient', false);
 
-INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-    VALUES ('staticfolder', 'distarise', true, null, null, 'Static folder name', 6, 'textbox', true, 'addclient', false);
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel, value)
+    VALUES ('staticfolder', 'distarise', true, null, null, 'Static folder name', 6, 'textbox', true, 'addclient', false, 'distarise');
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
     VALUES ('clientadd', 'distarise', true, '/nsn/distarise/base/addnavigation', 'com.distarise.base.action.SaveClientDetailsAction', 'Save', 7, 'submitbutton', true, 'addclient', false);
@@ -354,7 +354,7 @@ INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, s
 VALUES ('loadrolelist', 'distarise', true, '/nsn/distarise/userrole/addrole', 'com.distarise.base.action.LoadRoleListAction', 'Role list', 2, 'autoaction', true, 'addrole', true);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('clientid', 'distarise', true, '', '', 'Client Id', 1, 'text', true, 'addrole', false);
+VALUES ('clientlist', 'distarise', true, '', '', 'Client Id', 1, 'configdropdown', true, 'addrole', true);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
 VALUES ('rolelist', 'distarise', true, '', '', 'Roles', 2, 'configdropdown', true, 'addrole', true);
@@ -372,7 +372,7 @@ INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, s
 VALUES ('loadrolelist', 'distarise', true, '/nsn/distarise/userrole/addroleaccess', 'com.distarise.base.action.LoadRoleAccessListAction', 'Role list', 2, 'autoaction', true, 'addroleaccess', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('clientid', 'distarise', true, '', '', 'Client Id', 1, 'text', true, 'addroleaccess', false);
+VALUES ('clientlist', 'distarise', true, '', '', 'Client Id', 1, 'configdropdown', true, 'addroleaccess', true);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
 VALUES ('rolelist', 'distarise', true, '', '', 'Roles', 2, 'configdropdown', true, 'addroleaccess', true);
@@ -405,7 +405,7 @@ INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, s
 VALUES ('loaduserdetailsgrid', 'distarise', true, '', 'com.distarise.base.action.LoadUserDetailsAction', 'loaduserdetails', 2, 'autoaction', true, 'adduser', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('clientid', 'distarise', true, '', '', 'Client id : ', 2, 'text', true, 'adduser', false);
+VALUES ('clientlist', 'distarise', true, '', '', 'Client id : ', 2, 'configdropdown', true, 'adduser', true);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
 VALUES ('userdetailsgrid', 'distarise', true, '', '', 'User Details', 3, 'gridform', true, 'adduser', true);

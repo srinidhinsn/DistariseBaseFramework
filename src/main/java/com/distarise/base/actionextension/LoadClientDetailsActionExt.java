@@ -32,7 +32,7 @@ public class LoadClientDetailsActionExt {
                     componentDto.setValue(clientToLoad.getStaticFolder());
                 } else if (componentDto.getId().equals("clientlist")){
                     componentDto.getComponentItemDtos().forEach(componentItemDto -> {
-                        if (componentDto.getClientId().equals(client)){
+                        if (componentItemDto.getValue().equals(client)){
                             componentItemDto.setSelected(true);
                         }
                     });
@@ -41,8 +41,7 @@ public class LoadClientDetailsActionExt {
 
             ConfigPageDetailsDto configPageDetailsDto = (ConfigPageDetailsDto) request.getSession().
                     getAttribute(LoadClientListAction.CONFIG_PAGE_DETAILS);
-            configPageDetailsDto.setClientDto(clientToLoad);
-            request.getSession().setAttribute(LoadClientListAction.CONFIG_PAGE_DETAILS,configPageDetailsDto);
+            configPageDetailsDto.setClientId(clientToLoad.getId());
         }
     }
 }

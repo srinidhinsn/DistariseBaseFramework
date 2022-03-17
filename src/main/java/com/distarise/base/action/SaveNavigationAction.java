@@ -15,6 +15,9 @@ public class SaveNavigationAction extends AbstractBaseAction implements BaseActi
     private NavigationService navigationService;
 
     public void executeAction(){
+        ConfigPageDetailsDto configPageDetailsDto = (ConfigPageDetailsDto)
+                request.getSession().getAttribute(LoadClientListAction.CONFIG_PAGE_DETAILS);
+        String clientId = configPageDetailsDto.getClientId();
         String id = request.getParameter("column2");
         String module = request.getParameter("column3");
         String pageDescription = request.getParameter("column4");
@@ -22,7 +25,6 @@ public class SaveNavigationAction extends AbstractBaseAction implements BaseActi
         String pageTitle = request.getParameter("column6");
         String redirectPageName = request.getParameter("column7");
         String role = request.getParameter("column8");
-        String clientId = request.getParameter("column1");
         NavigationDto navigationDto = new NavigationDto(id, clientId, role, pageTitle,
                 pageDescription, module, pageName, redirectPageName, "", null);
 

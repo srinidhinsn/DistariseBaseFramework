@@ -1,6 +1,5 @@
 package com.distarise.base.actionextension;
 
-import com.distarise.base.action.LoadClientListAction;
 import com.distarise.base.model.ComponentDto;
 import com.distarise.base.model.ComponentItemDto;
 import com.distarise.base.model.ConfigPageDetailsDto;
@@ -20,7 +19,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 public class LoadNavigationItemActionExt {
@@ -40,8 +38,9 @@ public class LoadNavigationItemActionExt {
     @Autowired
     ComponentItemService componentItemService;
 
-    public List<ComponentItemDto> preloadNavigationList(String clientId, String selectedUiNav) {
-        if (clientId.equalsIgnoreCase("new") || clientId.isEmpty()){
+    public List<ComponentItemDto> preloadNavigationList(ConfigPageDetailsDto configPageDetailsDto) {
+        String clientId = configPageDetailsDto.getClientId();
+        if (clientId.isEmpty() || clientId.equalsIgnoreCase("new")){
             return null;
         }
 
@@ -52,7 +51,7 @@ public class LoadNavigationItemActionExt {
                     "landingpage", clientId , i+1,
                     navigationDtoList.get(i).getId(), navigationDtoList.get(i).getId(), false, true
             );
-            if (componentItemDto.getValue().equals(selectedUiNav)){
+            if (componentItemDto.getValue().equals(configPageDetailsDto.getUiNavId())){
                 componentItemDto.setSelected(true);
             }
             componentItemDtoList.add(componentItemDto);
@@ -60,11 +59,12 @@ public class LoadNavigationItemActionExt {
         return componentItemDtoList;
     }
 
-    public void preloadNavigationItemForm(HttpServletRequest request, String clientId, ComponentDto componentDto) {
+    public void preloadNavigationItemForm(ComponentDto componentDto, ConfigPageDetailsDto configPageDetailsDto) {
+        String clientId = configPageDetailsDto.getClientId();
         if (clientId.isEmpty() || clientId.equalsIgnoreCase("new")){
             return;
         }
-        String selectedUiNav = request.getParameter("landingpage");
+        String selectedUiNav = configPageDetailsDto.getUiNavId();
         List<NavigationItemDto> navigationItemDtoList = navigationItemService.getNavigationItems(selectedUiNav);
         List<Map<String, String>> gridDetails = new ArrayList<>();
         navigationItemDtoList.forEach(navigationItemDto -> {
@@ -95,13 +95,12 @@ public class LoadNavigationItemActionExt {
         componentDto.setGridValues(gridDetails);
     }
 
-    public List<ComponentItemDto> preloadNavItemList(String clientId, HttpServletRequest request){
+    public List<ComponentItemDto> preloadNavItemList(ConfigPageDetailsDto configPageDetailsDto){
+        String clientId = configPageDetailsDto.getClientId();
         if (clientId.equalsIgnoreCase("new") || clientId.isEmpty()){
             return null;
         }
-        String selectedUiNav = request.getParameter("landingpage");
-        String selectedUiNavItem = request.getParameter("navigationitemlist");
-        List<NavigationItemDto> navigationItemDtoList = navigationItemService.getNavigationItems(selectedUiNav);
+        List<NavigationItemDto> navigationItemDtoList = navigationItemService.getNavigationItems(configPageDetailsDto.getUiNavId());
         List<ComponentItemDto> componentItemDtoList = new ArrayList<>();
 
         for (int i=0; i<navigationItemDtoList.size(); i++) {
@@ -109,7 +108,7 @@ public class LoadNavigationItemActionExt {
                     "navigationitemlist", clientId, i + 1,
                     navigationItemDtoList.get(i).getId(), navigationItemDtoList.get(i).getId(), false, true
             );
-            if (componentItemDto.getValue().equals(selectedUiNavItem)) {
+            if (componentItemDto.getValue().equals(configPageDetailsDto.getNavItemId())) {
                 componentItemDto.setSelected(true);
             }
             componentItemDtoList.add(componentItemDto);
@@ -117,12 +116,13 @@ public class LoadNavigationItemActionExt {
         return componentItemDtoList;
     }
 
-    public void preloadWidgetForm(HttpServletRequest request, String clientId, ComponentDto componentDto) {
+    public void preloadWidgetForm(ComponentDto componentDto, ConfigPageDetailsDto configPageDetailsDto) {
+        String clientId = configPageDetailsDto.getClientId();
         if (clientId.isEmpty() || clientId.equalsIgnoreCase("new")){
             return;
         }
-        String selectedUiNav = request.getParameter("landingpage");
-        String selectedUiNavItem = request.getParameter("navigationitemlist");
+        String selectedUiNav = configPageDetailsDto.getUiNavId();
+        String selectedUiNavItem = configPageDetailsDto.getNavItemId();
         List<WidgetDto> widgetDtoList = widgetService.getWidgetByNavigationItemId(clientId, selectedUiNavItem);
 
         List<Map<String, String>> gridDetails = new ArrayList<>();
@@ -158,12 +158,13 @@ public class LoadNavigationItemActionExt {
         componentDto.setGridValues(gridDetails);
     }
 
-    public List<ComponentItemDto> preloadWidgetList(String clientId, HttpServletRequest request){
+    public List<ComponentItemDto> preloadWidgetList(ConfigPageDetailsDto configPageDetailsDto){
+        String clientId = configPageDetailsDto.getClientId();
         if (clientId.equalsIgnoreCase("new") || clientId.isEmpty()){
             return null;
         }
-        String selectedUiNavItem = request.getParameter("navigationitemlist");
-        String selectedWidget = request.getParameter("widgetlist");
+        String selectedUiNavItem = configPageDetailsDto.getNavItemId();
+        String selectedWidget = configPageDetailsDto.getWidgetId();
         List<WidgetDto> widgetDtoList = widgetService.getWidgetByNavigationItemId(clientId, selectedUiNavItem);
         List<ComponentItemDto> componentItemDtoList = new ArrayList<>();
 
@@ -180,13 +181,14 @@ public class LoadNavigationItemActionExt {
         return componentItemDtoList;
     }
 
-    public void preloadComponentForm(HttpServletRequest request, String clientId, ComponentDto componentDto) {
+    public void preloadComponentForm(ComponentDto componentDto, ConfigPageDetailsDto configPageDetailsDto) {
+        String clientId = configPageDetailsDto.getClientId();
         if (clientId.isEmpty() || clientId.equalsIgnoreCase("new")){
             return;
         }
-        String selectedUiNav = request.getParameter("landingpage");
-        String selectedUiNavItem = request.getParameter("navigationitemlist");
-        String selectedWidget = request.getParameter("widgetlist");
+        String selectedUiNav = configPageDetailsDto.getUiNavId();
+        String selectedUiNavItem = configPageDetailsDto.getNavItemId();
+        String selectedWidget = configPageDetailsDto.getWidgetId();
         List<ComponentDto> componentDtoList = componentService.getComponentsByWidgetId(clientId, selectedWidget);
 
         List<Map<String, String>> gridDetails = new ArrayList<>();
@@ -230,12 +232,13 @@ public class LoadNavigationItemActionExt {
         componentDto.setGridValues(gridDetails);
     }
 
-    public List<ComponentItemDto> preloadComponentList(String clientId, HttpServletRequest request){
+    public List<ComponentItemDto> preloadComponentList(ConfigPageDetailsDto configPageDetailsDto){
+        String clientId = configPageDetailsDto.getClientId();
         if (clientId.equalsIgnoreCase("new") || clientId.isEmpty()){
             return null;
         }
-        String selectedComponent = request.getParameter("componentlist");
-        String selectedWidget = request.getParameter("widgetlist");
+        String selectedComponent = configPageDetailsDto.getComponentId();
+        String selectedWidget = configPageDetailsDto.getWidgetId();
         List<ComponentDto> sourceComponentDtoList = componentService.getMultilevelComponentsByWidgetId(clientId, selectedWidget);
         List<ComponentItemDto> componentItemDtoList = new ArrayList<>();
 
@@ -252,12 +255,13 @@ public class LoadNavigationItemActionExt {
         return componentItemDtoList;
     }
 
-    public void preloadComponentItemForm(HttpServletRequest request, String clientId, ComponentDto componentDto) {
+    public void preloadComponentItemForm(ComponentDto componentDto, ConfigPageDetailsDto configPageDetailsDto) {
+        String clientId = configPageDetailsDto.getClientId();
         if (clientId.isEmpty() || clientId.equalsIgnoreCase("new")){
             return;
         }
 
-        String selectedComponent = request.getParameter("componentlist");
+        String selectedComponent = configPageDetailsDto.getComponentId();
         List<ComponentItemDto> componentItemDtoList = componentItemService.getComponentItemsByComponentId(clientId, selectedComponent);
 
         List<Map<String, String>> gridDetails = new ArrayList<>();

@@ -1,6 +1,7 @@
 package com.distarise.base.actionextension;
 
 import com.distarise.base.model.ComponentDto;
+import com.distarise.base.model.ConfigPageDetailsDto;
 import com.distarise.base.model.UserDetailsDto;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +14,7 @@ import java.util.Map;
 @Service
 public class LoadUserDetailsActionExt {
 
-    public void preloadUserDetailsForm(HttpServletRequest request, ComponentDto targetComponentDto,
-                                       List<UserDetailsDto> userDetailsDtoList, String clientId) {
+    public void preloadUserDetailsForm(ComponentDto targetComponentDto, List<UserDetailsDto> userDetailsDtoList) {
         if (null == userDetailsDtoList || userDetailsDtoList.isEmpty()){
             return;
         }

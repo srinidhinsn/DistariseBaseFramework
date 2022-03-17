@@ -37,26 +37,31 @@ public class LoadUserDetailsAction extends AbstractBaseAction implements BaseAct
 
     public void executeAction(){
         PageDetailsDto targetPageDetailsDto = super.executeAction(new PageDetailsDto());
+        ConfigPageDetailsDto configPageDetailsDto = loadUserRoleAccessActionExt.setConfigPageDetails(request, getClientId());
         targetPageDetailsDto.getNavigationDto().getNavigationItems().forEach(navigationItemDto -> {
             if (!navigationItemDto.getWidgets().isEmpty()){
                 navigationItemDto.getWidgets().forEach(targetWidgetDto -> {
                     if (targetWidgetDto.getId().equalsIgnoreCase("adduser")){
                         targetWidgetDto.getComponentDtos().forEach(targetComponentDto -> {
                             if(targetComponentDto.getId().equalsIgnoreCase("userdetailsgrid")){
-                                List<UserDetailsDto> userDetailsDtoList = userService.getAllUserByClientId(getClientId());
-                                List<UserRoleDto> userRoleDtoList = userService.getAllUserRolesByClientId(getClientId());
+                                List<UserDetailsDto> userDetailsDtoList = userService.getAllUserByClientId(configPageDetailsDto.getClientId());
+                                List<UserRoleDto> userRoleDtoList = userService.getAllUserRolesByClientId(configPageDetailsDto.getClientId());
                                 mapUserRole(userDetailsDtoList, userRoleDtoList);
-                                loadUserDetailsActionExt.preloadUserDetailsForm(request, targetComponentDto, userDetailsDtoList, getClientId());
+                                loadUserDetailsActionExt.preloadUserDetailsForm(targetComponentDto, userDetailsDtoList);
                             }
                             else if(targetComponentDto.getId().equalsIgnoreCase("clientid")){
-                                targetComponentDto.setValue(getClientId());
+                                targetComponentDto.setValue(configPageDetailsDto.getClientId());
+                            } else if(targetComponentDto.getId().equalsIgnoreCase("clientlist")){
+                                targetComponentDto.getComponentItemDtos().addAll(
+                                        loadUserRoleAccessActionExt.addAllClients(configPageDetailsDto)
+                                );
                             }
                         });
                     } else if (targetWidgetDto.getId().equalsIgnoreCase("saveuser")){
                         targetWidgetDto.getComponentDtos().forEach(targetComponentDto -> {
                             if (targetComponentDto.getId().equalsIgnoreCase("column6")) {
                                 List<RoleDto> roleDtoList = roleService.getRoleList(getClientId());
-                                List<ComponentItemDto> componentItemDtoList = loadUserRoleAccessActionExt.preloadRoleList(request, roleDtoList);
+                                List<ComponentItemDto> componentItemDtoList = loadUserRoleAccessActionExt.preloadRoleList(roleDtoList, configPageDetailsDto);
                                 if (null != componentItemDtoList) {
                                     targetComponentDto.getComponentItemDtos().addAll(componentItemDtoList);
                                 }
