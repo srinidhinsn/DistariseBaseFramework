@@ -1,5 +1,6 @@
 package com.distarise.base.action;
 
+import com.distarise.base.model.ConfigPageDetailsDto;
 import com.distarise.base.model.NavigationItemDto;
 import com.distarise.base.model.WidgetDto;
 import com.distarise.base.service.NavigationItemService;
@@ -14,16 +15,17 @@ public class SaveWidgetAction extends AbstractBaseAction implements BaseAction {
     private WidgetService widgetService;
 
     public void executeAction(){
+        ConfigPageDetailsDto configPageDetailsDto = (ConfigPageDetailsDto)
+                request.getSession().getAttribute(LoadClientListAction.CONFIG_PAGE_DETAILS);
+        String clientId = configPageDetailsDto.getClientId();
         String id = request.getParameter("column2");
         String title = request.getParameter("column3");
         String sortOrder = request.getParameter("column4");
-        String navItemId = request.getParameter("column5");
+        String navItemId = configPageDetailsDto.getNavItemId();
         String nestedWidgetId = request.getParameter("column6");
         String layoutId = request.getParameter("column7");
         String cssClass = request.getParameter("column8");
-        String clientId = request.getParameter("column9");
-        String uiNavId = request.getParameter("column10");
-        String uiNavItemId = request.getParameter("column11");
+        String uiNavId = configPageDetailsDto.getUiNavId();
 
         WidgetDto widgetDto = new WidgetDto(id, clientId, navItemId, cssClass, title, layoutId,
                 Integer.parseInt(sortOrder), nestedWidgetId, null, null, null, null);

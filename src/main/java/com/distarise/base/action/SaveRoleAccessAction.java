@@ -1,5 +1,6 @@
 package com.distarise.base.action;
 
+import com.distarise.base.model.ConfigPageDetailsDto;
 import com.distarise.base.model.RoleDto;
 import com.distarise.base.model.RoleWidgetActionDto;
 import com.distarise.base.service.RoleService;
@@ -13,6 +14,7 @@ public class SaveRoleAccessAction extends AbstractBaseAction implements BaseActi
     private RoleService roleService;
 
     public void executeAction() {
+        ConfigPageDetailsDto configPageDetailsDto = (ConfigPageDetailsDto) request.getSession().getAttribute(LoadClientListAction.CONFIG_PAGE_DETAILS);
         String clientId = request.getParameter("column1");
         String roleName = request.getParameter("column2");
         String widgetId = request.getParameter("column3");

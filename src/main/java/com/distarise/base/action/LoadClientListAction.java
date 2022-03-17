@@ -31,7 +31,14 @@ public class LoadClientListAction extends AbstractBaseAction implements BaseActi
 
     public void executeAction(){
         PageDetailsDto targetPageDetailsDto = super.executeAction(new PageDetailsDto());
-        request.getSession().setAttribute(LoadClientListAction.CONFIG_PAGE_DETAILS,new ConfigPageDetailsDto());
+        ConfigPageDetailsDto configPageDetailsDto = new ConfigPageDetailsDto();
+        request.getSession().setAttribute(LoadClientListAction.CONFIG_PAGE_DETAILS,configPageDetailsDto);
+        String clientId = request.getParameter("clientlist");
+        if (clientId == null){
+            configPageDetailsDto.setClientId(getClientId());
+        } else {
+            configPageDetailsDto.setClientId(clientId);
+        }
         targetPageDetailsDto.getNavigationDto().getNavigationItems().forEach(navigationItemDto -> {
             if (!navigationItemDto.getWidgets().isEmpty()){
                 navigationItemDto.getWidgets().forEach(targetWidgetDto -> {
@@ -41,13 +48,15 @@ public class LoadClientListAction extends AbstractBaseAction implements BaseActi
                                 List<ClientDto> clientDtoList = clientService.getAllClients();
                                 List<ComponentItemDto> componentItemDtoList = targetComponentDto.getComponentItemDtos();
                                 for (int i=0; i < clientDtoList.size(); i++){
-                                    componentItemDtoList.add(new ComponentItemDto(13000L+i,
-                                                    "clientlist", "distarise" , i+1,
-                                            clientDtoList.get(i).getId(), clientDtoList.get(i).getHeader(), false, true
-                                            )
-                                    );
+                                    ComponentItemDto componentItemDto = new ComponentItemDto(13000L+i,
+                                            "clientlist", "distarise" , i+1,
+                                            clientDtoList.get(i).getId(), clientDtoList.get(i).getHeader(), false, true);
+                                    if (clientDtoList.get(i).getId().equals(configPageDetailsDto.getClientId())){
+                                        componentItemDto.setSelected(true);
+                                    }
+                                    componentItemDtoList.add(componentItemDto);
                                 }
-                                loadClientDetailsActionExt.preloadClientForm(request, targetWidgetDto, clientDtoList, request.getParameter("clientlist"));
+                                loadClientDetailsActionExt.preloadClientForm(request, targetWidgetDto, clientDtoList, configPageDetailsDto.getClientId());
                             }
                         });
                     }
@@ -56,4 +65,5 @@ public class LoadClientListAction extends AbstractBaseAction implements BaseActi
         });
 
     }
+
 }

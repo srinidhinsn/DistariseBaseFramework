@@ -24,7 +24,7 @@ public class LoadNavigationsAction extends AbstractBaseAction implements BaseAct
         PageDetailsDto targetPageDetailsDto = super.executeAction(new PageDetailsDto());
         ConfigPageDetailsDto configPageDetailsDto = (ConfigPageDetailsDto)
                 request.getSession().getAttribute(LoadClientListAction.CONFIG_PAGE_DETAILS);
-        String clientId = configPageDetailsDto.getClientDto().getId();
+        String clientId = configPageDetailsDto.getClientId();
         targetPageDetailsDto.getNavigationDto().getNavigationItems().forEach(navigationItemDto -> {
             if (!navigationItemDto.getWidgets().isEmpty()){
                 navigationItemDto.getWidgets().forEach(targetWidgetDto -> {

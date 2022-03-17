@@ -1,6 +1,7 @@
 package com.distarise.base.action;
 
 import com.distarise.base.model.ComponentDto;
+import com.distarise.base.model.ConfigPageDetailsDto;
 import com.distarise.base.model.WidgetDto;
 import com.distarise.base.service.ComponentService;
 import com.distarise.base.service.WidgetService;
@@ -14,6 +15,8 @@ public class SaveComponentAction extends AbstractBaseAction implements BaseActio
     private ComponentService componentService;
 
     public void executeAction(){
+        ConfigPageDetailsDto configPageDetailsDto = (ConfigPageDetailsDto)
+                request.getSession().getAttribute(LoadClientListAction.CONFIG_PAGE_DETAILS);
         String id = request.getParameter("column1");
         String editable = request.getParameter("column2");
         String label = request.getParameter("column3");
@@ -24,10 +27,8 @@ public class SaveComponentAction extends AbstractBaseAction implements BaseActio
         String type = request.getParameter("column8");
         String visible = request.getParameter("column9");
         String multiLevel = request.getParameter("column10");
-        String widgetId = request.getParameter("column11");
-        String clientId = request.getParameter("column12");
-        String uiNavId = request.getParameter("column13");
-        String uiNavItemId = request.getParameter("column14");
+        String widgetId = configPageDetailsDto.getWidgetId();
+        String clientId = configPageDetailsDto.getClientId();
 
 /*
         componentService.saveComponent(new ComponentDto(id, widgetId, clientId, Integer.parseInt(sortOrder),

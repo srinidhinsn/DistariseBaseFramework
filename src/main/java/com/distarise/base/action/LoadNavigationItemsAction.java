@@ -9,6 +9,7 @@ import com.distarise.base.service.NavigationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Service
@@ -19,9 +20,8 @@ public class LoadNavigationItemsAction extends AbstractBaseAction implements Bas
 
     public void executeAction(){
         PageDetailsDto targetPageDetailsDto = super.executeAction(new PageDetailsDto());
-        ConfigPageDetailsDto configPageDetailsDto = (ConfigPageDetailsDto)
-                request.getSession().getAttribute(LoadClientListAction.CONFIG_PAGE_DETAILS);
-        String clientId = configPageDetailsDto.getClientDto().getId();
+        ConfigPageDetailsDto configPageDetailsDto = setConfigPageDetails(request);
+        String clientId = configPageDetailsDto.getClientId();
         targetPageDetailsDto.getNavigationDto().getNavigationItems().forEach(navigationItemDto -> {
             if (!navigationItemDto.getWidgets().isEmpty()){
                 navigationItemDto.getWidgets().forEach(targetWidgetDto -> {
@@ -32,45 +32,44 @@ public class LoadNavigationItemsAction extends AbstractBaseAction implements Bas
                         targetWidgetDto.getComponentDtos().forEach(targetComponentDto -> {
                             //Loading Navigation items
                             if(targetComponentDto.getId().equalsIgnoreCase("landingpage")){
-                                String selectedLandingPage = request.getParameter("landingpage");
-                                List<ComponentItemDto> uiNavs = loadNavigationItemActionExt.preloadNavigationList(clientId, selectedLandingPage);
+                                List<ComponentItemDto> uiNavs = loadNavigationItemActionExt.preloadNavigationList(configPageDetailsDto);
                                 if (null!=uiNavs) {
                                     targetComponentDto.getComponentItemDtos().addAll(uiNavs);
                                 }
                             } else if (targetComponentDto.getId().equalsIgnoreCase("navigationitemgrid")){
-                                loadNavigationItemActionExt.preloadNavigationItemForm(request, clientId, targetComponentDto);
+                                loadNavigationItemActionExt.preloadNavigationItemForm(targetComponentDto, configPageDetailsDto);
                             } else if (targetComponentDto.getId().equalsIgnoreCase("clientid")){
-                                targetComponentDto.setValue(clientId);
+                                targetComponentDto.setValue(configPageDetailsDto.getClientId());
                             }
 
                             //Loading widgets
                             else if (targetComponentDto.getId().equalsIgnoreCase("navigationitemlist")){
-                                List<ComponentItemDto> uiNavItems = loadNavigationItemActionExt.preloadNavItemList(clientId, request);
+                                List<ComponentItemDto> uiNavItems = loadNavigationItemActionExt.preloadNavItemList(configPageDetailsDto);
                                 if (null != uiNavItems){
                                     targetComponentDto.getComponentItemDtos().addAll(uiNavItems);
                                 }
                             } else if (targetComponentDto.getId().equalsIgnoreCase("widgetsgrid")){
-                                loadNavigationItemActionExt.preloadWidgetForm(request, clientId, targetComponentDto);
+                                loadNavigationItemActionExt.preloadWidgetForm(targetComponentDto, configPageDetailsDto);
                             }
 
                             //Loading components
                             else if (targetComponentDto.getId().equalsIgnoreCase("widgetlist")){
-                                List<ComponentItemDto> widgetList = loadNavigationItemActionExt.preloadWidgetList(clientId, request);
+                                List<ComponentItemDto> widgetList = loadNavigationItemActionExt.preloadWidgetList(configPageDetailsDto);
                                 if (null != widgetList){
                                     targetComponentDto.getComponentItemDtos().addAll(widgetList);
                                 }
                             } else if (targetComponentDto.getId().equalsIgnoreCase("componentgrid")){
-                                loadNavigationItemActionExt.preloadComponentForm(request, clientId, targetComponentDto);
+                                loadNavigationItemActionExt.preloadComponentForm(targetComponentDto, configPageDetailsDto);
                             }
 
                             //Loading Component items
                             else if (targetComponentDto.getId().equalsIgnoreCase("componentlist")){
-                                List<ComponentItemDto> componentList = loadNavigationItemActionExt.preloadComponentList(clientId, request);
+                                List<ComponentItemDto> componentList = loadNavigationItemActionExt.preloadComponentList(configPageDetailsDto);
                                 if (null != componentList){
                                     targetComponentDto.getComponentItemDtos().addAll(componentList);
                                 }
                             } else if (targetComponentDto.getId().equalsIgnoreCase("componentitemgrid")){
-                                loadNavigationItemActionExt.preloadComponentItemForm(request, clientId, targetComponentDto);
+                                loadNavigationItemActionExt.preloadComponentItemForm(targetComponentDto, configPageDetailsDto);
                             }
                         });
                     }
@@ -78,5 +77,28 @@ public class LoadNavigationItemsAction extends AbstractBaseAction implements Bas
             }
         });
 
+    }
+
+    private ConfigPageDetailsDto setConfigPageDetails(HttpServletRequest request) {
+        String selectedLandingPage = request.getParameter("landingpage");
+        String selectedUiNavItem = request.getParameter("navigationitemlist");
+        String selectedWidget = request.getParameter("widgetlist");
+        String selectedComponent = request.getParameter("componentlist");
+        ConfigPageDetailsDto configPageDetailsDto = (ConfigPageDetailsDto)
+                request.getSession().getAttribute(LoadClientListAction.CONFIG_PAGE_DETAILS);
+        if (null != selectedLandingPage){
+            configPageDetailsDto.setUiNavId(selectedLandingPage);
+        }
+        if (null != selectedUiNavItem){
+            configPageDetailsDto.setNavItemId(selectedUiNavItem);
+        }
+        if (null !=selectedWidget){
+            configPageDetailsDto.setWidgetId(selectedWidget);
+        }
+        if (null != selectedComponent){
+            configPageDetailsDto.setComponentId(selectedComponent);
+        }
+
+        return configPageDetailsDto;
     }
 }
