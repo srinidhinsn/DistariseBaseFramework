@@ -30,6 +30,10 @@ public class RoleWidgetAction implements Serializable {
     @Column(name="VISIBLE")
     private Boolean visible;
 
+    @Column(name="ENABLED", columnDefinition = "boolean default true")
+    private Boolean enabled;
+
+
     public String getRoleName() {
         return roleName;
     }
@@ -70,13 +74,22 @@ public class RoleWidgetAction implements Serializable {
         this.action = action;
     }
 
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
     public RoleWidgetAction(String roleName, String clientId, String widgetId, Boolean visible,
-                            String action) {
+                            String action, Boolean enabled) {
         this.roleName = roleName;
         this.clientId = clientId;
         this.widgetId = widgetId;
         this.visible = visible;
         this.action = action;
+        this.enabled = enabled;
     }
 
     public RoleWidgetAction() {

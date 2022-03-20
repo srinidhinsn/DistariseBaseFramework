@@ -1,6 +1,7 @@
 package com.distarise.base.service;
 
 import com.distarise.base.model.ComponentDto;
+import com.distarise.base.model.RoleWidgetActionDto;
 import com.distarise.base.model.WidgetDto;
 
 import java.util.List;
@@ -14,4 +15,5 @@ public interface ComponentService extends AbstractBaseService{
     void saveComponent(ComponentDto componentDto);
     List<ComponentDto> getMultilevelComponentsByWidgetId(String clientId, String selectedWidget);
     List<ComponentDto> getActionsByClientId(String clientId);
+    List<RoleWidgetActionDto> getActionsByClientIdAndRoleName(String clientId, String roleName);
 }

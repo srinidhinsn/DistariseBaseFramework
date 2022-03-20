@@ -7,6 +7,7 @@ import com.distarise.base.model.ComponentItemDto;
 import com.distarise.base.model.ConfigPageDetailsDto;
 import com.distarise.base.model.PageDetailsDto;
 import com.distarise.base.model.RoleDto;
+import com.distarise.base.model.RoleWidgetActionDto;
 import com.distarise.base.model.WidgetDto;
 import com.distarise.base.service.ComponentService;
 import com.distarise.base.service.RoleService;
@@ -37,7 +38,9 @@ public class LoadRoleAccessListAction extends AbstractBaseAction implements Base
         targetPageDetailsDto.getNavigationDto().getNavigationItems().forEach(navigationItemDto -> {
             if (!navigationItemDto.getWidgets().isEmpty()){
                 navigationItemDto.getWidgets().forEach(targetWidgetDto -> {
-                    List<ComponentDto> componentDtoList = componentService.getActionsByClientId(configPageDetailsDto.getClientId());
+                    List<RoleWidgetActionDto> enabledRoleWidgetActionDtos = roleService.findAllByClientId(configPageDetailsDto.getClientId());
+                    List<RoleWidgetActionDto> allRoleWidgetActions = componentService.getActionsByClientIdAndRoleName(configPageDetailsDto.getClientId(), configPageDetailsDto.getRoleName());
+                    loadUserRoleAccessActionExt.updateAllRoleWidgetActions(allRoleWidgetActions, enabledRoleWidgetActionDtos);
                     if (targetWidgetDto.getId().equalsIgnoreCase("addroleaccess") ){
                         targetWidgetDto.getComponentDtos().forEach(targetComponentDto -> {
                             if(targetComponentDto.getId().equalsIgnoreCase("rolelist")){
@@ -46,19 +49,8 @@ public class LoadRoleAccessListAction extends AbstractBaseAction implements Base
                                 if (null != componentItemDtoList){
                                     targetComponentDto.getComponentItemDtos().addAll(componentItemDtoList);
                                 }
-                            } else if(targetComponentDto.getId().equalsIgnoreCase("widgetlist")){
-                                List<WidgetDto> widgetDtoList = widgetService.getWidgetsByClientId(configPageDetailsDto.getClientId());
-                                List<ComponentItemDto> componentItemDtoList = loadUserRoleAccessActionExt.preloadWidgetList(widgetDtoList, configPageDetailsDto);
-                                if (null != componentItemDtoList){
-                                    targetComponentDto.getComponentItemDtos().addAll(componentItemDtoList);
-                                }
-                            } else if(targetComponentDto.getId().equalsIgnoreCase("actionlist")){
-                                List<ComponentItemDto> componentItemDtoList = loadUserRoleAccessActionExt.preloadAccessList(componentDtoList, configPageDetailsDto);
-                                if (null != componentItemDtoList){
-                                    targetComponentDto.getComponentItemDtos().addAll(componentItemDtoList);
-                                }
                             } else if(targetComponentDto.getId().equalsIgnoreCase("roleaccessgrid")){
-                                loadUserRoleAccessActionExt.preloadRoleAccessGrid(targetComponentDto, componentDtoList, configPageDetailsDto);
+                                loadUserRoleAccessActionExt.preloadRoleAccessGrid(targetComponentDto, allRoleWidgetActions);
                             } else if(targetComponentDto.getId().equalsIgnoreCase("clientid")){
                                 targetComponentDto.setValue(configPageDetailsDto.getClientId());
                             } else if(targetComponentDto.getId().equalsIgnoreCase("clientlist")){
@@ -68,8 +60,6 @@ public class LoadRoleAccessListAction extends AbstractBaseAction implements Base
 
                             }
                         });
-                    } else if (targetWidgetDto.getId().equalsIgnoreCase("saveroleaccess")){
-                        loadUserRoleAccessActionExt.preloadRoleAccessForm(targetWidgetDto, configPageDetailsDto);
                     }
                 });
             }

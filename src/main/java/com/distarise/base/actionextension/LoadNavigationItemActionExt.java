@@ -130,12 +130,14 @@ public class LoadNavigationItemActionExt {
             Map<String, String> gridRow = new HashMap<>();
             gridRow.put("formid", "savewidget");
             componentDto.getComponentItemDtos().forEach(componentItemDto -> {
-                if (componentItemDto.getValue().equalsIgnoreCase("column2")){
+                if (componentItemDto.getValue().equalsIgnoreCase("column1")){
                     gridRow.put(componentItemDto.getValue(), widgetDto.getId());
-                } else if (componentItemDto.getValue().equalsIgnoreCase("column3")){
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column2")){
                     gridRow.put(componentItemDto.getValue(), widgetDto.getWidgetTitle());
-                } else if (componentItemDto.getValue().equalsIgnoreCase("column4")){
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column3")){
                     gridRow.put(componentItemDto.getValue(), widgetDto.getSortOrder().toString());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column4")){
+                    gridRow.put(componentItemDto.getValue(), widgetDto.getRedirectUrl());
                 } else if (componentItemDto.getValue().equalsIgnoreCase("column5")){
                     gridRow.put(componentItemDto.getValue(), widgetDto.getNavigationItemId());
                 } else if (componentItemDto.getValue().equalsIgnoreCase("column6")){

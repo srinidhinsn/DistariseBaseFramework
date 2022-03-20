@@ -134,20 +134,7 @@ public abstract class AbstractBaseAction implements BaseAction{
         widgetDto.getComponentDtos().forEach(componentDto -> {
 
             if (componentDto.getMultiLevel()){
-                if (componentDto.getType().toUpperCase().contains(CHECKBOX)) {
-                    componentDto.getComponentItemDtos().forEach(componentItemDto -> {
-                        Enumeration<String> params = request.getParameterNames();
-                        componentItemDto.setValue(CHECKBOX_UNCHECKED);
-                        while (params.hasMoreElements()) {
-                            String param = params.nextElement();
-                            if (param.equalsIgnoreCase(componentItemDto.getComponentId() + "-"
-                                    + componentItemDto.getLabel())) {
-                                componentItemDto.setValue(CHECKBOX_CHECKED);
-                            }
-                        }
-                        ;
-                    });
-                } else if (componentDto.getType().toUpperCase().contains(DROPDOWN)){
+                if (componentDto.getType().toUpperCase().contains(DROPDOWN)){
                     componentDto.getComponentItemDtos().forEach(componentItemDto -> {
                         Enumeration<String> params = request.getParameterNames();
                         componentItemDto.setSelected(false);

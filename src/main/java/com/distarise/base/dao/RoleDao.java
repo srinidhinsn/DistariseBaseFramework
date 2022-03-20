@@ -9,4 +9,5 @@ public interface RoleDao extends AbstractBaseDao {
     List<RoleDto> getRoleList(String client);
     void saveRole(RoleDto roleDto);
     void saveRoleWidgetAction(RoleWidgetActionDto roleWidgetActionDto);
+    List<RoleWidgetActionDto> findAllByClientId(String clientId);
 }

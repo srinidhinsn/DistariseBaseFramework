@@ -7,8 +7,10 @@ import com.distarise.base.model.ComponentDto;
 import com.distarise.base.model.ComponentItemDto;
 import com.distarise.base.model.ConfigPageDetailsDto;
 import com.distarise.base.model.RoleDto;
+import com.distarise.base.model.RoleWidgetActionDto;
 import com.distarise.base.model.WidgetDto;
 import com.distarise.base.service.ClientService;
+import com.distarise.base.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,23 +47,7 @@ public class LoadUserRoleAccessActionExt {
         }
 
     }
-    public List<ComponentItemDto> preloadWidgetList(List<WidgetDto> widgetDtoList, ConfigPageDetailsDto configPageDetailsDto) {
-        if (null == widgetDtoList || widgetDtoList.isEmpty()){
-            return null;
-        }
-        String selectedWidget = configPageDetailsDto.getWidgetId();
-        List<ComponentItemDto> componentItemDtoList = new ArrayList<>();
-        for (int i=0; i<widgetDtoList.size(); i++){
-            WidgetDto widgetDto = widgetDtoList.get(i);
-            ComponentItemDto componentItemDto = new ComponentItemDto(18000L + i, "rolelist", widgetDto.getClientId(),
-                    i, widgetDto.getId(), widgetDto.getWidgetTitle(), true, true);
-            if (widgetDto.getId().equalsIgnoreCase(selectedWidget)){
-                componentItemDto.setSelected(true);
-            }
-            componentItemDtoList.add(componentItemDto);
-        }
-        return componentItemDtoList;
-    }
+
 
     public List<ComponentItemDto> preloadRoleList(List<RoleDto> roleDtoList, ConfigPageDetailsDto configPageDetailsDto){
         if (null == roleDtoList || roleDtoList.isEmpty()){
@@ -81,73 +67,19 @@ public class LoadUserRoleAccessActionExt {
         return componentItemDtoList;
     }
 
-    public void preloadRoleAccessForm(WidgetDto targetWidgetDto,  ConfigPageDetailsDto configPageDetailsDto) {
-        String role = configPageDetailsDto.getRoleName();
-        String widget = configPageDetailsDto.getWidgetId();
-        String action = configPageDetailsDto.getAction();
-        String clientId = configPageDetailsDto.getClientId();
-        targetWidgetDto.getComponentDtos().forEach(componentDto -> {
-            if (componentDto.getId().equalsIgnoreCase("column1")){
-                componentDto.setValue(clientId);
-            }else if (componentDto.getId().equalsIgnoreCase("column2")){
-                componentDto.setValue(role);
-            }else if (componentDto.getId().equalsIgnoreCase("column3")){
-                componentDto.setValue(widget);
-            }else if (componentDto.getId().equalsIgnoreCase("column4")){
-                if (null != action){
-                    componentDto.setValue(action);
-                }
-            }
-        });
-    }
-
-    public List<ComponentItemDto> preloadAccessList(List<ComponentDto> componentDtoList, ConfigPageDetailsDto configPageDetailsDto) {
-        if (null == componentDtoList || componentDtoList.isEmpty()){
-            return null;
-        }
-        String selectedAction = configPageDetailsDto.getAction();
-        String clientId = configPageDetailsDto.getClientId();
-        List<ComponentItemDto> componentItemDtoList = new ArrayList<>();
-        for (int i=0; i<componentDtoList.size(); i++){
-            ComponentDto componentDto = componentDtoList.get(i);
-            if (null != componentDto.getKeyOrAction() && !componentDto.getKeyOrAction().isEmpty()) {
-                ComponentItemDto componentItemDto = new ComponentItemDto(18000L + i, "accesslist", clientId,
-                        i, componentDto.getKeyOrAction(), componentDto.getId(), true, true);
-                if (componentDto.getKeyOrAction().equalsIgnoreCase(selectedAction)) {
-                    componentItemDto.setSelected(true);
-                }
-                componentItemDtoList.add(componentItemDto);
-            }
-        }
-        return componentItemDtoList;
-    }
-
-    public void preloadRoleAccessGrid(ComponentDto targetComponentDto, List<ComponentDto> componentDtoList, ConfigPageDetailsDto configPageDetailsDto) {
-        String selectedAction = configPageDetailsDto.getAction();
-        String selectedWidget = configPageDetailsDto.getWidgetId();
-        String selectedRole = configPageDetailsDto.getRoleName();
-        String clientId = configPageDetailsDto.getClientId();
+    public void preloadRoleAccessGrid(ComponentDto targetComponentDto, List<RoleWidgetActionDto> roleWidgetActionDtos ) {
         List<Map<String, String>> gridList = new ArrayList<>();
 
-        componentDtoList.forEach(componentDto -> {
-            if (componentDto.getWidgetId().equalsIgnoreCase(selectedWidget)) {
-                Map<String, String> gridRow = new HashMap<>();
-                targetComponentDto.getComponentItemDtos().forEach(componentItemDto -> {
-                    gridRow.put("formid", "saveroleaccess");
-                    if (componentItemDto.getValue().equalsIgnoreCase("column1")) {
-                        gridRow.put(componentItemDto.getValue(), clientId);
-                    } else if (componentItemDto.getValue().equalsIgnoreCase("column2")) {
-                        gridRow.put(componentItemDto.getValue(), selectedRole);
-                    } else if (componentItemDto.getValue().equalsIgnoreCase("column3")) {
-                        gridRow.put(componentItemDto.getValue(), componentDto.getWidgetId());
-                    } else if (componentItemDto.getValue().equalsIgnoreCase("column4")) {
-                        gridRow.put(componentItemDto.getValue(), componentDto.getKeyOrAction());
-                    }
-                });
-                componentDto.fillEmptyColumns(gridRow, 5);
-                gridList.add(gridRow);
-            }
+        roleWidgetActionDtos.forEach(roleWidgetActionDto -> {
+            Map<String, String> gridRow = new HashMap<>();
+            gridRow.put("enabled", roleWidgetActionDto.getEnabled().toString().toLowerCase());
+            gridRow.put("roleName", roleWidgetActionDto.getRoleName());
+            gridRow.put("widgetId", roleWidgetActionDto.getWidgetId());
+            gridRow.put("action", roleWidgetActionDto.getAction());
+            gridRow.put("clientId", roleWidgetActionDto.getClientId());
+            gridList.add(gridRow);
         });
+
         targetComponentDto.setGridValues(gridList);
     }
 
@@ -162,10 +94,10 @@ public class LoadUserRoleAccessActionExt {
             configPageDetailsDto = new ConfigPageDetailsDto();
             request.getSession().setAttribute(LoadClientListAction.CONFIG_PAGE_DETAILS, configPageDetailsDto);
         }
-        if (null == clientId){
+        if (null == clientId && null == configPageDetailsDto.getClientId()){
             configPageDetailsDto.setClientId(defaultClientId);
         }
-        else {
+        if (null != clientId) {
             configPageDetailsDto.setClientId(clientId);
         }
         if (null != roleName){
@@ -195,5 +127,16 @@ public class LoadUserRoleAccessActionExt {
             componentItemDtoList.add(componentItemDto);
         }
         return componentItemDtoList;
+    }
+
+    public void updateAllRoleWidgetActions(List<RoleWidgetActionDto> allRoleWidgetActions, List<RoleWidgetActionDto> enabledRoleWidgetActionDtos) {
+        for (int i=0; allRoleWidgetActions.size()>i; i++){
+            for (int j=0; enabledRoleWidgetActionDtos.size()>j; j++){
+                if (allRoleWidgetActions.get(i).equals(enabledRoleWidgetActionDtos.get(j))){
+                    allRoleWidgetActions.get(i).setEnabled(enabledRoleWidgetActionDtos.get(j).getEnabled());
+                    break;
+                }
+            }
+        }
     }
 }

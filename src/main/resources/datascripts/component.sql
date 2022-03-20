@@ -28,7 +28,7 @@ INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, s
 	VALUES ('passwordsample', 'distarise', true, null, null, 'Password (password)', 3, 'password', true, 'samples', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-	VALUES ('checkboxsample', 'distarise', true, null, null, 'Checkbox (checkbox)', 4, 'checkbox', true, 'samples', true);
+	VALUES ('checkboxsample', 'distarise', true, null, null, 'Checkbox (checkbox)', 4, 'checkbox', true, 'samples', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
 	VALUES ('radiosample', 'distarise', true, null, null, 'Radio (radiobutton)', 5, 'radiobutton', true, 'samples', false);
@@ -205,13 +205,16 @@ INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, s
 VALUES ('widgetsgrid', 'distarise', true, '', '', 'Widgets List', 8, 'gridform', true, 'addwidget', true);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('column2', 'distarise', true, '', '', 'Id', 4, 'textbox', true, 'savewidget', false);
+VALUES ('column1', 'distarise', true, '', '', 'Id', 3, 'textbox', true, 'savewidget', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('column3', 'distarise', true, '', '', 'Title', 5, 'textbox', true, 'savewidget', false);
+VALUES ('column2', 'distarise', true, '', '', 'Title', 4, 'textbox', true, 'savewidget', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('column4', 'distarise', true, '', '', 'Sort order', 6, 'textbox', true, 'savewidget', false);
+VALUES ('column3', 'distarise', true, '', '', 'Sort order', 5, 'textbox', true, 'savewidget', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('column4', 'distarise', true, '', '', 'Redirect URL', 6, 'textbox', true, 'savewidget', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
 VALUES ('column5', 'distarise', true, '', '', 'Navigation item id', 7, 'textbox', true, 'savewidget', false);
@@ -261,7 +264,7 @@ INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, s
 VALUES ('column1', 'distarise', true, '', '', 'Id', 4, 'textbox', true, 'savecomponent', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('column2', 'distarise', true, '', '', 'Editable', 5, 'checkbox', true, 'savecomponent', true);
+VALUES ('column2', 'distarise', true, '', '', 'Editable', 5, 'checkbox', true, 'savecomponent', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
 VALUES ('column3', 'distarise', true, '', '', 'Label', 6, 'textbox', true, 'savecomponent', false);
@@ -282,10 +285,10 @@ INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, s
 VALUES ('column8', 'distarise', true, '', '', 'Type', 10, 'textbox', true, 'savecomponent', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('column9', 'distarise', true, '', '', 'Visibility', 11, 'checkbox', true, 'savecomponent', true);
+VALUES ('column9', 'distarise', true, '', '', 'Visibility', 11, 'checkbox', true, 'savecomponent', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('column10', 'distarise', true, '', '', 'Multi-level', 12, 'checkbox', true, 'savecomponent', true);
+VALUES ('column10', 'distarise', true, '', '', 'Multi-level', 12, 'checkbox', true, 'savecomponent', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
 VALUES ('column11', 'distarise', true, '', '', 'Widget id', 13, 'textbox', true, 'savecomponent', false);
@@ -378,28 +381,7 @@ INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, s
 VALUES ('rolelist', 'distarise', true, '', '', 'Roles', 2, 'configdropdown', true, 'addroleaccess', true);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('widgetlist', 'distarise', true, '', '', 'Widgets', 3, 'configdropdown', true, 'addroleaccess', true);
-
-INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('actionlist', 'distarise', true, '', '', 'Actions', 4, 'configdropdown', true, 'addroleaccess', true);
-
-INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('roleaccessgrid', 'distarise', true, '', '', 'Role Access list', 5, 'gridform', true, 'addroleaccess', true);
-
-INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('column1', 'distarise', true, '', '', 'Client name', 1, 'hidden', false, 'saveroleaccess', false);
-
-INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('column2', 'distarise', true, '', '', 'Role name', 2, 'textbox', true, 'saveroleaccess', false);
-
-INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('column3', 'distarise', true, '', '', 'Widget name', 3, 'textbox', true, 'saveroleaccess', false);
-
-INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('column4', 'distarise', true, '', '', 'Action name', 4, 'textbox', true, 'saveroleaccess', false);
-
-INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('saveroleaccess', 'distarise', true, '', 'com.distarise.base.action.SaveRoleAccessAction', 'Save', 5, 'submitbutton', true, 'saveroleaccess', false);
+VALUES ('roleaccessgrid', 'distarise', true, '', 'com.distarise.base.action.SaveRoleAccessAction', 'Role Access list', 3, 'roleaccessform', true, 'addroleaccess', true);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
 VALUES ('loaduserdetailsgrid', 'distarise', true, '', 'com.distarise.base.action.LoadUserDetailsAction', 'loaduserdetails', 2, 'autoaction', true, 'adduser', false);

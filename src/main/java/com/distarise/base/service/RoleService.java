@@ -9,4 +9,5 @@ public interface RoleService extends AbstractBaseService {
     List<RoleDto> getRoleList(String client);
     void saveRole(RoleDto roleDto);
     void saveRoleWidgetAction(RoleWidgetActionDto roleWidgetActionDto);
+    List<RoleWidgetActionDto> findAllByClientId(String clientId);
 }

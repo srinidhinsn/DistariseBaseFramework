@@ -25,19 +25,19 @@ public class SaveComponentAction extends AbstractBaseAction implements BaseActio
         String redirectUrl = request.getParameter("column6");
         String sortOrder = request.getParameter("column7");
         String type = request.getParameter("column8");
-        String visible = request.getParameter("column9");
-        String multiLevel = request.getParameter("column10");
         String widgetId = configPageDetailsDto.getWidgetId();
         String clientId = configPageDetailsDto.getClientId();
+        Boolean visible = false;
+        Boolean multiLevel = false;
+        if (null != request.getParameter("column9")){
+            visible = true;
+        }
+        if (null != request.getParameter("column10")){
+            multiLevel = true;
+        }
 
-/*
         componentService.saveComponent(new ComponentDto(id, widgetId, clientId, Integer.parseInt(sortOrder),
-                type, label, Boolean.parseBoolean(editable), keyOrAction, Boolean.parseBoolean(visible), value,
-                Boolean.parseBoolean(multiLevel), redirectUrl, null, null, null));
-*/
-
-        componentService.saveComponent(new ComponentDto(id, widgetId, clientId, Integer.parseInt(sortOrder),
-                type, label, true, keyOrAction, true, value,
-                Boolean.parseBoolean(multiLevel), redirectUrl, null, null, null));
+                type, label, true, keyOrAction, visible, value,
+                multiLevel, redirectUrl, null, null, null));
     }
 }

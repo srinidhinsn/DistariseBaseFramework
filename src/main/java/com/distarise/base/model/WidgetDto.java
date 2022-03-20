@@ -123,7 +123,7 @@ public class WidgetDto implements Serializable {
     }
 
     public WidgetDto(String id, String clientId, String navigationItemId, String cssClass,
-                     String widgetTitle, String layoutId, Integer sortOrder, String widgetId,
+                     String widgetTitle, String layoutId, Integer sortOrder, String widgetId, String redirectUrl,
                      Integer rowspan, Integer colspan, LayoutDto layoutDto, List<ComponentDto> componentDtos) {
         this.id = id;
         this.clientId = clientId;
@@ -133,6 +133,7 @@ public class WidgetDto implements Serializable {
         this.layoutId = layoutId;
         this.sortOrder = sortOrder;
         this.widgetId = widgetId;
+        this.redirectUrl = redirectUrl;
         this.componentDtos = componentDtos;
         this.rowspan = rowspan;
         this.colspan = colspan;
