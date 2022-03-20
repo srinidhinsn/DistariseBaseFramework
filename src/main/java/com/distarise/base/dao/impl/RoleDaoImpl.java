@@ -46,4 +46,13 @@ public class RoleDaoImpl implements RoleDao, AbstractBaseDao {
     public void saveRoleWidgetAction(RoleWidgetActionDto roleWidgetActionDto) {
         roleWidgetActionRepository.save(modelMapper.map(roleWidgetActionDto, RoleWidgetAction.class));
     }
+
+    @Override
+    public List<RoleWidgetActionDto> findAllByClientId(String clientId) {
+        List<RoleWidgetAction> roleWidgetActionList = roleWidgetActionRepository.findAllByClientId(clientId);
+        return roleWidgetActionList.stream().map(roleWidgetAction ->
+                modelMapper.map(roleWidgetAction, RoleWidgetActionDto.class)).collect(Collectors.toList());
+    }
+
+
 }

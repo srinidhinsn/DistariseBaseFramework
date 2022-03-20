@@ -29,4 +29,9 @@ public class RoleServiceImpl implements RoleService {
     public void saveRoleWidgetAction(RoleWidgetActionDto roleWidgetActionDto) {
         roleDao.saveRoleWidgetAction(roleWidgetActionDto);
     }
+
+    @Override
+    public List<RoleWidgetActionDto> findAllByClientId(String clientId) {
+        return roleDao.findAllByClientId(clientId);
+    }
 }

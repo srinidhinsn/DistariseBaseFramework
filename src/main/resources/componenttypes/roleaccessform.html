@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+</head>
+    <body>
+        <div th:fragment="formField(component, widget, navigationItem, pageDetails)">
+            <input type="hidden" th:id="selectedClientId" th:name="selectedClientId" value="" />
+            <input type="hidden" th:id="selectedRoleName" th:name="selectedRoleName" value="" />
+            <input type="hidden" th:id="selectedWidgetId" th:name="selectedWidgetId" value="" />
+            <input type="hidden" th:id="selectedAction" th:name="selectedAction" value="" />
+            <input type="hidden" th:id="selectedEnabled" th:name="selectedEnabled" value="" />
+            <div class="form-group">
+                <table class="table table-hover table-cards align-items-center">
+                    <thead style="border-bottom: solid; border-width: thin">
+                    <tr>
+                        <th scope="col">Grant Access</th>
+                        <th scope="col">Client Id</th>
+                        <th scope="col">Role Name</th>
+                        <th scope="col">Widget Id</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <div th:if="${null != component.gridValues and component.gridValues.size()>0}">
+                         <div th:each="gridValue : ${component.gridValues}">
+                            <tr>
+                                <td>
+                                    <div th:if="${'true' == gridValue.get('enabled')}">
+                                    <input th:type="checkbox" class="form-control" id="enabled" name="enabled"
+                                           checked="true" th:onclick="|javascript:saveRoleWidgetAccess('${widget.id}', '${component.keyOrAction}','${widget.redirectUrl}',
+                                           '${gridValue.get('clientId')}','${gridValue.get('roleName')}',
+                                           '${gridValue.get('widgetId')}', '${gridValue.get('action')}', 'false')|" />
+                                    </div>
+                                    <div th:if="${'false' == gridValue.get('enabled')}">
+                                        <input th:type="checkbox" class="form-control" id="enabled" name="enabled"
+                                               th:onclick="|javascript:saveRoleWidgetAccess('${widget.id}','${component.keyOrAction}','${widget.redirectUrl}',
+                                           '${gridValue.get('clientId')}','${gridValue.get('roleName')}',
+                                           '${gridValue.get('widgetId')}', '${gridValue.get('action')}', 'true')|" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <span th:text="${gridValue.get('clientId')}" id="clientId" name="clientId" />
+                                </td>
+                                <td>
+                                    <span th:text="${gridValue.get('roleName')}" id="roleName" name="roleName" />
+                                </td>
+                                <td>
+                                    <span th:text="${gridValue.get('widgetId')}" id="widgetId" name="widgetId" />
+                                </td>
+                                <td>
+                                    <span th:text="${gridValue.get('action')}" id="action" name="action" />
+                                </td>
+                            </tr>
+
+                            <tr class="table-divider"></tr>
+                         </div>
+                    </div>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </body>
+</html>

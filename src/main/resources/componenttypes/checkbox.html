@@ -6,15 +6,8 @@
     <body>
         <div th:fragment="formField(component, widget, navigationItem, pageDetails)">
             <div class="form-group">
-                <div th:if="${component.componentItemDtos.size()>0}">
-                    <label th:for="${component.id}" th:text="${component.label}"></label>
-                    <div th:each="componentItemDto : ${component.componentItemDtos}">
-                        <input type="checkbox" class="form-control" th:id="${component.id}"
-                               th:text="${componentItemDto.label}" th:value="${componentItemDto.value}"
-                               th:checked="${componentItemDto.value}" th:name="|${component.id}-${componentItemDto.label}|" >
-                        </input>
-                    </div>
-                </div>
+                <input type="checkbox" class="form-control" th:id="${component.id}"
+                       th:text="${component.label}" th:value="${component.id}" th:name="${component.id}" />
             </div>
         </div>
     </body>

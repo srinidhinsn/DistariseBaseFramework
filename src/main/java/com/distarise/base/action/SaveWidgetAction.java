@@ -18,9 +18,10 @@ public class SaveWidgetAction extends AbstractBaseAction implements BaseAction {
         ConfigPageDetailsDto configPageDetailsDto = (ConfigPageDetailsDto)
                 request.getSession().getAttribute(LoadClientListAction.CONFIG_PAGE_DETAILS);
         String clientId = configPageDetailsDto.getClientId();
-        String id = request.getParameter("column2");
-        String title = request.getParameter("column3");
-        String sortOrder = request.getParameter("column4");
+        String id = request.getParameter("column1");
+        String title = request.getParameter("column2");
+        String sortOrder = request.getParameter("column3");
+        String redirectUrl = request.getParameter("column4");
         String navItemId = configPageDetailsDto.getNavItemId();
         String nestedWidgetId = request.getParameter("column6");
         String layoutId = request.getParameter("column7");
@@ -28,7 +29,7 @@ public class SaveWidgetAction extends AbstractBaseAction implements BaseAction {
         String uiNavId = configPageDetailsDto.getUiNavId();
 
         WidgetDto widgetDto = new WidgetDto(id, clientId, navItemId, cssClass, title, layoutId,
-                Integer.parseInt(sortOrder), nestedWidgetId, null, null, null, null);
+                Integer.parseInt(sortOrder), nestedWidgetId, redirectUrl, null, null, null, null);
         widgetService.saveWidget(widgetDto);
     }
 }
