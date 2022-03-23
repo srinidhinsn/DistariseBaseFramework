@@ -1,7 +1,5 @@
 package com.distarise.base.action;
 
-import com.distarise.base.model.UserDetailsDto;
-import com.distarise.base.model.WidgetDto;
 import com.distarise.base.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

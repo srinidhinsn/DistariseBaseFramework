@@ -38,29 +38,21 @@
 
         </aside>
         <section class="content">
-            <div class="header">
-                <div class="navigation-trigger d-xl-none" data-action="aside-open" data-target=".sidebar">
-                    <div class="navigation-trigger-inner">
-                        <i class="navigation-trigger-line"></i>
-                        <i class="navigation-trigger-line"></i>
-                        <i class="navigation-trigger-line"></i>
+            <div class="header" th:if="${'guest' != session.get('user').userId}">
+                <form method="post" action="com.distarise.distabank.action.SearchAction" style="align-content: last">
+                    <div class="header-nav ml-auto" style="right: auto">
+                        <ul class="nav align-items-center">
+                            <li class="nav-item d-none d-md-inline-block">
+                                <input th:type="hidden" th:name="actionIdentifier" th:id="actionIdentifier"
+                                       value="search-search-search" />
+                                <input type="text" id="searchKey" size="80" name="searchKey" value="" />
+                            </li>
+                            <li class="nav-item ml-4">
+                                <input class="btn btn-sm btn-primary" type="submit" value="Search" />
+                            </li>
+                        </ul>
                     </div>
-                </div>
-
-
-                <div class="header-nav ml-auto">
-                    <ul class="nav align-items-center">
-                        <li class="nav-item d-none d-md-inline-block">
-                            <a class="nav-link pl-0 active" href="../">Go to UI Kit</a>
-                        </li>
-                        <li class="nav-item d-none d-md-inline-block">
-                            <a class="nav-link" href="../docs/changelog.html">Changelog</a>
-                        </li>
-                        <li class="nav-item ml-4">
-                            <a href="https://github.com/webpixels/boomerang-ui-kit/archive/master.zip" class="btn btn-sm btn-primary">Download Free</a>
-                        </li>
-                    </ul>
-                </div>
+                </form>
             </div>
 
 
@@ -80,6 +72,7 @@
 
                                             <input th:type="hidden" th:name="action" th:id="action"
                                                    value="" />
+
 
                                             <div th:each="componentDto : ${widgetDto.componentDtos}">
                                                 <div th:replace="|../componenttypes/${componentDto.type}| ::

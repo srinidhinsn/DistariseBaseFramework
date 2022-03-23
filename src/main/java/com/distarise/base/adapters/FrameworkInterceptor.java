@@ -1,14 +1,8 @@
 package com.distarise.base.adapters;
 
-import com.distarise.base.action.AbstractBaseAction;
 import com.distarise.base.action.BaseAction;
-import com.distarise.base.action.LoginAction;
-import com.distarise.base.model.NavigationDto;
-import com.distarise.base.model.NavigationItemDto;
-import com.distarise.base.model.PageDetailsDto;
 import com.distarise.base.model.RoleWidgetActionDto;
 import com.distarise.base.model.UserDetailsDto;
-import com.distarise.base.model.WidgetDto;
 import com.distarise.base.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 @Component
 public class FrameworkInterceptor implements HandlerInterceptor {

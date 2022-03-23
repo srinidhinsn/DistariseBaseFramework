@@ -1,9 +1,7 @@
 package com.distarise.base.action;
 
 import com.distarise.base.model.ConfigPageDetailsDto;
-import com.distarise.base.model.NavigationItemDto;
 import com.distarise.base.model.WidgetDto;
-import com.distarise.base.service.NavigationItemService;
 import com.distarise.base.service.WidgetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

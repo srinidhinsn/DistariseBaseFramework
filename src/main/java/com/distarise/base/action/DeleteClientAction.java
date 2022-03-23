@@ -1,6 +1,5 @@
 package com.distarise.base.action;
 
-import com.distarise.base.actionextension.LoadClientDetailsActionExt;
 import com.distarise.base.model.ClientDto;
 import com.distarise.base.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;

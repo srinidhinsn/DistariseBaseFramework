@@ -1,11 +1,7 @@
 package com.distarise.base.actionextension;
 
-import com.distarise.base.action.LoadClientListAction;
-import com.distarise.base.model.ClientDto;
 import com.distarise.base.model.ComponentDto;
-import com.distarise.base.model.ConfigPageDetailsDto;
 import com.distarise.base.model.NavigationDto;
-import com.distarise.base.model.WidgetDto;
 import com.distarise.base.service.NavigationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +11,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 public class LoadNavigationsActionExt {

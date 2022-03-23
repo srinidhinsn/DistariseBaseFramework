@@ -12,7 +12,6 @@ import com.distarise.base.model.PageDetailsDto;
 import com.distarise.base.model.RoleWidgetActionDto;
 import com.distarise.base.model.UserDetailsDto;
 import com.distarise.base.model.WidgetDto;
-import com.distarise.base.service.AbstractBaseService;
 import com.distarise.base.service.BaseService;
 import com.distarise.base.service.ClientService;
 import com.distarise.base.service.ComponentItemService;
@@ -33,12 +32,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class BaseServiceImpl implements BaseService, AbstractBaseService {
+public class BaseServiceImpl implements BaseService {
 
     private static final Logger logger = LoggerFactory.getLogger(BaseServiceImpl.class);
 
@@ -91,18 +88,27 @@ public class BaseServiceImpl implements BaseService, AbstractBaseService {
             navigationItemDto.setLayoutDto(layoutDtoMap.get(navigationItemDto.getLayoutId()));
             List<WidgetDto> widgetDtos = widgetService.getWidgets(navigationItemDto.getId(), baseContextDto.getClientId(),
                     allowedWidgetIds);
-            List<String> widgetsToDisplay = widgetDtos.stream().map(WidgetDto::getId).collect(Collectors.toList());
-            logger.debug("widgetDtos size - "+widgetDtos.size());
-            List<ComponentDto> componentDtos = componentService.getComponents(widgetsToDisplay, baseContextDto.getClientId());
-            List<String> componentIds = componentDtos.stream().
-                    map(ComponentDto::getId).collect(Collectors.toList());
-            logger.debug("componentIds size - "+componentIds.size());
-            List<ComponentItemDto> componentItemDtos = componentItemService.getComponentItems(componentIds, baseContextDto.getClientId());
-            logger.debug("componentItemDtos size - "+componentItemDtos.size());
-            componentItemService.mapComponentItemsToComponents(componentDtos, componentItemDtos);
-            componentService.mapComponentsToWidget(widgetDtos, componentDtos, allowedWidgetActions);
+            if (widgetDtos.isEmpty()){
+                pageDetailsDto.getErrorMessages().add("No widgets to show; Or no access to view the widget.");
+            } else {
+                List<String> widgetsToDisplay = widgetDtos.stream().map(WidgetDto::getId).collect(Collectors.toList());
+                logger.debug("widgetDtos size - " + widgetDtos.size());
+                List<ComponentDto> componentDtos = componentService.getComponents(widgetsToDisplay, baseContextDto.getClientId());
+                List<String> componentIds = componentDtos.stream().
+                        map(ComponentDto::getId).collect(Collectors.toList());
+                logger.debug("componentIds size - " + componentIds.size());
+                List<ComponentItemDto> componentItemDtos = componentItemService.getComponentItems(componentIds, baseContextDto.getClientId());
+                logger.debug("componentItemDtos size - " + componentItemDtos.size());
+                componentItemService.mapComponentItemsToComponents(componentDtos, componentItemDtos);
+                componentService.mapComponentsToWidget(widgetDtos, componentDtos, allowedWidgetActions);
+                widgetService.mapLayoutsToWidgets(widgetDtos, layoutDtoMap);
+            }
+            WidgetDto widgetDto = widgetService.getMessageWidget(clientDto.getId(), navigationItemDto.getId(), pageDetailsDto);
+            if (null != widgetDto){
+                widgetDtos.add(widgetDto);
+            }
+
             widgetService.mapWidgetsToNavigationItems(navigationItemDtos, widgetDtos);
-            widgetService.mapLayoutsToWidgets(widgetDtos, layoutDtoMap);
             pageDetailsDto.setNavigationDto(navigationDto);
             pageDetailsDto.setClientDto(clientDto);
 

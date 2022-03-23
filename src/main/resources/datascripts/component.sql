@@ -368,8 +368,20 @@ VALUES ('rolename', 'distarise', true, '', '', 'Role name', 3, 'textbox', true, 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
 VALUES ('roledescription', 'distarise', true, '', '', 'Role Description', 4, 'textbox', true, 'addrole', false);
 
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel, value)
+VALUES ('uinav', 'distarise', true, '', '', 'Landing page details', 5, 'text', true, 'addrole', false, '');
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel, value)
+VALUES ('uinavid', 'distarise', false, '', '', 'Loading page', 6, 'textbox', true, 'addrole', false, 'adminlogin');
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel, value)
+VALUES ('module', 'distarise', false, '', '', 'Module', 7, 'textbox', true, 'addrole', false, 'customer');
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel, value)
+VALUES ('redirectpage', 'distarise', false, '', '', 'Landing page', 8, 'textbox', true, 'addrole', false, 'addcustomer');
+
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('saverole', 'distarise', true, '/nsn/distarise/userrole/addrole', 'com.distarise.base.action.SaveRoleAction', 'Save', 5, 'submitbutton', true, 'addrole', false);
+VALUES ('saverole', 'distarise', true, '/nsn/distarise/userrole/addrole', 'com.distarise.base.action.SaveRoleAction', 'Save', 9, 'submitbutton', true, 'addrole', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
 VALUES ('loadrolelist', 'distarise', true, '/nsn/distarise/userrole/addroleaccess', 'com.distarise.base.action.LoadRoleAccessListAction', 'Role list', 2, 'autoaction', true, 'addroleaccess', false);
@@ -413,3 +425,33 @@ VALUES ('column6', 'distarise', true, '', '', 'Role', 6, 'dropdown', true, 'save
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
 VALUES ('saveuserdetails', 'distarise', true, '/nsn/distarise/userrole/adduser', 'com.distarise.base.action.SaveUserDetailsAction', 'Save', 7, 'submitbutton', true, 'saveuser', false);
 
+
+-- Dista bank project scripts
+
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('username', 'distabank', true, '', '', 'Username', 1, 'textbox', true, 'login', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('password', 'distabank', true, '', '', 'Password', 2, 'password', true, 'login', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('login', 'distabank', true, '/nsn/distabank/customer/addcustomer', 'com.distarise.base.action.LoginAction', 'Login', 3, 'submitbutton', true, 'login', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('customerid', 'distabank', true, '', '', 'Customer Id', 1, 'text', true, 'addcustomer', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('firstname', 'distabank', true, '', '', 'First Name', 2, 'textbox', true, 'addcustomer', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('lastname', 'distabank', true, '', '', 'Last Name', 3, 'textbox', true, 'addcustomer', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('gender', 'distabank', true, '', '', 'Gender', 4, 'radiobutton', true, 'addcustomer', true);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('logout', 'distabank', true, '', 'com.distarise.base.action.LogoutAction', 'Logout', 5, 'submitbutton', true, 'addcustomer', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('logout', 'distabank', true, '', 'com.distarise.base.action.LogoutAction', 'Logout', 1, 'submitbutton', true, 'profile', false);

@@ -15,7 +15,7 @@ public interface UserRoleRepository extends CrudRepository<UserRole, UserRoleId>
 
     @Query("select rwa from RoleWidgetAction rwa where rwa.roleName in " +
             "(select u.roleName from UserRole u where u.userId = :userId and u.clientId =:clientId) "+
-            "and rwa.clientId=:clientId and rwa.visible = true")
+            "and rwa.clientId=:clientId and rwa.enabled = true")
     List<RoleWidgetAction> getUserRoleWidgetActions(@Param("userId") String userId, @Param("clientId") String clientId);
 
     @Query("select u from UserRole u where u.userId = :userId and u.clientId =:clientId")

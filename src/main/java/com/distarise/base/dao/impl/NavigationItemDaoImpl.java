@@ -4,10 +4,11 @@ import com.distarise.base.dao.NavigationItemDao;
 import com.distarise.base.entity.NavigationItem;
 import com.distarise.base.model.NavigationItemDto;
 import com.distarise.base.repository.NavigationItemRepository;
-import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class NavigationItemDaoImpl implements NavigationItemDao {

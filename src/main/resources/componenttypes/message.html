@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+</head>
+    <body>
+        <div th:fragment="formField(component)">
+            <div class="form-group">
+                <div th:if="${null != component.gridValues and component.gridValues.size()>0}">
+                    <div th:each="gridValue : ${component.gridValues}">
+                        <span th:if="${null != gridValue.get('SUCCESS')}" style="color:green;">
+                            <b style="font-style: italic" th:text="${gridValue.get('SUCCESS')}"> </b>>
+                        </span>
+                        <span th:if="${null != gridValue.get('WARNING')}" style="color:yellow;">
+                            <b style="font-style: italic" th:text="${gridValue.get('WARNING')}"> </b>>
+                        </span>
+                        <span th:if="${null != gridValue.get('ERROR')}" style="color:red;">
+                            <b style="font-style: italic" th:text="${gridValue.get('ERROR')}"> </b>>
+                        </span>
+                    </div>
+                </div>
+                <b><label th:for="${component.id}" th:text="${component.label}"></label></b>
+                <span th:text="${component.value}" th:id="${component.id}" th:name="${component.id}" />
+            </div>
+        </div>
+    </body>
+</html>

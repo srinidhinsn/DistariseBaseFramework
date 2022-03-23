@@ -1,15 +1,9 @@
 package com.distarise.base.action;
 
-import com.distarise.base.actionextension.LoadClientDetailsActionExt;
 import com.distarise.base.model.ClientDto;
-import com.distarise.base.model.ComponentItemDto;
-import com.distarise.base.model.ConfigPageDetailsDto;
-import com.distarise.base.model.PageDetailsDto;
 import com.distarise.base.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class SaveClientDetailsAction extends AbstractBaseAction implements BaseAction {

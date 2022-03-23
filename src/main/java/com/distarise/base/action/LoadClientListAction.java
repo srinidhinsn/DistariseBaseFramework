@@ -5,17 +5,10 @@ import com.distarise.base.model.ClientDto;
 import com.distarise.base.model.ComponentItemDto;
 import com.distarise.base.model.ConfigPageDetailsDto;
 import com.distarise.base.model.PageDetailsDto;
-import com.distarise.base.model.UserDetailsDto;
-import com.distarise.base.model.WidgetDto;
 import com.distarise.base.service.ClientService;
-import com.distarise.base.service.UserService;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import jdk.nashorn.internal.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

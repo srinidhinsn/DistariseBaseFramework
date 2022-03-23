@@ -1,9 +1,7 @@
 package com.distarise.base.action;
 
-import com.distarise.base.model.ClientDto;
 import com.distarise.base.model.ConfigPageDetailsDto;
 import com.distarise.base.model.UserDetailsDto;
-import com.distarise.base.service.ClientService;
 import com.distarise.base.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
