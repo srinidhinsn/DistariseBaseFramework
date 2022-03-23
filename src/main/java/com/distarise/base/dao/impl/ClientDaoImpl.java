@@ -1,6 +1,5 @@
 package com.distarise.base.dao.impl;
 
-import com.distarise.base.dao.AbstractBaseDao;
 import com.distarise.base.dao.ClientDao;
 import com.distarise.base.entity.Client;
 import com.distarise.base.model.ClientDto;
@@ -8,12 +7,11 @@ import com.distarise.base.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class ClientDaoImpl implements ClientDao, AbstractBaseDao {
+public class ClientDaoImpl implements ClientDao {
 
     @Autowired
     ClientRepository clientRepository;

@@ -2,14 +2,17 @@ package com.distarise.base.service.impl;
 
 import com.distarise.base.dao.ComponentDao;
 import com.distarise.base.dao.WidgetDao;
+import com.distarise.base.model.ComponentDto;
 import com.distarise.base.model.LayoutDto;
 import com.distarise.base.model.NavigationItemDto;
+import com.distarise.base.model.PageDetailsDto;
 import com.distarise.base.model.WidgetDto;
 import com.distarise.base.service.WidgetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -65,5 +68,42 @@ public class WidgetServiceImpl implements WidgetService {
     @Override
     public List<WidgetDto> getWidgetsByClientId(String clientId) {
         return widgetDao.getWidgetsByClientId(clientId);
+    }
+
+    @Override
+    public WidgetDto getMessageWidget(String clientId, String navItemId, PageDetailsDto pageDetailsDto) {
+        Map<String, String> messages = new HashMap<>();
+        if (null != pageDetailsDto.getSuccessMessages() && !pageDetailsDto.getSuccessMessages().isEmpty()){
+            messages.put("SUCCESS", getMessage(pageDetailsDto.getSuccessMessages()));
+        }
+        if (null != pageDetailsDto.getErrorMessages() && !pageDetailsDto.getSuccessMessages().isEmpty()){
+            messages.put("ERROR", getMessage(pageDetailsDto.getErrorMessages()));
+        }
+        if (null != pageDetailsDto.getWarningMessages() && !pageDetailsDto.getSuccessMessages().isEmpty()){
+            messages.put("WARNING", getMessage(pageDetailsDto.getWarningMessages()));
+        }
+        if (messages.isEmpty()){
+            return null;
+        }
+
+        WidgetDto widgetDto = new WidgetDto("message", clientId, navItemId, null,
+                "Info", null, 999, null, null, null, null, null, null);
+        ComponentDto componentDto = new ComponentDto("message", "message", clientId, 1, "message",
+                "", false, "", true, "", false, null, null, null, null);
+        List<ComponentDto> componentDtoList = new ArrayList<>();
+        List<Map<String, String>> gridList = new ArrayList<>();
+
+        gridList.add(messages);
+        componentDtoList.add(componentDto);
+        widgetDto.setComponentDtos(componentDtoList);
+        return widgetDto;
+    }
+
+    private String getMessage(List<String> messages){
+        StringBuffer stringBuffer = new StringBuffer();
+        messages.forEach(s -> {
+            stringBuffer.append(s + "/n");
+        });
+        return stringBuffer.toString();
     }
 }

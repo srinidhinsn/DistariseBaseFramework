@@ -12,3 +12,11 @@ INSERT INTO role(clientid, rolename, roledescription)
 
 INSERT INTO role(clientid, rolename, roledescription)
     VALUES ('distarise', 'config', 'Configuration team');
+
+-- dista bank scripts
+
+INSERT INTO role(clientid, rolename, roledescription)
+VALUES ('distabank', 'manager', 'Manager');
+
+INSERT INTO role(clientid, rolename, roledescription)
+VALUES ('distabank', 'guest', 'Guest');

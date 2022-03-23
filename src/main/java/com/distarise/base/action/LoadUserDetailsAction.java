@@ -60,7 +60,7 @@ public class LoadUserDetailsAction extends AbstractBaseAction implements BaseAct
                     } else if (targetWidgetDto.getId().equalsIgnoreCase("saveuser")){
                         targetWidgetDto.getComponentDtos().forEach(targetComponentDto -> {
                             if (targetComponentDto.getId().equalsIgnoreCase("column6")) {
-                                List<RoleDto> roleDtoList = roleService.getRoleList(getClientId());
+                                List<RoleDto> roleDtoList = roleService.getRoleList(configPageDetailsDto.getClientId());
                                 List<ComponentItemDto> componentItemDtoList = loadUserRoleAccessActionExt.preloadRoleList(roleDtoList, configPageDetailsDto);
                                 if (null != componentItemDtoList) {
                                     targetComponentDto.getComponentItemDtos().addAll(componentItemDtoList);

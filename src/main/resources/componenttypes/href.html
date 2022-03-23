@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+</head>
+    <body>
+        <div th:fragment="formField(component)">
+            <div class="form-group">
+                <a th:href="${component.value}" th:id="${component.id}" th:name="${component.id}"
+                   class="btn btn-sm btn-primary" th:text="${component.label}"></a>
+            </div>
+        </div>
+    </body>
+</html>

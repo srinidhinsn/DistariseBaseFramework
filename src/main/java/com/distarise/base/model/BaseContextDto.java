@@ -1,7 +1,6 @@
 package com.distarise.base.model;
 
 import java.io.Serializable;
-import java.util.Optional;
 
 public class BaseContextDto implements Serializable {
     private String clientId;

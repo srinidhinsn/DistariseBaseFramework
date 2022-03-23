@@ -73,3 +73,16 @@ INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, cli
 
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
     VALUES ('addclient', 'distariseuserrolelogin', 'Configuration Management', '/nsn/distarise/base/addclient', 5, '3C0RTTLFBF', null, 'distarise');
+
+
+-- Distabank project scripts
+
+
+INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
+VALUES ('login', 'distabanklogin', 'Login', '/nsn/distabank/customer/login', 1, '3C0RTTLFBF', null, 'distabank');
+
+INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
+VALUES ('customer', 'distabankmanagerlogin', 'Customer', '/nsn/distabank/customer/addcustomer', 1, '3C0RTTLFBF', null, 'distabank');
+
+INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
+VALUES ('profile', 'distabankmanagerlogin', 'Profile', '/nsn/distabank/customer/profile', 1, '3C0RTTLFBF', null, 'distabank');

@@ -2,7 +2,6 @@ package com.distarise.base.repository;
 
 import com.distarise.base.entity.UserDetails;
 import com.distarise.base.entity.UserId;
-import com.distarise.base.model.UserDetailsDto;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;

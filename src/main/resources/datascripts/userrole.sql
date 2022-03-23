@@ -9,3 +9,14 @@ INSERT INTO userrole(clientid, rolename, userid)
 
 INSERT INTO userrole(clientid, rolename, userid)
     VALUES ('distarise', 'config', 'srinidhi2');
+
+-- dista bank scripts
+
+
+INSERT INTO userrole(clientid, rolename, userid)
+VALUES ('distabank', 'manager', 'manager');
+
+
+INSERT INTO userrole(clientid, rolename, userid)
+VALUES ('distabank', 'guest', 'guest');
+

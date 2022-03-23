@@ -68,3 +68,14 @@ INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widge
     VALUES ('saveuser', 'distarise', 'commoncss', '4C0RTTLFBF', 'adduser', 4, null, 'Save User', '/nsn/distarise/userrole/adduser');
 
 
+-- Dista bank project scripts
+
+
+INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widgetid, widgettitle, redirecturl)
+VALUES ('login', 'distabank', 'commoncss', '4C0RTTLFBF', 'login', 1, null, 'Login', '/nsn/distabank/customer/addcustomer');
+
+INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widgetid, widgettitle, redirecturl)
+VALUES ('addcustomer', 'distabank', 'commoncss', '4C0RTTLFBF', 'customer', 1, null, 'Add Customer', '/nsn/distabank/customer/addcustomer');
+
+INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widgetid, widgettitle, redirecturl)
+VALUES ('profile', 'distabank', 'commoncss', '4C0RTTLFBF', 'profile', 1, null, 'Profile', '/nsn/distabank/customer/login');

@@ -1,9 +1,7 @@
 package com.distarise.base.action;
 
-import com.distarise.base.actionextension.LoadNavigationsActionExt;
 import com.distarise.base.model.ConfigPageDetailsDto;
 import com.distarise.base.model.NavigationDto;
-import com.distarise.base.model.PageDetailsDto;
 import com.distarise.base.service.NavigationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

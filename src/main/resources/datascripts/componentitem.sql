@@ -226,5 +226,15 @@ VALUES (214,'distarise', 'userdetailsgrid', true, 'Password', 214, 'column5', fa
 INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
 VALUES (215,'distarise', 'userdetailsgrid', true, 'Role', 215, 'column6', true);
 
+-- dista bank scripts
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (300,'distabank', 'gender', true, 'Male', 300, 'male', true);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (301,'distabank', 'gender', true, 'Female', 301, 'female', true);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (302,'distabank', 'gender', true, 'Transgender', 302, 'transgender', true);
 
 

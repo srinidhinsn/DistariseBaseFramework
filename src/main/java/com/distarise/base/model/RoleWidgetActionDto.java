@@ -1,8 +1,6 @@
 package com.distarise.base.model;
 
 import java.io.Serializable;
-import java.util.Comparator;
-import java.util.List;
 import java.util.Objects;
 
 public class RoleWidgetActionDto implements Comparable, Serializable {

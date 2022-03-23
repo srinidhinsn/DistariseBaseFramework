@@ -1,11 +1,9 @@
 package com.distarise.base.actionextension;
 
 import com.distarise.base.model.ComponentDto;
-import com.distarise.base.model.ConfigPageDetailsDto;
 import com.distarise.base.model.UserDetailsDto;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
