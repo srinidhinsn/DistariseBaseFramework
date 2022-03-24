@@ -72,10 +72,19 @@ INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widge
 
 
 INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widgetid, widgettitle, redirecturl)
-VALUES ('login', 'distabank', 'commoncss', '4C0RTTLFBF', 'login', 1, null, 'Login', '/nsn/distabank/customer/addcustomer');
+VALUES ('login', 'distabank', 'commoncss', '4C0RTTLFBF', 'login', 1, null, 'Login', '/nsn/distabank/bank/addcustomer');
 
 INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widgetid, widgettitle, redirecturl)
-VALUES ('addcustomer', 'distabank', 'commoncss', '4C0RTTLFBF', 'customer', 1, null, 'Add Customer', '/nsn/distabank/customer/addcustomer');
+VALUES ('addcustomer', 'distabank', 'commoncss', '4C0RTTLFBF', 'addcustomer', 1, null, 'New Customer', '/nsn/distabank/bank/addcustomer');
 
 INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widgetid, widgettitle, redirecturl)
-VALUES ('profile', 'distabank', 'commoncss', '4C0RTTLFBF', 'profile', 1, null, 'Profile', '/nsn/distabank/customer/login');
+VALUES ('customer', 'distabank', 'commoncss', '4C0RTTLFBF', 'customer', 1, null, 'Customer Details', '/nsn/distabank/bank/customer');
+
+INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widgetid, widgettitle, redirecturl)
+VALUES ('management', 'distabank', 'commoncss', '4C0RTTLFBF', 'management', 1, null, 'Manage bank', '/nsn/distabank/bank/management');
+
+INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widgetid, widgettitle, redirecturl)
+VALUES ('search', 'distabank', 'commoncss', '4C0RTTLFBF', 'search', 1, null, 'Search Result', '/nsn/distabank/bank/search');
+
+INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widgetid, widgettitle, redirecturl)
+VALUES ('profile', 'distabank', 'commoncss', '4C0RTTLFBF', 'profile', 1, null, 'Profile', '/nsn/distabank/bank/login');

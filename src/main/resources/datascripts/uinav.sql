@@ -26,7 +26,7 @@ VALUES ('distariseuserrolelogin', 'distarise', 'commoncss', 'userrole', 'Base mo
 
 
 INSERT INTO uinav(id, clientid, cssclass, module, pagedescription, pagename, pagetitle, redirectpagename, rolename)
-VALUES ('distabanklogin', 'distabank', 'commoncss', 'customer', 'Base module page', 'login', 'Login', 'addcustomer', 'guest');
+VALUES ('distabanklogin', 'distabank', 'commoncss', 'bank', 'Base module page', 'login', 'Login', 'addcustomer', 'guest');
 
 INSERT INTO uinav(id, clientid, cssclass, module, pagedescription, pagename, pagetitle, redirectpagename, rolename)
-VALUES ('distabankmanagerlogin', 'distabank', 'commoncss', 'customer', 'Base module page', 'login', 'Login', 'addcustomer', 'manager');
+VALUES ('distabankmanagerlogin', 'distabank', 'commoncss', 'bank', 'Base module page', 'login', 'Login', 'addcustomer', 'manager');

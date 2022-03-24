@@ -39,16 +39,19 @@
         </aside>
         <section class="content">
             <div class="header" th:if="${'guest' != session.get('user').userId}">
-                <form method="post" action="com.distarise.distabank.action.SearchAction" style="align-content: last">
+                <form id="search" name="search" method="post">
                     <div class="header-nav ml-auto" style="right: auto">
                         <ul class="nav align-items-center">
                             <li class="nav-item d-none d-md-inline-block">
                                 <input th:type="hidden" th:name="actionIdentifier" th:id="actionIdentifier"
                                        value="search-search-search" />
+                                <input th:type="hidden" th:name="action" th:id="action"
+                                       value="" />
                                 <input type="text" id="searchKey" size="80" name="searchKey" value="" />
                             </li>
                             <li class="nav-item ml-4">
-                                <input class="btn btn-sm btn-primary" type="submit" value="Search" />
+                                <input class="btn btn-sm btn-primary" type="submit" value="Search"
+                                       onclick="javascript:onClickSubmitForm('search','com.distarise.distabank.action.SearchAction','/nsn/distabank/bank/addcustomer')"/>
                             </li>
                         </ul>
                     </div>

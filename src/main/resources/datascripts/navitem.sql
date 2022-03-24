@@ -79,10 +79,31 @@ INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, cli
 
 
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
-VALUES ('login', 'distabanklogin', 'Login', '/nsn/distabank/customer/login', 1, '3C0RTTLFBF', null, 'distabank');
+VALUES ('login', 'distabanklogin', '', '/nsn/distabank/bank/login', 1, '3C0RTTLFBF', null, 'distabank');
 
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
-VALUES ('customer', 'distabankmanagerlogin', 'Customer', '/nsn/distabank/customer/addcustomer', 1, '3C0RTTLFBF', null, 'distabank');
+VALUES ('addcustomer', 'distabankmanagerlogin', 'New Customer', '/nsn/distabank/bank/addcustomer', 2, '3C0RTTLFBF', null, 'distabank');
 
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
-VALUES ('profile', 'distabankmanagerlogin', 'Profile', '/nsn/distabank/customer/profile', 1, '3C0RTTLFBF', null, 'distabank');
+VALUES ('customer', 'distabankmanagerlogin', 'Customer Details', '/nsn/distabank/bank/customer', 3, '3C0RTTLFBF', null, 'distabank');
+
+INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
+VALUES ('loan', 'distabankmanagerlogin', 'Loans', '/nsn/distabank/bank/loan', 4, '3C0RTTLFBF', null, 'distabank');
+
+INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
+VALUES ('deposit', 'distabankmanagerlogin', 'Deposits', '/nsn/distabank/bank/deposit',5, '3C0RTTLFBF', null, 'distabank');
+
+INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
+VALUES ('transaction', 'distabankmanagerlogin', 'Transactions', '/nsn/distabank/bank/transaction', 6, '3C0RTTLFBF', null, 'distabank');
+
+INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
+VALUES ('management', 'distabankmanagerlogin', 'Management', '/nsn/distabank/bank/management', 7, '3C0RTTLFBF', null, 'distabank');
+
+INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
+VALUES ('bank', 'distabankmanagerlogin', 'Bank', '/nsn/distabank/bank/bank', 8, '3C0RTTLFBF', null, 'distabank');
+
+INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
+VALUES ('profile', 'distabankmanagerlogin', 'Profile', '/nsn/distabank/bank/profile', 9, '3C0RTTLFBF', null, 'distabank');
+
+INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
+VALUES ('search', 'distabankmanagerlogin', '', '/nsn/distabank/bank/search', 10, '3C0RTTLFBF', null, 'distabank');

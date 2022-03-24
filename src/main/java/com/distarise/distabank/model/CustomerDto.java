@@ -13,6 +13,8 @@ public class CustomerDto implements Serializable {
     private String state;
     private String country;
     private Boolean active;
+    private String pincode;
+    private String phone;
 
     public Long getId() {
         return id;
@@ -92,5 +94,38 @@ public class CustomerDto implements Serializable {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public String getPincode() {
+        return pincode;
+    }
+
+    public void setPincode(String pincode) {
+        this.pincode = pincode;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public CustomerDto(Long id, String firstname, String lastname, String gender,
+                       String addressline1, String addressline2, String city,
+                       String state, String country, Boolean active, String pincode, String phone) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.gender = gender;
+        this.addressline1 = addressline1;
+        this.addressline2 = addressline2;
+        this.city = city;
+        this.state = state;
+        this.country = country;
+        this.active = active;
+        this.pincode = pincode;
+        this.phone = phone;
     }
 }

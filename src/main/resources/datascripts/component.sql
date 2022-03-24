@@ -436,10 +436,9 @@ INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, s
 VALUES ('password', 'distabank', true, '', '', 'Password', 2, 'password', true, 'login', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('login', 'distabank', true, '/nsn/distabank/customer/addcustomer', 'com.distarise.base.action.LoginAction', 'Login', 3, 'submitbutton', true, 'login', false);
+VALUES ('login', 'distabank', true, '/nsn/distabank/bank/addcustomer', 'com.distarise.base.action.LoginAction', 'Login', 3, 'submitbutton', true, 'login', false);
 
-INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('customerid', 'distabank', true, '', '', 'Customer Id', 1, 'text', true, 'addcustomer', false);
+-- distabank customer page
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
 VALUES ('firstname', 'distabank', true, '', '', 'First Name', 2, 'textbox', true, 'addcustomer', false);
@@ -451,7 +450,95 @@ INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, s
 VALUES ('gender', 'distabank', true, '', '', 'Gender', 4, 'radiobutton', true, 'addcustomer', true);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('logout', 'distabank', true, '', 'com.distarise.base.action.LogoutAction', 'Logout', 5, 'submitbutton', true, 'addcustomer', false);
+VALUES ('addressline1', 'distabank', true, '', '', 'Address Line1', 5, 'textbox', true, 'addcustomer', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('addressline2', 'distabank', true, '', '', 'Address Line2', 6, 'textbox', true, 'addcustomer', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('city', 'distabank', true, '', '', 'City', 7, 'textbox', true, 'addcustomer', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('state', 'distabank', true, '', '', 'State', 8, 'textbox', true, 'addcustomer', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('country', 'distabank', true, '', '', 'Country', 9, 'textbox', true, 'addcustomer', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('pincode', 'distabank', true, '', '', 'Pin code', 10, 'textbox', true, 'addcustomer', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('phone', 'distabank', true, '', '', 'Mobile', 11, 'textbox', true, 'addcustomer', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('savecustomer', 'distabank', true, '', 'com.distarise.distabank.action.SaveCustomerAction', 'Save', 15, 'submitbutton', true, 'addcustomer', false);
+
+
+-- distabank view customer
+
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('loadcustomer', 'distabank', true, '', 'com.distarise.distabank.action.LoadCustomerAction', 'Customer Id', 1, 'autoaction', true, 'customer', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('customerid', 'distabank', true, '', '', 'Customer Id', 1, 'text', true, 'customer', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('firstname', 'distabank', true, '', '', 'First Name', 2, 'textbox', true, 'customer', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('lastname', 'distabank', true, '', '', 'Last Name', 3, 'textbox', true, 'customer', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('gender', 'distabank', true, '', '', 'Gender', 4, 'radiobutton', true, 'customer', true);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('addressline1', 'distabank', true, '', '', 'Address Line1', 5, 'textbox', true, 'customer', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('addressline2', 'distabank', true, '', '', 'Address Line2', 6, 'textbox', true, 'customer', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('city', 'distabank', true, '', '', 'City', 7, 'textbox', true, 'customer', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('state', 'distabank', true, '', '', 'State', 8, 'textbox', true, 'customer', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('country', 'distabank', true, '', '', 'Country', 9, 'textbox', true, 'customer', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('pincode', 'distabank', true, '', '', 'Pin code', 10, 'textbox', true, 'customer', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('phone', 'distabank', true, '', '', 'Mobile', 11, 'textbox', true, 'customer', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel, value)
+VALUES ('active', 'distabank', true, '', '', 'Active', 12, 'checkbox', true, 'customer', false, true);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('savecustomer', 'distabank', true, '', 'com.distarise.distabank.action.SaveCustomerAction', 'Save', 15, 'submitbutton', true, 'customer', false);
+
+-- distabank Profile page
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
 VALUES ('logout', 'distabank', true, '', 'com.distarise.base.action.LogoutAction', 'Logout', 1, 'submitbutton', true, 'profile', false);
+
+-- distabank Management page
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('loaninterestrate', 'distabank', true, '', '', 'Loan interest rate', 3, 'textbox', true, 'management', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('pigmeeinterestrate', 'distabank', true, '', '', 'Pigmee interest rate', 4, 'textbox', true, 'management', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('fdinterestrate', 'distabank', true, '', '', 'FD interest rate', 5, 'textbox', true, 'management', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('savebankconfig', 'distabank', true, '', 'com.distarise.distabank.action.SaveBankingConfigAction', 'Save', 10, 'submitbutton', true, 'management', false);
+
+-- distabank search result
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('customergrid', 'distabank', true, '', '', 'Customer search', 1, 'customergrid', true, 'search', true);

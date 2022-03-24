@@ -185,16 +185,28 @@ INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible, enab
 VALUES ('distabank', 'manager', 'addcustomer', '', true, true);
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible, enabled)
-VALUES ('distabank', 'manager', 'addcustomer', 'com.distarise.base.action.LogoutAction', true, true);
+VALUES ('distabank', 'manager', 'addcustomer', 'com.distarise.distabank.action.SaveCustomerAction', true, true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible, enabled)
+VALUES ('distabank', 'manager', 'customer', '', true, true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible, enabled)
+VALUES ('distabank', 'manager', 'customer', 'com.distarise.distabank.action.SaveCustomerAction', true, true);
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible, enabled)
 VALUES ('distabank', 'manager', 'search', '', true, true);
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible, enabled)
-VALUES ('distabank', 'manager', 'search', 'com.distarise.base.action.SearchAction', true, true);
+VALUES ('distabank', 'manager', 'search', 'com.distarise.distabank.action.SearchAction', true, true);
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible, enabled)
 VALUES ('distabank', 'manager', 'profile', '', true, true);
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible, enabled)
 VALUES ('distabank', 'manager', 'profile', 'com.distarise.base.action.LogoutAction', true, true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible, enabled)
+VALUES ('distabank', 'manager', 'management', '', true, true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible, enabled)
+VALUES ('distabank', 'manager', 'management', 'com.distarise.distabank.action.SaveBankingConfigAction', true, true);

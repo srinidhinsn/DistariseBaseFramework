@@ -40,8 +40,14 @@ public class Customer {
     @Column(name = "COUNTRY")
     private String country;
 
+    @Column(name = "PINCODE")
+    private String pincode;
+
     @Column(name = "ACTIVE", columnDefinition = "boolean default true")
     private Boolean active;
+
+    @Column(name = "PHONE")
+    private String phone;
 
     public Long getId() {
         return id;
@@ -121,6 +127,22 @@ public class Customer {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public String getPincode() {
+        return pincode;
+    }
+
+    public void setPincode(String pincode) {
+        this.pincode = pincode;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Customer() {
