@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
-    @Query("from Customer where id like %?1% or firstname like %?1% or lastname like %?1% or " +
+    @Query("from Customer where lower(firstname) like %?1% or lower(lastname) like %?1% or " +
             " phone like %?1% order by firstname asc")
     List<Customer> findAllBySearchKey(String searchKey);
 }

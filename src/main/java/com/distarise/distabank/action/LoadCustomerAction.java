@@ -12,33 +12,58 @@ import org.springframework.stereotype.Service;
 public class LoadCustomerAction extends AbstractBaseAction implements BaseAction {
 
     @Autowired
-    private CustomerService customerService;
+    CustomerService customerService;
 
-    public void executeAction(){
+    public void executeAction() {
         PageDetailsDto targetPageDetailsDto = super.executeAction(new PageDetailsDto());
-        String customerid = request.getParameter("customerid");
-        String firstname = request.getParameter("firstname");
-        String lastname = request.getParameter("lastname");
-        String gender = request.getParameter("gender");
-        String addressline1 = request.getParameter("addressline1");
-        String addressline2 = request.getParameter("addressline2");
-        String city = request.getParameter("city");
-        String state = request.getParameter("state");
-        String country = request.getParameter("country");
-        String pincode = request.getParameter("pincode");
-        String phone = request.getParameter("phone");
-        String active = request.getParameter("active");
-        Boolean activeBoolean = false;
-        Long customerIdLong = 0l;
-        if (null != customerid){
-            customerIdLong = Long.parseLong(customerid);
+        String customerId = request.getParameter(CustomerDto.CUSTOMER_ID);
+        Long customerIdLong = 0L;
+        if (null != customerId){
+            customerIdLong = Long.parseLong(customerId);
+            request.getSession().setAttribute(CustomerDto.CUSTOMER_ID, customerIdLong);
+        } else if (null != request.getSession().getAttribute(CustomerDto.CUSTOMER_ID)) {
+            customerIdLong = (Long) request.getSession().getAttribute(CustomerDto.CUSTOMER_ID);
         }
-        if (null != active){
-            activeBoolean = Boolean.parseBoolean(active);
-        }
-        CustomerDto customerDto = new CustomerDto(customerIdLong, firstname, lastname, gender, addressline1, addressline2,
-                city, state, country, activeBoolean, pincode, phone);
-        customerService.saveCustomer(customerDto);
+
+        CustomerDto customerDto = customerService.searchCustomerById(customerIdLong).get(0);
+
+        targetPageDetailsDto.getNavigationDto().getNavigationItems().forEach(navigationItemDto -> {
+            if (!navigationItemDto.getWidgets().isEmpty()) {
+                navigationItemDto.getWidgets().forEach(targetWidgetDto -> {
+                    if (targetWidgetDto.getId().equalsIgnoreCase("customer")) {
+                        targetWidgetDto.getComponentDtos().forEach(targetComponentDto -> {
+                            if (targetComponentDto.getId().equalsIgnoreCase("customerid")) {
+                                targetComponentDto.setValue(customerDto.getId().toString());
+                            } else if (targetComponentDto.getId().equalsIgnoreCase("firstname")){
+                                targetComponentDto.setValue(customerDto.getFirstname());
+                            } else if (targetComponentDto.getId().equalsIgnoreCase("lastname")){
+                                targetComponentDto.setValue(customerDto.getLastname());
+                            } else if (targetComponentDto.getId().equalsIgnoreCase("gender")){
+                                targetComponentDto.setValue(customerDto.getGender());
+                            } else if (targetComponentDto.getId().equalsIgnoreCase("addressline1")){
+                                targetComponentDto.setValue(customerDto.getAddressline1());
+                            } else if (targetComponentDto.getId().equalsIgnoreCase("addressline2")){
+                                targetComponentDto.setValue(customerDto.getAddressline2());
+                            } else if (targetComponentDto.getId().equalsIgnoreCase("phone")){
+                                targetComponentDto.setValue(customerDto.getPhone());
+                            } else if (targetComponentDto.getId().equalsIgnoreCase("pincode")){
+                                targetComponentDto.setValue(customerDto.getPincode());
+                            } else if (targetComponentDto.getId().equalsIgnoreCase("city")){
+                                targetComponentDto.setValue(customerDto.getCity());
+                            } else if (targetComponentDto.getId().equalsIgnoreCase("state")){
+                                targetComponentDto.setValue(customerDto.getState());
+                            } else if (targetComponentDto.getId().equalsIgnoreCase("country")){
+                                targetComponentDto.setValue(customerDto.getCountry());
+                            } else if (targetComponentDto.getId().equalsIgnoreCase("active")){
+                                targetComponentDto.setValue(customerDto.getActive().toString());
+                            } else if (targetComponentDto.getId().equalsIgnoreCase("dob")){
+                                targetComponentDto.setValue(customerDto.getDob().toString());
+                            }
+                        });
+                    }
+                });
+            }
+        });
     }
 
 }

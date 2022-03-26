@@ -75,35 +75,70 @@ INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, cli
     VALUES ('addclient', 'distariseuserrolelogin', 'Configuration Management', '/nsn/distarise/base/addclient', 5, '3C0RTTLFBF', null, 'distarise');
 
 
--- Distabank project scripts
+-- Distabank manager module project scripts
 
 
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
 VALUES ('login', 'distabanklogin', '', '/nsn/distabank/bank/login', 1, '3C0RTTLFBF', null, 'distabank');
 
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
-VALUES ('addcustomer', 'distabankmanagerlogin', 'New Customer', '/nsn/distabank/bank/addcustomer', 2, '3C0RTTLFBF', null, 'distabank');
+VALUES ('addcustomer', 'distabankmanager', 'New Customer', '/nsn/distabank/bank/addcustomer', 2, '3C0RTTLFBF', null, 'distabank');
 
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
-VALUES ('customer', 'distabankmanagerlogin', 'Customer Details', '/nsn/distabank/bank/customer', 3, '3C0RTTLFBF', null, 'distabank');
+VALUES ('customer', 'distabankmanager', 'Customer Details', '/nsn/distabank/bank/customer', 3, '3C0RTTLFBF', null, 'distabank');
 
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
-VALUES ('loan', 'distabankmanagerlogin', 'Loans', '/nsn/distabank/bank/loan', 4, '3C0RTTLFBF', null, 'distabank');
+VALUES ('loan', 'distabankmanager', 'Loans', '/nsn/distabank/bank/loan', 4, '3C0RTTLFBF', null, 'distabank');
 
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
-VALUES ('deposit', 'distabankmanagerlogin', 'Deposits', '/nsn/distabank/bank/deposit',5, '3C0RTTLFBF', null, 'distabank');
+VALUES ('fd', 'distabankmanager', 'Deposits', '/nsn/distabank/deposit/fd',5, '3C0RTTLFBF', null, 'distabank');
 
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
-VALUES ('transaction', 'distabankmanagerlogin', 'Transactions', '/nsn/distabank/bank/transaction', 6, '3C0RTTLFBF', null, 'distabank');
+VALUES ('transaction', 'distabankmanager', 'Transactions', '/nsn/distabank/bank/transaction', 6, '3C0RTTLFBF', null, 'distabank');
 
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
-VALUES ('management', 'distabankmanagerlogin', 'Management', '/nsn/distabank/bank/management', 7, '3C0RTTLFBF', null, 'distabank');
+VALUES ('fdconfig', 'distabankmanager', 'Management', '/nsn/distabank/management/fdconfig', 7, '3C0RTTLFBF', null, 'distabank');
 
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
-VALUES ('bank', 'distabankmanagerlogin', 'Bank', '/nsn/distabank/bank/bank', 8, '3C0RTTLFBF', null, 'distabank');
+VALUES ('bank', 'distabankmanager', 'Bank', '/nsn/distabank/bank/bank', 8, '3C0RTTLFBF', null, 'distabank');
 
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
-VALUES ('profile', 'distabankmanagerlogin', 'Profile', '/nsn/distabank/bank/profile', 9, '3C0RTTLFBF', null, 'distabank');
+VALUES ('profile', 'distabankmanager', 'Profile', '/nsn/distabank/bank/profile', 9, '3C0RTTLFBF', null, 'distabank');
 
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
-VALUES ('search', 'distabankmanagerlogin', '', '/nsn/distabank/bank/search', 10, '3C0RTTLFBF', null, 'distabank');
+VALUES ('searchresult', 'distabankmanager', '', '/nsn/distabank/bank/searchresult', 10, '3C0RTTLFBF', null, 'distabank');
+
+
+-- Distabank deposit module project scripts
+
+
+INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
+VALUES ('fd', 'distabankmanagerdeposit', 'Fixed deposit', '/nsn/distabank/deposit/fd',5, '3C0RTTLFBF', null, 'distabank');
+
+INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
+VALUES ('rd', 'distabankmanagerdeposit', 'Recurring Deposit', '/nsn/distabank/deposit/rd',6, '3C0RTTLFBF', null, 'distabank');
+
+INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
+VALUES ('sb', 'distabankmanagerdeposit', 'Saving Bank', '/nsn/distabank/deposit/sb',7, '3C0RTTLFBF', null, 'distabank');
+
+INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
+VALUES ('back', 'distabankmanagerdeposit', 'Back', '/nsn/distabank/bank/addcustomer',8, '3C0RTTLFBF', null, 'distabank');
+
+
+-- Distabank management module project scripts
+
+
+INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
+VALUES ('fdconfig', 'distabankmanagermanagement', 'Fixed Deposit', '/nsn/distabank/management/fdconfig', 5, '3C0RTTLFBF', null, 'distabank');
+
+INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
+VALUES ('rdconfig', 'distabankmanagermanagement', 'Recurring Deposit', '/nsn/distabank/management/rdconfig', 6, '3C0RTTLFBF', null, 'distabank');
+
+INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
+VALUES ('sbconfig', 'distabankmanagermanagement', 'Saving Bank', '/nsn/distabank/management/sbconfig', 7, '3C0RTTLFBF', null, 'distabank');
+
+INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
+VALUES ('pigmyconfig', 'distabankmanagermanagement', 'Pigmy', '/nsn/distabank/management/pigmyconfig', 8, '3C0RTTLFBF', null, 'distabank');
+
+INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
+VALUES ('back', 'distabankmanagermanagement', 'Back', '/nsn/distabank/bank/addcustomer', 9, '3C0RTTLFBF', null, 'distabank');

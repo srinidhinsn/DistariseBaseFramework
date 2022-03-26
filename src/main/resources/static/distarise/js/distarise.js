@@ -12,6 +12,11 @@ function saveRoleWidgetAccess(id, action, redirectUrl, clientId, roleName, widge
     onClickSubmitForm(id, action, redirectUrl);
 }
 
+function viewCustomer(id, action, redirectUrl, customerId){
+    document.getElementById(id)["customerId"].value = customerId;
+    onClickSubmitForm(id, action, redirectUrl);
+}
+
 function onLoadRetrieveData (id, action, redirectUrl){
     setDefaults(id, action, redirectUrl);
     document.getElementById(id).submit();

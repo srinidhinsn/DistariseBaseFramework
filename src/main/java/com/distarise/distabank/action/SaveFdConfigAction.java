@@ -2,7 +2,6 @@ package com.distarise.distabank.action;
 
 import com.distarise.base.action.AbstractBaseAction;
 import com.distarise.base.action.BaseAction;
-import com.distarise.base.adapters.FrameworkInterceptor;
 import com.distarise.base.model.PageDetailsDto;
 import com.distarise.distabank.model.CustomerDto;
 import com.distarise.distabank.service.CustomerService;
@@ -11,14 +10,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Service
-public class SaveCustomerAction extends AbstractBaseAction implements BaseAction {
+public class SaveFdConfigAction extends AbstractBaseAction implements BaseAction {
 
-    private static final Logger logger = LoggerFactory.getLogger(SaveCustomerAction.class);
+    private static final Logger logger = LoggerFactory.getLogger(SaveFdConfigAction.class);
 
     @Autowired
     private CustomerService customerService;

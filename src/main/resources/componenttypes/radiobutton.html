@@ -9,10 +9,18 @@
                 <div th:if="${component.componentItemDtos.size()>0}">
                     <label th:for="${component.id}" th:text="${component.label}"></label>
                     <div th:each="componentItemDto : ${component.componentItemDtos}">
-                        <input type="radio" class="form-control"
-                               th:text="${componentItemDto.label}" th:value="${componentItemDto.value}"
-                               th:name="${component.id}" th:id="${component.id}">
-                        </input>
+                        <div th:if="${component.value == componentItemDto.value}">
+                            <input type="radio" class="form-control"
+                                   th:text="${componentItemDto.label}" th:value="${componentItemDto.value}"
+                                   th:name="${component.id}" th:id="${component.id}" checked="true">
+                            </input>
+                        </div>
+                        <div th:if="${component.value != componentItemDto.value}">
+                            <input type="radio" class="form-control"
+                                   th:text="${componentItemDto.label}" th:value="${componentItemDto.value}"
+                                   th:name="${component.id}" th:id="${component.id}" >
+                            </input>
+                        </div>
                     </div>
                 </div>
             </div>

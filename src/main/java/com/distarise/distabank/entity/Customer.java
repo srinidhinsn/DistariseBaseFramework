@@ -3,16 +3,18 @@ package com.distarise.distabank.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import java.sql.Date;
 
 @Entity
 @Table(name = "CUSTOMER")
 public class Customer {
     @Id
-    @GeneratedValue(generator="s_customer_id")
-    @SequenceGenerator(name="s_customer_id",sequenceName="S_CUSTOMER_ID", initialValue = 100000, allocationSize=1)
+    @GeneratedValue(generator="s_customer_id", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name="s_customer_id",sequenceName="S_CUSTOMER_ID", initialValue = 1000, allocationSize=1)
     @Column(name = "ID")
     private Long id;
 
@@ -21,6 +23,9 @@ public class Customer {
 
     @Column(name = "LASTNAME")
     private String lastname;
+
+    @Column(name = "DOB")
+    private Date dob;
 
     @Column(name = "GENDER")
     private String gender;
@@ -143,6 +148,14 @@ public class Customer {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
     }
 
     public Customer() {

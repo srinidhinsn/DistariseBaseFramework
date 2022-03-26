@@ -1,11 +1,19 @@
 package com.distarise.distabank.model;
 
+import com.distarise.base.model.RoleWidgetActionDto;
+
 import java.io.Serializable;
+import java.util.Date;
+import java.util.Objects;
 
 public class CustomerDto implements Serializable {
+    public static final String CUSTOMER_ID = "customerId";
+    public static final String DATE_YYYY_MM_DD = "yyyy-MM-dd";
+
     private Long id;
     private String firstname;
     private String lastname;
+    private Date dob;
     private String gender;
     private String addressline1;
     private String addressline2;
@@ -112,9 +120,18 @@ public class CustomerDto implements Serializable {
         this.phone = phone;
     }
 
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
     public CustomerDto(Long id, String firstname, String lastname, String gender,
                        String addressline1, String addressline2, String city,
-                       String state, String country, Boolean active, String pincode, String phone) {
+                       String state, String country, Boolean active, String pincode, String phone,
+                       Date dob) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -127,5 +144,27 @@ public class CustomerDto implements Serializable {
         this.active = active;
         this.pincode = pincode;
         this.phone = phone;
+        this.dob = dob;
     }
+
+    public CustomerDto() {
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Boolean isEqual = false;
+        if (obj instanceof CustomerDto){
+            CustomerDto c = (CustomerDto) obj;
+            if (c.getId() == this.id){
+                return true;
+            }
+        }
+        return isEqual;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
 }

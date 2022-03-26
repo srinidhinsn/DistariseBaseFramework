@@ -194,10 +194,13 @@ INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible, enab
 VALUES ('distabank', 'manager', 'customer', 'com.distarise.distabank.action.SaveCustomerAction', true, true);
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible, enabled)
-VALUES ('distabank', 'manager', 'search', '', true, true);
+VALUES ('distabank', 'manager', 'searchresult', '', true, true);
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible, enabled)
-VALUES ('distabank', 'manager', 'search', 'com.distarise.distabank.action.SearchAction', true, true);
+VALUES ('distabank', 'manager', 'searchresult', 'com.distarise.distabank.action.SearchAction', true, true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible, enabled)
+VALUES ('distabank', 'manager', 'searchresult', 'com.distarise.distabank.action.LoadCustomerAction', true, true);
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible, enabled)
 VALUES ('distabank', 'manager', 'profile', '', true, true);
@@ -206,7 +209,13 @@ INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible, enab
 VALUES ('distabank', 'manager', 'profile', 'com.distarise.base.action.LogoutAction', true, true);
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible, enabled)
-VALUES ('distabank', 'manager', 'management', '', true, true);
+VALUES ('distabank', 'manager', 'fdconfig', '', true, true);
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible, enabled)
-VALUES ('distabank', 'manager', 'management', 'com.distarise.distabank.action.SaveBankingConfigAction', true, true);
+VALUES ('distabank', 'manager', 'fdconfig', 'com.distarise.distabank.action.SaveFdConfigAction', true, true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible, enabled)
+VALUES ('distabank', 'manager', 'fd', '', true, true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible, enabled)
+VALUES ('distabank', 'manager', 'fd', 'com.distarise.distabank.action.SaveFdAction', true, true);

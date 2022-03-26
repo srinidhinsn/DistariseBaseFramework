@@ -237,4 +237,10 @@ VALUES (301,'distabank', 'gender', true, 'Female', 301, 'female', true);
 INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
 VALUES (302,'distabank', 'gender', true, 'Transgender', 302, 'transgender', true);
 
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (350,'distabank', 'calcmethod', true, 'Simple interest', 350, 'si', true);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (351,'distabank', 'calcmethod', true, 'Compound interest', 351, 'ci', true);
+
 

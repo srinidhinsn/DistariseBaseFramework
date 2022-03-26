@@ -29,4 +29,15 @@ INSERT INTO uinav(id, clientid, cssclass, module, pagedescription, pagename, pag
 VALUES ('distabanklogin', 'distabank', 'commoncss', 'bank', 'Base module page', 'login', 'Login', 'addcustomer', 'guest');
 
 INSERT INTO uinav(id, clientid, cssclass, module, pagedescription, pagename, pagetitle, redirectpagename, rolename)
-VALUES ('distabankmanagerlogin', 'distabank', 'commoncss', 'bank', 'Base module page', 'login', 'Login', 'addcustomer', 'manager');
+VALUES ('distabankmanager', 'distabank', 'commoncss', 'bank', 'Base module page', 'login', 'Login', 'addcustomer', 'manager');
+
+INSERT INTO uinav(id, clientid, cssclass, module, pagedescription, pagename, pagetitle, redirectpagename, rolename)
+VALUES ('distabankmanagerloan', 'distabank', 'commoncss', 'loan', 'Base module page', 'login', 'Login', 'loan', 'manager');
+
+INSERT INTO uinav(id, clientid, cssclass, module, pagedescription, pagename, pagetitle, redirectpagename, rolename)
+VALUES ('distabankmanagerdeposit', 'distabank', 'commoncss', 'deposit', 'Base module page', 'login', 'Login', 'fd', 'manager');
+
+INSERT INTO uinav(id, clientid, cssclass, module, pagedescription, pagename, pagetitle, redirectpagename, rolename)
+VALUES ('distabankmanagermanagement', 'distabank', 'commoncss', 'management', 'Base module page', 'login', 'Login', 'fdconfig', 'manager');
+
+

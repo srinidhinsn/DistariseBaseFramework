@@ -7,6 +7,7 @@ import com.distarise.distabank.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,7 +29,18 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     private List<CustomerDto> convertEntityToDtoList(List<Customer> customerList){
+        if (null == customerList){
+            return new ArrayList<>();
+        }
         return customerList.stream().map(customer ->
                 modelMapper.map(customer, CustomerDto.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<CustomerDto> searchCustomerById(Long searchKey) {
+        Customer customer = customerRepository.findOne(searchKey);
+        List<Customer> customerList = new ArrayList<>();
+        customerList.add(customer);
+        return convertEntityToDtoList(customerList);
     }
 }

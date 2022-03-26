@@ -8,4 +8,5 @@ import java.util.List;
 public interface CustomerService extends AbstractBaseService {
     void saveCustomer(CustomerDto customerDto);
     List<CustomerDto> searchCustomer(String searchKey);
+    List<CustomerDto> searchCustomerById(Long searchKey);
 }
