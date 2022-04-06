@@ -43,9 +43,9 @@ public class FrameworkInterceptor implements HandlerInterceptor {
                 abstractBaseAction.executeAction(httpServletRequest);
                 abstractBaseAction.executeAction();
             } catch (ClassNotFoundException cnf){
-                logger.error(cnf.getMessage());
+                logger.error(cnf.getMessage(), cnf);
             } catch (Exception e){
-                logger.error(e.getMessage());
+                logger.error(e.getMessage(), e);
             }
         }
         return true;

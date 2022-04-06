@@ -122,7 +122,7 @@ INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, cli
 VALUES ('sb', 'distabankmanagerdeposit', 'Saving Bank', '/nsn/distabank/deposit/sb',7, '3C0RTTLFBF', null, 'distabank');
 
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
-VALUES ('back', 'distabankmanagerdeposit', 'Back', '/nsn/distabank/bank/addcustomer',8, '3C0RTTLFBF', null, 'distabank');
+VALUES ('back', 'distabankmanagerdeposit', 'Back', '/nsn/distabank/bank/customer',8, '3C0RTTLFBF', null, 'distabank');
 
 
 -- Distabank management module project scripts
@@ -141,4 +141,4 @@ INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, cli
 VALUES ('pigmyconfig', 'distabankmanagermanagement', 'Pigmy', '/nsn/distabank/management/pigmyconfig', 8, '3C0RTTLFBF', null, 'distabank');
 
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
-VALUES ('back', 'distabankmanagermanagement', 'Back', '/nsn/distabank/bank/addcustomer', 9, '3C0RTTLFBF', null, 'distabank');
+VALUES ('back', 'distabankmanagermanagement', 'Back', '/nsn/distabank/bank/customer', 9, '3C0RTTLFBF', null, 'distabank');

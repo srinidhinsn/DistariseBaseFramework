@@ -474,11 +474,14 @@ INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, s
 VALUES ('phone', 'distabank', true, '', '', 'Mobile', 15, 'textbox', true, 'addcustomer', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('savecustomer', 'distabank', true, '', 'com.distarise.distabank.action.SaveCustomerAction', 'Save', 20, 'submitbutton', true, 'addcustomer', false);
+VALUES ('savecustomer', 'distabank', true, '', 'com.distarise.distabank.customer.action.SaveCustomerAction', 'Save', 20, 'submitbutton', true, 'addcustomer', false);
 
 
 -- distabank view customer
 
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('loadcustomer', 'distabank', false, '', 'com.distarise.distabank.customer.action.LoadCustomerAction', 'Customer Id', 1, 'autoaction', true, 'customer', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
 VALUES ('customerid', 'distabank', false, '', '', 'Customer Id', 4, 'textbox', true, 'customer', false);
@@ -520,7 +523,7 @@ INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, s
 VALUES ('active', 'distabank', true, '', '', 'Active', 16, 'checkbox', true, 'customer', false, true);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('savecustomer', 'distabank', true, '', 'com.distarise.distabank.action.SaveCustomerAction', 'Save', 20, 'submitbutton', true, 'customer', false);
+VALUES ('savecustomer', 'distabank', true, '', 'com.distarise.distabank.customer.action.SaveCustomerAction', 'Save', 20, 'submitbutton', true, 'customer', false);
 
 -- distabank Profile page
 
@@ -530,7 +533,13 @@ VALUES ('logout', 'distabank', true, '', 'com.distarise.base.action.LogoutAction
 -- distabank Management FD config page
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('validfrom', 'distabank', true, '', '', 'Valid from', 4, 'dropdown', true, 'fdconfig', true);
+VALUES ('loadfdconfig', 'distabank', true, '', 'com.distarise.distabank.deposit.action.LoadFdConfigAction', 'loadfdconfig', 1, 'autoaction', false, 'fdconfig', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('fdconfigid', 'distabank', true, '', '', 'id', 3, 'hidden', false, 'fdconfig', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('validfrom', 'distabank', true, '/nsn/distabank/management/fdconfig', 'com.distarise.distabank.deposit.action.LoadFdConfigAction', 'Valid from', 4, 'configdropdown', true, 'fdconfig', true);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
 VALUES ('roi', 'distabank', true, '', '', 'FD interest rate', 5, 'number', true, 'fdconfig', false);
@@ -548,11 +557,16 @@ INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, s
 VALUES ('accountnoseq', 'distabank', true, '', '', 'Account no seq', 9, 'textbox', true, 'fdconfig', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('savefbconfig', 'distabank', true, '', 'com.distarise.distabank.action.SaveFdConfigAction', 'Save', 10, 'submitbutton', true, 'fdconfig', false);
+VALUES ('savefbconfig', 'distabank', true, '', 'com.distarise.distabank.deposit.action.SaveFdConfigAction', 'Save', 10, 'submitbutton', true, 'fdconfig', false);
 
 
 -- dista bank fd page
 
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('loadfd', 'distabank', false, '', 'com.distarise.distabank.deposit.action.LoadFdAction', 'Customer Id', 3, 'autoaction', false, 'fd', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('fdlist', 'distabank', false, '', '', 'Fixed deposits', 3, 'configdropdown', true, 'fd', true);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
 VALUES ('customerid', 'distabank', false, '', '', 'Customer Id', 4, 'textbox', true, 'fd', false);
@@ -588,9 +602,9 @@ INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, s
 VALUES ('notes', 'distabank', false, '', '', 'Note', 14, 'text', true, 'fd', true, 'Changes to roi goes for approval');
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('savefd', 'distabank', true, '', 'com.distarise.distabank.action.SaveFdAction', 'Save', 20, 'submitbutton', true, 'fd', false);
+VALUES ('savefd', 'distabank', true, '', 'com.distarise.distabank.deposit.action.SaveFdAction', 'Save', 20, 'submitbutton', true, 'fd', false);
 
 -- distabank search result
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('customergrid', 'distabank', true, '', 'com.distarise.distabank.action.LoadCustomerAction', 'Customer search', 1, 'customergrid', true, 'searchresult', true);
+VALUES ('customergrid', 'distabank', true, '', 'com.distarise.distabank.customer.action.LoadCustomerAction', 'Customer search', 1, 'customergrid', true, 'searchresult', true);
