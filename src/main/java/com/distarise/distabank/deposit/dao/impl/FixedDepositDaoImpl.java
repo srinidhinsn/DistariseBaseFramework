@@ -6,6 +6,8 @@ import com.distarise.distabank.deposit.entity.FixedDepositConfig;
 import com.distarise.distabank.deposit.model.FixedDepositDto;
 import com.distarise.distabank.deposit.repository.FixedDepositConfigRepository;
 import com.distarise.distabank.deposit.repository.FixedDepositRepository;
+import com.distarise.distabank.util.AccountType;
+import com.distarise.distabank.util.DistabankUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,9 +27,7 @@ public class FixedDepositDaoImpl implements FixedDepositDao {
     @Override
     public void saveFd(FixedDepositDto fixedDepositDto) {
         FixedDeposit fd = fdRepository.save(modelMapper.map(fixedDepositDto, FixedDeposit.class));
-        FixedDepositConfig fdConfig = fdConfigRepository.findActive(fixedDepositDto.getClientId(),
-                new Date(fixedDepositDto.getEffectiveDate().getTime()));
-        fd.setAccountNo(fdConfig.getAccountNoSeq()+fd.getId());
+        fd.setAccountNo(DistabankUtils.padAccountNo(fd.getClientId(), AccountType.FD.name(), fd.getId().toString()));
         fdRepository.save(fd);
     }
 

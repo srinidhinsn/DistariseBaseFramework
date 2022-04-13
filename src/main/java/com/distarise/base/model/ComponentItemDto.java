@@ -4,6 +4,7 @@ package com.distarise.base.model;
 import java.io.Serializable;
 
 public class ComponentItemDto implements Serializable {
+    public static int ID_MULTIPLIER = 100;
     private Long id;
     private String componentId;
     private String clientId;

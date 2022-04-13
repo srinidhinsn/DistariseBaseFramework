@@ -155,6 +155,9 @@ public class CustomerDto implements Serializable {
     }
 
     public CustomerDto() {
+        this.id = 0L;
+        this.firstname = "";
+        this.lastname = "";
     }
 
     @Override

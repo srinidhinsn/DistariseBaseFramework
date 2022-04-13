@@ -30,14 +30,21 @@ public class SaveFdConfigAction extends AbstractBaseAction implements BaseAction
         String effectiveDateString = request.getParameter("effectivedate");
         String endDateString = request.getParameter("enddate");
         String calcMethod = request.getParameter("calcmethod");
+        String calcFrequency = request.getParameter("calcfrequency");
         String minDuration = request.getParameter("minduration");
-        String accountNoSeq = request.getParameter("accountnoseq");
+        String deviation = request.getParameter("deviation");
+        BigDecimal maturityValueDeviation = null;
+        if (null == deviation){
+            maturityValueDeviation = new BigDecimal(1);
+        } else {
+            maturityValueDeviation = new BigDecimal(deviation);
+        }
 
         Date effectiveDate = DistabankUtils.stringYYYYMMDDToDate(effectiveDateString);
         Date endDate = DistabankUtils.stringYYYYMMDDToDate(endDateString);
         BigDecimal roiDecimal = new BigDecimal(roi);
         FixedDepositConfigDto fdConfig = new FixedDepositConfigDto(context.getClientId(), effectiveDate, endDate, roiDecimal, calcMethod,
-                Integer.parseInt(minDuration), accountNoSeq);
+                Integer.parseInt(minDuration), maturityValueDeviation, calcFrequency);
         fdConfigService.saveFdConfig(fdConfig);
     }
 

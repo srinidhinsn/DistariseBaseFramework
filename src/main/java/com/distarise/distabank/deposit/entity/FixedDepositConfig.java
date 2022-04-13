@@ -32,14 +32,17 @@ public class FixedDepositConfig {
     @Column(name = "ROI")
     private BigDecimal roi;
 
+    @Column(name = "MATURITYVALUEDEVIATION")
+    private BigDecimal maturityValueDeviation;
+
     @Column(name = "CALCMETHOD")
     private String calcMethod;
 
     @Column(name = "MINDURATION")
     private Integer minDuration;
 
-    @Column(name = "ACCOUNTNOSEQ")
-    private String accountNoSeq;
+    @Column(name = "CALCFREQUENCY")
+    private String calcFrequency;
 
     public Long getId() {
         return id;
@@ -97,12 +100,20 @@ public class FixedDepositConfig {
         this.minDuration = minDuration;
     }
 
-    public String getAccountNoSeq() {
-        return accountNoSeq;
+    public BigDecimal getMaturityValueDeviation() {
+        return maturityValueDeviation;
     }
 
-    public void setAccountNoSeq(String accountNoSeq) {
-        this.accountNoSeq = accountNoSeq;
+    public void setMaturityValueDeviation(BigDecimal maturityValueDeviation) {
+        this.maturityValueDeviation = maturityValueDeviation;
+    }
+
+    public String getCalcFrequency() {
+        return calcFrequency;
+    }
+
+    public void setCalcFrequency(String calcFrequency) {
+        this.calcFrequency = calcFrequency;
     }
 
     public FixedDepositConfig() {

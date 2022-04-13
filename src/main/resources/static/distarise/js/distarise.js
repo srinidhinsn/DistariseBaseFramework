@@ -111,3 +111,36 @@ function fillForm(id, column1, column2, column3, column4, column5, column6, colu
         document.getElementById(id)['column20'].checked= 'true' === column20.toLowerCase();
     }
 }
+
+function calcMaturityValue(id){
+    const annually = 1000 * 60 * 60 * 24 * 31 * 12;
+    const monthly = 1000 * 60 * 60 * 24 * 31;
+    const daily = (1000 * 60 * 60 * 24) % 365;
+    var duration;
+    var amount = document.getElementById(id)['amount'].value;
+    var roi = document.getElementById(id)['roi'].value;
+    var calcMethod = document.getElementById(id)['calcmethod'].value;
+    var calcFrequency = document.getElementById(id)['calcfrequency'].value;
+    var sd = new Date(document.getElementById(id)['startdate'].value);
+    var md = new Date(document.getElementById(id)['maturitydate'].value);
+
+    var timeDiff = Math.abs(sd.getTime() - md.getTime());
+
+    if (calcFrequency === 'Annually'){
+        duration = Math.round((timeDiff / annually) * 100) / 100;
+    } else if (calcFrequency === 'Monthly'){
+        duration = Math.round((timeDiff / monthly) * 100) / 100;
+    } else if (calcFrequency === 'Daily'){
+        duration = Math.round((timeDiff / daily) * 100) / 100;
+    }
+
+    var siAmount = ((amount * roi * duration) / 100) + parseFloat(amount);
+    var ciAmount = amount * Math.pow(1 + roi/100, Math.round(duration));
+
+    if (calcMethod === 'Simple_Interest'){
+        document.getElementById(id)['maturityvalue'].value = siAmount;
+    } else if (calcMethod === 'Compound_Interest'){
+        document.getElementById(id)['maturityvalue'].value = ciAmount;
+    }
+
+}

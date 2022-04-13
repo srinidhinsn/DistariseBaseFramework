@@ -38,9 +38,7 @@ public class LoadFdConfigAction extends AbstractBaseAction{
                     navigationItemDto.getWidgets().forEach(targetWidgetDto -> {
                         if (targetWidgetDto.getId().equalsIgnoreCase("fdconfig") && null != fdConfig) {
                             targetWidgetDto.getComponentDtos().forEach(targetComponentDto -> {
-                                if (targetComponentDto.getId().equalsIgnoreCase("accountnoseq")) {
-                                    targetComponentDto.setValue(fdConfig.getAccountNoSeq());
-                                } else if (targetComponentDto.getId().equalsIgnoreCase("minduration")) {
+                                if (targetComponentDto.getId().equalsIgnoreCase("minduration")) {
                                     targetComponentDto.setValue(fdConfig.getMinDuration().toString());
                                 } else if (targetComponentDto.getId().equalsIgnoreCase("effectivedate")) {
                                     targetComponentDto.setValue(fdConfig.getEffectiveDate().toString());
@@ -50,8 +48,12 @@ public class LoadFdConfigAction extends AbstractBaseAction{
                                     targetComponentDto.setValue(fdConfig.getRoi().toString());
                                 } else if (targetComponentDto.getId().equalsIgnoreCase("calcmethod")) {
                                     targetComponentDto.setValue(fdConfig.getCalcMethod());
-                                }  else if (targetComponentDto.getId().equalsIgnoreCase("fdconfigid")) {
+                                } else if (targetComponentDto.getId().equalsIgnoreCase("calcfrequency")) {
+                                    targetComponentDto.setValue(fdConfig.getCalcFrequency());
+                                } else if (targetComponentDto.getId().equalsIgnoreCase("fdconfigid")) {
                                     targetComponentDto.setValue(fdConfig.getId().toString());
+                                } else if (targetComponentDto.getId().equalsIgnoreCase("deviation")) {
+                                    targetComponentDto.setValue(fdConfig.getMaturityValueDeviation().toString());
                                 } else if (targetComponentDto.getId().equalsIgnoreCase("validfrom")) {
                                     List<FixedDepositConfigDto> validity = fdConfigService.getAllByClientId(distabankContext.getClientId());
                                     List<ComponentItemDto> componentItemDtoList = convertToComponentItems(validity, fdConfigId, distabankContext.getClientId());
@@ -77,7 +79,7 @@ public class LoadFdConfigAction extends AbstractBaseAction{
         List<ComponentItemDto> componentItemDtoList = new ArrayList<>();
         for (int i=0;i<validity.size();i++){
             String validFrom = validity.get(i).getEffectiveAndEndDateDropDown();
-            ComponentItemDto componentItemDto = new ComponentItemDto(3600L+i, "validfrom", clientId, 3600+i,
+            ComponentItemDto componentItemDto = new ComponentItemDto(360L * ComponentItemDto.ID_MULTIPLIER+i, "validfrom", clientId, 3600+i,
                     validity.get(i).getId().toString(), validFrom, true, true );
             if (componentItemDto.getValue().equals(fdConfigId)){
                 componentItemDto.setSelected(true);

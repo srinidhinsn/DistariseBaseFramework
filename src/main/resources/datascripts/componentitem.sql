@@ -244,6 +244,16 @@ INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder,
 VALUES (351,'distabank', 'calcmethod', true, 'Compound interest', 351, 'Compound_Interest', true);
 
 INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (355,'distabank', 'calcfrequency', true, 'Annually', 355, 'Annually', true);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (356,'distabank', 'calcfrequency', true, 'Monthly', 356, 'Monthly', true);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (357,'distabank', 'calcfrequency', true, 'Daily', 357, 'Daily', true);
+
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
 VALUES (360,'distabank', 'validfrom', true, 'New', 360, 'new', true);
 
 INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)

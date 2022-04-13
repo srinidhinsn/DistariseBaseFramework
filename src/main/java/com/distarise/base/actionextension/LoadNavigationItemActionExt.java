@@ -46,7 +46,7 @@ public class LoadNavigationItemActionExt {
         List<NavigationDto> navigationDtoList = navigationService.getAllNavigations(clientId);
         List<ComponentItemDto> componentItemDtoList = new ArrayList<>();
         for (int i=0; i<navigationDtoList.size(); i++) {
-            ComponentItemDto componentItemDto = new ComponentItemDto(30000L+i,
+            ComponentItemDto componentItemDto = new ComponentItemDto(30L*ComponentItemDto.ID_MULTIPLIER+i,
                     "landingpage", clientId , i+1,
                     navigationDtoList.get(i).getId(), navigationDtoList.get(i).getId(), false, true
             );
@@ -103,7 +103,7 @@ public class LoadNavigationItemActionExt {
         List<ComponentItemDto> componentItemDtoList = new ArrayList<>();
 
         for (int i=0; i<navigationItemDtoList.size(); i++) {
-            ComponentItemDto componentItemDto = new ComponentItemDto(60000L + i,
+            ComponentItemDto componentItemDto = new ComponentItemDto(60L * ComponentItemDto.ID_MULTIPLIER + i,
                     "navigationitemlist", clientId, i + 1,
                     navigationItemDtoList.get(i).getId(), navigationItemDtoList.get(i).getId(), false, true
             );
@@ -170,7 +170,7 @@ public class LoadNavigationItemActionExt {
         List<ComponentItemDto> componentItemDtoList = new ArrayList<>();
 
         for (int i=0; i<widgetDtoList.size(); i++) {
-            ComponentItemDto componentItemDto = new ComponentItemDto(90000L + i,
+            ComponentItemDto componentItemDto = new ComponentItemDto(90L * ComponentItemDto.ID_MULTIPLIER + i,
                     "widgetlist", clientId, i + 1,
                     widgetDtoList.get(i).getId(), widgetDtoList.get(i).getId(), false, true
             );
@@ -244,7 +244,7 @@ public class LoadNavigationItemActionExt {
         List<ComponentItemDto> componentItemDtoList = new ArrayList<>();
 
         for (int i=0; i<sourceComponentDtoList.size(); i++) {
-            ComponentItemDto componentItemDto = new ComponentItemDto(140000L + i,
+            ComponentItemDto componentItemDto = new ComponentItemDto(140L * ComponentItemDto.ID_MULTIPLIER + i,
                     "componentlist", clientId, i + 1,
                     sourceComponentDtoList.get(i).getId(), sourceComponentDtoList.get(i).getLabel(), false, true
             );

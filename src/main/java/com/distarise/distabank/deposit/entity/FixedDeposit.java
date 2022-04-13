@@ -38,7 +38,7 @@ public class FixedDeposit {
     private Date maturityDate;
 
     @Column(name = "MATURITYVALUE")
-    private Date maturityValue;
+    private BigDecimal maturityValue;
 
     @Column(name = "ROI")
     private BigDecimal roi;
@@ -57,6 +57,12 @@ public class FixedDeposit {
 
     @Column(name = "CALCMETHOD")
     private String calcMethod;
+
+    @Column(name = "CALCFREQUENCY")
+    private String calcFrequency;
+
+    @Column(name = "STATUS", columnDefinition = "varchar(20) default 'Pending'")
+    private String status;
 
     public Long getId() {
         return id;
@@ -114,11 +120,11 @@ public class FixedDeposit {
         this.maturityDate = maturityDate;
     }
 
-    public Date getMaturityValue() {
+    public BigDecimal getMaturityValue() {
         return maturityValue;
     }
 
-    public void setMaturityValue(Date maturityValue) {
+    public void setMaturityValue(BigDecimal maturityValue) {
         this.maturityValue = maturityValue;
     }
 
@@ -168,6 +174,22 @@ public class FixedDeposit {
 
     public void setCalcMethod(String calcMethod) {
         this.calcMethod = calcMethod;
+    }
+
+    public String getCalcFrequency() {
+        return calcFrequency;
+    }
+
+    public void setCalcFrequency(String calcFrequency) {
+        this.calcFrequency = calcFrequency;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public FixedDeposit() {

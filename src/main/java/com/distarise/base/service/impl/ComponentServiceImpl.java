@@ -36,7 +36,7 @@ public class ComponentServiceImpl implements ComponentService {
                 if (componentDto.getWidgetId().equalsIgnoreCase(widgetDto.getId())){
                     List<String> allowedActions = roleWidgetActions.get(widgetDto.getId());
                     if (null != componentDto.getKeyOrAction() &&
-                            !componentDto.getKeyOrAction().equalsIgnoreCase("javascript")){
+                            !componentDto.getKeyOrAction().contains("javascript")){
                         if (allowedActions.contains(componentDto.getKeyOrAction())){
                             componentDtoList.add(componentDto);
                         }

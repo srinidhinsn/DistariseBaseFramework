@@ -12,8 +12,9 @@ public class FixedDepositConfigDto {
     private Date endDate;
     private BigDecimal roi;
     private String calcMethod;
+    private String calcFrequency;
     private Integer minDuration;
-    private String accountNoSeq;
+    private BigDecimal maturityValueDeviation;
 
     public Long getId() {
         return id;
@@ -63,31 +64,40 @@ public class FixedDepositConfigDto {
         this.calcMethod = calcMethod;
     }
 
+    public String getCalcFrequency() {
+        return calcFrequency;
+    }
+
+    public void setCalcFrequency(String calcFrequency) {
+        this.calcFrequency = calcFrequency;
+    }
+
     public Integer getMinDuration() {
         return minDuration;
-    }
-
-    public String getAccountNoSeq() {
-        return accountNoSeq;
-    }
-
-    public void setAccountNoSeq(String accountNoSeq) {
-        this.accountNoSeq = accountNoSeq;
     }
 
     public void setMinDuration(Integer minDuration) {
         this.minDuration = minDuration;
     }
 
+    public BigDecimal getMaturityValueDeviation() {
+        return maturityValueDeviation;
+    }
+
+    public void setMaturityValueDeviation(BigDecimal maturityValueDeviation) {
+        this.maturityValueDeviation = maturityValueDeviation;
+    }
+
     public FixedDepositConfigDto(String clientId, Date effectiveDate, Date endDate, BigDecimal roi, String calcMethod,
-                                 Integer minDuration, String accountNoSeq) {
+                                 Integer minDuration, BigDecimal deviation, String calcFrequency) {
         this.clientId = clientId;
         this.effectiveDate = effectiveDate;
         this.endDate = endDate;
         this.roi = roi;
         this.calcMethod = calcMethod;
         this.minDuration = minDuration;
-        this.accountNoSeq = accountNoSeq;
+        this.maturityValueDeviation = deviation;
+        this.calcFrequency = calcFrequency;
     }
 
     public FixedDepositConfigDto() {

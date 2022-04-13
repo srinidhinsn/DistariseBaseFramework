@@ -19,6 +19,8 @@ public class FixedDepositDto {
     private BigDecimal withdrawalAmount;
     private String referenceCode;
     private String calcMethod;
+    private String calcFrequency;
+    private String status;
 
     public Long getId() {
         return id;
@@ -132,12 +134,28 @@ public class FixedDepositDto {
         this.referenceCode = referenceCode;
     }
 
+    public String getCalcFrequency() {
+        return calcFrequency;
+    }
+
+    public void setCalcFrequency(String calcFrequency) {
+        this.calcFrequency = calcFrequency;
+    }
+
     public String getCalcMethod() {
         return calcMethod;
     }
 
     public void setCalcMethod(String calcMethod) {
         this.calcMethod = calcMethod;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public FixedDepositDto(String accountNo, Long customerId, String customerName, Date effectiveDate,
@@ -161,7 +179,7 @@ public class FixedDepositDto {
 
     public FixedDepositDto(String clientId, String accountNo, Long customerId, String customerName, Date effectiveDate,
                            Date maturityDate, BigDecimal maturityValue, BigDecimal roi, BigDecimal amount,
-                           String amountText, String referenceCode, String calcMethod) {
+                           String amountText, String referenceCode, String calcMethod, String calcFrequency) {
         this.clientId = clientId;
         this.accountNo = accountNo;
         this.customerId = customerId;
@@ -174,6 +192,7 @@ public class FixedDepositDto {
         this.amountText = amountText;
         this.referenceCode = referenceCode;
         this.calcMethod = calcMethod;
+        this.calcFrequency = calcFrequency;
     }
 
     public FixedDepositDto() {
