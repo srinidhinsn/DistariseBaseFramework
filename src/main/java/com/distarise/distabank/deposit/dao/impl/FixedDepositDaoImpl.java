@@ -41,4 +41,8 @@ public class FixedDepositDaoImpl implements FixedDepositDao {
                 fd, FixedDepositDto.class)).collect(Collectors.toList());
     }
 
+    @Override
+    public List<FixedDepositDto> findAllByClientIdAndCustomerId(String clientId, Long customerId){
+        return convertEntityToDtoList(fdRepository.findAllByClientIdAndCustomerId(clientId, customerId));
+    }
 }

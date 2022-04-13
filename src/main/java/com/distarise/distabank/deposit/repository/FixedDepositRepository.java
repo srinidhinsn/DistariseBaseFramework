@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface FixedDepositRepository extends CrudRepository<FixedDeposit, Long> {
     List<FixedDeposit> findAllByClientId(String clientId);
+    List<FixedDeposit> findAllByClientIdAndCustomerId(String clientId, Long customerId);
 }

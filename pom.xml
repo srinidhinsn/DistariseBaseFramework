@@ -34,6 +34,7 @@
         <hibernate-core-version>5.2.10.Final</hibernate-core-version>
         <model-mapper-version>2.3.0</model-mapper-version>
         <spring-security-version>5.3.3.RELEASE</spring-security-version>
+        <joda-version>2.10.14</joda-version>
     </properties>
 
     <dependencies>
@@ -75,6 +76,12 @@
             <groupId>org.modelmapper</groupId>
             <artifactId>modelmapper</artifactId>
             <version>${model-mapper-version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/joda-time/joda-time -->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>${joda-version}</version>
         </dependency>
     </dependencies>
 </project>

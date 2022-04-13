@@ -5,8 +5,12 @@
 </head>
     <body>
         <div th:fragment="formField(component, widget, navigationItem, pageDetails)" style="float: right; margin-left: 10px">
-            <button type="submit" th:onclick="|javascript:onClickSubmitForm('${widget.id}','${component.keyOrAction}','${widget.redirectUrl}')|" th:id="${component.id}" class="btn btn-primary" th:text="${component.label}"></button>
-
+            <span th:if="${true == component.editable}">
+                <button type="button" th:onclick="|javascript:onClickSubmitForm('${widget.id}','${component.keyOrAction}','${widget.redirectUrl}')|" th:id="${component.id}" class="btn btn-primary" th:text="${component.label}"></button>
+            </span>
+            <span th:if="${false == component.editable}">
+                <button type="button" disabled="${!component.editable}" th:id="${component.id}" class="btn btn-primary" th:text="${component.label}"></button>
+            </span>
             <br /> <br />
         </div>
     </body>

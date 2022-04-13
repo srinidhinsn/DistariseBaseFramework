@@ -35,7 +35,7 @@ public class DistabankUtils {
     public static String padAccountNo(String clientId, String str1, String str2){
         StringBuffer sb = new StringBuffer();
         sb.append(str1).append(clientId.substring(0,2));
-        int remainingPadding = PADDING_LENGTH - sb.length() + str2.length();
+        int remainingPadding = PADDING_LENGTH - (sb.length() + str2.length());
         for(int i=0; i<remainingPadding ; i++){
             sb.append("0");
         }

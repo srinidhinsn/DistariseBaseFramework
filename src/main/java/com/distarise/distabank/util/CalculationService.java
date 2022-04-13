@@ -1,5 +1,9 @@
 package com.distarise.distabank.util;
 
+import org.joda.time.Days;
+import org.joda.time.LocalDate;
+import org.joda.time.Months;
+import org.joda.time.Years;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -22,26 +26,36 @@ public class CalculationService {
     public BigDecimal calcFinalAmount(Double amount, Double roi, InterestCalcMethod calcMethod,
                                              InterestCalcFrequency frequency, Date startDate, Date endDate) {
         Long timeDiff = endDate.getTime() - startDate.getTime();
-        Long duration = 0L;
+        LocalDate sdLocalDate = new LocalDate(startDate.getTime());
+        LocalDate edLocalDate = new LocalDate(endDate.getTime());
+        int duration=0;
+        Double durationInDecimal =0d;
         Double finalAmount = null;
         switch (frequency){
             case Daily:
-                duration = (timeDiff / (1000*60*60*24)) % 365;
+                duration = Days.daysBetween(sdLocalDate, edLocalDate).getDays();
                 break;
             case Monthly:
-                duration = (timeDiff / (1000*60*60*24*31));
+                duration = Months.monthsBetween(sdLocalDate, edLocalDate).getMonths();
                 break;
             case Annually:
-                duration = timeDiff / (1000*60*60*24*31*12);
+                duration = Years.yearsBetween(sdLocalDate, edLocalDate).getYears();
+                if (0 == duration){
+                    durationInDecimal = Double.valueOf(Months.monthsBetween(sdLocalDate, edLocalDate).getMonths()) / 12;
+                    durationInDecimal = Double.valueOf(Math.round(durationInDecimal * 100))/100;
+                }
                 break;
         }
 
+        if (0d == durationInDecimal ) {
+            durationInDecimal = Double.valueOf(duration);
+        }
         switch (calcMethod){
             case Compound_Interest:
-                finalAmount = amount * (Math.pow((1d+roi)/100, duration));
+                finalAmount = amount * (Math.pow((1d+roi)/100, durationInDecimal));
                 break;
             case Simple_Interest:
-                finalAmount = (amount * duration * roi) / 100;
+                finalAmount = (amount * durationInDecimal * roi) / 100 + amount;
                 break;
             default:
         }
