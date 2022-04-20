@@ -4,7 +4,6 @@ import com.distarise.distabank.deposit.dao.FixedDepositConfigDao;
 import com.distarise.distabank.deposit.dao.FixedDepositDao;
 import com.distarise.distabank.deposit.model.FixedDepositConfigDto;
 import com.distarise.distabank.deposit.model.FixedDepositDto;
-import com.distarise.distabank.deposit.service.FixedDepositConfigService;
 import com.distarise.distabank.deposit.service.FixedDepositService;
 import com.distarise.distabank.util.DepositAccountStatus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +44,10 @@ public class FixedDepositServiceImpl implements FixedDepositService {
             return new ArrayList<>();
         }
         return fixedDepositDao.findAllByClientIdAndCustomerId(clientId, customerId);
+    }
+
+    @Override
+    public FixedDepositDto findById(String selectedFd) {
+        return fixedDepositDao.findById(selectedFd);
     }
 }

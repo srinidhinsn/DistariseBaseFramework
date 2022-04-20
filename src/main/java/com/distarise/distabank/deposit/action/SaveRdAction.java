@@ -1,15 +1,13 @@
 package com.distarise.distabank.deposit.action;
 
 import com.distarise.base.action.AbstractBaseAction;
-import com.distarise.base.action.BaseAction;
 import com.distarise.base.model.PageDetailsDto;
 import com.distarise.distabank.deposit.model.DistabankContext;
-import com.distarise.distabank.deposit.model.FixedDepositDto;
-import com.distarise.distabank.deposit.service.FixedDepositService;
+import com.distarise.distabank.deposit.model.RecurringDepositDto;
+import com.distarise.distabank.deposit.service.RecurringDepositService;
 import com.distarise.distabank.util.CalculationService;
 import com.distarise.distabank.util.DepositAccountStatus;
 import com.distarise.distabank.util.DistabankUtils;
-import com.distarise.distabank.util.InterestCalcFrequency;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +17,12 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Service
-public class SaveFdAction extends AbstractBaseAction {
+public class SaveRdAction extends AbstractBaseAction {
 
-    private static final Logger logger = LoggerFactory.getLogger(SaveFdAction.class);
+    private static final Logger logger = LoggerFactory.getLogger(SaveRdAction.class);
 
     @Autowired
-    private FixedDepositService fdService;
+    private RecurringDepositService rdService;
 
     @Autowired
     private CalculationService calcService;
@@ -46,35 +44,35 @@ public class SaveFdAction extends AbstractBaseAction {
         String amountText = request.getParameter("amounttext");
         String referenceCode = request.getParameter("referencecode");
         String maturityValue = request.getParameter("maturityvalue");
-        FixedDepositDto fd = null;
+        RecurringDepositDto rd = null;
         if (null != selectedFd) {
-          fd = fdService.findById(selectedFd);
+          rd = rdService.findById(selectedFd);
         }
         if (null == context.getCustomerId() || context.getCustomerId().equals(0)){
             targetPageDetailsDto.getErrorMessages().add("Select customer before adding FD");
-        } else if (null != fd && null != withdrawaldate && !withdrawaldate.isEmpty()){
-            BigDecimal finalAmount = calcService.calcFinalAmount(fd.getAmount().toString(), fd.getRoi().toString(),
-                    fd.getCalcMethod(), fd.getCalcFrequency(), fd.getEffectiveDate().toString(), maturityDate);
+        } else if (null != rd && null != withdrawaldate && !withdrawaldate.isEmpty()){
+            BigDecimal finalAmount = calcService.calcFinalAmount(rd.getAmount().toString(), rd.getRoi().toString(),
+                    rd.getCalcMethod(), rd.getCalcFrequency(), rd.getEffectiveDate().toString(), maturityDate);
             Date withdrawalDate = DistabankUtils.stringYYYYMMDDToDate(withdrawaldate);
-            fd.setMaturityValue(finalAmount);
-            fd.setWithdrawalDate(withdrawalDate);
-            if (fd.getMaturityDate().compareTo(withdrawalDate) == 0 || fd.getMaturityDate().compareTo(withdrawalDate) > 1){
-                fd.setStatus(DepositAccountStatus.Ended.name());
+            rd.setMaturityValue(finalAmount);
+            rd.setWithdrawalDate(withdrawalDate);
+            if (rd.getMaturityDate().compareTo(withdrawalDate) == 0 || rd.getMaturityDate().compareTo(withdrawalDate) > 1){
+                rd.setStatus(DepositAccountStatus.Ended.name());
             } else {
-                fd.setStatus(DepositAccountStatus.PreMatured.name());
+                rd.setStatus(DepositAccountStatus.PreMatured.name());
             }
-            fdService.saveFd(fd);
+            rdService.saveRd(rd);
         } else {
             BigDecimal finalAmount = calcService.calcFinalAmount(amount, roi, calcMethod,
                     calcFrequency, startDate, maturityDate);
-            FixedDepositDto fdDto = new FixedDepositDto(context.getClientId(), accountNo, Long.parseLong(customerId), customerName,
+            RecurringDepositDto rdDto = new RecurringDepositDto(context.getClientId(), accountNo, Long.parseLong(customerId), customerName,
                     DistabankUtils.stringYYYYMMDDToDate(startDate), DistabankUtils.stringYYYYMMDDToDate(maturityDate),
                     finalAmount, new BigDecimal(roi), new BigDecimal(amount), amountText, referenceCode,
                     calcMethod, calcFrequency);
-            if (null != fd){
-                fdDto.setId(fd.getId());
+            if (null != rd){
+                rdDto.setId(rd.getId());
             }
-            fdService.saveFd(fdDto);
+            rdService.saveRd(rdDto);
         }
     }
 

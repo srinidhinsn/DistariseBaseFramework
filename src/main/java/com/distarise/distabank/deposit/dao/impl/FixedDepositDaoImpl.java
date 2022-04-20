@@ -2,7 +2,6 @@ package com.distarise.distabank.deposit.dao.impl;
 
 import com.distarise.distabank.deposit.dao.FixedDepositDao;
 import com.distarise.distabank.deposit.entity.FixedDeposit;
-import com.distarise.distabank.deposit.entity.FixedDepositConfig;
 import com.distarise.distabank.deposit.model.FixedDepositDto;
 import com.distarise.distabank.deposit.repository.FixedDepositConfigRepository;
 import com.distarise.distabank.deposit.repository.FixedDepositRepository;
@@ -11,7 +10,6 @@ import com.distarise.distabank.util.DistabankUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,8 +25,10 @@ public class FixedDepositDaoImpl implements FixedDepositDao {
     @Override
     public void saveFd(FixedDepositDto fixedDepositDto) {
         FixedDeposit fd = fdRepository.save(modelMapper.map(fixedDepositDto, FixedDeposit.class));
-        fd.setAccountNo(DistabankUtils.padAccountNo(fd.getClientId(), AccountType.FD.name(), fd.getId().toString()));
-        fdRepository.save(fd);
+        if (null == fixedDepositDto.getId() || 0 == fixedDepositDto.getId()){
+            fd.setAccountNo(DistabankUtils.padAccountNo(fd.getClientId(), AccountType.FD.name(), fd.getId().toString()));
+            fdRepository.save(fd);
+        }
     }
 
     @Override
@@ -44,5 +44,14 @@ public class FixedDepositDaoImpl implements FixedDepositDao {
     @Override
     public List<FixedDepositDto> findAllByClientIdAndCustomerId(String clientId, Long customerId){
         return convertEntityToDtoList(fdRepository.findAllByClientIdAndCustomerId(clientId, customerId));
+    }
+
+    @Override
+    public FixedDepositDto findById(String selectedFd) {
+        return convertEntityToDto(fdRepository.findOne(Long.parseLong(selectedFd)));
+    }
+
+    private FixedDepositDto convertEntityToDto(FixedDeposit one) {
+        return modelMapper.map(one, FixedDepositDto.class);
     }
 }

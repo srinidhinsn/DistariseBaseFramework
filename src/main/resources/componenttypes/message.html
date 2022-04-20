@@ -9,13 +9,13 @@
                 <div th:if="${null != component.gridValues and component.gridValues.size()>0}">
                     <div th:each="gridValue : ${component.gridValues}">
                         <span th:if="${null != gridValue.get('SUCCESS')}" style="color:green;">
-                            <b style="font-style: italic" th:text="${gridValue.get('SUCCESS')}"> </b>>
+                            <b style="font-style: italic" th:text="${gridValue.get('SUCCESS')}"> </b>
                         </span>
                         <span th:if="${null != gridValue.get('WARNING')}" style="color:yellow;">
-                            <b style="font-style: italic" th:text="${gridValue.get('WARNING')}"> </b>>
+                            <b style="font-style: italic" th:text="${gridValue.get('WARNING')}"> </b>
                         </span>
                         <span th:if="${null != gridValue.get('ERROR')}" style="color:red;">
-                            <b style="font-style: italic" th:text="${gridValue.get('ERROR')}"> </b>>
+                            <b style="font-style: italic" th:text="${gridValue.get('ERROR')}"> </b>
                         </span>
                     </div>
                 </div>

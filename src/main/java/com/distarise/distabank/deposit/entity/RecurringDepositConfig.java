@@ -11,8 +11,8 @@ import java.math.BigDecimal;
 import java.sql.Date;
 
 @Entity
-@Table(name = "FIXEDDEPOSITCONFIG")
-public class FixedDepositConfig {
+@Table(name = "RECURRINGDEPOSITCONFIG")
+public class RecurringDepositConfig {
 
     @Id
     @GeneratedValue(generator="s_fdconfig_id", strategy = GenerationType.SEQUENCE)
@@ -115,6 +115,6 @@ public class FixedDepositConfig {
         this.calcFrequency = calcFrequency;
     }
 
-    public FixedDepositConfig() {
+    public RecurringDepositConfig() {
     }
 }

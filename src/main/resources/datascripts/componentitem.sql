@@ -250,7 +250,10 @@ INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder,
 VALUES (356,'distabank', 'calcfrequency', true, 'Monthly', 356, 'Monthly', true);
 
 INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
-VALUES (357,'distabank', 'calcfrequency', true, 'Daily', 357, 'Daily', true);
+VALUES (357,'distabank', 'calcfrequency', true, 'Quarterly', 357, 'Quarterly', true);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (358,'distabank', 'calcfrequency', true, 'Daily', 358, 'Daily', true);
 
 
 INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)

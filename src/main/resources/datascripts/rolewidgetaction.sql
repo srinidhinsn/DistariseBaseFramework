@@ -228,3 +228,21 @@ VALUES ('distabank', 'manager', 'fd', 'com.distarise.distabank.deposit.action.Lo
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible, enabled)
 VALUES ('distabank', 'manager', 'fd', 'com.distarise.distabank.deposit.action.SaveFdAction', true, true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible, enabled)
+VALUES ('distabank', 'manager', 'rdconfig', '', true, true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible, enabled)
+VALUES ('distabank', 'manager', 'rdconfig', 'com.distarise.distabank.deposit.action.LoadRdConfigAction', true, true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible, enabled)
+VALUES ('distabank', 'manager', 'rdconfig', 'com.distarise.distabank.deposit.action.SaveRdConfigAction', true, true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible, enabled)
+VALUES ('distabank', 'manager', 'rd', '', true, true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible, enabled)
+VALUES ('distabank', 'manager', 'rd', 'com.distarise.distabank.deposit.action.LoadRdAction', true, true);
+
+INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible, enabled)
+VALUES ('distabank', 'manager', 'rd', 'com.distarise.distabank.deposit.action.SaveRdAction', true, true);

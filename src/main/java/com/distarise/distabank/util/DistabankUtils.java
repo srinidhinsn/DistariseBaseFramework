@@ -25,7 +25,9 @@ public class DistabankUtils {
     public static Date stringYYYYMMDDToDate(String dateString){
         Date date = null;
         try{
-            date = new SimpleDateFormat(CustomerDto.DATE_YYYY_MM_DD).parse(dateString);
+            if(null != dateString && !dateString.isEmpty()){
+                date = new SimpleDateFormat(CustomerDto.DATE_YYYY_MM_DD).parse(dateString);
+            }
         } catch (Exception e){
             logger.error(e.getMessage());
         }

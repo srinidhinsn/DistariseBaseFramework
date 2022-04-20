@@ -21,8 +21,10 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -160,4 +162,19 @@ public abstract class AbstractBaseAction implements BaseAction{
     @Override
     abstract public void executeAction();
 
+    @Override
+    public void handleMessages() {
+        PageDetailsDto pageDetailsDto = executeAction(new PageDetailsDto());
+        List<WidgetDto> widgetDtos = null;
+        WidgetDto widgetDto = widgetService.getMessageWidget(getClientId(), getSourceNavigationItemId(), pageDetailsDto);
+        Optional<NavigationItemDto> navItemDto = pageDetailsDto.getNavigationDto().getNavigationItems().stream().filter(
+                navigationItemDto -> navigationItemDto.getId().equals(getSourceNavigationItemId())).findFirst();
+        if (navItemDto.isPresent()){
+            widgetDtos = navItemDto.get().getWidgets();
+        }
+        if (null != widgetDto){
+            widgetDtos.add(widgetDto);
+            widgetService.mapWidgetsToNavigationItems(pageDetailsDto.getNavigationDto().getNavigationItems(), widgetDtos);
+        }
+    }
 }

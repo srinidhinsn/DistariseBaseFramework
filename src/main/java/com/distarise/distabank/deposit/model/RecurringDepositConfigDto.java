@@ -1,47 +1,20 @@
-package com.distarise.distabank.deposit.entity;
+package com.distarise.distabank.deposit.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import com.distarise.distabank.util.DistabankUtils;
+
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.Date;
 
-@Entity
-@Table(name = "FIXEDDEPOSITCONFIG")
-public class FixedDepositConfig {
-
-    @Id
-    @GeneratedValue(generator="s_fdconfig_id", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name="s_fdconfig_id",sequenceName="S_FDCONFIG_ID", initialValue = 1000, allocationSize=1)
+public class RecurringDepositConfigDto {
     private Long id;
-
-    @Column(name = "CLIENTID")
     private String clientId;
-
-    @Column(name = "EFFECTIVEDATE")
     private Date effectiveDate;
-
-    @Column(name = "ENDDATE")
     private Date endDate;
-
-    @Column(name = "ROI")
     private BigDecimal roi;
-
-    @Column(name = "MATURITYVALUEDEVIATION")
-    private BigDecimal maturityValueDeviation;
-
-    @Column(name = "CALCMETHOD")
     private String calcMethod;
-
-    @Column(name = "MINDURATION")
-    private Integer minDuration;
-
-    @Column(name = "CALCFREQUENCY")
     private String calcFrequency;
+    private Integer minDuration;
+    private BigDecimal maturityValueDeviation;
 
     public Long getId() {
         return id;
@@ -91,6 +64,14 @@ public class FixedDepositConfig {
         this.calcMethod = calcMethod;
     }
 
+    public String getCalcFrequency() {
+        return calcFrequency;
+    }
+
+    public void setCalcFrequency(String calcFrequency) {
+        this.calcFrequency = calcFrequency;
+    }
+
     public Integer getMinDuration() {
         return minDuration;
     }
@@ -107,14 +88,26 @@ public class FixedDepositConfig {
         this.maturityValueDeviation = maturityValueDeviation;
     }
 
-    public String getCalcFrequency() {
-        return calcFrequency;
-    }
-
-    public void setCalcFrequency(String calcFrequency) {
+    public RecurringDepositConfigDto(String clientId, Date effectiveDate, Date endDate, BigDecimal roi, String calcMethod,
+                                     Integer minDuration, BigDecimal deviation, String calcFrequency) {
+        this.clientId = clientId;
+        this.effectiveDate = effectiveDate;
+        this.endDate = endDate;
+        this.roi = roi;
+        this.calcMethod = calcMethod;
+        this.minDuration = minDuration;
+        this.maturityValueDeviation = deviation;
         this.calcFrequency = calcFrequency;
     }
 
-    public FixedDepositConfig() {
+    public RecurringDepositConfigDto() {
+    }
+
+    public String getEffectiveAndEndDateDropDown(){
+        if (null != this.endDate) {
+            return this.effectiveDate + DistabankUtils.GENERIC_SEPERATOR + this.endDate;
+        } else {
+            return this.effectiveDate + DistabankUtils.GENERIC_SEPERATOR;
+        }
     }
 }

@@ -1,66 +1,25 @@
-package com.distarise.distabank.deposit.entity;
+package com.distarise.distabank.deposit.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.Date;
 
-@Entity
-@Table(name = "FIXEDDEPOSIT")
-public class FixedDeposit {
-    @Id
-    @GeneratedValue(generator="s_fddeposit_id", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name="s_fddeposit_id",sequenceName="S_FDDEPOSIT_ID", initialValue = 1000, allocationSize=1)
+public class RecurringDepositDto {
     private Long id;
-
-    @Column(name = "CLIENTID")
     private String clientId;
-
-    @Column(name = "ACCOUNTNO")
     private String accountNo;
-
-    @Column(name = "CUSTOMERID")
     private Long customerId;
-
-    @Column(name = "CUSTOMERNAME")
     private String customerName;
-
-    @Column(name = "STARTDATE")
     private Date effectiveDate;
-
-    @Column(name = "MATURITYDATE")
     private Date maturityDate;
-
-    @Column(name = "MATURITYVALUE")
     private BigDecimal maturityValue;
-
-    @Column(name = "ROI")
     private BigDecimal roi;
-
-    @Column(name = "AMOUNT")
     private BigDecimal amount;
-
-    @Column(name = "AMOUNTTEXT")
     private String amountText;
-
-    @Column(name = "WITHDRAWALDATE")
     private Date withdrawalDate;
-
-    @Column(name = "REFERENCECODE")
+    private BigDecimal withdrawalAmount;
     private String referenceCode;
-
-    @Column(name = "CALCMETHOD")
     private String calcMethod;
-
-    @Column(name = "CALCFREQUENCY")
     private String calcFrequency;
-
-    @Column(name = "STATUS", columnDefinition = "varchar(20) default 'Pending'")
     private String status;
 
     public Long getId() {
@@ -159,20 +118,20 @@ public class FixedDeposit {
         this.withdrawalDate = withdrawalDate;
     }
 
+    public BigDecimal getWithdrawalAmount() {
+        return withdrawalAmount;
+    }
+
+    public void setWithdrawalAmount(BigDecimal withdrawalAmount) {
+        this.withdrawalAmount = withdrawalAmount;
+    }
+
     public String getReferenceCode() {
         return referenceCode;
     }
 
     public void setReferenceCode(String referenceCode) {
         this.referenceCode = referenceCode;
-    }
-
-    public String getCalcMethod() {
-        return calcMethod;
-    }
-
-    public void setCalcMethod(String calcMethod) {
-        this.calcMethod = calcMethod;
     }
 
     public String getCalcFrequency() {
@@ -183,6 +142,14 @@ public class FixedDeposit {
         this.calcFrequency = calcFrequency;
     }
 
+    public String getCalcMethod() {
+        return calcMethod;
+    }
+
+    public void setCalcMethod(String calcMethod) {
+        this.calcMethod = calcMethod;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -191,6 +158,43 @@ public class FixedDeposit {
         this.status = status;
     }
 
-    public FixedDeposit() {
+    public RecurringDepositDto(String accountNo, Long customerId, String customerName, Date effectiveDate,
+                               Date maturityDate, BigDecimal maturityValue, BigDecimal roi, BigDecimal amount,
+                               String amountText, Date withdrawalDate, BigDecimal withdrawalAmount,
+                               String referenceCode, String calcMethod) {
+        this.accountNo = accountNo;
+        this.customerId = customerId;
+        this.customerName = customerName;
+        this.effectiveDate = effectiveDate;
+        this.maturityDate = maturityDate;
+        this.maturityValue = maturityValue;
+        this.roi = roi;
+        this.amount = amount;
+        this.amountText = amountText;
+        this.withdrawalDate = withdrawalDate;
+        this.withdrawalAmount = withdrawalAmount;
+        this.referenceCode = referenceCode;
+        this.calcMethod = calcMethod;
+    }
+
+    public RecurringDepositDto(String clientId, String accountNo, Long customerId, String customerName, Date effectiveDate,
+                               Date maturityDate, BigDecimal maturityValue, BigDecimal roi, BigDecimal amount,
+                               String amountText, String referenceCode, String calcMethod, String calcFrequency) {
+        this.clientId = clientId;
+        this.accountNo = accountNo;
+        this.customerId = customerId;
+        this.customerName = customerName;
+        this.effectiveDate = effectiveDate;
+        this.maturityDate = maturityDate;
+        this.maturityValue = maturityValue;
+        this.roi = roi;
+        this.amount = amount;
+        this.amountText = amountText;
+        this.referenceCode = referenceCode;
+        this.calcMethod = calcMethod;
+        this.calcFrequency = calcFrequency;
+    }
+
+    public RecurringDepositDto() {
     }
 }

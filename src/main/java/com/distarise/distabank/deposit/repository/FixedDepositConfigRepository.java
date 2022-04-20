@@ -16,8 +16,8 @@ public interface FixedDepositConfigRepository extends CrudRepository<FixedDeposi
     FixedDepositConfig findActive(@Param("clientId") String clientId,
                                   @Param("effectiveDate") Date effectDateSql);
 
-    @Query("from FixedDepositConfig where clientId =:clientId and effectiveDate <=:effectiveDate " +
-            " and (endDate is null or endDate >=:endDate)")
+    @Query("from FixedDepositConfig where clientId =:clientId and ((:effectiveDate between effectiveDate and endDate) " +
+            " or (:endDate between effectiveDate and endDate ))")
     FixedDepositConfig findByEffectiveAndEndDate(@Param("clientId") String clientId,
                                                  @Param("effectiveDate") Date effectDateSql,
                                                  @Param("endDate") Date endDateSql);

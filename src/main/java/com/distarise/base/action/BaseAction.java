@@ -1,5 +1,7 @@
 package com.distarise.base.action;
 
+import com.distarise.base.model.PageDetailsDto;
+
 import javax.servlet.http.HttpServletRequest;
 
 public interface BaseAction {
@@ -14,4 +16,5 @@ public interface BaseAction {
 
     void executeAction();
     void executeAction(HttpServletRequest request);
+    void handleMessages();
 }

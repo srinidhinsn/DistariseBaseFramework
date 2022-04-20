@@ -557,10 +557,13 @@ INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, s
 VALUES ('effectivedate', 'distabank', true, '', '', 'Effective from', 8, 'datepicker', true, 'fdconfig', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('deviation', 'distabank', true, '', '', 'Maturity value deviation', 9, 'number', true, 'fdconfig', false);
+VALUES ('enddate', 'distabank', true, '', '', 'Effective till', 9, 'datepicker', true, 'fdconfig', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('savefbconfig', 'distabank', true, '', 'com.distarise.distabank.deposit.action.SaveFdConfigAction', 'Save', 10, 'submitbutton', true, 'fdconfig', false);
+VALUES ('deviation', 'distabank', true, '', '', 'Maturity value deviation', 10, 'number', true, 'fdconfig', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('savefdconfig', 'distabank', true, '', 'com.distarise.distabank.deposit.action.SaveFdConfigAction', 'Save', 20, 'submitbutton', true, 'fdconfig', false);
 
 
 -- dista bank fd page
@@ -569,22 +572,25 @@ INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, s
 VALUES ('loadfd', 'distabank', false, '', 'com.distarise.distabank.deposit.action.LoadFdAction', 'Customer Id', 3, 'autoaction', false, 'fd', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('fdlist', 'distabank', false, '', '', 'Fixed deposits', 3, 'configdropdown', true, 'fd', true);
+VALUES ('fdlist', 'distabank', false, '', '', 'Fixed deposits', 2, 'configdropdown', true, 'fd', true);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('customerid', 'distabank', false, '', '', 'Customer Id', 4, 'textbox', true, 'fd', false);
+VALUES ('customerid', 'distabank', false, '', '', 'Customer Id', 3, 'textbox', true, 'fd', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('accountno', 'distabank', false, '', '', 'FD account no', 5, 'textbox', true, 'fd', false);
+VALUES ('accountno', 'distabank', false, '', '', 'FD account no', 4, 'textbox', true, 'fd', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('customername', 'distabank', true, '', '', 'Customer name', 6, 'textbox', true, 'fd', false);
+VALUES ('customername', 'distabank', true, '', '', 'Customer name', 5, 'textbox', true, 'fd', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('startdate', 'distabank', true, '', '', 'Start date', 7, 'datepicker', true, 'fd', false);
+VALUES ('startdate', 'distabank', true, '', '', 'Start date', 6, 'datepicker', true, 'fd', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('maturitydate', 'distabank', true, '', '', 'Maturity date', 8, 'datepicker', true, 'fd', false);
+VALUES ('maturitydate', 'distabank', true, '', '', 'Maturity date', 7, 'datepicker', true, 'fd', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('withdrawaldate', 'distabank', false, '', '', 'Withdrawal date', 8, 'datepicker', false, 'fd', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
 VALUES ('roi', 'distabank', true, '', '', 'Rate of interest', 9, 'number', true, 'fd', false);
@@ -612,6 +618,99 @@ VALUES ('calculatefd', 'distabank', true, '', 'javascript:calcMaturityValue(''fd
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
 VALUES ('savefd', 'distabank', true, '', 'com.distarise.distabank.deposit.action.SaveFdAction', 'Save', 20, 'submitbutton', true, 'fd', false);
+
+-- distabank Management RD config page
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('loadrdconfig', 'distabank', true, '', 'com.distarise.distabank.deposit.action.LoadRdConfigAction', 'loadrdconfig', 1, 'autoaction', false, 'rdconfig', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('rdconfigid', 'distabank', true, '', '', 'id', 3, 'hidden', false, 'rdconfig', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('validfrom', 'distabank', true, '/nsn/distabank/management/rdconfig', 'com.distarise.distabank.deposit.action.LoadRdConfigAction', 'Valid from', 3, 'configdropdown', true, 'rdconfig', true);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('roi', 'distabank', true, '', '', 'RD interest rate', 4, 'number', true, 'rdconfig', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('calcmethod', 'distabank', true, '', '', 'Calculation method', 5, 'dropdown', true, 'rdconfig', true);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('calcfrequency', 'distabank', true, '', '', 'Calculation frequency', 6, 'dropdown', true, 'rdconfig', true);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('minduration', 'distabank', true, '', '', 'Minimum duration (months)', 7, 'number', true, 'rdconfig', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('effectivedate', 'distabank', true, '', '', 'Effective from', 8, 'datepicker', true, 'rdconfig', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('enddate', 'distabank', true, '', '', 'Effective till', 9, 'datepicker', true, 'rdconfig', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('deviation', 'distabank', true, '', '', 'Maturity value deviation', 10, 'number', true, 'rdconfig', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('saverdconfig', 'distabank', true, '', 'com.distarise.distabank.deposit.action.SaveRdConfigAction', 'Save', 20, 'submitbutton', true, 'rdconfig', false);
+
+-- dista bank rd page
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('loadrd', 'distabank', false, '', 'com.distarise.distabank.deposit.action.LoadRdAction', 'Customer Id', 3, 'autoaction', false, 'rd', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('rdlist', 'distabank', false, '', '', 'Recurring deposits', 2, 'configdropdown', true, 'rd', true);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('customerid', 'distabank', false, '', '', 'Customer Id', 3, 'textbox', true, 'rd', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('accountno', 'distabank', false, '', '', 'FD account no', 4, 'textbox', true, 'rd', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('customername', 'distabank', true, '', '', 'Customer name', 5, 'textbox', true, 'rd', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('startdate', 'distabank', true, '', '', 'Start date', 6, 'datepicker', true, 'rd', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('maturitydate', 'distabank', true, '', '', 'Maturity date', 7, 'datepicker', true, 'rd', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('withdrawaldate', 'distabank', false, '', '', 'Withdrawal date', 8, 'datepicker', false, 'rd', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('roi', 'distabank', true, '', '', 'Rate of interest', 9, 'number', true, 'rd', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('calcmethod', 'distabank', false, '', '', 'Calculation method', 10, 'textbox', true, 'rd', true);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('calcfrequency', 'distabank', false, '', '', 'Calculation Frequency', 11, 'textbox', true, 'rd', true);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('amount', 'distabank', true, '', '', 'Amount', 12, 'number', true, 'rd', true);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('accumulatedvalue', 'distabank', false, '', '', 'Accumulated value', 13, 'number', true, 'rd', true);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('maturityvalue', 'distabank', false, '', '', 'Maturity value', 14, 'number', true, 'rd', true);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('referencecode', 'distabank', true, '', '', 'Reference Code', 15, 'textbox', true, 'rd', true);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel, value)
+VALUES ('notes', 'distabank', false, '', '', 'Note', 16, 'text', true, 'rd', true, 'Changes to roi goes for approval');
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('calculaterd', 'distabank', true, '', 'javascript:calcMaturityValue(''rd'')', 'Calculate', 19, 'button', true, 'rd', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('saverd', 'distabank', true, '', 'com.distarise.distabank.deposit.action.SaveRdAction', 'Save', 20, 'submitbutton', true, 'rd', false);
+
+
 
 -- distabank search result
 

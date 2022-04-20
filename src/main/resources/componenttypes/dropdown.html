@@ -11,7 +11,7 @@
                     <select th:name="${component.id}" th:id="${component.id}">
                         <div th:each="componentItemDto : ${component.componentItemDtos}">
                             <option th:value="${componentItemDto.value}"
-                            th:text="${componentItemDto.label}"/>
+                                th:text="${componentItemDto.label}" th:selected="${component.value == componentItemDto.value}"/>
                         </div>
                     </select>
                 </div>

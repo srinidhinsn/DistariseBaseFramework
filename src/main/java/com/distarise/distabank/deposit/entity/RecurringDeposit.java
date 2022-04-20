@@ -11,8 +11,8 @@ import java.math.BigDecimal;
 import java.sql.Date;
 
 @Entity
-@Table(name = "FIXEDDEPOSIT")
-public class FixedDeposit {
+@Table(name = "RECURRINGDEPOSIT")
+public class RecurringDeposit {
     @Id
     @GeneratedValue(generator="s_fddeposit_id", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name="s_fddeposit_id",sequenceName="S_FDDEPOSIT_ID", initialValue = 1000, allocationSize=1)
@@ -191,6 +191,6 @@ public class FixedDeposit {
         this.status = status;
     }
 
-    public FixedDeposit() {
+    public RecurringDeposit() {
     }
 }

@@ -76,10 +76,10 @@ public class WidgetServiceImpl implements WidgetService {
         if (null != pageDetailsDto.getSuccessMessages() && !pageDetailsDto.getSuccessMessages().isEmpty()){
             messages.put("SUCCESS", getMessage(pageDetailsDto.getSuccessMessages()));
         }
-        if (null != pageDetailsDto.getErrorMessages() && !pageDetailsDto.getSuccessMessages().isEmpty()){
+        if (null != pageDetailsDto.getErrorMessages() && !pageDetailsDto.getErrorMessages().isEmpty()){
             messages.put("ERROR", getMessage(pageDetailsDto.getErrorMessages()));
         }
-        if (null != pageDetailsDto.getWarningMessages() && !pageDetailsDto.getSuccessMessages().isEmpty()){
+        if (null != pageDetailsDto.getWarningMessages() && !pageDetailsDto.getWarningMessages().isEmpty()){
             messages.put("WARNING", getMessage(pageDetailsDto.getWarningMessages()));
         }
         if (messages.isEmpty()){
@@ -87,13 +87,14 @@ public class WidgetServiceImpl implements WidgetService {
         }
 
         WidgetDto widgetDto = new WidgetDto("message", clientId, navItemId, null,
-                "Info", null, 999, null, null, null, null, null, null);
+                "", null, 999, null, null, null, null, null, null);
         ComponentDto componentDto = new ComponentDto("message", "message", clientId, 1, "message",
                 "", false, "", true, "", false, null, null, null, null);
         List<ComponentDto> componentDtoList = new ArrayList<>();
         List<Map<String, String>> gridList = new ArrayList<>();
 
         gridList.add(messages);
+        componentDto.setGridValues(gridList);
         componentDtoList.add(componentDto);
         widgetDto.setComponentDtos(componentDtoList);
         return widgetDto;
@@ -102,7 +103,7 @@ public class WidgetServiceImpl implements WidgetService {
     private String getMessage(List<String> messages){
         StringBuffer stringBuffer = new StringBuffer();
         messages.forEach(s -> {
-            stringBuffer.append(s + "/n");
+            stringBuffer.append(s + "\n");
         });
         return stringBuffer.toString();
     }

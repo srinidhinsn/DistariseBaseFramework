@@ -1,6 +1,7 @@
 package com.distarise.base.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PageDetailsDto implements Serializable {
@@ -66,5 +67,8 @@ public class PageDetailsDto implements Serializable {
     }
 
     public PageDetailsDto() {
+        this.successMessages = new ArrayList<>();
+        this.warningMessages = new ArrayList<>();
+        this.errorMessages = new ArrayList<>();
     }
 }
