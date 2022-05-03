@@ -26,6 +26,7 @@ public class SaveFdConfigAction extends AbstractBaseAction {
     public void executeAction() {
         PageDetailsDto targetPageDetailsDto = super.executeAction(new PageDetailsDto());
         DistabankContext context = DistabankContext.getDistabankContext(request, getClientId());
+        String fdConfigId = request.getParameter("validfrom");
         String roi = request.getParameter("roi");
         String effectiveDateString = request.getParameter("effectivedate");
         String endDateString = request.getParameter("enddate");
@@ -45,7 +46,11 @@ public class SaveFdConfigAction extends AbstractBaseAction {
         BigDecimal roiDecimal = new BigDecimal(roi);
         FixedDepositConfigDto fdConfig = new FixedDepositConfigDto(context.getClientId(), effectiveDate, endDate, roiDecimal, calcMethod,
                 Integer.parseInt(minDuration), maturityValueDeviation, calcFrequency);
-        if (fdConfigService.validateFdConfig(fdConfig, targetPageDetailsDto)) {
+        if (null != fdConfigId && !fdConfigId.isEmpty()){
+            fdConfig.setId(Long.valueOf(fdConfigId));
+            fdConfigService.saveFdConfig(fdConfig);
+        }
+        else if (fdConfigService.validateFdConfig(fdConfig, targetPageDetailsDto)) {
             fdConfigService.saveFdConfig(fdConfig);
         }
     }

@@ -9,6 +9,7 @@ import com.distarise.distabank.deposit.model.FixedDepositConfigDto;
 import com.distarise.distabank.deposit.model.FixedDepositDto;
 import com.distarise.distabank.deposit.service.FixedDepositConfigService;
 import com.distarise.distabank.deposit.service.FixedDepositService;
+import com.distarise.distabank.util.DepositAccountStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class LoadFdAction extends AbstractBaseAction {
     public void executeAction() {
         DistabankContext distabankContext = DistabankContext.getDistabankContext(request, getClientId());
         PageDetailsDto targetPageDetailsDto = super.executeAction(new PageDetailsDto());
-        FixedDepositConfigDto fdConfig = fdConfigService.getFdConfig(distabankContext.getClientId(), new Date(), null);
+        FixedDepositConfigDto fdConfig = fdConfigService.getFdConfig(distabankContext.getClientId(), new Date(), new Date());
         String selectedFd = request.getParameter("fdlist");
         List<FixedDepositDto> fdDtoList = fdService.findAllByClientIdAndCustomerId(distabankContext.getClientId(), distabankContext.getCustomerId());
         FixedDepositDto fd = fdDtoList.stream().filter(fixedDepositDto ->
@@ -43,6 +44,11 @@ public class LoadFdAction extends AbstractBaseAction {
                 navigationItemDto.getWidgets().forEach(targetWidgetDto -> {
                     if (targetWidgetDto.getId().equalsIgnoreCase("fd") && null != fd) {
                         targetWidgetDto.getComponentDtos().forEach(targetComponentDto -> {
+                            if (fd.getStatus().equals(DepositAccountStatus.Ended.name()) ||
+                                    fd.getStatus().equals(DepositAccountStatus.PreMatured.name()) ){
+                                targetComponentDto.setEditable(false);
+                            }
+
                             if (targetComponentDto.getId().equalsIgnoreCase("customerid")) {
                                 targetComponentDto.setValue(fd.getCustomerId().toString());
                             } else if (targetComponentDto.getId().equalsIgnoreCase("customername")){
@@ -52,6 +58,9 @@ public class LoadFdAction extends AbstractBaseAction {
                             } else if (targetComponentDto.getId().equalsIgnoreCase("maturitydate")){
                                 targetComponentDto.setValue(fd.getMaturityDate().toString());
                             } else if (targetComponentDto.getId().equalsIgnoreCase("withdrawaldate")){
+                                if (null != fd.getWithdrawalDate()){
+                                    targetComponentDto.setValue(fd.getWithdrawalDate().toString());
+                                }
                                 targetComponentDto.setEditable(true);
                             } else if (targetComponentDto.getId().equalsIgnoreCase("accountno")){
                                 targetComponentDto.setValue(fd.getAccountNo());

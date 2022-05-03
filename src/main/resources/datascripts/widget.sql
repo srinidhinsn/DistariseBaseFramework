@@ -90,16 +90,16 @@ VALUES ('profile', 'distabank', 'commoncss', '4C0RTTLFBF', 'profile', 1, null, '
 ----- dista bank deposits
 
 INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widgetid, widgettitle, redirecturl)
-VALUES ('fd', 'distabank', 'commoncss', '4C0RTTLFBF', 'fd', 1, null, 'Fixed deposit', '/nsn/distabank/deposit/fd');
+VALUES ('fd', 'distabank', 'commoncss', '4C0RTTLFBF', 'fd', 5, null, 'Fixed deposit', '/nsn/distabank/deposit/fd');
 
 INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widgetid, widgettitle, redirecturl)
-VALUES ('rd', 'distabank', 'commoncss', '4C0RTTLFBF', 'fd', 2, null, 'Recurring deposit', '/nsn/distabank/deposit/rd');
+VALUES ('rd', 'distabank', 'commoncss', '4C0RTTLFBF', 'rd', 6, null, 'Recurring deposit', '/nsn/distabank/deposit/rd');
 
 INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widgetid, widgettitle, redirecturl)
-VALUES ('sb', 'distabank', 'commoncss', '4C0RTTLFBF', 'fd', 3, null, 'Recurring deposit', '/nsn/distabank/deposit/sb');
+VALUES ('sb', 'distabank', 'commoncss', '4C0RTTLFBF', 'sb', 7, null, 'Recurring deposit', '/nsn/distabank/deposit/sb');
 
 INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widgetid, widgettitle, redirecturl)
-VALUES ('pigmy', 'distabank', 'commoncss', '4C0RTTLFBF', 'deposit', 1, null, 'Pigmy', '/nsn/distabank/bank/deposit');
+VALUES ('pigmy', 'distabank', 'commoncss', '4C0RTTLFBF', 'pigmy', 8, null, 'Pigmy', '/nsn/distabank/bank/pigmy');
 
 
 ----- dista bank management

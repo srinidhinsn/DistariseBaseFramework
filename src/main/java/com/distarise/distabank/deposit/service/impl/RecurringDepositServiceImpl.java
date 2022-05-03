@@ -23,12 +23,14 @@ public class RecurringDepositServiceImpl implements RecurringDepositService {
 
     @Override
     public void saveRd(RecurringDepositDto rdDto) {
-        RecurringDepositConfigDto rdConfigDto = rdConfigDao.getRdConfig(rdDto.getClientId(),
-                rdDto.getEffectiveDate(), rdDto.getMaturityDate());
-        if (rdConfigDto.getRoi().equals(rdDto.getRoi())){
-            rdDto.setStatus(DepositAccountStatus.Active.name());
-        } else {
-            rdDto.setStatus(DepositAccountStatus.Pending.name());
+        if (null == rdDto.getId() || rdDto.getId().equals(0)) {
+            RecurringDepositConfigDto rdConfigDto = rdConfigDao.getRdConfig(rdDto.getClientId(),
+                    rdDto.getEffectiveDate(), rdDto.getMaturityDate());
+            if (rdConfigDto.getRoi().equals(rdDto.getRoi())) {
+                rdDto.setStatus(DepositAccountStatus.Active.name());
+            } else {
+                rdDto.setStatus(DepositAccountStatus.Pending.name());
+            }
         }
         rdDao.saveRd(rdDto);
     }

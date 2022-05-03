@@ -666,7 +666,7 @@ INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, s
 VALUES ('customerid', 'distabank', false, '', '', 'Customer Id', 3, 'textbox', true, 'rd', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('accountno', 'distabank', false, '', '', 'FD account no', 4, 'textbox', true, 'rd', false);
+VALUES ('accountno', 'distabank', false, '', '', 'RD account no', 4, 'textbox', true, 'rd', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
 VALUES ('customername', 'distabank', true, '', '', 'Customer name', 5, 'textbox', true, 'rd', false);

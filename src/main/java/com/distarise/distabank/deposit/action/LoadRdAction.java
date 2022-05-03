@@ -30,42 +30,42 @@ public class LoadRdAction extends AbstractBaseAction {
     public void executeAction() {
         DistabankContext distabankContext = DistabankContext.getDistabankContext(request, getClientId());
         PageDetailsDto targetPageDetailsDto = super.executeAction(new PageDetailsDto());
-        RecurringDepositConfigDto rdConfig = rdConfigService.getRdConfig(distabankContext.getClientId(), new Date(), null);
-        String selectedRd = request.getParameter("fdlist");
+        RecurringDepositConfigDto rdConfig = rdConfigService.getRdConfig(distabankContext.getClientId(), new Date(), new Date());
+        String selectedRd = request.getParameter("rdlist");
         List<RecurringDepositDto> rdDtoList = rdService.findAllByClientIdAndCustomerId(distabankContext.getClientId(), distabankContext.getCustomerId());
-        RecurringDepositDto fd = rdDtoList.stream().filter(rdDto ->
+        RecurringDepositDto rd = rdDtoList.stream().filter(rdDto ->
                 rdDto.getId().toString().equals(selectedRd)).findFirst().orElse(null);
         targetPageDetailsDto.getNavigationDto().getNavigationItems().forEach(navigationItemDto -> {
             if (!navigationItemDto.getWidgets().isEmpty()) {
                 navigationItemDto.getWidgets().forEach(targetWidgetDto -> {
-                    if (targetWidgetDto.getId().equalsIgnoreCase("rd") && null != fd) {
+                    if (targetWidgetDto.getId().equalsIgnoreCase("rd") && null != rd) {
                         targetWidgetDto.getComponentDtos().forEach(targetComponentDto -> {
                             if (targetComponentDto.getId().equalsIgnoreCase("customerid")) {
-                                targetComponentDto.setValue(fd.getCustomerId().toString());
+                                targetComponentDto.setValue(rd.getCustomerId().toString());
                             } else if (targetComponentDto.getId().equalsIgnoreCase("customername")){
-                                targetComponentDto.setValue(fd.getCustomerName());
+                                targetComponentDto.setValue(rd.getCustomerName());
                             } else if (targetComponentDto.getId().equalsIgnoreCase("startdate")){
-                                targetComponentDto.setValue(fd.getEffectiveDate().toString());
+                                targetComponentDto.setValue(rd.getEffectiveDate().toString());
                             } else if (targetComponentDto.getId().equalsIgnoreCase("maturitydate")){
-                                targetComponentDto.setValue(fd.getMaturityDate().toString());
+                                targetComponentDto.setValue(rd.getMaturityDate().toString());
                             } else if (targetComponentDto.getId().equalsIgnoreCase("withdrawaldate")){
                                 targetComponentDto.setEditable(true);
                             } else if (targetComponentDto.getId().equalsIgnoreCase("accountno")){
-                                targetComponentDto.setValue(fd.getAccountNo());
+                                targetComponentDto.setValue(rd.getAccountNo());
                             } else if (targetComponentDto.getId().equalsIgnoreCase("amount")){
-                                targetComponentDto.setValue(fd.getAmount().toString());
+                                targetComponentDto.setValue(rd.getAmount().toString());
                                 targetComponentDto.setEditable(false);
                             } else if (targetComponentDto.getId().equalsIgnoreCase("maturityvalue")){
-                                targetComponentDto.setValue(fd.getMaturityValue().toString());
+                                targetComponentDto.setValue(rd.getMaturityValue().toString());
                             } else if (targetComponentDto.getId().equalsIgnoreCase("referencecode")){
-                                targetComponentDto.setValue(fd.getReferenceCode());
+                                targetComponentDto.setValue(rd.getReferenceCode());
                             } else if (targetComponentDto.getId().equalsIgnoreCase("roi")){
-                                targetComponentDto.setValue(fd.getRoi().toString());
+                                targetComponentDto.setValue(rd.getRoi().toString());
                             } else if (targetComponentDto.getId().equalsIgnoreCase("calcmethod")){
-                                targetComponentDto.setValue(fd.getCalcMethod());
+                                targetComponentDto.setValue(rd.getCalcMethod());
                             } else if (targetComponentDto.getId().equalsIgnoreCase("calcfrequency")){
-                                targetComponentDto.setValue(fd.getCalcFrequency());
-                            } else if (targetComponentDto.getId().equalsIgnoreCase("fdlist")){
+                                targetComponentDto.setValue(rd.getCalcFrequency());
+                            } else if (targetComponentDto.getId().equalsIgnoreCase("rdlist")){
                                 if (null != rdDtoList){
                                    convertToComponentItem(targetComponentDto.getComponentItemDtos(), distabankContext.getClientId(),
                                            rdDtoList, selectedRd);
@@ -84,7 +84,7 @@ public class LoadRdAction extends AbstractBaseAction {
                                 targetComponentDto.setValue(rdConfig.getCalcMethod());
                             } else if (targetComponentDto.getId().equalsIgnoreCase("calcfrequency")){
                                 targetComponentDto.setValue(rdConfig.getCalcFrequency());
-                            } else if (targetComponentDto.getId().equalsIgnoreCase("fdlist")){
+                            } else if (targetComponentDto.getId().equalsIgnoreCase("rdlist")){
                                 if (null != rdDtoList){
                                     convertToComponentItem(targetComponentDto.getComponentItemDtos(), distabankContext.getClientId(),
                                             rdDtoList, selectedRd);

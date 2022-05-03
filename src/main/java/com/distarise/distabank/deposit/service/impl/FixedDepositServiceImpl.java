@@ -23,12 +23,14 @@ public class FixedDepositServiceImpl implements FixedDepositService {
 
     @Override
     public void saveFd(FixedDepositDto fixedDepositDto) {
-        FixedDepositConfigDto fdConfigDto = fdConfigDao.getFdConfig(fixedDepositDto.getClientId(),
-                fixedDepositDto.getEffectiveDate(), fixedDepositDto.getMaturityDate());
-        if (fdConfigDto.getRoi().equals(fixedDepositDto.getRoi())){
-            fixedDepositDto.setStatus(DepositAccountStatus.Active.name());
-        } else {
-            fixedDepositDto.setStatus(DepositAccountStatus.Pending.name());
+        if (null == fixedDepositDto.getId() || fixedDepositDto.getId().equals(0)){
+            FixedDepositConfigDto fdConfigDto = fdConfigDao.getFdConfig(fixedDepositDto.getClientId(),
+                    fixedDepositDto.getEffectiveDate(), fixedDepositDto.getMaturityDate());
+            if (fdConfigDto.getRoi().equals(fixedDepositDto.getRoi())){
+                fixedDepositDto.setStatus(DepositAccountStatus.Active.name());
+            } else {
+                fixedDepositDto.setStatus(DepositAccountStatus.Pending.name());
+            }
         }
         fixedDepositDao.saveFd(fixedDepositDto);
     }

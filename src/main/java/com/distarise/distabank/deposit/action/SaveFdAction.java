@@ -54,7 +54,7 @@ public class SaveFdAction extends AbstractBaseAction {
             targetPageDetailsDto.getErrorMessages().add("Select customer before adding FD");
         } else if (null != fd && null != withdrawaldate && !withdrawaldate.isEmpty()){
             BigDecimal finalAmount = calcService.calcFinalAmount(fd.getAmount().toString(), fd.getRoi().toString(),
-                    fd.getCalcMethod(), fd.getCalcFrequency(), fd.getEffectiveDate().toString(), maturityDate);
+                    fd.getCalcMethod(), fd.getCalcFrequency(), fd.getEffectiveDate().toString(), withdrawaldate);
             Date withdrawalDate = DistabankUtils.stringYYYYMMDDToDate(withdrawaldate);
             fd.setMaturityValue(finalAmount);
             fd.setWithdrawalDate(withdrawalDate);
