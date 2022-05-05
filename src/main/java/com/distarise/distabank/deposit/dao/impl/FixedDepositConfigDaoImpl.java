@@ -47,7 +47,7 @@ public class FixedDepositConfigDaoImpl implements FixedDepositConfigDao {
 
     @Override
     public FixedDepositConfigDto getFdConfig(Long id) {
-        FixedDepositConfig fixedDepositConfig = fdConfigRepository.findOne(id);
+        FixedDepositConfig fixedDepositConfig = fdConfigRepository.findById(id).get();
         return modelMapper.map(fixedDepositConfig, FixedDepositConfigDto.class);
     }
 

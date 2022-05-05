@@ -19,9 +19,6 @@ public class UserServiceImpl implements UserService {
     UserDetailsDao userDetailsDao;
 
     @Autowired
-    BaseService baseService;
-
-    @Autowired
     UserRoleDao userRoleDao;
 
     @Override

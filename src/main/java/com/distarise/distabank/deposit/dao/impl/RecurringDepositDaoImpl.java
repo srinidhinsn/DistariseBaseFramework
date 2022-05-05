@@ -46,7 +46,7 @@ public class RecurringDepositDaoImpl implements RecurringDepositDao {
 
     @Override
     public RecurringDepositDto findById(String selectedRd) {
-        return convertEntityToDto(rdRepository.findOne(Long.parseLong(selectedRd)));
+        return convertEntityToDto(rdRepository.findById(Long.parseLong(selectedRd)).get());
     }
 
     private RecurringDepositDto convertEntityToDto(RecurringDeposit one) {

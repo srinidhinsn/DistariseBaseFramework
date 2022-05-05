@@ -47,7 +47,7 @@ public class RecurringDepositConfigDaoImpl implements RecurringDepositConfigDao 
 
     @Override
     public RecurringDepositConfigDto getRdConfig(Long id) {
-        RecurringDepositConfig fixedDepositConfig = rdConfigRepository.findOne(id);
+        RecurringDepositConfig fixedDepositConfig = rdConfigRepository.findById(id).get();
         return modelMapper.map(fixedDepositConfig, RecurringDepositConfigDto.class);
     }
 

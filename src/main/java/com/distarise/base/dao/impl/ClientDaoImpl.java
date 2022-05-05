@@ -18,7 +18,7 @@ public class ClientDaoImpl implements ClientDao {
 
     @Override
     public ClientDto getClientDetails(String clientId){
-        Client client = clientRepository.findOne(clientId);
+        Client client = clientRepository.findById(clientId).get();
         return modelMapper.map(client, ClientDto.class);
     }
 

@@ -41,7 +41,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public List<CustomerDto> searchCustomerById(String clientId, Long searchKey) {
-        Customer customer = customerRepository.findOne(searchKey);
+        Customer customer = customerRepository.findById(searchKey).get();
         List<Customer> customerList = new ArrayList<>();
         if (null == customer){
             return null;

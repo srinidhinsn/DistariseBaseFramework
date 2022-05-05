@@ -58,9 +58,6 @@ public class BaseServiceImpl implements BaseService {
     ComponentItemService componentItemService;
 
     @Autowired
-    UserService userService;
-
-    @Autowired
     LayoutService layoutService;
 
     @Autowired

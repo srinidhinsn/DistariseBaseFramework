@@ -48,7 +48,7 @@ public class FixedDepositDaoImpl implements FixedDepositDao {
 
     @Override
     public FixedDepositDto findById(String selectedFd) {
-        return convertEntityToDto(fdRepository.findOne(Long.parseLong(selectedFd)));
+        return convertEntityToDto(fdRepository.findById(Long.parseLong(selectedFd)).get());
     }
 
     private FixedDepositDto convertEntityToDto(FixedDeposit one) {
