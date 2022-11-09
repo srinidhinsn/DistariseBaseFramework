@@ -20,14 +20,17 @@ public class SaveRoleAction extends AbstractBaseAction implements BaseAction {
     public void executeAction() {
         String roleName = request.getParameter("rolename");
         String roleDescription = request.getParameter("roledescription");
+        /*
         String uiNavId = request.getParameter("uinavid");
         String module = request.getParameter("module");
         String redirectPage = request.getParameter("redirectpage");
-        ConfigPageDetailsDto configPageDetailsDto = (ConfigPageDetailsDto) request.getSession().getAttribute(LoadClientListAction.CONFIG_PAGE_DETAILS);
-        RoleDto roleDto = new RoleDto(roleName, roleDescription, configPageDetailsDto.getClientId());
-        roleService.saveRole(roleDto);
         NavigationDto navigationDto = new NavigationDto(uiNavId, configPageDetailsDto.getClientId(), roleName, "","",
                 module, "", redirectPage, "", null );
         navigationService.saveNavigationDetails(navigationDto);
+        */
+        ConfigPageDetailsDto configPageDetailsDto = (ConfigPageDetailsDto) request.getSession().getAttribute(LoadClientListAction.CONFIG_PAGE_DETAILS);
+        RoleDto roleDto = new RoleDto(roleName, roleDescription, configPageDetailsDto.getClientId());
+        roleService.saveRole(roleDto);
+
     }
 }

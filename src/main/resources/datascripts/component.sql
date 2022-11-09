@@ -368,17 +368,13 @@ VALUES ('rolename', 'distarise', true, '', '', 'Role name', 3, 'textbox', true, 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
 VALUES ('roledescription', 'distarise', true, '', '', 'Role Description', 4, 'textbox', true, 'addrole', false);
 
-INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel, value)
-VALUES ('uinav', 'distarise', true, '', '', 'Landing page details', 5, 'text', true, 'addrole', false, '');
+--INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel, value) VALUES ('uinav', 'distarise', true, '', '', 'Landing page details', 5, 'text', true, 'addrole', false, '');
 
-INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel, value)
-VALUES ('uinavid', 'distarise', false, '', '', 'Loading page', 6, 'textbox', true, 'addrole', false, 'adminlogin');
+--INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel, value) VALUES ('uinavid', 'distarise', false, '', '', 'Loading page', 6, 'textbox', true, 'addrole', false, '');
 
-INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel, value)
-VALUES ('module', 'distarise', false, '', '', 'Module', 7, 'textbox', true, 'addrole', false, 'customer');
+--INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel, value) VALUES ('module', 'distarise', false, '', '', 'Module', 7, 'textbox', true, 'addrole', false, '');
 
-INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel, value)
-VALUES ('redirectpage', 'distarise', false, '', '', 'Landing page', 8, 'textbox', true, 'addrole', false, 'addcustomer');
+--INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel, value) VALUES ('redirectpage', 'distarise', false, '', '', 'Landing page', 8, 'textbox', true, 'addrole', false, '');
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
 VALUES ('saverole', 'distarise', true, '/nsn/distarise/userrole/addrole', 'com.distarise.base.action.SaveRoleAction', 'Save', 9, 'submitbutton', true, 'addrole', false);

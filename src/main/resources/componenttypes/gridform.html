@@ -20,13 +20,29 @@
                     <tbody>
                     <div th:if="${null != component.gridValues and component.gridValues.size()>0}">
                          <div th:each="gridValue : ${component.gridValues}">
+                             <tr th:grid-formid="${gridValue.get('formid')}"
+                                 th:grid-1="${gridValue.get('column1')}" th:grid-2="${gridValue.get('column2')}" th:grid-3="${gridValue.get('column3')}"
+                                 th:grid-4="${gridValue.get('column4')}" th:grid-5="${gridValue.get('column5')}" th:grid-6="${gridValue.get('column6')}"
+                                 th:grid-7="${gridValue.get('column7')}" th:grid-8="${gridValue.get('column8')}" th:grid-9="${gridValue.get('column9')}"
+                                 th:grid-10="${gridValue.get('column10')}" th:grid-11="${gridValue.get('column11')}" th:grid-12="${gridValue.get('column12')}"
+                                 th:grid-13="${gridValue.get('column13')}" th:grid-14="${gridValue.get('column14')}" th:grid-15="${gridValue.get('column15')}"
+                                 th:grid-16="${gridValue.get('column16')}" th:grid-17="${gridValue.get('column17')}" th:grid-18="${gridValue.get('column18')}"
+                                 th:grid-19="${gridValue.get('column19')}" th:grid-20="${gridValue.get('column20')}"
+
+                                 th:onclick="|javascript:fillForm(this.getAttribute('grid-formid'), this.getAttribute('grid-1'), this.getAttribute('grid-2'),
+                            this.getAttribute('grid-3'), this.getAttribute('grid-4'), this.getAttribute('grid-5'), this.getAttribute('grid-6'),
+                            this.getAttribute('grid-7'), this.getAttribute('grid-8'), this.getAttribute('grid-9'), this.getAttribute('grid-10'),
+                            this.getAttribute('grid-11'), this.getAttribute('grid-12'), this.getAttribute('grid-13'), this.getAttribute('grid-14'),
+                            this.getAttribute('grid-15'), this.getAttribute('grid-16'), this.getAttribute('grid-17'), this.getAttribute('grid-18'),
+                            this.getAttribute('grid-19'), this.getAttribute('grid-20'))|">
+<!--
                             <tr th:onclick="|javascript:fillForm('${gridValue.get('formid')}', '${gridValue.get('column1')}','${gridValue.get('column2')}',
                             '${gridValue.get('column3')}', '${gridValue.get('column4')}', '${gridValue.get('column5')}',
                             '${gridValue.get('column6')}', '${gridValue.get('column7')}', '${gridValue.get('column8')}',
                             '${gridValue.get('column9')}', '${gridValue.get('column10')}', '${gridValue.get('column11')}',
                             '${gridValue.get('column12')}', '${gridValue.get('column13')}', '${gridValue.get('column14')}',
                             '${gridValue.get('column15')}', '${gridValue.get('column16')}', '${gridValue.get('column17')}',
-                            '${gridValue.get('column18')}', '${gridValue.get('column19')}', '${gridValue.get('column20')}')|">
+                            '${gridValue.get('column18')}', '${gridValue.get('column19')}', '${gridValue.get('column20')}')|">-->
                                 <div th:if="${component.componentItemDtos.size()>0}">
                                     <div th:each="componentItemDto : ${component.componentItemDtos}" th:if="${componentItemDto.visible}">
                                          <td>

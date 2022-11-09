@@ -29,15 +29,21 @@
                                 <td>
                                     <div th:if="${'true' == gridValue.get('enabled')}">
                                     <input th:type="checkbox" class="form-control" id="enabled" name="enabled"
-                                           checked="true" th:onclick="|javascript:saveRoleWidgetAccess('${widget.id}', '${component.keyOrAction}','${widget.redirectUrl}',
-                                           '${gridValue.get('clientId')}','${gridValue.get('roleName')}',
-                                           '${gridValue.get('widgetId')}', '${gridValue.get('action')}', 'false')|" />
+                                           checked="true" th:widgetId="${widget.id}" th:keyOrAction="${component.keyOrAction}"
+                                           th:url="${widget.redirectUrl}" th:clientId="${gridValue.get('clientId')}"
+                                           th:roleName="${gridValue.get('roleName')}" th:gridWidgetId="${gridValue.get('widgetId')}"
+                                           th:action="${gridValue.get('action')}" th:onclick="|javascript:saveRoleWidgetAccess(this.getAttribute('widgetId'),
+                                           this.getAttribute('keyOrAction'), this.getAttribute('url'), this.getAttribute('clientId'),
+                                           this.getAttribute('roleName'), this.getAttribute('gridWidgetId'), this.getAttribute('action'), 'false')|" />
                                     </div>
                                     <div th:if="${'false' == gridValue.get('enabled')}">
                                         <input th:type="checkbox" class="form-control" id="enabled" name="enabled"
-                                               th:onclick="|javascript:saveRoleWidgetAccess('${widget.id}','${component.keyOrAction}','${widget.redirectUrl}',
-                                           '${gridValue.get('clientId')}','${gridValue.get('roleName')}',
-                                           '${gridValue.get('widgetId')}', '${gridValue.get('action')}', 'true')|" />
+                                               th:widgetId="${widget.id}" th:keyOrAction="${component.keyOrAction}"
+                                               th:url="${widget.redirectUrl}" th:clientId="${gridValue.get('clientId')}"
+                                               th:roleName="${gridValue.get('roleName')}" th:gridWidgetId="${gridValue.get('widgetId')}"
+                                               th:action="${gridValue.get('action')}" th:onclick="|javascript:saveRoleWidgetAccess(this.getAttribute('widgetId'),
+                                           this.getAttribute('keyOrAction'), this.getAttribute('url'), this.getAttribute('clientId'),
+                                           this.getAttribute('roleName'), this.getAttribute('gridWidgetId'), this.getAttribute('action'), 'true')|" />
                                     </div>
                                 </td>
                                 <td>

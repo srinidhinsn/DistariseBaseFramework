@@ -8,8 +8,8 @@
             <div class="form-group">
                 <div th:if="${component.componentItemDtos.size()>0}">
                     <label th:for="${component.id}" th:text="${component.label}"></label>
-                    <select th:name="${component.id}" th:id="${component.id}"
-                            th:onchange="|javascript:onClickSubmitForm('${widget.id}','${component.keyOrAction}','${component.redirectUrl}')|">
+                    <select th:name="${component.id}" th:id="${component.id}" th:widgetId="${widget.id}" th:keyOrAction="${component.keyOrAction}" th:url="${component.redirectUrl}"
+                            th:onchange="|javascript:onClickSubmitForm(this.getAttribute('widgetId'),this.getAttribute('keyOrAction'),this.getAttribute('url'))|">
                         <div th:each="componentItemDto : ${component.componentItemDtos}">
                             <option th:value="${componentItemDto.value}"
                             th:text="${componentItemDto.label}" th:selected="${componentItemDto.selected}"/>
