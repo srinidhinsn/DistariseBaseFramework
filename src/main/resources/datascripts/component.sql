@@ -269,6 +269,7 @@ VALUES ('column2', 'distarise', true, '', '', 'Editable', 5, 'checkbox', true, '
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
 VALUES ('column3', 'distarise', true, '', '', 'Label', 6, 'textbox', true, 'savecomponent', false);
 
+
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
 VALUES ('column4', 'distarise', true, '', '', 'Value', 6, 'textarea', true, 'savecomponent', false);
 
