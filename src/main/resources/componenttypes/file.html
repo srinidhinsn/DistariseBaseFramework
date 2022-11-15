@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+</head>
+    <body>
+        <div th:fragment="formField(component, widget, navigationItem, pageDetails)">
+            <div class="form-group">
+                <label th:for="${component.id}" th:text="${component.label}"></label>
+                <input type="file" class="form-control" th:value="${component.value}" th:id="file"
+                       th:name="file" th:readOnly="${!component.editable}"  />
+                <small id="smallText" class="form-text text-muted" th:text="${component.label}"></small>
+            </div>
+        </div>
+    </body>
+</html>

@@ -27,28 +27,9 @@ public class FrameworkInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         logger.debug("preHandle-"+httpServletRequest.getRequestURI());
-        String actionIdentifier = httpServletRequest.getParameter("actionIdentifier");
-        if (null != httpServletRequest.getParameter("action") &&
-                !httpServletRequest.getParameter("action").isEmpty()) {
-            try {
-                String widgetId = actionIdentifier.split("-")[2];
-                Class actionClass = Class.forName(httpServletRequest.getParameter("action"));
-                UserDetailsDto userDetailsDto = (UserDetailsDto) httpServletRequest.getSession().getAttribute(UserService.USER);
-                RoleWidgetActionDto accessExists = userDetailsDto.getRoleAccessList().stream().filter(roleWidgetActionDto ->
-                        roleWidgetActionDto.getAction().equals(actionClass.getName())
-                        && roleWidgetActionDto.getWidgetId().equals(widgetId)).findAny().orElse(null);
-                if (null == accessExists){
-                    throw  new Exception("Not authorised to perform this action");
-                }
-                BaseAction abstractBaseAction = (BaseAction) applicationContext.getBean(actionClass);
-                abstractBaseAction.executeAction(httpServletRequest);
-                abstractBaseAction.executeAction();
-                abstractBaseAction.handleMessages();
-            } catch (ClassNotFoundException cnf){
-                logger.error(cnf.getMessage(), cnf);
-            } catch (Exception e){
-                logger.error(e.getMessage(), e);
-            }
+        String action = httpServletRequest.getParameter("action");
+        if (null != action && !action.isEmpty() && !action.contains("PostHandler")) {
+           return executionActions(httpServletRequest);
         }
         return true;
     }
@@ -56,11 +37,40 @@ public class FrameworkInterceptor implements HandlerInterceptor {
     @Override
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
         logger.debug("postHandle-"+httpServletRequest.getRequestURI());
+        String action = httpServletRequest.getParameter("action");
+        if (null != action && !action.isEmpty() && action.contains("PostHandler")) {
+            executionActions(httpServletRequest);
+        }
     }
 
     @Override
     public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
         logger.debug("afterCompletion-"+httpServletRequest.getRequestURI());
+    }
+
+    private boolean executionActions(HttpServletRequest httpServletRequest){
+        try {
+            String actionIdentifier = httpServletRequest.getParameter("actionIdentifier");
+            String widgetId = actionIdentifier.split("-")[2];
+            Class actionClass = Class.forName(httpServletRequest.getParameter("action"));
+            UserDetailsDto userDetailsDto = (UserDetailsDto) httpServletRequest.getSession().getAttribute(UserService.USER);
+            RoleWidgetActionDto accessExists = userDetailsDto.getRoleAccessList().stream().filter(roleWidgetActionDto ->
+                    roleWidgetActionDto.getAction().equals(actionClass.getName())
+                            && roleWidgetActionDto.getWidgetId().equals(widgetId)).findAny().orElse(null);
+            if (null == accessExists){
+                throw  new Exception("Not authorised to perform this action");
+            }
+            BaseAction abstractBaseAction = (BaseAction) applicationContext.getBean(actionClass);
+            abstractBaseAction.executeAction(httpServletRequest);
+            abstractBaseAction.executeAction();
+            abstractBaseAction.handleMessages();
+        } catch (ClassNotFoundException cnf){
+            logger.error(cnf.getMessage(), cnf);
+        } catch (Exception e){
+            logger.error(e.getMessage(), e);
+            return false;
+        }
+        return true;
     }
 
 }

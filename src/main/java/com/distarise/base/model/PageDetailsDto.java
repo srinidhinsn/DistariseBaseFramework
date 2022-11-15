@@ -8,6 +8,7 @@ public class PageDetailsDto implements Serializable {
     private ClientDto clientDto;
     private NavigationDto navigationDto;
     private String url;
+    private List<FileUploadDto> fileUploads;
     private List<String> successMessages;
     private List<String> warningMessages;
     private List<String> errorMessages;
@@ -26,6 +27,14 @@ public class PageDetailsDto implements Serializable {
 
     public void setNavigationDto(NavigationDto navigationDto) {
         this.navigationDto = navigationDto;
+    }
+
+    public List<FileUploadDto> getFileUploads() {
+        return fileUploads;
+    }
+
+    public void setFileUploads(List<FileUploadDto> fileUploads) {
+        this.fileUploads = fileUploads;
     }
 
     public String getUrl() {
@@ -70,5 +79,6 @@ public class PageDetailsDto implements Serializable {
         this.successMessages = new ArrayList<>();
         this.warningMessages = new ArrayList<>();
         this.errorMessages = new ArrayList<>();
+        this.fileUploads = new ArrayList<>();
     }
 }

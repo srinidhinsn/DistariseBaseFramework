@@ -35,6 +35,8 @@
         <model-mapper-version>2.3.0</model-mapper-version>
         <spring-security-version>5.3.3.RELEASE</spring-security-version>
         <joda-version>2.10.14</joda-version>
+        <pdfbox-version>2.0.24</pdfbox-version>
+        <com-log-version>1.2</com-log-version>
     </properties>
 
     <dependencies>
@@ -83,5 +85,23 @@
             <artifactId>joda-time</artifactId>
             <version>${joda-version}</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>${com-log-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>fontbox</artifactId>
+            <version>${pdfbox-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>${pdfbox-version}</version>
+        </dependency>
+
     </dependencies>
 </project>

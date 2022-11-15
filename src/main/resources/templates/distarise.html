@@ -39,7 +39,7 @@
         </aside>
         <section class="content">
             <div class="header" th:if="${'guest' != session.get('user').userId}">
-                <form id="search" name="search" method="post">
+                <form id="search" name="search" method="post" >
                     <div class="header-nav ml-auto" style="right: auto">
                         <ul class="nav align-items-center">
                             <li class="nav-item d-none d-md-inline-block">
@@ -67,7 +67,7 @@
                                 <div class="card bg-secondary">
                                     <div class="card-title" th:text="${widgetDto.widgetTitle}"></div>
                                     <div class="card-body">
-                                        <form class="form-secondary" method="post" th:id="|${widgetDto.id}|" >
+                                        <form class="form-secondary" method="post" th:id="|${widgetDto.id}|" enctype="multipart/form-data">
                                             <input th:type="hidden" th:name="actionIdentifier" th:id="actionIdentifier"
                                                    th:value="${pageDetails.navigationDto.id}
                                                        +'-'+${navigationItemDto.id}
