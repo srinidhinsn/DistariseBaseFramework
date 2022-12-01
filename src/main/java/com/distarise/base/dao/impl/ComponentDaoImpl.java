@@ -29,8 +29,7 @@ public class ComponentDaoImpl implements ComponentDao {
 
     private List<ComponentDto> convertEntityToDtoList(List<Component> components){
         List<ComponentDto> componentDtos = components.stream()
-                .map(component -> modelMapper.map(component, ComponentDto.class))
-                .collect(Collectors.toList());
+                .map(component -> modelMapper.map(component, ComponentDto.class)).toList();
         return componentDtos;
     }
 

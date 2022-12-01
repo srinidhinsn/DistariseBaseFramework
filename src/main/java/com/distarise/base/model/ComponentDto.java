@@ -4,6 +4,8 @@ package com.distarise.base.model;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.function.Predicate;
 
 public class ComponentDto implements Serializable {
     private final int gridColumnSize = 20;
@@ -181,5 +183,14 @@ public class ComponentDto implements Serializable {
         {
             grid.put("column"+i,"");
         }
+    }
+
+    public static Predicate<ComponentDto> isComponentIdMatched(String componentId) {
+        return n -> n.getId().equals(componentId);
+    }
+
+    public static Optional<ComponentDto> filterComponentDtoById(List<ComponentDto> componentDtos, String id){
+        Optional<ComponentDto> componentDtoPredicate = componentDtos.stream().filter(isComponentIdMatched(id)).findFirst();
+        return componentDtoPredicate;
     }
 }

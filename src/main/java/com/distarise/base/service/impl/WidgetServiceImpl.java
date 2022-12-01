@@ -88,7 +88,7 @@ public class WidgetServiceImpl implements WidgetService {
 
         WidgetDto widgetDto = new WidgetDto("message", clientId, navItemId, null,
                 "", null, -1, null, null, null, null, null, null);
-        ComponentDto componentDto = new ComponentDto("message", "message", clientId, 1, "message",
+        ComponentDto componentDto = new ComponentDto("message", "message", clientId, 0, "message",
                 "", false, "", true, "", false, null, null, null, null);
         List<ComponentDto> componentDtoList = new ArrayList<>();
         List<Map<String, String>> gridList = new ArrayList<>();
