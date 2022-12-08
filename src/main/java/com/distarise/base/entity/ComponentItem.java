@@ -2,7 +2,11 @@ package com.distarise.base.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.io.Serializable;
 
@@ -11,6 +15,8 @@ import java.io.Serializable;
 public class ComponentItem implements Serializable {
 
     @Id
+    @GeneratedValue(generator="s_componentitem_id", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name="s_componentitem_id",sequenceName="S_COMPONENTITEM_ID", initialValue = 1000, allocationSize=1)
     @Column(name = "ID")
     private Long id;
 
@@ -29,15 +35,17 @@ public class ComponentItem implements Serializable {
     @Column(name = "LABEL")
     private String label;
 
-    @Column(name = "EDITABLE")
+    @Column(name = "EDITABLE", columnDefinition = "boolean default true")
     private Boolean editable;
 
-    @Column(name = "VISIBLE")
+    @Column(name = "VISIBLE", columnDefinition = "boolean default true")
     private Boolean visible;
 
     @Column(name = "SELECTED", columnDefinition = "boolean default false")
     private Boolean selected;
 
+    @Column(name = "TYPE")
+    private String type;
     public Long getId() {
         return id;
     }
@@ -110,8 +118,17 @@ public class ComponentItem implements Serializable {
         this.selected = selected;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public ComponentItem(String componentId, String clientId,
-                         Integer sortOrder, String value, String label, Boolean editable, Boolean visible, Long id) {
+                         Integer sortOrder, String value, String label, Boolean editable, Boolean visible, Long id,
+                         String type) {
         this.componentId = componentId;
         this.clientId = clientId;
         this.sortOrder = sortOrder;
@@ -120,6 +137,7 @@ public class ComponentItem implements Serializable {
         this.editable = editable;
         this.visible = visible;
         this.id = id;
+        this.type = type;
     }
 
     public ComponentItem() {

@@ -54,8 +54,8 @@ public class Person implements Serializable {
     @Column(name = "REFERRAL")
     private String referral;
 
-    @Column(name = "PASSWORD")
-    private String password;
+    @Column(name = "CREDITSCORE")
+    private Integer creditScore;
 
     @Column(name = "OCCUPATIONDATE")
     private Date occupationDate;
@@ -72,13 +72,13 @@ public class Person implements Serializable {
     @OneToMany(mappedBy = "pid", targetEntity = Identity.class)
     private List identityList;
 
-    @OneToMany(mappedBy = "pid", targetEntity = Case.class)
-    private List taskList;
+    @OneToMany(mappedBy = "pid", targetEntity = Lead.class)
+    private List leadList;
 
     public Person() {
     }
 
-    public Person(Long pid, String firstName, String lastName, Date dob, char gender, String occupation, String email, String contact, String reportType, String path, String fileName, String referral, String password, Date occupationDate, List emailList, List contactList, List addressList, List identityList, List taskList) {
+    public Person(Long pid, String firstName, String lastName, Date dob, char gender, String occupation, String email, String contact, String reportType, String path, String fileName, String referral, Date occupationDate, List emailList, List contactList, List addressList, List identityList, List leadList) {
         this.pid = pid;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -91,13 +91,12 @@ public class Person implements Serializable {
         this.path = path;
         this.fileName = fileName;
         this.referral = referral;
-        this.password = password;
         this.occupationDate = occupationDate;
         this.emailList = emailList;
         this.contactList = contactList;
         this.addressList = addressList;
         this.identityList = identityList;
-        this.taskList = taskList;
+        this.leadList = leadList;
     }
 
     public Long getPid() {
@@ -196,20 +195,20 @@ public class Person implements Serializable {
         this.referral = referral;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public Date getOccupationDate() {
         return occupationDate;
     }
 
     public void setOccupationDate(Date occupationDate) {
         this.occupationDate = occupationDate;
+    }
+
+    public Integer getCreditScore() {
+        return creditScore;
+    }
+
+    public void setCreditScore(Integer creditScore) {
+        this.creditScore = creditScore;
     }
 
     public List getEmailList() {
@@ -244,11 +243,11 @@ public class Person implements Serializable {
         this.identityList = identityList;
     }
 
-    public List getTaskList() {
-        return taskList;
+    public List getLeadList() {
+        return leadList;
     }
 
-    public void setTaskList(List taskList) {
-        this.taskList = taskList;
+    public void setLeadList(List leadList) {
+        this.leadList = leadList;
     }
 }

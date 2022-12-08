@@ -14,6 +14,7 @@ public class ComponentItemDto implements Serializable {
     private Boolean editable;
     private Boolean visible;
     private Boolean selected;
+    private String type;
 
     public Long getId() {
         return id;
@@ -87,8 +88,29 @@ public class ComponentItemDto implements Serializable {
         this.selected = selected;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public ComponentItemDto(String componentId, String clientId,
+                            Integer sortOrder, String value, String label, Boolean editable, Boolean visible,
+                            String type) {
+        this.componentId = componentId;
+        this.clientId = clientId;
+        this.sortOrder = sortOrder;
+        this.value = value;
+        this.label = label;
+        this.editable = editable;
+        this.visible = visible;
+        this.type = type;
+    }
     public ComponentItemDto(Long id, String componentId, String clientId,
-                            Integer sortOrder, String value, String label, Boolean editable, Boolean visible) {
+                            Integer sortOrder, String value, String label, Boolean editable, Boolean visible,
+                            String type) {
         this.id = id;
         this.componentId = componentId;
         this.clientId = clientId;
@@ -97,6 +119,7 @@ public class ComponentItemDto implements Serializable {
         this.label = label;
         this.editable = editable;
         this.visible = visible;
+        this.type = type;
     }
 
     public ComponentItemDto() {

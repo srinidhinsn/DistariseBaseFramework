@@ -58,7 +58,7 @@ public class LoadUserRoleAccessActionExt {
         for (int i=0; i<roleDtoList.size(); i++){
             RoleDto roleDto = roleDtoList.get(i);
             ComponentItemDto componentItemDto = new ComponentItemDto(170L * ComponentItemDto.ID_MULTIPLIER + i, "rolelist", roleDto.getClientId(),
-                    i, roleDto.getRoleName(), roleDto.getDescription(), true, true);
+                    i, roleDto.getRoleName(), roleDto.getDescription(), true, true, "text");
             if (roleDto.getRoleName().equalsIgnoreCase(selectedRole)){
                 componentItemDto.setSelected(true);
             }
@@ -119,7 +119,7 @@ public class LoadUserRoleAccessActionExt {
         for (int i=0; i < clientDtoList.size(); i++){
             ComponentItemDto componentItemDto = new ComponentItemDto(12L * ComponentItemDto.ID_MULTIPLIER +i,
                     "clientlist", "distarise" , i+1,
-                    clientDtoList.get(i).getId(), clientDtoList.get(i).getHeader(), false, true
+                    clientDtoList.get(i).getId(), clientDtoList.get(i).getHeader(), false, true, "text"
             );
             if (configPageDetailsDto.getClientId().equals(clientDtoList.get(i).getId())){
                 componentItemDto.setSelected(true);

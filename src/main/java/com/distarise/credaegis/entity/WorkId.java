@@ -6,13 +6,13 @@ import java.util.Objects;
 
 public class WorkId implements Serializable {
     @Column(name = "PID")
-    private String pid;
+    private Long pid;
 
     @Column(name = "EID")
-    private String eid;
+    private Long eid;
 
-    @Column(name = "TID")
-    private String tid;
+    @Column(name = "LID")
+    private Long lid;
 
     public WorkId() {
     }
@@ -23,12 +23,12 @@ public class WorkId implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         WorkId that = (WorkId) o;
         return Objects.equals(pid, that.pid) &&
-                Objects.equals(tid, that.tid) &&
+                Objects.equals(lid, that.lid) &&
                 Objects.equals(eid, that.eid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(tid, eid, pid);
+        return Objects.hash(lid, eid, pid);
     }
 }

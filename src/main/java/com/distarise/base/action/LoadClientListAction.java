@@ -43,7 +43,7 @@ public class LoadClientListAction extends AbstractBaseAction implements BaseActi
                                 for (int i=0; i < clientDtoList.size(); i++){
                                     ComponentItemDto componentItemDto = new ComponentItemDto(12L * ComponentItemDto.ID_MULTIPLIER+i,
                                             "clientlist", "distarise" , i+1,
-                                            clientDtoList.get(i).getId(), clientDtoList.get(i).getHeader(), false, true);
+                                            clientDtoList.get(i).getId(), clientDtoList.get(i).getHeader(), false, true, "text");
                                     if (clientDtoList.get(i).getId().equals(configPageDetailsDto.getClientId())){
                                         componentItemDto.setSelected(true);
                                     }

@@ -26,11 +26,11 @@ public class WorkLog implements Serializable {
     @Column(name = "EID")
     private Long eid;
 
-    @Column(name = "TID")
-    private Long tid;
+    @Column(name = "LID")
+    private Long lid;
 
-    @Column(name = "TASKNAME")
-    private String taskName;
+    @Column(name = "TITLE")
+    private String title;
 
     @Column(name = "STATUS")
     private String status;
@@ -47,12 +47,12 @@ public class WorkLog implements Serializable {
     public WorkLog() {
     }
 
-    public WorkLog(Long id, Long pid, Long eid, Long tid, String taskName, String status, Date reviewDate, Date lastUpdated, String comment) {
+    public WorkLog(Long id, Long pid, Long eid, Long lid, String title, String status, Date reviewDate, Date lastUpdated, String comment) {
         this.id = id;
         this.pid = pid;
         this.eid = eid;
-        this.tid = tid;
-        this.taskName = taskName;
+        this.lid = lid;
+        this.title = title;
         this.status = status;
         this.reviewDate = reviewDate;
         this.lastUpdated = lastUpdated;
@@ -83,20 +83,20 @@ public class WorkLog implements Serializable {
         this.eid = eid;
     }
 
-    public Long getTid() {
-        return tid;
+    public Long getLid() {
+        return lid;
     }
 
-    public void setTid(Long tid) {
-        this.tid = tid;
+    public void setLid(Long lid) {
+        this.lid = lid;
     }
 
-    public String getTaskName() {
-        return taskName;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTaskName(String taskName) {
-        this.taskName = taskName;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getStatus() {

@@ -103,7 +103,7 @@ public class LoadRdAction extends AbstractBaseAction {
                                                           List<RecurringDepositDto> fdDtoList, String selectedRd) {
         for (int i=0;i<fdDtoList.size();i++){
             ComponentItemDto item = new ComponentItemDto(400L * ComponentItemDto.ID_MULTIPLIER+i, "fdlist", clientId, 3600+i, fdDtoList.get(i).getId().toString(),
-                    fdDtoList.get(i).getAccountNo(), false, true);
+                    fdDtoList.get(i).getAccountNo(), false, true,"text");
             if (item.getValue().equals(selectedRd)){
                 item.setSelected(true);
             }

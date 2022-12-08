@@ -352,7 +352,10 @@ INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, s
 VALUES ('column9', 'distarise', true, '', '', 'Visibility', 8, 'checkbox', true, 'savecomponentitem', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
-VALUES ('savecomponentitem', 'distarise', true, '/nsn/distarise/base/addcomponentitem', 'com.distarise.base.action.SaveComponentItemAction', 'Save', 8, 'submitbutton', true, 'savecomponentitem', false);
+VALUES ('column10', 'distarise', true, '', '', 'Type', 9, 'textbox', true, 'savecomponentitem', false);
+
+INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
+VALUES ('savecomponentitem', 'distarise', true, '/nsn/distarise/base/addcomponentitem', 'com.distarise.base.action.SaveComponentItemAction', 'Save', 10, 'submitbutton', true, 'savecomponentitem', false);
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
 VALUES ('loadrolelist', 'distarise', true, '/nsn/distarise/userrole/addrole', 'com.distarise.base.action.LoadRoleListAction', 'Role list', 2, 'autoaction', true, 'addrole', true);

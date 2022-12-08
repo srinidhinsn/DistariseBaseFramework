@@ -7,8 +7,9 @@ public class WorkDto {
 
     private Long pid;
     private Long eid;
-    private Long tid;
-    private String taskName;
+    private Long lid;
+    private String employeeName;
+    private String title;
     private String status;
     private Date reviewDate;
     private Date lastUpdated;
@@ -17,11 +18,11 @@ public class WorkDto {
     public WorkDto() {
     }
 
-    public WorkDto(Long pid, Long eid, Long tid, String taskName, String status, Date reviewDate, Date lastUpdated, String comment) {
+    public WorkDto(Long pid, Long eid, Long lid, String title, String status, Date reviewDate, Date lastUpdated, String comment) {
         this.pid = pid;
         this.eid = eid;
-        this.tid = tid;
-        this.taskName = taskName;
+        this.lid = lid;
+        this.title = title;
         this.status = status;
         this.reviewDate = reviewDate;
         this.lastUpdated = lastUpdated;
@@ -44,20 +45,28 @@ public class WorkDto {
         this.eid = eid;
     }
 
-    public Long getTid() {
-        return tid;
+    public String getEmployeeName() {
+        return employeeName;
     }
 
-    public void setTid(Long tid) {
-        this.tid = tid;
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
     }
 
-    public String getTaskName() {
-        return taskName;
+    public Long getLid() {
+        return lid;
     }
 
-    public void setTaskName(String taskName) {
-        this.taskName = taskName;
+    public void setLid(Long lid) {
+        this.lid = lid;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getStatus() {

@@ -48,7 +48,7 @@ public class LoadNavigationItemActionExt {
         for (int i=0; i<navigationDtoList.size(); i++) {
             ComponentItemDto componentItemDto = new ComponentItemDto(30L*ComponentItemDto.ID_MULTIPLIER+i,
                     "landingpage", clientId , i+1,
-                    navigationDtoList.get(i).getId(), navigationDtoList.get(i).getId(), false, true
+                    navigationDtoList.get(i).getId(), navigationDtoList.get(i).getId(), false, true, "text"
             );
             if (componentItemDto.getValue().equals(configPageDetailsDto.getUiNavId())){
                 componentItemDto.setSelected(true);
@@ -105,7 +105,7 @@ public class LoadNavigationItemActionExt {
         for (int i=0; i<navigationItemDtoList.size(); i++) {
             ComponentItemDto componentItemDto = new ComponentItemDto(60L * ComponentItemDto.ID_MULTIPLIER + i,
                     "navigationitemlist", clientId, i + 1,
-                    navigationItemDtoList.get(i).getId(), navigationItemDtoList.get(i).getId(), false, true
+                    navigationItemDtoList.get(i).getId(), navigationItemDtoList.get(i).getId(), false, true, "text"
             );
             if (componentItemDto.getValue().equals(configPageDetailsDto.getNavItemId())) {
                 componentItemDto.setSelected(true);
@@ -172,7 +172,7 @@ public class LoadNavigationItemActionExt {
         for (int i=0; i<widgetDtoList.size(); i++) {
             ComponentItemDto componentItemDto = new ComponentItemDto(90L * ComponentItemDto.ID_MULTIPLIER + i,
                     "widgetlist", clientId, i + 1,
-                    widgetDtoList.get(i).getId(), widgetDtoList.get(i).getId(), false, true
+                    widgetDtoList.get(i).getId(), widgetDtoList.get(i).getId(), false, true, "text"
             );
             if (componentItemDto.getValue().equals(selectedWidget)) {
                 componentItemDto.setSelected(true);
@@ -246,7 +246,7 @@ public class LoadNavigationItemActionExt {
         for (int i=0; i<sourceComponentDtoList.size(); i++) {
             ComponentItemDto componentItemDto = new ComponentItemDto(140L * ComponentItemDto.ID_MULTIPLIER + i,
                     "componentlist", clientId, i + 1,
-                    sourceComponentDtoList.get(i).getId(), sourceComponentDtoList.get(i).getLabel(), false, true
+                    sourceComponentDtoList.get(i).getId(), sourceComponentDtoList.get(i).getLabel(), false, true, "text"
             );
             if (componentItemDto.getValue().equals(selectedComponent)) {
                 componentItemDto.setSelected(true);
@@ -286,9 +286,11 @@ public class LoadNavigationItemActionExt {
                     gridRow.put(componentItemDto.getValue(), targetComponentItemDto.getValue());
                 } else if (componentItemDto.getValue().equalsIgnoreCase("column9")){
                     gridRow.put(componentItemDto.getValue(), targetComponentItemDto.getVisible().toString());
+                } else if (componentItemDto.getValue().equalsIgnoreCase("column10")){
+                    gridRow.put(componentItemDto.getValue(), targetComponentItemDto.getType());
                 }
             });
-            componentDto.fillEmptyColumns(gridRow, 10);
+            componentDto.fillEmptyColumns(gridRow, 11);
             gridDetails.add(gridRow);
         });
         componentDto.setGridValues(gridDetails);

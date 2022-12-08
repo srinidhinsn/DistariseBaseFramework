@@ -41,7 +41,7 @@ public class Component implements Serializable {
     @Column(name = "KEYORACTION")
     private String keyOrAction;
 
-    @Column(name = "VISIBLE")
+    @Column(name = "VISIBLE", columnDefinition = "boolean default true")
     private Boolean visible;
 
     @Column(name = "MULTILEVEL", columnDefinition = "boolean default false")

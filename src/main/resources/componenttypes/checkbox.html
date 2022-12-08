@@ -6,14 +6,8 @@
     <body>
         <div th:fragment="formField(component, widget, navigationItem, pageDetails)">
             <div class="form-group">
-                <div th:if="${'true' == component.value and true == component.visible}">
-                    <input type="checkbox" class="form-control" th:id="${component.id}" checked="true"
-                           th:text="${component.label}" th:value="${component.id}" th:name="${component.id}" />
-                </div>
-                <div th:if="${'false' == component.value and true == component.visible}">
-                    <input type="checkbox" class="form-control" th:id="${component.id}"
-                           th:text="${component.label}" th:value="${component.id}" th:name="${component.id}" />
-                </div>
+                <input th:type="checkbox" class="form-control" th:id="${component.id}" checked="${component.value}"
+                       th:text="${component.label}" th:name="${component.id}" />
             </div>
         </div>
     </body>

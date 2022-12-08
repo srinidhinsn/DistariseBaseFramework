@@ -23,8 +23,14 @@ public class SaveComponentItemAction extends AbstractBaseAction implements BaseA
         String sortOrder = request.getParameter("column7");
         String value = request.getParameter("column8");
         String visible = request.getParameter("column9");
-
-        componentItemService.saveComponentItem(new ComponentItemDto(Long.parseLong(id), componentId, clientId,
-                Integer.parseInt(sortOrder), value, label, Boolean.parseBoolean(editable), Boolean.parseBoolean(visible)));
+        String type = request.getParameter("column10");
+        if (id != null && !id.isEmpty()){
+            componentItemService.saveComponentItem(new ComponentItemDto(Long.parseLong(id), componentId, clientId,
+                    Integer.parseInt(sortOrder), value, label, Boolean.parseBoolean(editable), Boolean.parseBoolean(visible), type));
+        }
+        else {
+            componentItemService.saveComponentItem(new ComponentItemDto(componentId, clientId,
+                    Integer.parseInt(sortOrder), value, label, Boolean.parseBoolean(editable), Boolean.parseBoolean(visible), type));
+        }
     }
 }

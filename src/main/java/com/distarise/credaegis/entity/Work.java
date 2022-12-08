@@ -23,11 +23,14 @@ public class Work implements Serializable {
     private Long eid;
 
     @Id
-    @Column(name = "TID")
-    private Long tid;
+    @Column(name = "LID")
+    private Long lid;
 
-    @Column(name = "TASKNAME")
-    private String taskName;
+    @Column(name = "EMPLOYEENAME")
+    private String employeeName;
+
+    @Column(name = "TITLE")
+    private String title;
 
     @Column(name = "STATUS")
     private String status;
@@ -44,11 +47,11 @@ public class Work implements Serializable {
     public Work() {
     }
 
-    public Work(Long pid, Long eid, Long tid, String taskName, String status, Date reviewDate, Date lastUpdated, String comment) {
+    public Work(Long pid, Long eid, Long lid, String title, String status, Date reviewDate, Date lastUpdated, String comment) {
         this.pid = pid;
         this.eid = eid;
-        this.tid = tid;
-        this.taskName = taskName;
+        this.lid = lid;
+        this.title = title;
         this.status = status;
         this.reviewDate = reviewDate;
         this.lastUpdated = lastUpdated;
@@ -71,20 +74,28 @@ public class Work implements Serializable {
         this.eid = eid;
     }
 
-    public Long getTid() {
-        return tid;
+    public String getEmployeeName() {
+        return employeeName;
     }
 
-    public void setTid(Long tid) {
-        this.tid = tid;
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
     }
 
-    public String getTaskName() {
-        return taskName;
+    public Long getLid() {
+        return lid;
     }
 
-    public void setTaskName(String taskName) {
-        this.taskName = taskName;
+    public void setLid(Long lid) {
+        this.lid = lid;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getStatus() {

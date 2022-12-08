@@ -1,6 +1,8 @@
 package com.distarise.credaegis.constants;
 
 public class CibilConstants {
+
+    public static final String CREDAEGIS_CONTEXT = "credaegisContext";
     public static final String PERSON_START = "Personal InformationNameDOBGender";
     public static final String PERSON_ID_START = "Identification TypeNumberIssue DateExpiration Date";
     public static final String PERSON_PAN = "Income Tax ID Number (PAN)";
@@ -27,7 +29,8 @@ public class CibilConstants {
     public static final String ACCOUNT_PAYMENT_DETAIL = "Payment End Date";
 
 
+    public static final String PS_AMOUNT_OVERDUE = "Amount overdue - ";
+    public static final String PS_DPD = "DPD - ";
 
-
-
+    public static final String CIBIL_SCORE = "Your CIBIL Score is ";
 }

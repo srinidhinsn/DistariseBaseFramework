@@ -5,4 +5,5 @@ import com.distarise.credaegis.model.PersonDto;
 
 public interface PersonDao extends AbstractBaseDao {
     PersonDto save(PersonDto personDto);
+    PersonDto findByPid(Long pid);
 }

@@ -80,7 +80,7 @@ public class LoadRdConfigAction extends AbstractBaseAction{
         for (int i=0;i<validity.size();i++){
             String validFrom = validity.get(i).getEffectiveAndEndDateDropDown();
             ComponentItemDto componentItemDto = new ComponentItemDto(360L * ComponentItemDto.ID_MULTIPLIER+i, "validfrom", clientId, 3600+i,
-                    validity.get(i).getId().toString(), validFrom, true, true );
+                    validity.get(i).getId().toString(), validFrom, true, true, "text" );
             if (componentItemDto.getValue().equals(fdConfigId)){
                 componentItemDto.setSelected(true);
             }

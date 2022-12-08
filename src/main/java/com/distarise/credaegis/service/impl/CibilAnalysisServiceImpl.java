@@ -1,11 +1,9 @@
 package com.distarise.credaegis.service.impl;
 
-import com.distarise.credaegis.CredaegisProperties;
 import com.distarise.credaegis.constants.CibilConstants;
-import com.distarise.credaegis.model.CaseDto;
+import com.distarise.credaegis.model.LeadDto;
 import com.distarise.credaegis.model.PersonDto;
 import com.distarise.credaegis.service.CreditAnalysisService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -19,12 +17,8 @@ import java.util.regex.Pattern;
 @Service
 public class CibilAnalysisServiceImpl implements CreditAnalysisService {
 
-    @Autowired
-    CredaegisProperties properties;
-
     @Override
-    public PersonDto getPersonalInfo(String pdf) {
-        PersonDto personDto = new PersonDto();
+    public PersonDto setPersonalInfo(String pdf, PersonDto personDto) {
         Pattern dobPattern = Pattern.compile("([0-9]{2})/([0-9]{2})/([0-9]{4})");
         String dobStringFormat = "dd/mm/yyyy";
         String dobString = null;
@@ -51,28 +45,29 @@ public class CibilAnalysisServiceImpl implements CreditAnalysisService {
     }
 
     @Override
-    public List<CaseDto> createCases(List<String> accountsInfoList) {
-        List<CaseDto> caseDtoList = new ArrayList<>();
+    public List<LeadDto> createLeads(List<String> accountsInfoList) {
+        List<LeadDto> leadDtoList = new ArrayList<>();
+        CredaegisProperties credaegisProperties = new CredaegisProperties();
         int dateFormatLength = 10;
         int approxLatestPaymentLength = 19;
         Pattern dobPattern = Pattern.compile("([A-Z][a-z]{2}) ([0-9]{4})");
         accountsInfoList.forEach(accountInfo -> {
-            CaseDto caseDto = new CaseDto();
+            LeadDto leadDto = new LeadDto();
 
             // Account summary extraction
             String accountSummary = CibilUtility.getStringBetween(accountInfo, 0,
                     CibilConstants.ACCOUNT_DETAILS);
 
-            String accountType = properties.getAccountType(accountSummary);
-            String ownershipType = properties.getOwnershipType(accountSummary);
+            String accountType = credaegisProperties.getAccountType(accountSummary);
+            String ownershipType = credaegisProperties.getOwnershipType(accountSummary);
             String accountName = accountSummary.substring(0, accountSummary.indexOf(accountType));
             String accountNumber = accountSummary.substring(
                     accountSummary.indexOf(accountType) + accountType.length(),
                     accountSummary.indexOf(ownershipType));
-            caseDto.setAccountNo(accountNumber);
-            caseDto.setAccountName(accountName);
-            caseDto.setAccountType(accountType);
-            caseDto.setOwnership(ownershipType);
+            leadDto.setAccountNo(accountNumber);
+            leadDto.setAccountName(accountName);
+            leadDto.setAccountType(accountType);
+            leadDto.setOwnership(ownershipType);
 
             //Account details extraction
             String accountDetails = CibilUtility.getStringBetween(accountInfo, CibilConstants.ACCOUNT_DETAILS,
@@ -138,15 +133,22 @@ public class CibilAnalysisServiceImpl implements CreditAnalysisService {
             currentBal = CibilUtility.convertStringToLong(currentBalStr);
             amtOverdue = CibilUtility.convertStringToLong(amtOverdueStr);
 
-            caseDto.setAmountOverdue(amtOverdue);
-            caseDto.setCreditStatus(creditStatus);
-            caseDto.setCurrentBalance(currentBal);
-            caseDto.setLatestPayment(latestPaymentDone);
-            caseDto.setSanctionedAmount(sanctionedAmount);
-            caseDto.setHighCredit(highCredit);
-            caseDtoList.add(caseDto);
+            leadDto.setAmountOverdue(amtOverdue);
+            leadDto.setCreditStatus(creditStatus);
+            leadDto.setCurrentBalance(currentBal);
+            leadDto.setLatestPaymentDone(latestPaymentDone);
+            leadDto.setSanctionedAmount(sanctionedAmount);
+            leadDto.setHighCredit(highCredit);
+            leadDtoList.add(leadDto);
         });
-        return caseDtoList;
+        return leadDtoList;
+    }
+
+    @Override
+    public void setCreditScore(String pdf, PersonDto personDto) {
+        String cibilScoreStr = pdf.substring(pdf.indexOf(CibilConstants.CIBIL_SCORE) + CibilConstants.CIBIL_SCORE.length(),
+                pdf.indexOf(CibilConstants.CIBIL_SCORE) + CibilConstants.CIBIL_SCORE.length() + 3).trim();
+        personDto.setCreditScore(Integer.parseInt(cibilScoreStr));
     }
 
 

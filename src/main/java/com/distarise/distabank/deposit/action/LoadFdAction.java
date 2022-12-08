@@ -115,7 +115,7 @@ public class LoadFdAction extends AbstractBaseAction {
                                                           List<FixedDepositDto> fdDtoList, String selectedFd) {
         for (int i=0;i<fdDtoList.size();i++){
             ComponentItemDto item = new ComponentItemDto(400L * ComponentItemDto.ID_MULTIPLIER+i, "fdlist", clientId, 3600+i, fdDtoList.get(i).getId().toString(),
-                    fdDtoList.get(i).getAccountNo(), false, true);
+                    fdDtoList.get(i).getAccountNo(), false, true, "text");
             if (item.getValue().equals(selectedFd)){
                 item.setSelected(true);
             }

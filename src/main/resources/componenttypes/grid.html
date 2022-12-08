@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+</head>
+    <body>
+        <div th:fragment="formField(component, widget, navigationItem, pageDetails)">
+            <div class="form-group">
+                <input type="hidden" th:id="identifier" th:name="identifier" value="" />
+                <input type="hidden" th:id="selectedAction" th:name="selectedAction" value="test" />
+                <table class="table table-hover table-cards align-items-center">
+                    <thead style="border-bottom: solid; border-width: thin">
+                    <tr>
+                        <div th:if="${component.componentItemDtos.size()>0}">
+                             <div th:each="componentItemDto : ${component.componentItemDtos}" th:if="${componentItemDto.visible}">
+                                <th scope="col"><div th:text="${componentItemDto.label}"></div></th>
+                            </div>
+                        </div>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <div th:if="${null != component.gridValues and component.gridValues.size()>0}">
+                         <div th:each="gridValue : ${component.gridValues}">
+                             <tr th:grid-formid="${gridValue.get('formid')}"
+                                 th:grid-1="${gridValue.get('column1')}" th:grid-2="${gridValue.get('column2')}" th:grid-3="${gridValue.get('column3')}"
+                                 th:grid-4="${gridValue.get('column4')}" th:grid-5="${gridValue.get('column5')}" th:grid-6="${gridValue.get('column6')}"
+                                 th:grid-7="${gridValue.get('column7')}" th:grid-8="${gridValue.get('column8')}" th:grid-9="${gridValue.get('column9')}"
+                                 th:grid-10="${gridValue.get('column10')}" th:grid-11="${gridValue.get('column11')}" th:grid-12="${gridValue.get('column12')}"
+                                 th:grid-13="${gridValue.get('column13')}" th:grid-14="${gridValue.get('column14')}" th:grid-15="${gridValue.get('column15')}"
+                                 th:grid-16="${gridValue.get('column16')}" th:grid-17="${gridValue.get('column17')}" th:grid-18="${gridValue.get('column18')}"
+                                 th:grid-19="${gridValue.get('column19')}" th:grid-20="${gridValue.get('column20')}">
+                                <div th:if="${component.componentItemDtos.size()>0}">
+                                    <div th:each="componentItemDto : ${component.componentItemDtos}" th:if="${componentItemDto.visible}">
+                                         <td th:if="${componentItemDto.type == 'text'}">
+                                             <div th:text="${gridValue.get(componentItemDto.value)}"></div>
+                                         </td>
+                                        <td th:if="${componentItemDto.type == 'href'}">
+                                            <div class="form-group">
+                                                <a th:href="|${widget.redirectUrl}?identifier=${gridValue.get(componentItemDto.value)}|" th:id="${componentItemDto.id}" th:name="${componentItemDto.id}"
+                                                   class="btn btn-sm btn-primary" th:text="${gridValue.get(componentItemDto.value)}"
+                                                   th:redirectUrl="${widget.redirectUrl}" th:widgetId="${widget.id}" th:action="${component.keyOrAction}" th:identifier="${gridValue.get(componentItemDto.value)}"
+                                                   th:onclick="javascript:viewDetails(this.getAttribute('widgetId'),this.getAttribute('action'),this.getAttribute('redirectUrl'),this.getAttribute('identifier'))"></a>
+
+                                            </div>
+                                        </td>
+                                    </div>
+                                </div>
+                            </tr>
+                            <tr class="table-divider"></tr>
+                         </div>
+                    </div>
+                    </tbody>
+                </table>
+                <input type="hidden" th:id="selectedAction1" th:name="selectedAction1" value="test" />
+                <input type="hidden" th:id="selectedAction2" th:name="selectedAction2" value="test" />
+            </div>
+        </div>
+    </body>
+</html>

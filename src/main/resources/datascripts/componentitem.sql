@@ -182,6 +182,9 @@ INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder,
 VALUES (157,'distarise', 'componentitemgrid', true, 'Visibility', 157, 'column9', true);
 
 INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
+VALUES (158,'distarise', 'componentitemgrid', true, 'Type', 158, 'column10', true);
+
+INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)
 VALUES (170,'distarise', 'rolelist', true, 'New role', 170, 'new', true);
 
 INSERT INTO componentitem(id, clientid, componentid, editable, label, sortorder, value, visible)

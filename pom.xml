@@ -37,6 +37,7 @@
         <joda-version>2.10.14</joda-version>
         <pdfbox-version>2.0.24</pdfbox-version>
         <com-log-version>1.2</com-log-version>
+        <configprocessor-version>2.7.3</configprocessor-version>
     </properties>
 
     <dependencies>
@@ -59,6 +60,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-configuration-processor -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <version>${configprocessor-version}</version>
         </dependency>
         <!--<dependency>
             <groupId>org.springframework.boot</groupId>

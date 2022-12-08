@@ -16,37 +16,15 @@ public class PersonDto {
     private String path;
     private String fileName;
     private String referral;
-    private String password;
     private Date occupationDate;
+    private Integer creditScore;
     private List<EmailDto> emailList;
     private List<ContactDto> contactList;
     private List<AddressDto> addressList;
     private List<IdentityDto> identityList;
-    private List<CaseDto> caseDtoList;
+    private List<LeadDto> leadDtoList;
 
     public PersonDto() {
-    }
-
-    public PersonDto(Long pid, String firstName, String lastName, Date dob, char gender, String occupation, String email, String contact, String reportType, String path, String fileName, String referral, String password, Date occupationDate, List emailList, List contactList, List addressList, List identityList, List caseDtoList) {
-        this.pid = pid;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.dob = dob;
-        this.gender = gender;
-        this.occupation = occupation;
-        this.email = email;
-        this.contact = contact;
-        this.reportType = reportType;
-        this.path = path;
-        this.fileName = fileName;
-        this.referral = referral;
-        this.password = password;
-        this.occupationDate = occupationDate;
-        this.emailList = emailList;
-        this.contactList = contactList;
-        this.addressList = addressList;
-        this.identityList = identityList;
-        this.caseDtoList = caseDtoList;
     }
 
     public Long getPid() {
@@ -145,14 +123,6 @@ public class PersonDto {
         this.referral = referral;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public Date getOccupationDate() {
         return occupationDate;
     }
@@ -161,43 +131,51 @@ public class PersonDto {
         this.occupationDate = occupationDate;
     }
 
-    public List getEmailList() {
+    public Integer getCreditScore() {
+        return creditScore;
+    }
+
+    public void setCreditScore(Integer creditScore) {
+        this.creditScore = creditScore;
+    }
+
+    public List<EmailDto> getEmailList() {
         return emailList;
     }
 
-    public void setEmailList(List emailList) {
+    public void setEmailList(List<EmailDto> emailList) {
         this.emailList = emailList;
     }
 
-    public List getContactList() {
+    public List<ContactDto> getContactList() {
         return contactList;
     }
 
-    public void setContactList(List contactList) {
+    public void setContactList(List<ContactDto> contactList) {
         this.contactList = contactList;
     }
 
-    public List getAddressList() {
+    public List<AddressDto> getAddressList() {
         return addressList;
     }
 
-    public void setAddressList(List addressList) {
+    public void setAddressList(List<AddressDto> addressList) {
         this.addressList = addressList;
     }
 
-    public List getIdentityList() {
+    public List<IdentityDto> getIdentityList() {
         return identityList;
     }
 
-    public void setIdentityList(List identityList) {
+    public void setIdentityList(List<IdentityDto> identityList) {
         this.identityList = identityList;
     }
 
-    public List getTaskList() {
-        return caseDtoList;
+    public List<LeadDto> getLeadDtoList() {
+        return leadDtoList;
     }
 
-    public void setTaskList(List caseDtoList) {
-        this.caseDtoList = caseDtoList;
+    public void setLeadDtoList(List<LeadDto> leadDtoList) {
+        this.leadDtoList = leadDtoList;
     }
 }
