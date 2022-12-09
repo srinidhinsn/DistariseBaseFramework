@@ -68,8 +68,7 @@ public class CreditAnalysisCommonServiceImpl implements CreditAnalysisCommonServ
                 !leadDto.getCreditStatus().isEmpty() ||
                 //leadDto.getCurrentBalance() > 0 ||
                 leadDto.getAmountOverdue() > 0 ||
-                        !(leadDto.getLatestPaymentDone().substring(8, leadDto.getLatestPaymentDone().length()).equals("STD") ||
-                leadDto.getLatestPaymentDone().substring(8, leadDto.getLatestPaymentDone().length()).equals("0"))).
+                        !leadDto.getLatestPaymentDone().isEmpty()).
                 collect(Collectors.toList());
 
         setLeadDetails(validLeadDtoList, personDto);
@@ -102,17 +101,17 @@ public class CreditAnalysisCommonServiceImpl implements CreditAnalysisCommonServ
 
     private void setLeadDetails(List<LeadDto> validLeadDtoList, PersonDto personDto) {
         for (LeadDto leadDto : validLeadDtoList){
-            String dpds = leadDto.getLatestPaymentDone().substring(8, leadDto.getLatestPaymentDone().length());
+            //String dpds = leadDto.getLatestPaymentDone().substring(8, leadDto.getLatestPaymentDone().length());
 
             if (!leadDto.getCreditStatus().isEmpty()){
                 leadDto.setProblemStatement(leadDto.getCreditStatus());
-            } else if (leadDto.getAmountOverdue() > 0){
+            } if (leadDto.getAmountOverdue() > 0){
                 leadDto.setProblemStatement(CibilConstants.PS_AMOUNT_OVERDUE+leadDto.getAmountOverdue());
-            } else {
-                leadDto.setProblemStatement(CibilConstants.PS_DPD+dpds);
+            } if (!leadDto.getLatestPaymentDone().isEmpty()) {
+                leadDto.setProblemStatement(CibilConstants.PS_DPD + leadDto.getLatestPaymentDone());
             }
 
-            leadDto.setLatestPaymentDone(leadDto.getLatestPaymentDone().substring(0, 8) + " " + dpds);
+            //leadDto.setLatestPaymentDone(leadDto.getLatestPaymentDone().substring(0, 8) + " " + dpds);
             leadDto.setPid(personDto.getPid());
             leadDto.setTitle(personDto.getFirstName() + "-" + leadDto.getAccountNo() + "-" + leadDto.getProblemStatement());
             leadDto.setStatus(LeadStatus.OPEN.name());

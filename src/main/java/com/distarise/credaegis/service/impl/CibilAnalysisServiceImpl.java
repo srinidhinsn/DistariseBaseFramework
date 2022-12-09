@@ -6,11 +6,13 @@ import com.distarise.credaegis.model.PersonDto;
 import com.distarise.credaegis.service.CreditAnalysisService;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder.In;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -48,9 +50,7 @@ public class CibilAnalysisServiceImpl implements CreditAnalysisService {
     public List<LeadDto> createLeads(List<String> accountsInfoList) {
         List<LeadDto> leadDtoList = new ArrayList<>();
         CredaegisProperties credaegisProperties = new CredaegisProperties();
-        int dateFormatLength = 10;
-        int approxLatestPaymentLength = 19;
-        Pattern dobPattern = Pattern.compile("([A-Z][a-z]{2}) ([0-9]{4})");
+
         accountsInfoList.forEach(accountInfo -> {
             LeadDto leadDto = new LeadDto();
 
@@ -77,8 +77,6 @@ public class CibilAnalysisServiceImpl implements CreditAnalysisService {
             String amtOverdueStr = "";
             String creditStatus = "";
             String latestPaymentDone = "";
-            String latestPaymentDoneTmp = "";
-            String latestPaymentStrMatch = "";
             String highCreditStr = "";
 
             Long sanctionedAmount = null;
@@ -112,22 +110,8 @@ public class CibilAnalysisServiceImpl implements CreditAnalysisService {
                     CibilConstants.ACCOUNT_DETAILS_CREDIT_STATUS,
                     CibilConstants.ACCOUNT_DETAILS_WRITTENOFF_AMOUNT);
             creditStatus = creditStatus.replaceAll("-","");
-            latestPaymentDoneTmp = accountInfo.substring(
-                    accountInfo.indexOf(CibilConstants.ACCOUNT_PAYMENT_DETAIL) +
-                            CibilConstants.ACCOUNT_PAYMENT_DETAIL.length() + dateFormatLength,
-                    accountInfo.indexOf(CibilConstants.ACCOUNT_PAYMENT_DETAIL) +
-                            CibilConstants.ACCOUNT_PAYMENT_DETAIL.length() + dateFormatLength +
-                            approxLatestPaymentLength
-            );
 
-            latestPaymentDone = latestPaymentDoneTmp.substring(0, 8);
-            latestPaymentDoneTmp = latestPaymentDoneTmp.substring(8, approxLatestPaymentLength);
-            Matcher match = dobPattern.matcher(latestPaymentDoneTmp);
-            if(match.find()){
-                latestPaymentStrMatch = match.group();
-            }
-            latestPaymentDone+=latestPaymentDoneTmp.substring(0,latestPaymentDoneTmp.indexOf(latestPaymentStrMatch));
-
+            latestPaymentDone = getLastPaymentDone(accountInfo);
             sanctionedAmount = CibilUtility.convertStringToLong(sanctionedAmountStr);
             highCredit = CibilUtility.convertStringToLong(highCreditStr);
             currentBal = CibilUtility.convertStringToLong(currentBalStr);
@@ -146,10 +130,50 @@ public class CibilAnalysisServiceImpl implements CreditAnalysisService {
 
     @Override
     public void setCreditScore(String pdf, PersonDto personDto) {
-        String cibilScoreStr = pdf.substring(pdf.indexOf(CibilConstants.CIBIL_SCORE) + CibilConstants.CIBIL_SCORE.length(),
-                pdf.indexOf(CibilConstants.CIBIL_SCORE) + CibilConstants.CIBIL_SCORE.length() + 3).trim();
+        String cibilScoreStr = pdf.substring(pdf.indexOf(CibilConstants.CIBIL_SCORE) - 3,
+                pdf.indexOf(CibilConstants.CIBIL_SCORE)).trim();
         personDto.setCreditScore(Integer.parseInt(cibilScoreStr));
     }
 
+    private String getLastPaymentDone(String accountInfo){
+        int dateFormatLength = 10;
+        int paymentScheduleLength = 8;
+        int paymentScheduleMovingLength = 0;
+        Pattern paymentPattern = Pattern.compile("([A-Z][a-z]{2}) ([0-9]{4})");
+        String latestPaymentDoneTmp = "";
+        String latestPaymentStrMatch = "";
+        String latestPaymentDone = "";
+        List<String> paymentSchedule = new ArrayList<>();
+
+        latestPaymentDoneTmp = accountInfo.substring(
+                accountInfo.indexOf(CibilConstants.ACCOUNT_PAYMENT_DETAIL) +
+                        CibilConstants.ACCOUNT_PAYMENT_DETAIL.length() + dateFormatLength,
+                accountInfo.indexOf(CibilConstants.ACCOUNT_PAYMENT_END));
+
+        Matcher match = paymentPattern.matcher(latestPaymentDoneTmp);
+        while(match.find()){
+            paymentSchedule.add(match.group());
+        }
+
+        for (int count=0; count < paymentSchedule.size()-1; count++){
+            String dpdStr = latestPaymentDoneTmp.substring(
+                    latestPaymentDoneTmp.indexOf(paymentSchedule.get(count)) + paymentSchedule.get(count).length(),
+                    latestPaymentDoneTmp.indexOf(paymentSchedule.get(count+1))).trim();
+            try{
+                Integer dpd = Integer.parseInt(dpdStr);
+                if (dpd > 0) {
+                    latestPaymentDone = paymentSchedule.get(count) + " " + dpd;
+                    break;
+                }
+            } catch (NumberFormatException nfe){
+            }
+            Optional<String> statusFound = CibilConstants.getPaymentDefaultStatusList().stream().filter(status -> dpdStr.equals(status)).findFirst();
+            if (statusFound.isPresent()){
+                latestPaymentDone = paymentSchedule.get(count) + " " + dpdStr;
+                break;
+            }
+        }
+        return latestPaymentDone;
+    }
 
 }

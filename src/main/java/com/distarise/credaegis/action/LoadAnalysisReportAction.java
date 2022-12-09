@@ -34,7 +34,11 @@ public class LoadAnalysisReportAction extends AbstractBaseAction implements Base
                     });
                 } else if (widgetDto.getId().equalsIgnoreCase("analysisreport")){
                     widgetDto.getComponentDtos().forEach(targetComponentDto -> {
-                        setAnalysisReport(targetComponentDto, personDto.getLeadDtoList());
+                        if (targetComponentDto.getId().equals("creditreport")) {
+                            setAnalysisReport(targetComponentDto, personDto.getLeadDtoList());
+                        } else if (targetComponentDto.getId().equals("creditscore")) {
+                            targetComponentDto.setValue(personDto.getCreditScore().toString());
+                        }
                     });
                 }
             });
@@ -68,8 +72,9 @@ public class LoadAnalysisReportAction extends AbstractBaseAction implements Base
                     case "column5" -> gridRow.put("column5", leadDto.getAmountOverdue().toString());
                     case "column6" -> gridRow.put("column6", leadDto.getCreditStatus());
                     case "column7" -> gridRow.put("column7", leadDto.getCurrentBalance().toString());
+                    case "column8" -> gridRow.put("column8", leadDto.getOwnership());
                 }
-                componentDto.fillEmptyColumns(gridRow, 8);
+                componentDto.fillEmptyColumns(gridRow, 9);
             });
             gridDetails.add(gridRow);
         });

@@ -1,5 +1,8 @@
 package com.distarise.credaegis.constants;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CibilConstants {
 
     public static final String CREDAEGIS_CONTEXT = "credaegisContext";
@@ -28,9 +31,27 @@ public class CibilConstants {
     public static final String ACCOUNT_DETAILS_WRITTENOFF_AMOUNT = "Written-off Amount (Total)";
     public static final String ACCOUNT_PAYMENT_DETAIL = "Payment End Date";
 
-
+    public static final String ACCOUNT_PAYMENT_END = "STD: Standard";
     public static final String PS_AMOUNT_OVERDUE = "Amount overdue - ";
     public static final String PS_DPD = "DPD - ";
 
-    public static final String CIBIL_SCORE = "Your CIBIL Score is ";
+    public static final String CIBIL_SCORE = "This section reflects your CIBIL Score";
+
+    public static List<String> PAYMENT_STATUS_LIST = new ArrayList<>();
+    public static List<String> PAYMENT_STATUS_DEFAULT_LIST = new ArrayList<>();
+    public static final String PAYMENT_STATUS_STD = "STB";
+    public static final String PAYMENT_STATUS_DBT = "DBT";
+    public static final String PAYMENT_STATUS_SMA = "SMA";
+    public static final String PAYMENT_STATUS_LSS = "LSS";
+    public static final String PAYMENT_STATUS_XXX = "XXX";
+    public static final String PAYMENT_STATUS_SUB = "SUB";
+
+    public static List<String> getPaymentDefaultStatusList(){
+        PAYMENT_STATUS_DEFAULT_LIST.add("DBT");
+        PAYMENT_STATUS_DEFAULT_LIST.add("SMA");
+        PAYMENT_STATUS_DEFAULT_LIST.add("LSS");
+        PAYMENT_STATUS_DEFAULT_LIST.add("XXX");
+        PAYMENT_STATUS_DEFAULT_LIST.add("SUB");
+        return PAYMENT_STATUS_DEFAULT_LIST;
+    }
 }
