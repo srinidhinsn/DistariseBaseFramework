@@ -20,3 +20,14 @@ VALUES ('distabank', 'manager', 'Manager');
 
 INSERT INTO role(clientid, rolename, roledescription)
 VALUES ('distabank', 'guest', 'Guest');
+
+-- Credaegis
+
+INSERT INTO role (clientid, rolename, roledescription)
+VALUES ('credaegis', 'frontoffice', 'Front office admins');
+
+INSERT INTO role (clientid, rolename, roledescription)
+VALUES ('credaegis', 'backoffice', 'Back office admins');
+
+INSERT INTO role (clientid, rolename, roledescription)
+VALUES ('credaegis', 'guest', 'Anonymous user');

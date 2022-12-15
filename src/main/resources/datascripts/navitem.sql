@@ -142,3 +142,23 @@ VALUES ('pigmyconfig', 'distabankmanagermanagement', 'Pigmy', '/nsn/distabank/ma
 
 INSERT INTO navitem(id, uinavid, label, url, sortorder, layoutid, navitemid, clientid)
 VALUES ('back', 'distabankmanagermanagement', 'Back', '/nsn/distabank/bank/customer', 9, '3C0RTTLFBF', null, 'distabank');
+
+-- Credaegis
+
+INSERT INTO navitem (clientid, id, uinavid, label, layoutid, navitemid, sortorder, url)
+ VALUES ('credaegis', 'login', 'credaegisfoguestlogin', 'login', '', '', 1, '/nsn/credaegis/fo/login');
+
+INSERT INTO navitem (clientid, id, uinavid, label, layoutid, navitemid, sortorder, url)
+ VALUES ('credaegis', 'login', 'credaegisboguestlogin', 'login', '', '', 1, '/nsn/credaegis/bo/login');
+
+INSERT INTO navitem (clientid, id, uinavid, label, layoutid, navitemid, sortorder, url)
+ VALUES ('credaegis', 'leads', 'credaegisfologin', 'Leads', '', '', 2, '/nsn/credaegis/fo/leads');
+
+INSERT INTO navitem (clientid, id, uinavid, label, layoutid, navitemid, sortorder, url)
+ VALUES ('credaegis', 'uploadcibil', 'credaegisfologin', 'Upload Cibil', '', '', 1, '/nsn/credaegis/fo/uploadcibil');
+
+INSERT INTO navitem (clientid, id, uinavid, label, layoutid, navitemid, sortorder, url)
+ VALUES ('credaegis', 'analysisreport', 'credaegisbologin', 'Cibil Analysis Report', '', '', 1, '/nsn/credaegis/bo/cibilanalysis');
+
+INSERT INTO navitem (clientid, id, uinavid, label, layoutid, navitemid, sortorder, url)
+ VALUES ('credaegis', 'cibilanalysis', 'credaegisfologin', '', '', '', 3, '');

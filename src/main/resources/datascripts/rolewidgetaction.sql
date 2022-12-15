@@ -246,3 +246,31 @@ VALUES ('distabank', 'manager', 'rd', 'com.distarise.distabank.deposit.action.Lo
 
 INSERT INTO rolewidgetaction(clientid, rolename, widgetid, action, visible, enabled)
 VALUES ('distabank', 'manager', 'rd', 'com.distarise.distabank.deposit.action.SaveRdAction', true, true);
+
+
+-- Credaegis
+
+INSERT INTO rolewidgetaction (action, clientid, rolename, widgetid, enabled, visible)
+ VALUES ('com.distarise.base.action.LoginAction', 'credaegis', 'guest', 'login', true, true);
+INSERT INTO rolewidgetaction (action, clientid, rolename, widgetid, enabled, visible)
+ VALUES ('', 'credaegis', 'frontoffice', 'uploadcibil', true, true);
+INSERT INTO rolewidgetaction (action, clientid, rolename, widgetid, enabled, visible)
+ VALUES ('', 'credaegis', 'guest', 'login', true, true);
+INSERT INTO rolewidgetaction (action, clientid, rolename, widgetid, enabled, visible)
+ VALUES ('com.distarise.credaegis.action.UploadCibilAction', 'credaegis', 'frontoffice', 'uploadcibil', true, true);
+INSERT INTO rolewidgetaction (action, clientid, rolename, widgetid, enabled, visible)
+ VALUES ('com.distarise.credaegis.action.UploadCibilPostHandlerAction', 'credaegis', 'frontoffice', 'uploadcibil', true, true);
+INSERT INTO rolewidgetaction (action, clientid, rolename, widgetid, enabled, visible)
+ VALUES ('', 'credaegis', 'frontoffice', 'leaddetails', true, true);
+INSERT INTO rolewidgetaction (action, clientid, rolename, widgetid, enabled, visible)
+ VALUES ('', 'credaegis', 'frontoffice', 'analysisreport', true, true);
+INSERT INTO rolewidgetaction (action, clientid, rolename, widgetid, enabled, visible)
+ VALUES ('com.distarise.credaegis.action.LoadAnalysisReportAction', 'credaegis', 'frontoffice', 'leaddetails', true, true);
+INSERT INTO rolewidgetaction (action, clientid, rolename, widgetid, enabled, visible)
+ VALUES ('com.distarise.credaegis.action.LoadAnalysisReportPostHandlerAction', 'credaegis', 'frontoffice', 'leaddetails', true, true);
+INSERT INTO rolewidgetaction (action, clientid, rolename, widgetid, enabled, visible)
+ VALUES ('com.distarise.credaegis.action.LoadAnalysisReportAction', 'credaegis', 'frontoffice', 'leadsgrid', true, true);
+INSERT INTO rolewidgetaction (action, clientid, rolename, widgetid, enabled, visible)
+ VALUES ('', 'credaegis', 'frontoffice', 'leadsgrid', true, true);
+INSERT INTO rolewidgetaction (action, clientid, rolename, widgetid, enabled, visible)
+ VALUES ('com.distarise.credaegis.action.LoadLeadsAction', 'credaegis', 'frontoffice', 'leadsgrid', true, true);

@@ -716,3 +716,53 @@ VALUES ('saverd', 'distabank', true, '', 'com.distarise.distabank.deposit.action
 
 INSERT INTO component(id, clientid, editable, redirecturl, keyoraction, label, sortorder, type, visible, widgetid, multilevel)
 VALUES ('customergrid', 'distabank', true, '', 'com.distarise.distabank.customer.action.LoadCustomerAction', 'Customer search', 1, 'customergrid', true, 'searchresult', true);
+
+
+-- Credaegis
+
+
+INSERT INTO component (clientid, id, widgetid, colspan, editable, keyoraction, label, multilevel, redirecturl, rowspan, sortorder, type, value, visible)
+ VALUES ('credaegis', 'reporttype', 'uploadcibil', NULL, true, '', 'Report type', true, '', NULL, 2, 'dropdown', '', false);
+INSERT INTO component (clientid, id, widgetid, colspan, editable, keyoraction, label, multilevel, redirecturl, rowspan, sortorder, type, value, visible)
+ VALUES ('credaegis', 'name', 'leaddetails', NULL, true, '', 'Name', false, '', NULL, 1, 'textbox', '', false);
+INSERT INTO component (clientid, id, widgetid, colspan, editable, keyoraction, label, multilevel, redirecturl, rowspan, sortorder, type, value, visible)
+ VALUES ('credaegis', 'firstname', 'leaddetails', NULL, true, '', 'First Name', false, '', NULL, 2, 'textbox', '', false);
+INSERT INTO component (clientid, id, widgetid, colspan, editable, keyoraction, label, multilevel, redirecturl, rowspan, sortorder, type, value, visible)
+ VALUES ('credaegis', 'lastname', 'leaddetails', NULL, true, '', 'Last Name', false, '', NULL, 3, 'textbox', '', false);
+INSERT INTO component (clientid, id, widgetid, colspan, editable, keyoraction, label, multilevel, redirecturl, rowspan, sortorder, type, value, visible)
+ VALUES ('credaegis', 'username', 'login', NULL, true, '', 'Username', false, '', NULL, 1, 'textbox', 'username', false);
+INSERT INTO component (clientid, id, widgetid, colspan, editable, keyoraction, label, multilevel, redirecturl, rowspan, sortorder, type, value, visible)
+ VALUES ('credaegis', 'gender', 'leaddetails', NULL, true, '', 'Gender', false, '', NULL, 4, 'text', '', false);
+INSERT INTO component (clientid, id, widgetid, colspan, editable, keyoraction, label, multilevel, redirecturl, rowspan, sortorder, type, value, visible)
+ VALUES ('credaegis', 'dob', 'leaddetails', NULL, true, '', 'Date of birth', false, '', NULL, 5, 'datepicker', '', false);
+INSERT INTO component (clientid, id, widgetid, colspan, editable, keyoraction, label, multilevel, redirecturl, rowspan, sortorder, type, value, visible)
+ VALUES ('credaegis', 'password', 'login', NULL, true, '', 'Password', false, '', NULL, 2, 'password', 'password', true);
+INSERT INTO component (clientid, id, widgetid, colspan, editable, keyoraction, label, multilevel, redirecturl, rowspan, sortorder, type, value, visible)
+ VALUES ('credaegis', 'login', 'login', NULL, true, 'com.distarise.base.action.LoginAction', 'Login', false, '/nsn/credaegis/fo/uploadcibil', NULL, 3, 'submitbutton', '', true);
+INSERT INTO component (clientid, id, widgetid, colspan, editable, keyoraction, label, multilevel, redirecturl, rowspan, sortorder, type, value, visible)
+ VALUES ('credaegis', 'pdfupload', 'uploadcibil', NULL, true, '', 'Upload Cibil', false, '', NULL, 1, 'file', 'PDF upload', true);
+INSERT INTO component (clientid, id, widgetid, colspan, editable, keyoraction, label, multilevel, redirecturl, rowspan, sortorder, type, value, visible)
+ VALUES ('credaegis', 'contact', 'leaddetails', NULL, true, '', 'Contact', false, '', NULL, 6, 'textbox', '', false);
+INSERT INTO component (clientid, id, widgetid, colspan, editable, keyoraction, label, multilevel, redirecturl, rowspan, sortorder, type, value, visible)
+ VALUES ('credaegis', 'email', 'leaddetails', NULL, true, '', 'Email', false, '', NULL, 7, 'textbox', '', false);
+INSERT INTO component (clientid, id, widgetid, colspan, editable, keyoraction, label, multilevel, redirecturl, rowspan, sortorder, type, value, visible)
+ VALUES ('credaegis', 'loadleads', 'leadsgrid', NULL, true, 'com.distarise.credaegis.action.LoadLeadsAction', 'loadleads', false, '', NULL, 0, 'autoaction', '', false);
+INSERT INTO component (clientid, id, widgetid, colspan, editable, keyoraction, label, multilevel, redirecturl, rowspan, sortorder, type, value, visible)
+ VALUES ('credaegis', 'comment', 'leaddetails', NULL, true, '', 'Comment', false, '', NULL, 10, 'textarea', '', false);
+INSERT INTO component (clientid, id, widgetid, colspan, editable, keyoraction, label, multilevel, redirecturl, rowspan, sortorder, type, value, visible)
+ VALUES ('credaegis', 'referral', 'leaddetails', NULL, true, '', 'Referral', false, '', NULL, 8, 'textbox', '', false);
+INSERT INTO component (clientid, id, widgetid, colspan, editable, keyoraction, label, multilevel, redirecturl, rowspan, sortorder, type, value, visible)
+ VALUES ('credaegis', 'creditreport', 'analysisreport', NULL, true, '', 'Credit Report', true, '', NULL, 2, 'grid', '', true);
+INSERT INTO component (clientid, id, widgetid, colspan, editable, keyoraction, label, multilevel, redirecturl, rowspan, sortorder, type, value, visible)
+ VALUES ('credaegis', 'status', 'leaddetails', NULL, true, '', 'Status', true, '', NULL, 9, 'dropdown', '', true);
+INSERT INTO component (clientid, id, widgetid, colspan, editable, keyoraction, label, multilevel, redirecturl, rowspan, sortorder, type, value, visible)
+ VALUES ('credaegis', 'pdfsubmit', 'uploadcibil', NULL, true, 'com.distarise.credaegis.action.UploadCibilPostHandlerAction', 'Upload', false, '/nsn/credaegis/fo/uploadcibil', NULL, 4, 'submitbutton', 'Submit', false);
+INSERT INTO component (clientid, id, widgetid, colspan, editable, keyoraction, label, multilevel, redirecturl, rowspan, sortorder, type, value, visible)
+ VALUES ('credaegis', 'loadleaddetails', 'leaddetails', NULL, true, 'com.distarise.credaegis.action.LoadAnalysisReportAction', 'loadleaddetails', false, '', NULL, 0, 'autoaction', '', false);
+INSERT INTO component (clientid, id, widgetid, colspan, editable, keyoraction, label, multilevel, redirecturl, rowspan, sortorder, type, value, visible)
+ VALUES ('credaegis', 'status', 'leadsgrid', NULL, true, '', 'Status', true, '', NULL, 1, 'dropdown', 'OPEN', true);
+INSERT INTO component (clientid, id, widgetid, colspan, editable, keyoraction, label, multilevel, redirecturl, rowspan, sortorder, type, value, visible)
+ VALUES ('credaegis', 'creditscore', 'analysisreport', NULL, true, '', 'Credit Score', false, '', NULL, 1, 'text', '', true);
+INSERT INTO component (clientid, id, widgetid, colspan, editable, keyoraction, label, multilevel, redirecturl, rowspan, sortorder, type, value, visible)
+ VALUES ('credaegis', 'leadsgrid', 'leadsgrid', NULL, true, 'com.distarise.credaegis.action.LoadAnalysisReportAction', 'Lead', true, '/nsn/credaegis/fo/cibilanalysis', NULL, 2, 'grid', 'Lead', true);
+

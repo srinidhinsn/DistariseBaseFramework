@@ -40,4 +40,15 @@ VALUES ('distabankmanagerdeposit', 'distabank', 'commoncss', 'deposit', 'Base mo
 INSERT INTO uinav(id, clientid, cssclass, module, pagedescription, pagename, pagetitle, redirectpagename, rolename)
 VALUES ('distabankmanagermanagement', 'distabank', 'commoncss', 'management', 'Base module page', 'login', 'Login', 'fdconfig', 'manager');
 
+INSERT INTO uinav (clientid, id, module, rolename, cssclass, pagedescription, pagename, pagetitle, redirectpagename)
+VALUES ('credaegis', 'credaegisfoguestlogin', 'fo', 'guest', '', 'Guest login', 'Login', 'Login', 'uploadcibil');
+
+INSERT INTO uinav (clientid, id, module, rolename, cssclass, pagedescription, pagename, pagetitle, redirectpagename)
+VALUES ('credaegis', 'credaegisboguestlogin', 'bo', 'guest', '', 'Guest login', 'Login', 'Login', 'report');
+
+INSERT INTO uinav (clientid, id, module, rolename, cssclass, pagedescription, pagename, pagetitle, redirectpagename)
+VALUES ('credaegis', 'credaegisfologin', 'fo', 'frontoffice', '', 'Front office module', 'Login', 'Login', 'uploadcibil');
+
+INSERT INTO uinav (clientid, id, module, rolename, cssclass, pagedescription, pagename, pagetitle, redirectpagename)
+VALUES ('credaegis', 'credaegisbologin', 'bo', 'backoffice', '', 'Back office module', 'Login', 'Login', 'report');
 

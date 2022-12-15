@@ -24,3 +24,11 @@ VALUES ('distabank', 'manager', 'Srinidhi', 'Nagarajan', 'manager', 'Mr.');
 
 INSERT INTO userdetails(clientid, userid, firstname, lastname, password, title)
 VALUES ('distabank', 'clerk', 'Srinidhi', 'Nagarajan', 'clerk', 'Mr.');
+
+
+-- Credaegis
+
+INSERT INTO userdetails (clientid, userid, firstname, lastname, password, title)
+VALUES ('credaegis', 'frontoffice', 'Srinidhi', '', 'frontoffice', 'Mr.');
+INSERT INTO userdetails (clientid, userid, firstname, lastname, password, title)
+VALUES ('credaegis', 'guest', '', '', 'guest', 'Mr.');

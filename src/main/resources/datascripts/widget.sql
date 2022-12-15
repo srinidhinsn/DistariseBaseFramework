@@ -116,3 +116,17 @@ VALUES ('sbconfig', 'distabank', 'commoncss', '4C0RTTLFBF', 'sbconfig', 7, null,
 
 INSERT INTO widget(id, clientid, cssclass, layoutid, navitemid, sortorder, widgetid, widgettitle, redirecturl)
 VALUES ('pigmyconfig', 'distabank', 'commoncss', '4C0RTTLFBF', 'pigmyconfig', 8, null, 'Pigmy configuration', '/nsn/distabank/management/pigmyconfig');
+
+
+-- Credaegis
+
+INSERT INTO widget (clientid, id, navitemid, colspan, cssclass, layoutid, redirecturl, rowspan, sortorder, widgetid, widgettitle)
+ VALUES ('credaegis', 'login', 'login', NULL, '', '', '/nsn/credaegis/fo/uploadcibil', NULL, 1, '', 'Login');
+INSERT INTO widget (clientid, id, navitemid, colspan, cssclass, layoutid, redirecturl, rowspan, sortorder, widgetid, widgettitle)
+ VALUES ('credaegis', 'leadsgrid', 'leads', NULL, '', '', '/nsn/credaegis/fo/cibilanalysis', NULL, 1, '', 'Leads');
+INSERT INTO widget (clientid, id, navitemid, colspan, cssclass, layoutid, redirecturl, rowspan, sortorder, widgetid, widgettitle)
+ VALUES ('credaegis', 'leaddetails', 'cibilanalysis', NULL, '', '', '/nsn/credaegis/fo/cibilanalysis', NULL, 1, '', 'Person Information');
+INSERT INTO widget (clientid, id, navitemid, colspan, cssclass, layoutid, redirecturl, rowspan, sortorder, widgetid, widgettitle)
+ VALUES ('credaegis', 'analysisreport', 'cibilanalysis', NULL, '', '', '', NULL, 2, '', 'Analysis Report');
+INSERT INTO widget (clientid, id, navitemid, colspan, cssclass, layoutid, redirecturl, rowspan, sortorder, widgetid, widgettitle)
+ VALUES ('credaegis', 'uploadcibil', 'uploadcibil', NULL, '', '', '/nsn/credaegis/fo/uploadcibil', NULL, 1, '', 'Upload Cibil');
