@@ -11,9 +11,11 @@ public class CibilConstants {
     public static final String PERSON_PAN = "Income Tax ID Number (PAN)";
     public static final String PERSON_BREAK = "--";
 
+    public static final String PERSON_MOBILE = "Mobile Phone";
     public static final String ACCOUNT_START = "Account InformationMember NameAccount TypeAccount NumberOwnership";
     public static final String ACCOUNT_DETAILS = "Account Details";
     public static final String ACCOUNT_PAYMENT = "Payment Status (up to 36 months)";
+    public static final String ACCOUNT_PAYMENT_START = "Payment Start Date";
     public static final String ACCOUNT_BREAK = "LSS:LossXXX: Not ReportedSUB:Substandard";
     public static final String ACCOUNT_END = "Enquiry InformationMember NameDate of EnquiryEnquiry PurposeEnquiry";
 
@@ -28,7 +30,14 @@ public class CibilConstants {
     public static final String ACCOUNT_DETAILS_AMOUNT_OVERDUE = "Amount Overdue";
     public static final String ACCOUNT_DETAILS_INTEREST_RATE = "Rate of Interest";
     public static final String ACCOUNT_DETAILS_CREDIT_STATUS = "Credit Facility Status";
-    public static final String ACCOUNT_DETAILS_WRITTENOFF_AMOUNT = "Written-off Amount (Total)";
+    public static final String ACCOUNT_DETAILS_DATE_REPORTED = "Date Reported And Certified";
+    public static final String ACCOUNT_DETAILS_COLLATERAL_VALUE = "Value of Collateral";
+
+    public static final String ACCOUNT_DETAILS_WRITTENOFF_AMOUNT_TOTAL = "Written-off Amount (Total)";
+    public static final String ACCOUNT_DETAILS_WRITTENOFF_AMOUNT_PRINCIPAL = "Written-off Amount (Principal)";
+    public static final String ACCOUNT_DETAILS_WRITTENOFF_SETTLEMENT_AMOUNT = "Settlement Amount";
+    public static final String ACCOUNT_DETAILS_SUIT_FILED = "Suit - Filed / Willful Default";
+
     public static final String ACCOUNT_PAYMENT_DETAIL = "Payment End Date";
 
     public static final String ACCOUNT_PAYMENT_END = "STD: Standard";

@@ -11,11 +11,23 @@ import java.util.Optional;
 @Service
 public class CredaegisProperties {
 
-    private String accountTypes="Gold Loan,Car Loan,Personal Loan,Credit Card,Two-wheeler Loan,Home Loan," +
-            "Consumer Loan,Business Loan ? General,Microfinance ? BusinessLoan,Business Loan -Unsecured," +
-            "Other,Commercial Vehicle Loan,Housing Loan,AUTO LOAN(PERSONAL),Loan –General,Microfinance –Business Loan," +
-            "Auto Loan Personal,Property Loan,Loan Against Sharesor Securities,ConstructionEquipment Loan," +
-            "Commercial VehicleLoan,Overdraft";
+    private String accountTypes="Credit Card,Leasing,Overdraft,Two-wheeler Loan," +
+            "Non-Funded Credit Facility,Loan Against Bank Deposits,Fleet Card,Commercial Vehicle Loan," +
+            "Telco – Wireless,Telco – Broadband,Telco – Landline,Seller Financing,GECL Loan Secured," +
+            "GECL Loan Unsecured,Secured Credit Card,Used Car Loan,Construction Equipment Loan," +
+            "Tractor Loan,Corporate Credit Card,Kisan Credit Card,Loan on Credit Card," +
+            "Prime Minister Jaan Dhan Yojana - Overdraft,Microfinance – Business Loan," +
+            "Microfinance – Personal Loan,Microfinance – Housing Loan,Microfinance – Other," +
+            "Pradhan Mantri Awas Yojana - Credit Link Subsidy Scheme MAY CLSS,P2P Personal Loan," +
+            "P2P Auto Loan,P2P Education Loan,Business Loan - Secured,Business Loan – General," +
+            "Business Loan – Priority Sector – Small Business,Business Loan – Priority Sector – Agriculture," +
+            "Business Loan – Priority Sector – Others,Business Non-Funded Credit Facility – General," +
+            "Business Non-Funded Credit Facility – Priority Sector – Small Business," +
+            "Business Non-Funded Credit Facility – Priority Sector – Agriculture," +
+            "Business Non-Funded Credit Facility – Priority Sector-Others,Business Loan Against Bank Deposits," +
+            "Business Loan - Unsecured,Auto Loan Personal,Housing Loan,Property Loan," +
+            "Loan Against Shares or Securities,Personal Loan,Consumer Loan,Gold Loan,Education Loan," +
+            "Loan to Professional,Other";
 
     private String ownershipTypes="Individual,Joint,Guarantor";
 

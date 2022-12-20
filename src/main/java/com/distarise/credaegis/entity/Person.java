@@ -60,6 +60,9 @@ public class Person implements Serializable {
     @Column(name = "OCCUPATIONDATE")
     private Date occupationDate;
 
+
+    @Column(name = "COREFACTORID")
+    private String corefactorId;
     @OneToMany(mappedBy = "pid", targetEntity = Email.class)
     private List emailList;
 
@@ -209,6 +212,14 @@ public class Person implements Serializable {
 
     public void setCreditScore(Integer creditScore) {
         this.creditScore = creditScore;
+    }
+
+    public String getCorefactorId() {
+        return corefactorId;
+    }
+
+    public void setCorefactorId(String corefactorId) {
+        this.corefactorId = corefactorId;
     }
 
     public List getEmailList() {

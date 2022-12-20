@@ -32,7 +32,7 @@ public class WorkDaoImpl implements WorkDao {
 
     @Override
     public List<WorkDto> getWorkByStatus(String status) {
-        List<Work> workList = workRepository.findByStatus(status);
+        List<Work> workList = workRepository.findByStatusOrderByPidDesc(status);
         return workList.stream().map(work -> modelMapper.map(work, WorkDto.class)).toList();
     }
 }

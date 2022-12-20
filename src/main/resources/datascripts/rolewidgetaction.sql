@@ -274,3 +274,9 @@ INSERT INTO rolewidgetaction (action, clientid, rolename, widgetid, enabled, vis
  VALUES ('', 'credaegis', 'frontoffice', 'leadsgrid', true, true);
 INSERT INTO rolewidgetaction (action, clientid, rolename, widgetid, enabled, visible)
  VALUES ('com.distarise.credaegis.action.LoadLeadsAction', 'credaegis', 'frontoffice', 'leadsgrid', true, true);
+INSERT INTO rolewidgetaction (action, clientid, rolename, widgetid, enabled, visible)
+ VALUES ('com.distarise.credaegis.action.EditOrDeleteAccountAction', 'credaegis', 'frontoffice', 'analysisreport', true, true);
+INSERT INTO rolewidgetaction (action, clientid, rolename, widgetid, enabled, visible)
+ VALUES ('com.distarise.credaegis.action.AddNewAccountAction', 'credaegis', 'frontoffice', 'analysisreport', true, true);
+INSERT INTO rolewidgetaction (action, clientid, rolename, widgetid, enabled, visible)
+ VALUES ('com.distarise.credaegis.action.SaveAccountAction', 'credaegis', 'frontoffice', 'editlead', true, true);

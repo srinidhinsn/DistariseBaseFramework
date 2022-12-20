@@ -18,6 +18,8 @@ public class PersonDto {
     private String referral;
     private Date occupationDate;
     private Integer creditScore;
+
+    private String corefactorId;
     private List<EmailDto> emailList;
     private List<ContactDto> contactList;
     private List<AddressDto> addressList;
@@ -137,6 +139,14 @@ public class PersonDto {
 
     public void setCreditScore(Integer creditScore) {
         this.creditScore = creditScore;
+    }
+
+    public String getCorefactorId() {
+        return corefactorId;
+    }
+
+    public void setCorefactorId(String corefactorId) {
+        this.corefactorId = corefactorId;
     }
 
     public List<EmailDto> getEmailList() {

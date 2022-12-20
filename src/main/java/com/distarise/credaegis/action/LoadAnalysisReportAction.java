@@ -4,7 +4,9 @@ import com.distarise.base.action.AbstractBaseAction;
 import com.distarise.base.action.BaseAction;
 import com.distarise.base.model.ComponentDto;
 import com.distarise.base.model.PageDetailsDto;
+import com.distarise.credaegis.constants.CibilConstants;
 import com.distarise.credaegis.dao.PersonDao;
+import com.distarise.credaegis.model.CredaegisContextDto;
 import com.distarise.credaegis.model.LeadDto;
 import com.distarise.credaegis.model.PersonDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +26,18 @@ public class LoadAnalysisReportAction extends AbstractBaseAction implements Base
     @Override
     public void executeAction(){
         PageDetailsDto targetPageDetailsDto = super.executeAction(new PageDetailsDto());
-        String personId = request.getParameter("identifier");
+        String identifier = request.getParameter("identifier");
+        String pid = request.getParameter("pid");
+        String personId = "";
+        if (null == pid || pid.isEmpty()){
+            personId = identifier;
+        } else {
+            personId = pid;
+        }
+        CredaegisContextDto context = new CredaegisContextDto.CredaegisContextBuilder(Long.parseLong(personId)).build();
+        request.getSession().setAttribute(CibilConstants.CREDAEGIS_CONTEXT, context);
         PersonDto personDto = personDao.findByPid(Long.parseLong(personId));
+
         targetPageDetailsDto.getNavigationDto().getNavigationItems().forEach( navigationItemDto -> {
             navigationItemDto.getWidgets().forEach(widgetDto ->  {
                 if (widgetDto.getId().equalsIgnoreCase("leaddetails")){
@@ -34,10 +46,10 @@ public class LoadAnalysisReportAction extends AbstractBaseAction implements Base
                     });
                 } else if (widgetDto.getId().equalsIgnoreCase("analysisreport")){
                     widgetDto.getComponentDtos().forEach(targetComponentDto -> {
-                        if (targetComponentDto.getId().equals("creditreport")) {
-                            setAnalysisReport(targetComponentDto, personDto.getLeadDtoList());
-                        } else if (targetComponentDto.getId().equals("creditscore")) {
-                            targetComponentDto.setValue(personDto.getCreditScore().toString());
+                        switch (targetComponentDto.getId()){
+                            case "creditreport" -> setAnalysisReport(targetComponentDto, personDto.getLeadDtoList());
+                            case "creditscore" -> targetComponentDto.setValue(personDto.getCreditScore().toString());
+                            case "pid" -> targetComponentDto.setValue(personDto.getPid().toString());
                         }
                     });
                 }
@@ -65,6 +77,7 @@ public class LoadAnalysisReportAction extends AbstractBaseAction implements Base
             componentDto.getComponentItemDtos().forEach(targetComponentItemDto -> {
                 gridRow.put("formid", "creditreport");
                 switch (targetComponentItemDto.getValue()){
+                    case "column0" -> gridRow.put("column0", leadDto.getLid().toString());
                     case "column1" -> gridRow.put("column1", leadDto.getAccountName());
                     case "column2" -> gridRow.put("column2", leadDto.getAccountNo());
                     case "column3" -> gridRow.put("column3", leadDto.getAccountType());

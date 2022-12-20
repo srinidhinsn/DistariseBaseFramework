@@ -24,6 +24,14 @@ public class LeadDaoImpl implements LeadDao {
 
     @Override
     public void save(LeadDto leadDto) {
+        leadRepository.save(modelMapper.map(leadDto, Lead.class));
+    }
 
+    public LeadDto getLeadById(Long id){
+        return modelMapper.map(leadRepository.findById(id).get(), LeadDto.class);
+    }
+    @Override
+    public void delete(Long id) {
+        leadRepository.deleteById(id);
     }
 }

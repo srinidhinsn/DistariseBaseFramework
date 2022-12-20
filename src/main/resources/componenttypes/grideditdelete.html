@@ -11,6 +11,8 @@
                     <thead style="border-bottom: solid; border-width: thin">
                     <tr>
                         <div th:if="${component.componentItemDtos.size()>0}">
+                            <th scope="col">Edit</th>
+                            <th scope="col">Delete</th>
                              <div th:each="componentItemDto : ${component.componentItemDtos}" th:if="${componentItemDto.visible}">
                                 <th scope="col"><div th:text="${componentItemDto.label}"></div></th>
                             </div>
@@ -21,7 +23,7 @@
                     <tbody>
                     <div th:if="${null != component.gridValues and component.gridValues.size()>0}">
                          <div th:each="gridValue : ${component.gridValues}">
-                             <tr th:grid-formid="${gridValue.get('formid')}"
+                             <tr th:grid-formid="${gridValue.get('formid')}" th:grid-0="${gridValue.get('column0')}"
                                  th:grid-1="${gridValue.get('column1')}" th:grid-2="${gridValue.get('column2')}" th:grid-3="${gridValue.get('column3')}"
                                  th:grid-4="${gridValue.get('column4')}" th:grid-5="${gridValue.get('column5')}" th:grid-6="${gridValue.get('column6')}"
                                  th:grid-7="${gridValue.get('column7')}" th:grid-8="${gridValue.get('column8')}" th:grid-9="${gridValue.get('column9')}"
@@ -30,6 +32,22 @@
                                  th:grid-16="${gridValue.get('column16')}" th:grid-17="${gridValue.get('column17')}" th:grid-18="${gridValue.get('column18')}"
                                  th:grid-19="${gridValue.get('column19')}" th:grid-20="${gridValue.get('column20')}">
                                 <div th:if="${component.componentItemDtos.size()>0}">
+                                    <td>
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-primary" th:id="editaccount" th:name="editaccount"
+                                                    th:redirectUrl="${widget.redirectUrl}" th:widgetId="${widget.id}" th:action="${component.keyOrAction}" th:identifier="|${gridValue.get('column0')}-edit|"
+                                                    th:onclick="javascript:viewDetails(this.getAttribute('widgetId'),this.getAttribute('action'),this.getAttribute('redirectUrl'),this.getAttribute('identifier'))"
+                                                    >Edit</button>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-primary" th:id="deleteaccount" th:name="deleteaccount"
+                                                    th:redirectUrl="${component.redirectUrl}" th:widgetId="${widget.id}" th:action="${component.keyOrAction}" th:identifier="|${gridValue.get('column0')}-delete|"
+                                                    th:onclick="javascript:deleteAccount(this.getAttribute('widgetId'),this.getAttribute('action'),this.getAttribute('redirectUrl'),this.getAttribute('identifier'))"
+                                            >Delete</button>
+                                        </div>
+                                    </td>
                                     <div th:each="componentItemDto : ${component.componentItemDtos}" th:if="${componentItemDto.visible}">
                                          <td th:if="${componentItemDto.type == 'text'}">
                                              <div th:text="${gridValue.get(componentItemDto.value)}"></div>

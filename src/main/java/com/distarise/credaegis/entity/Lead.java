@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.sql.Date;
 
 @Entity
 @Table(name = "LEAD")
@@ -67,6 +68,22 @@ public class Lead implements Serializable {
 
     @Column(name = "HIGHCREDIT")
     private Long highCredit;
+
+
+    @Column(name = "DATEREPORTED")
+    private Date dateReported;
+
+    @Column(name = "WRITTENOFFAMOUNTTOTAL")
+    private Long writtenOffAmountTotal;
+
+    @Column(name = "WRITTENOFFAMOUNTPRINCIPAL")
+    private Long writtenOffAmountPrincipal;
+
+    @Column(name = "SETTLEMENTAMOUNT")
+    private Long settlementAmount;
+
+    @Column(name = "SUITFILED")
+    private String suitFiled;
 
     public Lead() {
     }
@@ -211,5 +228,45 @@ public class Lead implements Serializable {
 
     public void setHighCredit(Long highCredit) {
         this.highCredit = highCredit;
+    }
+
+    public Date getDateReported() {
+        return dateReported;
+    }
+
+    public void setDateReported(Date dateReported) {
+        this.dateReported = dateReported;
+    }
+
+    public Long getWrittenOffAmountTotal() {
+        return writtenOffAmountTotal;
+    }
+
+    public void setWrittenOffAmountTotal(Long writtenOffAmountTotal) {
+        this.writtenOffAmountTotal = writtenOffAmountTotal;
+    }
+
+    public Long getWrittenOffAmountPrincipal() {
+        return writtenOffAmountPrincipal;
+    }
+
+    public void setWrittenOffAmountPrincipal(Long writtenOffAmountPrincipal) {
+        this.writtenOffAmountPrincipal = writtenOffAmountPrincipal;
+    }
+
+    public Long getSettlementAmount() {
+        return settlementAmount;
+    }
+
+    public void setSettlementAmount(Long settlementAmount) {
+        this.settlementAmount = settlementAmount;
+    }
+
+    public String getSuitFiled() {
+        return suitFiled;
+    }
+
+    public void setSuitFiled(String suitFiled) {
+        this.suitFiled = suitFiled;
     }
 }

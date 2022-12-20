@@ -56,6 +56,7 @@ public class CreditAnalysisCommonServiceImpl implements CreditAnalysisCommonServ
         String personalInfo = creditAnalysisHelperService.getPersonalInfoText(pdf);
         creditAnalysisService.setPersonalInfo(personalInfo, personDto);
         creditAnalysisService.setCreditScore(pdf, personDto);
+        personDto.setContact(creditAnalysisHelperService.getContact(pdf));
         personDto = personDao.save(personDto);
 
         IdentityDto pan = new IdentityDto(creditAnalysisHelperService.getPanNo(pdf),
@@ -66,9 +67,9 @@ public class CreditAnalysisCommonServiceImpl implements CreditAnalysisCommonServ
         List<LeadDto> leadDtoList = creditAnalysisService.createLeads(accountInfoList);
         List<LeadDto> validLeadDtoList = leadDtoList.stream().filter(leadDto ->
                 !leadDto.getCreditStatus().isEmpty() ||
-                //leadDto.getCurrentBalance() > 0 ||
+                        (leadDto.getCurrentBalance() > leadDto.getSanctionedAmount()) ||
                 leadDto.getAmountOverdue() > 0 ||
-                        !leadDto.getLatestPaymentDone().isEmpty()).
+                        !leadDto.getProblemStatement().isEmpty()).
                 collect(Collectors.toList());
 
         setLeadDetails(validLeadDtoList, personDto);
@@ -102,7 +103,7 @@ public class CreditAnalysisCommonServiceImpl implements CreditAnalysisCommonServ
     private void setLeadDetails(List<LeadDto> validLeadDtoList, PersonDto personDto) {
         for (LeadDto leadDto : validLeadDtoList){
             //String dpds = leadDto.getLatestPaymentDone().substring(8, leadDto.getLatestPaymentDone().length());
-
+            /*
             if (!leadDto.getCreditStatus().isEmpty()){
                 leadDto.setProblemStatement(leadDto.getCreditStatus());
             } if (leadDto.getAmountOverdue() > 0){
@@ -110,7 +111,7 @@ public class CreditAnalysisCommonServiceImpl implements CreditAnalysisCommonServ
             } if (!leadDto.getLatestPaymentDone().isEmpty()) {
                 leadDto.setProblemStatement(CibilConstants.PS_DPD + leadDto.getLatestPaymentDone());
             }
-
+            */
             //leadDto.setLatestPaymentDone(leadDto.getLatestPaymentDone().substring(0, 8) + " " + dpds);
             leadDto.setPid(personDto.getPid());
             leadDto.setTitle(personDto.getFirstName() + "-" + leadDto.getAccountNo() + "-" + leadDto.getProblemStatement());

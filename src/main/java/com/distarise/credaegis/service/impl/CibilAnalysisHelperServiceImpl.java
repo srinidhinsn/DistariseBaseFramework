@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class CibilAnalysisHelperServiceImpl implements CreditAnalysisHelperService {
@@ -22,6 +24,16 @@ public class CibilAnalysisHelperServiceImpl implements CreditAnalysisHelperServi
         String panNumber = CibilUtility.getStringBetween(pdf, CibilConstants.PERSON_PAN,
                 CibilConstants.PERSON_BREAK);
         return panNumber;
+    }
+
+    @Override
+    public String getContact(String pdf) {
+        Pattern phoneNumber = Pattern.compile("([0-9]{10})");
+        Matcher match = phoneNumber.matcher(pdf);
+        if(match.find()){
+            return match.group();
+        }
+        return "9000000000";
     }
 
     @Override

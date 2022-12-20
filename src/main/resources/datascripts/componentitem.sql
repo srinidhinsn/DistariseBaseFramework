@@ -289,16 +289,16 @@ INSERT INTO componentitem (id, clientid, componentid, editable, label, selected,
  VALUES (11, 'credaegis', 'status', false, 'OPEN', true, 1, 'OPEN', true, 'text');
 
 INSERT INTO componentitem (id, clientid, componentid, editable, label, selected, sortorder, value, visible, type)
- VALUES (12, 'credaegis', 'status', false, 'ON HOLD', NULL, 2, 'ONHOLD', true, 'text');
-
-INSERT INTO componentitem (id, clientid, componentid, editable, label, selected, sortorder, value, visible, type)
- VALUES (13, 'credaegis', 'status', false, 'CONVERTED', NULL, 3, 'CONVERTED', true, 'text');
+ VALUES (13, 'credaegis', 'status', false, 'SENT', NULL, 3, 'SENT', true, 'text');
 
 INSERT INTO componentitem (id, clientid, componentid, editable, label, selected, sortorder, value, visible, type)
  VALUES (14, 'credaegis', 'status', false, 'CLOSED', NULL, 19, 'CLOSED', true, 'text');
 
 INSERT INTO componentitem (id, clientid, componentid, editable, label, selected, sortorder, value, visible, type)
  VALUES (1013, 'credaegis', 'leadsgrid', false, 'Comment', NULL, 5, 'column5', true, 'text');
+
+INSERT INTO componentitem (id, clientid, componentid, editable, label, selected, sortorder, value, visible, type)
+ VALUES (1000, 'credaegis', 'creditreport', false, 'Lead Id', NULL, 1, 'column0', false, 'text');
 
 INSERT INTO componentitem (id, clientid, componentid, editable, label, selected, sortorder, value, visible, type)
  VALUES (1002, 'credaegis', 'creditreport', false, 'Account Name', NULL, 1, 'column1', true, 'text');

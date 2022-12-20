@@ -17,6 +17,12 @@ function viewDetails(id, action, redirectUrl, identifier){
     onClickSubmitForm(id, action, redirectUrl);
 }
 
+function deleteAccount(id, action, redirectUrl, identifier){
+    document.getElementById(id)["identifier"].value = identifier;
+    redirectUrl = redirectUrl + "?identifier="+ document.getElementById(id)["pid"].value;
+    onClickSubmitForm(id, action, redirectUrl);
+}
+
 function onLoadRetrieveData (id, action, redirectUrl){
     setDefaults(id, action, redirectUrl);
     document.getElementById(id).submit();

@@ -6,5 +6,7 @@ public interface CreditAnalysisHelperService {
     String getPersonalInfoText(String pdf);
 
     String getPanNo(String pdf);
+
+    String getContact(String pdf);
     List<String> getAccountInfoText(String pdf);
 }

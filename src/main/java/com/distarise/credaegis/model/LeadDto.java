@@ -1,6 +1,8 @@
 package com.distarise.credaegis.model;
 
 
+import java.util.Date;
+
 public class LeadDto {
     private Long lid;
     private String accountNo;
@@ -19,6 +21,15 @@ public class LeadDto {
     private Long currentBalance;
     private Long highCredit;
     private Long pid;
+
+    private Date dateReported;
+
+    private Long writtenOffAmountTotal;
+
+    private Long writtenOffAmountPrincipal;
+
+    private Long settlementAmount;
+    private String suitFiled;
 
     public LeadDto() {
     }
@@ -154,5 +165,45 @@ public class LeadDto {
 
     public void setPid(Long pid) {
         this.pid = pid;
+    }
+
+    public Date getDateReported() {
+        return dateReported;
+    }
+
+    public void setDateReported(Date dateReported) {
+        this.dateReported = dateReported;
+    }
+
+    public Long getWrittenOffAmountTotal() {
+        return writtenOffAmountTotal;
+    }
+
+    public void setWrittenOffAmountTotal(Long writtenOffAmountTotal) {
+        this.writtenOffAmountTotal = writtenOffAmountTotal;
+    }
+
+    public Long getWrittenOffAmountPrincipal() {
+        return writtenOffAmountPrincipal;
+    }
+
+    public void setWrittenOffAmountPrincipal(Long writtenOffAmountPrincipal) {
+        this.writtenOffAmountPrincipal = writtenOffAmountPrincipal;
+    }
+
+    public Long getSettlementAmount() {
+        return settlementAmount;
+    }
+
+    public void setSettlementAmount(Long settlementAmount) {
+        this.settlementAmount = settlementAmount;
+    }
+
+    public String getSuitFiled() {
+        return suitFiled;
+    }
+
+    public void setSuitFiled(String suitFiled) {
+        this.suitFiled = suitFiled;
     }
 }
