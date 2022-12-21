@@ -58,7 +58,6 @@ public class CreditAnalysisCommonServiceImpl implements CreditAnalysisCommonServ
         creditAnalysisService.setCreditScore(pdf, personDto);
         personDto.setContact(creditAnalysisHelperService.getContact(pdf));
         personDto = personDao.save(personDto);
-
         IdentityDto pan = new IdentityDto(creditAnalysisHelperService.getPanNo(pdf),
                 personDto.getPid(), "PAN");
         pan = identityDao.save(pan);

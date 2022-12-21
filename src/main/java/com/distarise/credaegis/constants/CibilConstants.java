@@ -5,10 +5,11 @@ import java.util.List;
 
 public class CibilConstants {
 
+    public static final String AGREEMENT_TEMPLATE = "/distarise/CIMS.docx";
     public static final String CREDAEGIS_CONTEXT = "credaegisContext";
     public static final String PERSON_START = "Personal InformationNameDOBGender";
     public static final String PERSON_ID_START = "Identification TypeNumberIssue DateExpiration Date";
-    public static final String PERSON_PAN = "Income Tax ID Number (PAN)";
+    public static final String PERSON_PAN = "Income Tax ID Number(PAN)";
     public static final String PERSON_BREAK = "--";
 
     public static final String PERSON_MOBILE = "Mobile Phone";

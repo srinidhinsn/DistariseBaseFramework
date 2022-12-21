@@ -21,7 +21,8 @@ public class CibilAnalysisHelperServiceImpl implements CreditAnalysisHelperServi
 
     @Override
     public String getPanNo(String pdf) {
-        String panNumber = CibilUtility.getStringBetween(pdf, CibilConstants.PERSON_PAN,
+        String panNumber = CibilUtility.getStringBetween(pdf.replaceAll("\\s+", ""),
+                CibilConstants.PERSON_PAN.replaceAll("\\s+", ""),
                 CibilConstants.PERSON_BREAK);
         return panNumber;
     }

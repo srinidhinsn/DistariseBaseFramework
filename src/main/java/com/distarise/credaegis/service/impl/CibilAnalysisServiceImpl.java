@@ -1,13 +1,12 @@
 package com.distarise.credaegis.service.impl;
 
 import com.distarise.credaegis.constants.CibilConstants;
+import com.distarise.credaegis.constants.CredaegisProperties;
 import com.distarise.credaegis.model.LeadDto;
 import com.distarise.credaegis.model.PersonDto;
 import com.distarise.credaegis.service.CreditAnalysisService;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.Date;

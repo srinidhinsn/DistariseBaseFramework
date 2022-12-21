@@ -2,6 +2,7 @@ package com.distarise.credaegis.model;
 
 
 public class IdentityDto {
+    private Long iid;
     private String id;
     private String type;
 
@@ -16,8 +17,20 @@ public class IdentityDto {
         this.type = type;
     }
 
+    public Long getIid() {
+        return iid;
+    }
+
+    public void setIid(Long iid) {
+        this.iid = iid;
+    }
+
     public void setPid(Long pid) {
         this.pid = pid;
+    }
+
+    public Long getPid() {
+        return pid;
     }
 
     public String getId() {

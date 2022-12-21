@@ -19,8 +19,8 @@ public class Contact implements Serializable {
     @Id
     @GeneratedValue(generator="s_contact_id", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name="s_contact_id",sequenceName="S_CONTACT_ID", initialValue = 1000, allocationSize=1)
-    @Column(name = "ID")
-    private Long id;
+    @Column(name = "CID")
+    private Long cid;
 
     @ManyToOne
     @JoinColumn(name = "PID", insertable = false, updatable = false)
@@ -38,21 +38,28 @@ public class Contact implements Serializable {
     public Contact() {
     }
 
-    public Contact(Long id, Long pid, Person person, String number, String type) {
-        this.id = id;
+    public Contact(Long cid, Long pid, Person person, String number, String type) {
+        this.cid = cid;
         this.pid = pid;
         this.person = person;
         this.number = number;
         this.type = type;
     }
 
-
-    public Long getId() {
-        return id;
+    public Long getPid() {
+        return pid;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPid(Long pid) {
+        this.pid = pid;
+    }
+
+    public Long getCid() {
+        return cid;
+    }
+
+    public void setCid(Long cid) {
+        this.cid = cid;
     }
 
     public Person getPerson() {

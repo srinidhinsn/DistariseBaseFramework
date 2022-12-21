@@ -80,6 +80,7 @@ public class SaveAccountAction extends AbstractBaseAction implements BaseAction 
         leadDto.setCurrentBalance(Long.parseLong(currentBalance));
         leadDto.setSanctionedAmount(Long.parseLong(sanctionedAmount));
         leadDto.setOwnership(ownership);
+        leadDto.setCreditStatus(creditStatus);
 
         leadDao.save(leadDto);
 

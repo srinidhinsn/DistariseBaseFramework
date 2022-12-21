@@ -2,7 +2,7 @@ package com.distarise.credaegis.model;
 
 
 public class ContactDto {
-    private Long id;
+    private Long cid;
     private String number;
     private String type;
 
@@ -11,8 +11,8 @@ public class ContactDto {
     public ContactDto() {
     }
 
-    public ContactDto(Long id, Long pid, String number, String type) {
-        this.id = id;
+    public ContactDto(Long cid, Long pid, String number, String type) {
+        this.cid = cid;
         this.pid = pid;
         this.number = number;
         this.type = type;
@@ -26,12 +26,12 @@ public class ContactDto {
         this.pid = pid;
     }
 
-    public Long getId() {
-        return id;
+    public Long getCid() {
+        return cid;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCid(Long cid) {
+        this.cid = cid;
     }
 
     public String getNumber() {

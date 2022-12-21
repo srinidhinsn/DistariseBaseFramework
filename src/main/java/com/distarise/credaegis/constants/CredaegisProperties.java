@@ -1,4 +1,4 @@
-package com.distarise.credaegis.service.impl;
+package com.distarise.credaegis.constants;
 
 import org.springframework.stereotype.Service;
 

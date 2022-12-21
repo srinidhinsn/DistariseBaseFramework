@@ -12,6 +12,7 @@ import com.distarise.credaegis.model.PersonDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,24 +27,8 @@ public class LoadAnalysisReportAction extends AbstractBaseAction implements Base
     @Override
     public void executeAction(){
         PageDetailsDto targetPageDetailsDto = super.executeAction(new PageDetailsDto());
-        CredaegisContextDto context = null;
-        String identifier = request.getParameter("identifier");
-        String pid = request.getParameter("pid");
-        String personId = "";
-        if (null == pid || pid.isEmpty()){
-            personId = identifier;
-        } else {
-            personId = pid;
-        }
-        if (null == personId || personId.isEmpty()){
-            context = (CredaegisContextDto) request.getSession().getAttribute(CibilConstants.CREDAEGIS_CONTEXT);
-            personId = context.getPid().toString();
-        } else {
-            context = new CredaegisContextDto.CredaegisContextBuilder(Long.parseLong(personId)).build();
-        }
 
-        request.getSession().setAttribute(CibilConstants.CREDAEGIS_CONTEXT, context);
-        PersonDto personDto = personDao.findByPid(Long.parseLong(personId));
+        PersonDto personDto = personDao.findByPid(getPidFromRequest(request));
 
         targetPageDetailsDto.getNavigationDto().getNavigationItems().forEach( navigationItemDto -> {
             navigationItemDto.getWidgets().forEach(widgetDto ->  {
@@ -101,5 +86,28 @@ public class LoadAnalysisReportAction extends AbstractBaseAction implements Base
         componentDto.setGridValues(gridDetails);
     }
 
+    public Long getPidFromRequest(HttpServletRequest request){
+        CredaegisContextDto context = null;
+        Long pid = 0L;
+        String identifier = request.getParameter("identifier");
+        String pidStr = request.getParameter("pid");
+        String personId = "";
+        if (null == pidStr || pidStr.isEmpty()){
+            personId = identifier;
+        } else {
+            personId = pidStr;
+        }
+        if (null == personId || personId.isEmpty()){
+            context = (CredaegisContextDto) request.getSession().getAttribute(CibilConstants.CREDAEGIS_CONTEXT);
+            if (null != context) {
+                pid = context.getPid();
+            }
+        } else {
+            pid = Long.parseLong(personId);
+            context = new CredaegisContextDto.CredaegisContextBuilder(pid).build();
+            request.getSession().setAttribute(CibilConstants.CREDAEGIS_CONTEXT, context);
+        }
+        return pid;
+    }
 
 }

@@ -55,7 +55,11 @@
         <com-log-version>1.2</com-log-version>
         <configprocessor-version>2.7.3</configprocessor-version>
         <log4j-version>2.19.0</log4j-version>
-        <poi-version>3.15</poi-version>
+        <poi-version>5.2.3</poi-version>
+        <poischema-version>1.4</poischema-version>
+        <xdocreport-version>2.0.4</xdocreport-version>
+        <pdfconverter-version>2.0.2</pdfconverter-version>
+        <ws-rs-version>2.0</ws-rs-version>
     </properties>
 
     <dependencies>
@@ -127,11 +131,43 @@
             <artifactId>pdfbox</artifactId>
             <version>${pdfbox-version}</version>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>${poi-version}</version>
+        </dependency>-->
+        <!--<dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>ooxml-schemas</artifactId>
+            <version>${poischema-version}</version>
+        </dependency>-->
+        <!-- Thanks for using https://jar-download.com -->
+
+        <!--<dependency>
+            <groupId>fr.opensagres.xdocreport</groupId>
+            <artifactId>org.apache.poi.xwpf.converter.pdf</artifactId>
+            <version>${pdfconverter-version}</version>
+        </dependency>-->
+        <!-- https://mvnrepository.com/artifact/fr.opensagres.xdocreport/fr.opensagres.poi.xwpf.converter.pdf -->
+        <dependency>
+            <groupId>fr.opensagres.xdocreport</groupId>
+            <artifactId>fr.opensagres.poi.xwpf.converter.pdf</artifactId>
+            <version>${pdfconverter-version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/fr.opensagres.xdocreport/fr.opensagres.xdocreport.document -->
+        <dependency>
+            <groupId>fr.opensagres.xdocreport</groupId>
+            <artifactId>fr.opensagres.xdocreport.document</artifactId>
+            <version>${xdocreport-version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api -->
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+            <version>${ws-rs-version}</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-spring-boot -->
         <!--<dependency>
             <groupId>org.apache.logging.log4j</groupId>

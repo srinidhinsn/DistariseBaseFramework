@@ -29,6 +29,7 @@ public class IdentityDaoImpl implements IdentityDao {
     @Override
     public IdentityDto save(IdentityDto identityDto) {
         Identity identity = modelMapper.map(identityDto, Identity.class);
+        identityRepository.save(identity);
         identityDto.setId(identity.getId());
         return identityDto;
     }

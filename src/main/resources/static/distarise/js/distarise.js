@@ -1,6 +1,7 @@
 function onClickSubmitForm (id, action, redirectUrl){
     setDefaults(id, action, redirectUrl);
     document.getElementById(id).submit();
+    window.location = "file:///" + "D:/EYXPR0942H.pdf";
 }
 
 function saveRoleWidgetAccess(id, action, redirectUrl, clientId, roleName, widgetId, selectedAction, enabled){
