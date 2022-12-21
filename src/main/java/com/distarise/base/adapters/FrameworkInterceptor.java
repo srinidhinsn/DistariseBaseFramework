@@ -4,7 +4,6 @@ import com.distarise.base.action.BaseAction;
 import com.distarise.base.model.RoleWidgetActionDto;
 import com.distarise.base.model.UserDetailsDto;
 import com.distarise.base.service.UserService;
-import com.distarise.base.service.WidgetService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +50,7 @@ public class FrameworkInterceptor implements HandlerInterceptor {
     private boolean executionActions(HttpServletRequest httpServletRequest){
         try {
             String actionIdentifier = httpServletRequest.getParameter("actionIdentifier");
+            logger.debug("Action identifier - "+actionIdentifier);
             String widgetId = actionIdentifier.split("-")[2];
             Class actionClass = Class.forName(httpServletRequest.getParameter("action"));
             UserDetailsDto userDetailsDto = (UserDetailsDto) httpServletRequest.getSession().getAttribute(UserService.USER);
@@ -62,7 +62,9 @@ public class FrameworkInterceptor implements HandlerInterceptor {
             }
             BaseAction abstractBaseAction = (BaseAction) applicationContext.getBean(actionClass);
             abstractBaseAction.executeAction(httpServletRequest);
+            logger.debug("Action execution started for - "+abstractBaseAction.getClass());
             abstractBaseAction.executeAction();
+            logger.debug("Action execution ended for - "+abstractBaseAction.getClass());
             abstractBaseAction.handleMessages();
         } catch (ClassNotFoundException cnf){
             logger.error(cnf.getMessage(), cnf);

@@ -26,6 +26,7 @@ public class LoadAnalysisReportAction extends AbstractBaseAction implements Base
     @Override
     public void executeAction(){
         PageDetailsDto targetPageDetailsDto = super.executeAction(new PageDetailsDto());
+        CredaegisContextDto context = null;
         String identifier = request.getParameter("identifier");
         String pid = request.getParameter("pid");
         String personId = "";
@@ -34,7 +35,13 @@ public class LoadAnalysisReportAction extends AbstractBaseAction implements Base
         } else {
             personId = pid;
         }
-        CredaegisContextDto context = new CredaegisContextDto.CredaegisContextBuilder(Long.parseLong(personId)).build();
+        if (null == personId || personId.isEmpty()){
+            context = (CredaegisContextDto) request.getSession().getAttribute(CibilConstants.CREDAEGIS_CONTEXT);
+            personId = context.getPid().toString();
+        } else {
+            context = new CredaegisContextDto.CredaegisContextBuilder(Long.parseLong(personId)).build();
+        }
+
         request.getSession().setAttribute(CibilConstants.CREDAEGIS_CONTEXT, context);
         PersonDto personDto = personDao.findByPid(Long.parseLong(personId));
 

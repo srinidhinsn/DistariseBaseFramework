@@ -7,6 +7,7 @@
     <groupId>com.distarise.base</groupId>
     <artifactId>framework</artifactId>
     <version>1.0-SNAPSHOT</version>
+
     <build>
         <plugins>
             <plugin>
@@ -16,6 +17,21 @@
                     <source>17</source>
                     <target>17</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.distarise.Application</mainClass>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
@@ -38,6 +54,8 @@
         <pdfbox-version>2.0.24</pdfbox-version>
         <com-log-version>1.2</com-log-version>
         <configprocessor-version>2.7.3</configprocessor-version>
+        <log4j-version>2.19.0</log4j-version>
+        <poi-version>3.15</poi-version>
     </properties>
 
     <dependencies>
@@ -109,6 +127,17 @@
             <artifactId>pdfbox</artifactId>
             <version>${pdfbox-version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${poi-version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-spring-boot -->
+        <!--<dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-spring-boot</artifactId>
+            <version>${log4j-version}</version>
+        </dependency>-->
 
     </dependencies>
 </project>

@@ -7,6 +7,22 @@
         <div th:fragment="formField(component, widget, navigationItem, pageDetails)">
             <div class="form-group">
                 <input type="hidden" th:id="identifier" th:name="identifier" value="" />
+
+                <button type="button" class="btn btn-primary" th:id="addnew" th:name="addnew"
+                        th:redirectUrl="${widget.redirectUrl}"
+                        th:onclick="|document.location.href=this.getAttribute('redirectUrl');|"
+                >Add new</button>
+
+                <button type="button" class="btn btn-primary" th:id="viewagreement" th:name="viewagreement"
+                        th:redirectUrl="${component.redirectUrl}" th:widgetId="${widget.id}" th:action="'com.distarise.credaegis.action.ViewAgreementAction'"
+                        th:onclick="javascript:onClickSubmitForm(this.getAttribute('widgetId'),this.getAttribute('action'),this.getAttribute('redirectUrl'))"
+                >View Agreement</button>
+
+                <button type="button" class="btn btn-primary" th:id="sendagreement" th:name="sendagreement"
+                        th:redirectUrl="'/nsn/credaegis/fo/leads'" th:widgetId="${widget.id}" th:action="'com.distarise.credaegis.action.SendToCorefactorAction'"
+                        th:onclick="javascript:onClickSubmitForm(this.getAttribute('widgetId'),this.getAttribute('action'),this.getAttribute('redirectUrl'))"
+                >Send to Corefactor</button>
+
                 <table class="table table-hover table-cards align-items-center">
                     <thead style="border-bottom: solid; border-width: thin">
                     <tr>
