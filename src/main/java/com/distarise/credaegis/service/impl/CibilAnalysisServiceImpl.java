@@ -184,7 +184,7 @@ public class CibilAnalysisServiceImpl implements CreditAnalysisService {
             paymentSchedule.add(match.group());
         }
 
-        if (!paymentSchedule.isEmpty()){
+        if (paymentSchedule.isEmpty()){
             //do nothing
         } else if (paymentSchedule.size() == 1){
             latestPaymentDone = paymentSchedule.get(0);

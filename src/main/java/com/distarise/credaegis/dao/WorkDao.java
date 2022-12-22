@@ -10,4 +10,6 @@ public interface WorkDao extends AbstractBaseDao {
     void save(List<WorkDto> workDtoList);
     void save(WorkDto workDto);
     List<WorkDto> getWorkByStatus(String status);
+
+    List<WorkDto> getWorkByPid(Long pid);
 }

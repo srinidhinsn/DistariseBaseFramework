@@ -152,7 +152,7 @@ INSERT INTO navitem (clientid, id, uinavid, label, layoutid, navitemid, sortorde
 INSERT INTO navitem (clientid, id, uinavid, label, layoutid, navitemid, sortorder, url)
  VALUES ('credaegis', 'leads', 'credaegisfologin', 'Defaults', '', '', 2, '/nsn/credaegis/fo/leads');
 INSERT INTO navitem (clientid, id, uinavid, label, layoutid, navitemid, sortorder, url)
- VALUES ('credaegis', 'editlead', 'credaegisfologin', 'Edit Defaults', '', '', 3, '/nsn/credaegis/fo/editlead');
+ VALUES ('credaegis', 'editlead', 'credaegisfologin', '', '', '', 3, '/nsn/credaegis/fo/editlead');
 INSERT INTO navitem (clientid, id, uinavid, label, layoutid, navitemid, sortorder, url)
  VALUES ('credaegis', 'uploadcibil', 'credaegisfologin', 'Upload Cibil', '', '', 1, '/nsn/credaegis/fo/uploadcibil');
 INSERT INTO navitem (clientid, id, uinavid, label, layoutid, navitemid, sortorder, url)

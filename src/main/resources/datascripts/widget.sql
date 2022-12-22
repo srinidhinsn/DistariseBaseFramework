@@ -129,6 +129,6 @@ INSERT INTO widget (clientid, id, navitemid, colspan, cssclass, layoutid, redire
 INSERT INTO widget (clientid, id, navitemid, colspan, cssclass, layoutid, redirecturl, rowspan, sortorder, widgetid, widgettitle)
  VALUES ('credaegis', 'analysisreport', 'cibilanalysis', NULL, '', '', '/nsn/credaegis/fo/editlead', NULL, 2, '', 'Analysis Report');
 INSERT INTO widget (clientid, id, navitemid, colspan, cssclass, layoutid, redirecturl, rowspan, sortorder, widgetid, widgettitle)
- VALUES ('credaegis', 'uploadcibil', 'uploadcibil', NULL, '', '', '/nsn/credaegis/fo/uploadcibil', NULL, 1, '', 'Upload Cibil');
+ VALUES ('credaegis', 'uploadcibil', 'uploadcibil', NULL, '', '', '/nsn/credaegis/fo/leads', NULL, 1, '', 'Upload Cibil');
 INSERT INTO widget (clientid, id, navitemid, colspan, cssclass, layoutid, redirecturl, rowspan, sortorder, widgetid, widgettitle)
  VALUES ('credaegis', 'editlead', 'editlead', NULL, '', '', '/nsn/credaegis/fo/cibilanalysis', NULL, 1, '', 'Add/Edit Default Account');

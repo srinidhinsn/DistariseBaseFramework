@@ -14,7 +14,6 @@ import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.apache.poi.xwpf.usermodel.XWPFTable;
 import org.apache.poi.xwpf.usermodel.XWPFTableCell;
 import org.apache.poi.xwpf.usermodel.XWPFTableRow;
-import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTTblGrid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +29,9 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class ViewAgreementAction extends AbstractBaseAction implements BaseAction {
+public class GenerateAgreementAction extends AbstractBaseAction implements BaseAction {
 
-    private static final Logger logger = LoggerFactory.getLogger(ViewAgreementAction.class);
+    private static final Logger logger = LoggerFactory.getLogger(GenerateAgreementAction.class);
     @Autowired
     private PersonDao personDao;
 
@@ -42,12 +41,11 @@ public class ViewAgreementAction extends AbstractBaseAction implements BaseActio
     @Override
     public void executeAction(){
         PersonDto personDto = personDao.findByPid(loadAnalysisReportAction.getPidFromRequest(request));
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         PdfOptions pdfOptions = PdfOptions.create();
         try {
             XWPFDocument doc = new XWPFDocument(Files.newInputStream(Paths.get(CibilConstants.AGREEMENT_TEMPLATE)));
             List<XWPFParagraph> xwpfParagraphList = doc.getParagraphs();
-            LeadDto leadDto = personDto.getLeadDtoList().get(0);
             for (XWPFParagraph xwpfParagraph : xwpfParagraphList) {
                 for (XWPFRun xwpfRun : xwpfParagraph.getRuns()) {
                     String docText = xwpfRun.getText(0);
@@ -61,11 +59,17 @@ public class ViewAgreementAction extends AbstractBaseAction implements BaseActio
                     }
                 }
             }
+            String name = personDto.getFirstName().replaceAll("/","").replaceAll("\\\\","");
+            String storagePath = CibilConstants.AGREEMENT_STORAGE+formatter.format(new Date())+"/";
+            String fileName = name+"_"+personDto.getIdentityList().get(0).getId()+".pdf";
+            Files.createDirectories(Paths.get(storagePath));
             generateAccountDetails(doc, personDto);
 
-            OutputStream pdfOut = new FileOutputStream("/"+personDto.getFirstName()+"_"+personDto.getIdentityList().get(0).getId()+".pdf");
+            OutputStream pdfOut = new FileOutputStream(storagePath+fileName);
             PdfConverter.getInstance().convert(doc, pdfOut, pdfOptions);
-
+            personDto.setPath(storagePath);
+            personDto.setFileName(fileName);
+            personDao.save(personDto);
             loadAnalysisReportAction.executeAction(request);
             loadAnalysisReportAction.executeAction();
         } catch (IOException e) {
@@ -126,91 +130,5 @@ public class ViewAgreementAction extends AbstractBaseAction implements BaseActio
             XWPFTable table = tables.get(tableCount);
             doc.removeBodyElement(doc.getPosOfTable(table));
         }
-
-
-        /*
-        LeadDto leadDto = leadDtoList.get(0);
-            doc.getTables().forEach(table -> {
-                List<XWPFTableRow> rows = table.getRows();
-                XWPFTableRow tableRowOne = rows.get(0);
-                tableRowOne.getCell(0).setText(leadDto.getAccountName());
-                tableRowOne.addNewTableCell().setText(leadDto.getAccountNo());
-                tableRowOne.addNewTableCell().setText(leadDto.getAccountType());
-                tableRowOne.addNewTableCell().setText(leadDto.getOwnership());
-
-                XWPFTableRow tableRowTwo = rows.get(1);
-                tableRowTwo.getCell(0).setText("Current balance");
-                tableRowTwo.getCell(1).setText(leadDto.getCurrentBalance().toString());
-                tableRowTwo.getCell(2).setText("Amount Overdue");
-                tableRowTwo.getCell(3).setText(leadDto.getAmountOverdue().toString());
-
-                XWPFTableRow tableRowThree = rows.get(2);
-                tableRowTwo.getCell(0).setText("Date Reported and Certified");
-                tableRowTwo.getCell(1).setText(leadDto.getDateReported().toString());
-                tableRowTwo.getCell(2).setText("Suit filed/Willful default");
-                tableRowTwo.getCell(3).setText(leadDto.getSuitFiled());
-
-                XWPFTableRow tableRowFour = rows.get(3);
-                tableRowTwo.getCell(0).setText("Credit facility status");
-                tableRowTwo.getCell(1).setText(leadDto.getCreditStatus());
-                tableRowTwo.getCell(2).setText("Settlement Amount");
-                tableRowTwo.getCell(3).setText(leadDto.getSettlementAmount().toString());
-
-                XWPFTableRow tableRowFive = rows.get(4);
-                tableRowTwo.getCell(0).setText("Written-off (Total)");
-                tableRowTwo.getCell(1).setText(leadDto.getWrittenOffAmountTotal().toString());
-                tableRowTwo.getCell(2).setText("Written-off (Principal)");
-                tableRowTwo.getCell(3).setText(leadDto.getWrittenOffAmountPrincipal().toString());
-
-                XWPFTableRow tableRowSix = rows.get(5);
-                tableRowTwo.getCell(0).setText("DPDs");
-                tableRowTwo.getCell(1).setText(leadDto.getProblemStatement());
-                tableRowTwo.getCell(2).setText("Last payment");
-                tableRowTwo.getCell(3).setText(leadDto.getLatestPaymentDone());
-
-            */
-            /*
-            XWPFParagraph para = doc.createParagraph();
-            XWPFRun run = para.createRun();
-            XWPFTable table = doc.createTable();
-
-            XWPFTableRow tableRowOne = table.getRow(0);
-            tableRowOne.getCell(0).setText(leadDto.getAccountName());
-            tableRowOne.addNewTableCell().setText(leadDto.getAccountNo());
-            tableRowOne.addNewTableCell().setText(leadDto.getAccountType());
-            tableRowOne.addNewTableCell().setText(leadDto.getOwnership());
-
-            XWPFTableRow tableRowTwo = table.createRow();
-            tableRowTwo.getCell(0).setText("Current balance");
-            tableRowTwo.getCell(1).setText(leadDto.getCurrentBalance().toString());
-            tableRowTwo.getCell(2).setText("Amount Overdue");
-            tableRowTwo.getCell(3).setText(leadDto.getAmountOverdue().toString());
-
-            XWPFTableRow tableRowThree = table.createRow();
-            tableRowTwo.getCell(0).setText("Date Reported and Certified");
-            tableRowTwo.getCell(1).setText(leadDto.getDateReported().toString());
-            tableRowTwo.getCell(2).setText("Suit filed/Willful default");
-            tableRowTwo.getCell(3).setText(leadDto.getSuitFiled());
-
-            XWPFTableRow tableRowFour = table.createRow();
-            tableRowTwo.getCell(0).setText("Credit facility status");
-            tableRowTwo.getCell(1).setText(leadDto.getCreditStatus());
-            tableRowTwo.getCell(2).setText("Settlement Amount");
-            tableRowTwo.getCell(3).setText(leadDto.getSettlementAmount().toString());
-
-            XWPFTableRow tableRowFive = table.createRow();
-            tableRowTwo.getCell(0).setText("Written-off (Total)");
-            tableRowTwo.getCell(1).setText(leadDto.getWrittenOffAmountTotal().toString());
-            tableRowTwo.getCell(2).setText("Written-off (Principal)");
-            tableRowTwo.getCell(3).setText(leadDto.getWrittenOffAmountPrincipal().toString());
-
-            XWPFTableRow tableRowSix = table.createRow();
-            tableRowTwo.getCell(0).setText("DPDs");
-            tableRowTwo.getCell(1).setText(leadDto.getProblemStatement());
-            tableRowTwo.getCell(2).setText("Last payment");
-            tableRowTwo.getCell(3).setText(leadDto.getLatestPaymentDone());
-            run.addBreak();
-            */
-
     }
 }

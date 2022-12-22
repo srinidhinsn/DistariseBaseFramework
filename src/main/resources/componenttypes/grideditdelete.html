@@ -13,13 +13,13 @@
                         th:onclick="|document.location.href=this.getAttribute('redirectUrl');|"
                 >Add new</button>
 
-                <button type="button" class="btn btn-primary" th:id="viewagreement" th:name="viewagreement"
-                        th:redirectUrl="${component.redirectUrl}" th:widgetId="${widget.id}" th:action="'com.distarise.credaegis.action.ViewAgreementAction'"
+                <button type="button" class="btn btn-primary" th:id="generateagreement" th:name="generateagreement"
+                        th:redirectUrl="${component.redirectUrl}" th:widgetId="${widget.id}" th:action="'com.distarise.credaegis.action.GenerateAgreementAction'"
                         th:onclick="javascript:onClickSubmitForm(this.getAttribute('widgetId'),this.getAttribute('action'),this.getAttribute('redirectUrl'))"
-                >View Agreement</button>
+                >Generate Agreement</button>
 
                 <button type="button" class="btn btn-primary" th:id="sendagreement" th:name="sendagreement"
-                        th:redirectUrl="'/nsn/credaegis/fo/leads'" th:widgetId="${widget.id}" th:action="'com.distarise.credaegis.action.SendToCorefactorAction'"
+                        th:redirectUrl="'/nsn/credaegis/fo/leads'" th:widgetId="${widget.id}" th:action="'com.distarise.credaegis.action.SendAgreementAction'"
                         th:onclick="javascript:onClickSubmitForm(this.getAttribute('widgetId'),this.getAttribute('action'),this.getAttribute('redirectUrl'))"
                 >Send to Corefactor</button>
 

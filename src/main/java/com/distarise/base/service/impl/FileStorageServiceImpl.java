@@ -16,6 +16,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Service
 public class FileStorageServiceImpl implements FileStorageService {
@@ -23,10 +25,10 @@ public class FileStorageServiceImpl implements FileStorageService {
 
     @Autowired
     public FileStorageServiceImpl(FileStorageProperties fileStorageProperties) {
-        this.fileStorageLocation = Paths.get(fileStorageProperties.getLocation())
-                .toAbsolutePath().normalize();
-
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         try {
+            this.fileStorageLocation = Paths.get(fileStorageProperties.getLocation()+formatter.format(new Date()))
+                    .toAbsolutePath().normalize();
             Files.createDirectories(this.fileStorageLocation);
         } catch (Exception ex) {
             throw new FileStorageException("Could not create the directory where the uploaded files will be stored.", ex);

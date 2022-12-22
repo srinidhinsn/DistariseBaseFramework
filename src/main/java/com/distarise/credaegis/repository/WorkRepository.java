@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface WorkRepository extends CrudRepository<Work, WorkId> {
     List<Work> findByStatusOrderByPidDesc(String status);
-
+    List<Work> findByPid(Long pid);
 }

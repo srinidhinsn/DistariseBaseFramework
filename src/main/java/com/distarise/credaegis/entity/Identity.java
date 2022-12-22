@@ -36,7 +36,8 @@ public class Identity implements Serializable {
     public Identity() {
     }
 
-    public Identity(String id, Long pid, Person person, String type) {
+    public Identity(Long iid, String id, Long pid, Person person, String type) {
+        this.iid = iid;
         this.pid = pid;
         this.id = id;
         this.person = person;

@@ -27,6 +27,8 @@ public class UploadCibilPostHandlerAction extends AbstractBaseAction implements 
     @Autowired
     CreditAnalysisCommonService creditAnalysisCommonService;
 
+    @Autowired
+    LoadLeadsAction loadLeadsAction;
     @Override
     public void executeAction(){
         PageDetailsDto targetPageDetailsDto = super.executeAction(new PageDetailsDto());
@@ -46,6 +48,8 @@ public class UploadCibilPostHandlerAction extends AbstractBaseAction implements 
                     pdf.append(line);
                 }
                 creditAnalysisCommonService.processCreditReport(request, personDto, pdf.toString());
+                loadLeadsAction.executeAction(request);
+                loadLeadsAction.executeAction();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }  catch (Exception e) {

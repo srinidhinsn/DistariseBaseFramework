@@ -277,7 +277,7 @@ INSERT INTO rolewidgetaction (action, clientid, rolename, widgetid, enabled, vis
 INSERT INTO rolewidgetaction (action, clientid, rolename, widgetid, enabled, visible)
  VALUES ('com.distarise.credaegis.action.EditOrDeleteAccountAction', 'credaegis', 'frontoffice', 'analysisreport', true, true);
 INSERT INTO rolewidgetaction (action, clientid, rolename, widgetid, enabled, visible)
- VALUES ('com.distarise.credaegis.action.ViewAgreementAction', 'credaegis', 'frontoffice', 'analysisreport', true, true);
+ VALUES ('com.distarise.credaegis.action.GenerateAgreementAction', 'credaegis', 'frontoffice', 'analysisreport', true, true);
  INSERT INTO rolewidgetaction (action, clientid, rolename, widgetid, enabled, visible)
   VALUES ('com.distarise.credaegis.action.SendAgreementAction', 'credaegis', 'frontoffice', 'analysisreport', true, true);
 INSERT INTO rolewidgetaction (action, clientid, rolename, widgetid, enabled, visible)
