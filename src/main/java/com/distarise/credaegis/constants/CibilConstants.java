@@ -6,7 +6,7 @@ import java.util.List;
 public class CibilConstants {
 
     public static final String AGREEMENT_TEMPLATE = "/distarise/CIMS.docx";
-    public static final String AGREEMENT_STORAGE = "/distarise/";
+    public static final String AGREEMENT_STORAGE = "/distarise/agreements/";
     public static final String CREDAEGIS_CONTEXT = "credaegisContext";
     public static final String PERSON_START = "Personal InformationNameDOBGender";
     public static final String PERSON_ID_START = "Identification TypeNumberIssue DateExpiration Date";

@@ -78,14 +78,14 @@ public class CibilAnalysisServiceImpl implements CreditAnalysisService {
             String settlementAmountStr = "";
             String suitFiled = "";
 
-            Long sanctionedAmount = null;
-            Long currentBal = null;
-            Long amtOverdue = null;
-            Long highCredit = null;
+            Long sanctionedAmount = 0L;
+            Long currentBal = 0L;
+            Long amtOverdue = 0L;
+            Long highCredit = 0L;
             Date dateReported = null;
-            Long writtenOffAmountTotal = null;
-            Long writtenOffAmountPrincipal = null;
-            Long settlementAmount = null;
+            Long writtenOffAmountTotal = 0L;
+            Long writtenOffAmountPrincipal = 0L;
+            Long settlementAmount = 0L;
 
             if (accountType.equalsIgnoreCase(CibilConstants.ACCOUNT_TYPE_CREDIT_CARD)){
                  sanctionedAmountStr = CibilUtility.getStringBetween(accountDetails,

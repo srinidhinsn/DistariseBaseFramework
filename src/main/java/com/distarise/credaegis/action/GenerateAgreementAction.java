@@ -93,37 +93,43 @@ public class GenerateAgreementAction extends AbstractBaseAction implements BaseA
             firstRowCells.get(3).getParagraphs().get(0).getRuns().get(0).setText(leadDto.getOwnership(),0);
 
             List<XWPFTableCell> secondRowCells = rows.get(1).getTableCells();
-            secondRowCells.get(0).getParagraphs().get(0).getRuns().get(0).setText("Current balance",0);
-            secondRowCells.get(1).getParagraphs().get(0).getRuns().get(0).setText(leadDto.getCurrentBalance().toString(),0);
-            secondRowCells.get(2).getParagraphs().get(0).getRuns().get(0).setText("Amount Overdue",0);
-            secondRowCells.get(3).getParagraphs().get(0).getRuns().get(0).setText(leadDto.getAmountOverdue().toString(),0);
+            secondRowCells.get(0).getParagraphs().get(0).getRuns().get(0).setText("Sanctioned Amount",0);
+            secondRowCells.get(1).getParagraphs().get(0).getRuns().get(0).setText(leadDto.getSanctionedAmount().toString(),0);
+            secondRowCells.get(2).getParagraphs().get(0).getRuns().get(0).setText("High Credit",0);
+            secondRowCells.get(3).getParagraphs().get(0).getRuns().get(0).setText(leadDto.getHighCredit().toString(),0);
 
             List<XWPFTableCell> thirdRowCells = rows.get(2).getTableCells();
-            thirdRowCells.get(0).getParagraphs().get(0).getRuns().get(0).setText("Date Reported and Certified",0);
-            thirdRowCells.get(1).getParagraphs().get(0).getRuns().get(0).setText(leadDto.getDateReported().toString(),0);
-            thirdRowCells.get(2).getParagraphs().get(0).getRuns().get(0).setText("Suit filed/Willful default",0);
-            thirdRowCells.get(3).getParagraphs().get(0).getRuns().get(0).setText(leadDto.getSuitFiled(),0);
-
+            thirdRowCells.get(0).getParagraphs().get(0).getRuns().get(0).setText("Current balance",0);
+            thirdRowCells.get(1).getParagraphs().get(0).getRuns().get(0).setText(leadDto.getCurrentBalance().toString(),0);
+            thirdRowCells.get(2).getParagraphs().get(0).getRuns().get(0).setText("Amount Overdue",0);
+            thirdRowCells.get(3).getParagraphs().get(0).getRuns().get(0).setText(leadDto.getAmountOverdue().toString(),0);
 
             List<XWPFTableCell> fourthRowCells = rows.get(3).getTableCells();
-            fourthRowCells.get(0).getParagraphs().get(0).getRuns().get(0).setText("Credit facility status",0);
-            fourthRowCells.get(1).getParagraphs().get(0).getRuns().get(0).setText(leadDto.getCreditStatus(),0);
-            fourthRowCells.get(2).getParagraphs().get(0).getRuns().get(0).setText("Settlement Amount",0);
-            fourthRowCells.get(3).getParagraphs().get(0).getRuns().get(0).setText(leadDto.getSettlementAmount().toString(),0);
+            fourthRowCells.get(0).getParagraphs().get(0).getRuns().get(0).setText("Date Reported and Certified",0);
+            fourthRowCells.get(1).getParagraphs().get(0).getRuns().get(0).setText(leadDto.getDateReported().toString(),0);
+            fourthRowCells.get(2).getParagraphs().get(0).getRuns().get(0).setText("Suit filed/Willful default",0);
+            fourthRowCells.get(3).getParagraphs().get(0).getRuns().get(0).setText(leadDto.getSuitFiled(),0);
 
 
             List<XWPFTableCell> fifthRowCells = rows.get(4).getTableCells();
-            fifthRowCells.get(0).getParagraphs().get(0).getRuns().get(0).setText("Written-off (Total)",0);
-            fifthRowCells.get(1).getParagraphs().get(0).getRuns().get(0).setText(leadDto.getWrittenOffAmountTotal().toString(),0);
-            fifthRowCells.get(2).getParagraphs().get(0).getRuns().get(0).setText("Written-off (Principal)",0);
-            fifthRowCells.get(3).getParagraphs().get(0).getRuns().get(0).setText(leadDto.getWrittenOffAmountPrincipal().toString(),0);
+            fifthRowCells.get(0).getParagraphs().get(0).getRuns().get(0).setText("Credit facility status",0);
+            fifthRowCells.get(1).getParagraphs().get(0).getRuns().get(0).setText(leadDto.getCreditStatus(),0);
+            fifthRowCells.get(2).getParagraphs().get(0).getRuns().get(0).setText("Settlement Amount",0);
+            fifthRowCells.get(3).getParagraphs().get(0).getRuns().get(0).setText(leadDto.getSettlementAmount().toString(),0);
 
 
             List<XWPFTableCell> sixthRowCells = rows.get(5).getTableCells();
-            sixthRowCells.get(0).getParagraphs().get(0).getRuns().get(0).setText("DPDs",0);
-            sixthRowCells.get(1).getParagraphs().get(0).getRuns().get(0).setText(leadDto.getProblemStatement(),0);
-            sixthRowCells.get(2).getParagraphs().get(0).getRuns().get(0).setText("Last payment",0);
-            sixthRowCells.get(3).getParagraphs().get(0).getRuns().get(0).setText(leadDto.getLatestPaymentDone(),0);
+            sixthRowCells.get(0).getParagraphs().get(0).getRuns().get(0).setText("Written-off (Total)",0);
+            sixthRowCells.get(1).getParagraphs().get(0).getRuns().get(0).setText(leadDto.getWrittenOffAmountTotal().toString(),0);
+            sixthRowCells.get(2).getParagraphs().get(0).getRuns().get(0).setText("Written-off (Principal)",0);
+            sixthRowCells.get(3).getParagraphs().get(0).getRuns().get(0).setText(leadDto.getWrittenOffAmountPrincipal().toString(),0);
+
+
+            List<XWPFTableCell> sevenRowCells = rows.get(6).getTableCells();
+            sevenRowCells.get(0).getParagraphs().get(0).getRuns().get(0).setText("DPDs",0);
+            sevenRowCells.get(1).getParagraphs().get(0).getRuns().get(0).setText(leadDto.getProblemStatement(),0);
+            sevenRowCells.get(2).getParagraphs().get(0).getRuns().get(0).setText("Last payment",0);
+            sevenRowCells.get(3).getParagraphs().get(0).getRuns().get(0).setText(leadDto.getLatestPaymentDone(),0);
         }
 
         for (int tableCount= tables.size()-1; tableCount >= leadDtoList.size(); tableCount--){
