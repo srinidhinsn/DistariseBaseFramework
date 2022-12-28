@@ -10,14 +10,15 @@ public class CorefactorRequest {
 
     private String description;
     private String file_download_url;
+    private String lead_owner_id;
 
-
-    public CorefactorRequest(String mobile, String name, String pan, String email, String cibilscore) {
+    public CorefactorRequest(String mobile, String name, String pan, String email, String cibilscore, String lead_owner_id) {
         this.mobile = mobile;
         this.name = name;
         this.pan = pan;
         this.email = email;
         this.cibilscore = cibilscore;
+        this.lead_owner_id = lead_owner_id;
     }
 
     public String getMobile() {
@@ -58,5 +59,13 @@ public class CorefactorRequest {
 
     public void setCibilscore(String cibilscore) {
         this.cibilscore = cibilscore;
+    }
+
+    public String getLead_owner_id() {
+        return lead_owner_id;
+    }
+
+    public void setLead_owner_id(String lead_owner_id) {
+        this.lead_owner_id = lead_owner_id;
     }
 }

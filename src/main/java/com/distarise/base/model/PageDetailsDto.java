@@ -7,6 +7,7 @@ import java.util.List;
 public class PageDetailsDto implements Serializable {
     private ClientDto clientDto;
     private NavigationDto navigationDto;
+    private String username;
     private String url;
     private List<FileUploadDto> fileUploads;
     private List<String> successMessages;
@@ -67,6 +68,14 @@ public class PageDetailsDto implements Serializable {
 
     public void setErrorMessages(List<String> errorMessages) {
         this.errorMessages = errorMessages;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public PageDetailsDto(ClientDto clientDto, NavigationDto navigationDto, String url) {

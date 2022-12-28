@@ -2,6 +2,8 @@ package com.distarise.credaegis.action;
 
 import com.distarise.base.action.AbstractBaseAction;
 import com.distarise.base.action.BaseAction;
+import com.distarise.base.model.UserDetailsDto;
+import com.distarise.base.service.UserService;
 import com.distarise.credaegis.constants.CibilConstants;
 import com.distarise.credaegis.dao.PersonDao;
 import com.distarise.credaegis.dao.WorkDao;
@@ -58,9 +60,10 @@ public class SendAgreementAction extends AbstractBaseAction implements BaseActio
     @Override
     public void executeAction(){
         PersonDto personDto = personDao.findByPid(loadAnalysisReportAction.getPidFromRequest(request));
+        UserDetailsDto user = (UserDetailsDto) request.getSession().getAttribute(UserService.USER);
         CorefactorRequest corefactorRequest = new CorefactorRequest(personDto.getContact(),
                 personDto.getFirstName(), personDto.getIdentityList().get(0).getId(), personDto.getEmail(),
-                personDto.getCreditScore().toString());
+                personDto.getCreditScore().toString(), user.getUserId());
         String url = "https://teleduce.corefactors.in/lead/apiwebhook/2093217d-05b7-4460-8140-2dd4dd27313e/testposting/";
         Gson gson = new Gson();
 

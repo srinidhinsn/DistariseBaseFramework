@@ -45,6 +45,7 @@ public class SaveAccountAction extends AbstractBaseAction implements BaseAction 
         String writtenOffAmountPrincipal = request.getParameter("writtenOffAmountPrincipal");
         String suitFiled = request.getParameter("suitFiled");
         String settlementAmount = request.getParameter("settlementAmount");
+        String highCredit = request.getParameter("highCredit");
         String lastPaymentDone = request.getParameter("lastPaymentDone");
         String recentDpd = request.getParameter("recentDpd");
         Date dateReported = new Date();
@@ -81,6 +82,7 @@ public class SaveAccountAction extends AbstractBaseAction implements BaseAction 
         leadDto.setSanctionedAmount(Long.parseLong(sanctionedAmount));
         leadDto.setOwnership(ownership);
         leadDto.setCreditStatus(creditStatus);
+        leadDto.setHighCredit(Long.parseLong(highCredit));
 
         leadDao.save(leadDto);
 

@@ -53,6 +53,7 @@ public class CreditAnalysisCommonServiceImpl implements CreditAnalysisCommonServ
             }
         }
         pdf = pdf.replaceAll("\f","");
+        pdf = pdf.replaceAll("\n","");
         String personalInfo = creditAnalysisHelperService.getPersonalInfoText(pdf);
         creditAnalysisService.setPersonalInfo(personalInfo, personDto);
         creditAnalysisService.setCreditScore(pdf, personDto);
@@ -66,7 +67,8 @@ public class CreditAnalysisCommonServiceImpl implements CreditAnalysisCommonServ
         List<LeadDto> leadDtoList = creditAnalysisService.createLeads(accountInfoList);
         List<LeadDto> validLeadDtoList = leadDtoList.stream().filter(leadDto ->
                 !leadDto.getCreditStatus().isEmpty() ||
-                        (leadDto.getCurrentBalance() > leadDto.getSanctionedAmount()) ||
+                        (!leadDto.getSanctionedAmount().equals(0L) &&
+                                leadDto.getCurrentBalance() > leadDto.getSanctionedAmount()) ||
                 leadDto.getAmountOverdue() > 0 ||
                         !leadDto.getProblemStatement().isEmpty()).
                 collect(Collectors.toList());

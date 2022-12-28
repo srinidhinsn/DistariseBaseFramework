@@ -783,6 +783,8 @@ INSERT INTO component (clientid, id, widgetid, colspan, editable, keyoraction, l
 INSERT INTO component (clientid, id, widgetid, colspan, editable, keyoraction, label, multilevel, redirecturl, rowspan, sortorder, type, value, visible)
  VALUES ('credaegis', 'sanctionedAmount', 'editlead', NULL, true, '', 'Sanctioned Amount', false, '', NULL, 7, 'number', '0', true);
 INSERT INTO component (clientid, id, widgetid, colspan, editable, keyoraction, label, multilevel, redirecturl, rowspan, sortorder, type, value, visible)
+  VALUES ('credaegis', 'highCredit', 'editlead', NULL, true, '', 'High Credit', false, '', NULL, 7, 'number', '0', true);
+INSERT INTO component (clientid, id, widgetid, colspan, editable, keyoraction, label, multilevel, redirecturl, rowspan, sortorder, type, value, visible)
  VALUES ('credaegis', 'currentBalance', 'editlead', NULL, true, '', 'Current Balance', false, '', NULL, 8, 'number', '0', true);
 INSERT INTO component (clientid, id, widgetid, colspan, editable, keyoraction, label, multilevel, redirecturl, rowspan, sortorder, type, value, visible)
  VALUES ('credaegis', 'amountOverdue', 'editlead', NULL, true, '', 'Amount Overdue', false, '', NULL, 9, 'number', '0', true);

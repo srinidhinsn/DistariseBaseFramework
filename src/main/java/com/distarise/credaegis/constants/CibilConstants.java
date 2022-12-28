@@ -19,7 +19,7 @@ public class CibilConstants {
     public static final String ACCOUNT_PAYMENT = "Payment Status (up to 36 months)";
     public static final String ACCOUNT_PAYMENT_START = "Payment Start Date";
     public static final String ACCOUNT_BREAK = "LSS:LossXXX: Not ReportedSUB:Substandard";
-    public static final String ACCOUNT_END = "Enquiry InformationMember NameDate of EnquiryEnquiry PurposeEnquiry";
+    public static final String ACCOUNT_END = "Enquiry InformationMember NameDate of EnquiryEnquiry Purpose";
 
 
     public static final String ACCOUNT_TYPE_CREDIT_CARD = "Credit Card";

@@ -80,6 +80,7 @@ public class BaseController {
             }
             BaseContextDto baseContextDto = new BaseContextDto(client, module, page, userDetailsDto);
             pageDetailsDto = baseService.getPageDetails(baseContextDto);
+            pageDetailsDto.setUsername(userDetailsDto.getFirstname()+" "+userDetailsDto.getLastname());
             request.setAttribute(BaseAction.PAGE_DETAILS, pageDetailsDto);
             baseService.preloadWidgets(request, pageDetailsDto, baseContextDto);
         }
