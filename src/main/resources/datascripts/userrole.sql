@@ -32,13 +32,5 @@ INSERT INTO userrole (clientid, rolename, userid) VALUES ('credaegis', 'frontoff
 INSERT INTO userrole (clientid, rolename, userid) VALUES ('credaegis', 'frontoffice', '8917');
 INSERT INTO userrole (clientid, rolename, userid) VALUES ('credaegis', 'frontoffice', '9353');
 
-INSERT INTO userrole (clientid, rolename, userid) VALUES ('credaegis', 'frontoffice', 'director@credaegis.in');
-INSERT INTO userrole (clientid, rolename, userid) VALUES ('credaegis', 'frontoffice', 'rajeshwari_ch@credaegis.in');
-INSERT INTO userrole (clientid, rolename, userid) VALUES ('credaegis', 'frontoffice', 'chaitra_ns@credaegis.in');
-INSERT INTO userrole (clientid, rolename, userid) VALUES ('credaegis', 'frontoffice', 'aruna_s@credaegis.in');
-INSERT INTO userrole (clientid, rolename, userid) VALUES ('credaegis', 'frontoffice', 'kavitha_c@credaegis.in');
-INSERT INTO userrole (clientid, rolename, userid) VALUES ('credaegis', 'frontoffice', 'nisarga_hd@credaegis.in');
-INSERT INTO userrole (clientid, rolename, userid) VALUES ('credaegis', 'frontoffice', 'shwetha_r@credaegis.in');
-
 
 INSERT INTO userrole (clientid, rolename, userid) VALUES ('credaegis', 'guest', 'guest');

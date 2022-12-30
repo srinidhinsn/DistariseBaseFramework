@@ -268,9 +268,6 @@ VALUES (400,'distabank', 'fdlist', true, 'New', 400, 'new', true);
 -- Credaegis
 
 INSERT INTO componentitem (id, clientid, componentid, editable, label, selected, sortorder, value, visible, type)
- VALUES (1014, 'credaegis', 'creditreport', false, 'Ownership', NULL, 8, 'column8', true, 'text');
-
-INSERT INTO componentitem (id, clientid, componentid, editable, label, selected, sortorder, value, visible, type)
  VALUES (1, 'credaegis', 'reporttype', false, 'Cibil', NULL, 1, 'cibil', true, 'text');
 
 INSERT INTO componentitem (id, clientid, componentid, editable, label, selected, sortorder, value, visible, type)
@@ -310,7 +307,7 @@ INSERT INTO componentitem (id, clientid, componentid, editable, label, selected,
  VALUES (1003, 'credaegis', 'creditreport', false, 'Account Type', NULL, 3, 'column3', true, 'text');
 
 INSERT INTO componentitem (id, clientid, componentid, editable, label, selected, sortorder, value, visible, type)
- VALUES (1004, 'credaegis', 'creditreport', false, 'Problem Statement', NULL, 4, 'column4', true, 'text');
+ VALUES (1004, 'credaegis', 'creditreport', false, 'Problem Statement', NULL, 8, 'column4', true, 'text');
 
 INSERT INTO componentitem (id, clientid, componentid, editable, label, selected, sortorder, value, visible, type)
  VALUES (1005, 'credaegis', 'creditreport', false, 'Amount Overdue', NULL, 5, 'column5', true, 'text');
@@ -320,6 +317,22 @@ INSERT INTO componentitem (id, clientid, componentid, editable, label, selected,
 
 INSERT INTO componentitem (id, clientid, componentid, editable, label, selected, sortorder, value, visible, type)
  VALUES (1007, 'credaegis', 'creditreport', false, 'Current Balance', NULL, 7, 'column7', true, 'text');
+
+INSERT INTO componentitem (id, clientid, componentid, editable, label, selected, sortorder, value, visible, type)
+ VALUES (1014, 'credaegis', 'creditreport', false, 'Ownership', NULL, 4, 'column8', true, 'text');
+
+INSERT INTO componentitem (id, clientid, componentid, editable, label, selected, sortorder, value, visible, type)
+ VALUES (1015, 'credaegis', 'creditreport', false, 'Suite filed', NULL, 9, 'column9', true, 'text');
+
+INSERT INTO componentitem (id, clientid, componentid, editable, label, selected, sortorder, value, visible, type)
+ VALUES (1016, 'credaegis', 'creditreport', false, 'Written-off (Total)', NULL, 10, 'column10', true, 'text');
+
+INSERT INTO componentitem (id, clientid, componentid, editable, label, selected, sortorder, value, visible, type)
+ VALUES (1017, 'credaegis', 'creditreport', false, 'Written-off (Principal)', NULL, 11, 'column11', true, 'text');
+
+INSERT INTO componentitem (id, clientid, componentid, editable, label, selected, sortorder, value, visible, type)
+ VALUES (1018, 'credaegis', 'creditreport', false, 'Settlement Amount', NULL, 12, 'column12', true, 'text');
+
 
 INSERT INTO componentitem (id, clientid, componentid, editable, label, selected, sortorder, value, visible, type)
  VALUES (1009, 'credaegis', 'leadsgrid', false, 'Person Id', NULL, 1, 'column1', true, 'href');

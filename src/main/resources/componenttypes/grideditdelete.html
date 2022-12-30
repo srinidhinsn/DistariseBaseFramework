@@ -23,7 +23,7 @@
                         th:onclick="javascript:onClickSubmitForm(this.getAttribute('widgetId'),this.getAttribute('action'),this.getAttribute('redirectUrl'))"
                 >Send to Corefactor</button>
 
-                <table class="table table-hover table-cards align-items-center">
+                <table class="table table-hover table-cards align-items-center" style="overflow-x:auto;">
                     <thead style="border-bottom: solid; border-width: thin">
                     <tr>
                         <div th:if="${component.componentItemDtos.size()>0}">

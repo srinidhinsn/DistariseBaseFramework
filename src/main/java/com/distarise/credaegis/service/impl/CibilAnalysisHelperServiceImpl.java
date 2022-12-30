@@ -30,11 +30,12 @@ public class CibilAnalysisHelperServiceImpl implements CreditAnalysisHelperServi
     @Override
     public String getContact(String pdf) {
         Pattern phoneNumber = Pattern.compile("([0-9]{10})");
-        Matcher match = phoneNumber.matcher(pdf);
+        Matcher match = phoneNumber.matcher(
+                CibilUtility.getStringBetween(pdf, CibilConstants.PERSON_MOBILE, CibilConstants.ACCOUNT_START));
         if(match.find()){
             return match.group();
         }
-        return "9000000000";
+        return "9876543211";
     }
 
     @Override

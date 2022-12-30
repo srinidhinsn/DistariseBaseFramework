@@ -69,6 +69,7 @@ public class SendAgreementAction extends AbstractBaseAction implements BaseActio
 
         try {
             HttpClient client = HttpClient.newHttpClient();
+            logger.debug("Core factor request - "+ gson.toJson(corefactorRequest));
             HttpRequest httpRequest = HttpRequest.newBuilder()
                     .uri(URI.create(url))
                     .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(corefactorRequest)))
@@ -77,22 +78,28 @@ public class SendAgreementAction extends AbstractBaseAction implements BaseActio
             HttpResponse<String> response = client.send(httpRequest,
                     HttpResponse.BodyHandlers.ofString());
             CorefactorResponse corefactorResponse = gson.fromJson(response.body(), CorefactorResponse.class);
-            System.out.println(response.body());
+            logger.debug("Core factor response - "+response.body());
+            if (corefactorResponse.getResponse_code().equals("8000")) {
+                personDto.setCorefactorId(corefactorResponse.getUnique_id());
+                personDao.save(personDto);
 
-            personDto.setCorefactorId(corefactorResponse.getUnique_id());
-            personDao.save(personDto);
+                List<WorkDto> workDtoList = workDao.getWorkByPid(personDto.getPid());
+                workDtoList.forEach(workDto -> workDto.setStatus(WorkStatus.CONVERTED.name()));
+                workDao.save(workDtoList);
 
-            List<WorkDto> workDtoList = workDao.getWorkByPid(personDto.getPid());
-            workDtoList.forEach(workDto -> workDto.setStatus(WorkStatus.CONVERTED.name()));
-            workDao.save(workDtoList);
-
-            loadLeadsAction.executeAction(request);
-            loadLeadsAction.executeAction();
+                loadLeadsAction.executeAction(request);
+                loadLeadsAction.executeAction();
+            } else {
+                throw new Exception("Core factor api call error - "+ corefactorResponse.getResponse());
+            }
         } catch (IOException e) {
             logger.error("Agreement template reader error - "+e);
             e.printStackTrace();
         } catch (InterruptedException e) {
+            logger.error(String.valueOf(e));
             throw new RuntimeException(e);
+        } catch (Exception e) {
+            logger.error(String.valueOf(e));
         }
     }
 

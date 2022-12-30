@@ -78,8 +78,12 @@ public class LoadAnalysisReportAction extends AbstractBaseAction implements Base
                     case "column6" -> gridRow.put("column6", leadDto.getCreditStatus());
                     case "column7" -> gridRow.put("column7", leadDto.getCurrentBalance().toString());
                     case "column8" -> gridRow.put("column8", leadDto.getOwnership());
+                    case "column9" -> gridRow.put("column9", leadDto.getSuitFiled());
+                    case "column10" -> gridRow.put("column10", leadDto.getWrittenOffAmountTotal().toString());
+                    case "column11" -> gridRow.put("column11", leadDto.getWrittenOffAmountPrincipal().toString());
+                    case "column12" -> gridRow.put("column12", leadDto.getSanctionedAmount().toString());
                 }
-                componentDto.fillEmptyColumns(gridRow, 9);
+                componentDto.fillEmptyColumns(gridRow, 13);
             });
             gridDetails.add(gridRow);
         });

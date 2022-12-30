@@ -6,14 +6,16 @@ import java.util.List;
 public class CibilConstants {
 
     public static final String AGREEMENT_TEMPLATE = "/distarise/CIMS.docx";
+    public static final String CREDITSUMMARY_TEMPLATE = "/distarise/Credit Summary.docx";
     public static final String AGREEMENT_STORAGE = "/distarise/agreements/";
+    public static final String CREDITSUMMARY_STORAGE = "/distarise/summary/";
     public static final String CREDAEGIS_CONTEXT = "credaegisContext";
     public static final String PERSON_START = "Personal InformationNameDOBGender";
     public static final String PERSON_ID_START = "Identification TypeNumberIssue DateExpiration Date";
     public static final String PERSON_PAN = "Income Tax ID Number(PAN)";
     public static final String PERSON_BREAK = "--";
 
-    public static final String PERSON_MOBILE = "Mobile Phone";
+    public static final String PERSON_MOBILE = "Telephone Number TypeTelephone NumberTelephone Extension";
     public static final String ACCOUNT_START = "Account InformationMember NameAccount TypeAccount NumberOwnership";
     public static final String ACCOUNT_DETAILS = "Account Details";
     public static final String ACCOUNT_PAYMENT = "Payment Status (up to 36 months)";

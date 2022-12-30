@@ -48,20 +48,4 @@ VALUES ('credaegis', '9353', 'Shwetha', 'R', 'Scims@123', 'Ms.');
 
 
 INSERT INTO userdetails (clientid, userid, firstname, lastname, password, title)
-VALUES ('credaegis', 'director@credaegis.in', 'Director', 'Special', 'Dcims@123', 'Mr.');
-INSERT INTO userdetails (clientid, userid, firstname, lastname, password, title)
-VALUES ('credaegis', 'rajeshwari_ch@credaegis.in', 'Rajesjwari', 'C H', 'Rcims@123', 'Mrs.');
-INSERT INTO userdetails (clientid, userid, firstname, lastname, password, title)
-VALUES ('credaegis', 'chaitra_ns@credaegis.in', 'Chaitra', 'N S', 'Ccims@123', 'Ms.');
-INSERT INTO userdetails (clientid, userid, firstname, lastname, password, title)
-VALUES ('credaegis', 'aruna_s@credaegis.in', 'Aruna', 'S', 'Acims@123', 'Ms.');
-INSERT INTO userdetails (clientid, userid, firstname, lastname, password, title)
-VALUES ('credaegis', 'kavitha_c@credaegis.in', 'Kavitha', 'C', 'Kcims@123', 'Ms.');
-INSERT INTO userdetails (clientid, userid, firstname, lastname, password, title)
-VALUES ('credaegis', 'nisarga_hd@credaegis.in', 'Nisarga', 'H D', 'Ncims@123', 'Ms.');
-INSERT INTO userdetails (clientid, userid, firstname, lastname, password, title)
-VALUES ('credaegis', 'shwetha_r@credaegis.in', 'Shwetha', 'R', 'Scims@123', 'Ms.');
-
-
-INSERT INTO userdetails (clientid, userid, firstname, lastname, password, title)
 VALUES ('credaegis', 'guest', '', '', 'guest', 'Mr.');
