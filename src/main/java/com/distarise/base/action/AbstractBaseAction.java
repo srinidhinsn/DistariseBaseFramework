@@ -160,7 +160,7 @@ public abstract class AbstractBaseAction implements BaseAction{
     }
 
     @Override
-    abstract public void executeAction();
+    abstract public void executeAction() throws Exception;
 
     @Override
     public void handleMessages() {

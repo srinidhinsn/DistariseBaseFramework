@@ -87,7 +87,8 @@ public class CibilAnalysisServiceImpl implements CreditAnalysisService {
             Long writtenOffAmountPrincipal = 0L;
             Long settlementAmount = 0L;
 
-            if (accountType.equalsIgnoreCase(CibilConstants.ACCOUNT_TYPE_CREDIT_CARD)){
+            if (accountType.equalsIgnoreCase(CibilConstants.ACCOUNT_TYPE_CREDIT_CARD) &&
+                accountDetails.contains(CibilConstants.ACCOUNT_DETAILS_HIGH_CREDIT)){
                  sanctionedAmountStr = CibilUtility.getStringBetween(accountDetails,
                          CibilConstants.ACCOUNT_DETAILS_CREDIT_LIMIT,
                          CibilConstants.ACCOUNT_DETAILS_HIGH_CREDIT);

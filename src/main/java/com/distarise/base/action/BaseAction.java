@@ -14,7 +14,7 @@ public interface BaseAction {
     public final static String DROPDOWN = "DROPDOWN";
     public final static String CHECKBOX = "CHECKBOX";
 
-    void executeAction();
+    void executeAction() throws Exception;
     void executeAction(HttpServletRequest request);
     void handleMessages();
 }

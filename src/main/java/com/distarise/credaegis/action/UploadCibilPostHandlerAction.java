@@ -30,7 +30,7 @@ public class UploadCibilPostHandlerAction extends AbstractBaseAction implements 
     @Autowired
     LoadLeadsAction loadLeadsAction;
     @Override
-    public void executeAction(){
+    public void executeAction() throws Exception{
         PageDetailsDto targetPageDetailsDto = super.executeAction(new PageDetailsDto());
         WidgetDto widgetDto = super.executeAction(new WidgetDto());
         Optional<ComponentDto> reportType = ComponentDto.filterComponentDtoById(widgetDto.getComponentDtos(), "reporttype");
@@ -40,21 +40,16 @@ public class UploadCibilPostHandlerAction extends AbstractBaseAction implements 
             FileUploadDto file = targetPageDetailsDto.getFileUploads().get(0);
             Resource resource = fileStorageService.loadFileAsResource(file.getFileName());
             personDto.setFileName(file.getFileName());
-            try (BufferedReader br = new BufferedReader(new FileReader(resource.getFile()));) {
-                StringBuffer pdf = new StringBuffer();
-                String line = "";
-                while ((line = br.readLine()) != null){
-                    System.out.println(line);
-                    pdf.append(line);
-                }
-                creditAnalysisCommonService.processCreditReport(request, personDto, pdf.toString());
-                loadLeadsAction.executeAction(request);
-                loadLeadsAction.executeAction();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }  catch (Exception e) {
-                e.printStackTrace();
+            BufferedReader br = new BufferedReader(new FileReader(resource.getFile()));
+            StringBuffer pdf = new StringBuffer();
+            String line = "";
+            while ((line = br.readLine()) != null){
+                System.out.println(line);
+                pdf.append(line);
             }
+            creditAnalysisCommonService.processCreditReport(request, personDto, pdf.toString());
+            loadLeadsAction.executeAction(request);
+            loadLeadsAction.executeAction();
         }
     }
 

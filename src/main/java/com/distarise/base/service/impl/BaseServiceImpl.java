@@ -145,6 +145,8 @@ public class BaseServiceImpl implements BaseService {
                         abstractBaseAction.executeAction();
                     }catch (ClassNotFoundException cnf){
                         logger.error(cnf.getMessage());
+                    } catch (Exception e){
+                        logger.error("Error while executing action - "+e);
                     }
                 }
             });

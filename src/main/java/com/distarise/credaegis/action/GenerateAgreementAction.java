@@ -118,17 +118,16 @@ public class GenerateAgreementAction extends AbstractBaseAction implements BaseA
             fourthRowCells.get(2).getParagraphs().get(0).getRuns().get(0).setText("Suit filed/Willful default",0);
             if (!leadDto.getSuitFiled().isEmpty()){
                 fourthRowCells.get(3).setColor("FF4500");
-                fourthRowCells.get(3).getParagraphs().get(0).getRuns().get(0).setText(leadDto.getSuitFiled(),0);
             }
-
+            fourthRowCells.get(3).getParagraphs().get(0).getRuns().get(0).setText(leadDto.getSuitFiled(),0);
 
 
             List<XWPFTableCell> fifthRowCells = rows.get(4).getTableCells();
             fifthRowCells.get(0).getParagraphs().get(0).getRuns().get(0).setText("Credit facility status",0);
             if (!leadDto.getCreditStatus().isEmpty()){
                 fifthRowCells.get(1).setColor("FFFF00");
-                fifthRowCells.get(1).getParagraphs().get(0).getRuns().get(0).setText(leadDto.getCreditStatus(),0);
             }
+            fifthRowCells.get(1).getParagraphs().get(0).getRuns().get(0).setText(leadDto.getCreditStatus(),0);
             fifthRowCells.get(2).getParagraphs().get(0).getRuns().get(0).setText("Settlement Amount",0);
             fifthRowCells.get(3).getParagraphs().get(0).getRuns().get(0).setText(leadDto.getSettlementAmount().toString(),0);
 

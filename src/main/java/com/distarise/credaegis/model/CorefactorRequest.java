@@ -11,6 +11,7 @@ public class CorefactorRequest {
     private String description;
     private String file_download_url;
     private String lead_owner_id;
+    private String convertedby;
 
     public CorefactorRequest(String mobile, String name, String pan, String email, String cibilscore, String lead_owner_id) {
         this.mobile = mobile;
@@ -19,6 +20,7 @@ public class CorefactorRequest {
         this.email = email;
         this.cibilscore = cibilscore;
         this.lead_owner_id = lead_owner_id;
+        this.convertedby = lead_owner_id;
     }
 
     public String getMobile() {
@@ -67,5 +69,13 @@ public class CorefactorRequest {
 
     public void setLead_owner_id(String lead_owner_id) {
         this.lead_owner_id = lead_owner_id;
+    }
+
+    public String getConvertedby() {
+        return convertedby;
+    }
+
+    public void setConvertedby(String convertedby) {
+        this.convertedby = convertedby;
     }
 }
