@@ -29,7 +29,7 @@ public class CredaegisProperties {
             "Loan Against Shares or Securities,Personal Loan,Consumer Loan,Gold Loan,Education Loan," +
             "Loan to Professional,Other";
 
-    private String ownershipTypes="Individual,Joint,Guarantor";
+    private String ownershipTypes="Individual,Joint,Guarantor,Authorized User";
 
     public String getAccountTypes() {
         return accountTypes;

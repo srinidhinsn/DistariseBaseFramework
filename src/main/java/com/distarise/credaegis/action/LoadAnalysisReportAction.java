@@ -64,24 +64,32 @@ public class LoadAnalysisReportAction extends AbstractBaseAction implements Base
 
     private void setAnalysisReport(ComponentDto componentDto, List<LeadDto> leadDtos){
         List<Map<String, String>> gridDetails = new ArrayList<>();
-        leadDtos.forEach(leadDto -> {
+        leadDtos.stream().forEach(leadDto -> {
             Map<String, String> gridRow = new HashMap<>();
             componentDto.getComponentItemDtos().forEach(targetComponentItemDto -> {
                 gridRow.put("formid", "creditreport");
-                switch (targetComponentItemDto.getValue()){
-                    case "column0" -> gridRow.put("column0", leadDto.getLid().toString());
-                    case "column1" -> gridRow.put("column1", leadDto.getAccountName());
-                    case "column2" -> gridRow.put("column2", leadDto.getAccountNo());
-                    case "column3" -> gridRow.put("column3", leadDto.getAccountType());
-                    case "column4" -> gridRow.put("column4", leadDto.getProblemStatement());
-                    case "column5" -> gridRow.put("column5", leadDto.getAmountOverdue().toString());
-                    case "column6" -> gridRow.put("column6", leadDto.getCreditStatus());
-                    case "column7" -> gridRow.put("column7", leadDto.getCurrentBalance().toString());
-                    case "column8" -> gridRow.put("column8", leadDto.getOwnership());
-                    case "column9" -> gridRow.put("column9", leadDto.getSuitFiled());
-                    case "column10" -> gridRow.put("column10", leadDto.getWrittenOffAmountTotal().toString());
-                    case "column11" -> gridRow.put("column11", leadDto.getWrittenOffAmountPrincipal().toString());
-                    case "column12" -> gridRow.put("column12", leadDto.getSanctionedAmount().toString());
+                if (leadDto.getAccountName().equals(CibilConstants.ERROR)){
+                    switch (targetComponentItemDto.getValue()) {
+                        case "column0" -> gridRow.put("column0", leadDto.getLid().toString());
+                        case "column1" -> gridRow.put("column1", leadDto.getAccountName());
+                        case "column2" -> gridRow.put("column2", leadDto.getAccountNo());
+                    }
+                } else {
+                    switch (targetComponentItemDto.getValue()) {
+                        case "column0" -> gridRow.put("column0", leadDto.getLid().toString());
+                        case "column1" -> gridRow.put("column1", leadDto.getAccountName());
+                        case "column2" -> gridRow.put("column2", leadDto.getAccountNo());
+                        case "column3" -> gridRow.put("column3", leadDto.getAccountType());
+                        case "column4" -> gridRow.put("column4", leadDto.getProblemStatement());
+                        case "column5" -> gridRow.put("column5", leadDto.getAmountOverdue().toString());
+                        case "column6" -> gridRow.put("column6", leadDto.getCreditStatus());
+                        case "column7" -> gridRow.put("column7", leadDto.getCurrentBalance().toString());
+                        case "column8" -> gridRow.put("column8", leadDto.getOwnership());
+                        case "column9" -> gridRow.put("column9", leadDto.getSuitFiled());
+                        case "column10" -> gridRow.put("column10", leadDto.getWrittenOffAmountTotal().toString());
+                        case "column11" -> gridRow.put("column11", leadDto.getWrittenOffAmountPrincipal().toString());
+                        case "column12" -> gridRow.put("column12", leadDto.getSettlementAmount().toString());
+                    }
                 }
                 componentDto.fillEmptyColumns(gridRow, 13);
             });

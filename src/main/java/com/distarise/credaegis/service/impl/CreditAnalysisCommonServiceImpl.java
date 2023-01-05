@@ -66,6 +66,7 @@ public class CreditAnalysisCommonServiceImpl implements CreditAnalysisCommonServ
         List<String> accountInfoList = creditAnalysisHelperService.getAccountInfoText(pdf);
         List<LeadDto> leadDtoList = creditAnalysisService.createLeads(accountInfoList);
         List<LeadDto> validLeadDtoList = leadDtoList.stream().filter(leadDto ->
+                leadDto.getAccountName().equals(CibilConstants.ERROR) ||
                 !leadDto.getCreditStatus().isEmpty() ||
                         (!leadDto.getSanctionedAmount().equals(0L) &&
                                 leadDto.getCurrentBalance() > leadDto.getSanctionedAmount()) ||

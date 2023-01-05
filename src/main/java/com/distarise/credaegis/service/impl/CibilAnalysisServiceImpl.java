@@ -1,10 +1,14 @@
 package com.distarise.credaegis.service.impl;
 
+import com.distarise.base.exception.DistariseException;
+import com.distarise.base.exception.FileStorageException;
 import com.distarise.credaegis.constants.CibilConstants;
 import com.distarise.credaegis.constants.CredaegisProperties;
 import com.distarise.credaegis.model.LeadDto;
 import com.distarise.credaegis.model.PersonDto;
 import com.distarise.credaegis.service.CreditAnalysisService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.Year;
@@ -17,7 +21,7 @@ import java.util.regex.Pattern;
 
 @Service
 public class CibilAnalysisServiceImpl implements CreditAnalysisService {
-
+    private static final Logger logger = LoggerFactory.getLogger(CibilAnalysisServiceImpl.class);
     @Override
     public PersonDto setPersonalInfo(String pdf, PersonDto personDto) {
         Pattern dobPattern = Pattern.compile("([0-9]{2})/([0-9]{2})/([0-9]{4})");
@@ -51,111 +55,116 @@ public class CibilAnalysisServiceImpl implements CreditAnalysisService {
             // Account summary extraction
             String accountSummary = CibilUtility.getStringBetween(accountInfo, 0,
                     CibilConstants.ACCOUNT_DETAILS);
+            try {
+                String accountType = credaegisProperties.getAccountType(accountSummary);
+                String ownershipType = credaegisProperties.getOwnershipType(accountSummary);
+                String accountName = accountSummary.substring(0, accountSummary.indexOf(accountType));
+                String accountNumber = accountSummary.substring(
+                        accountSummary.indexOf(accountType) + accountType.length(),
+                        accountSummary.indexOf(ownershipType));
+                leadDto.setAccountNo(accountNumber);
+                leadDto.setAccountName(accountName);
+                leadDto.setAccountType(accountType);
+                leadDto.setOwnership(ownershipType);
 
-            String accountType = credaegisProperties.getAccountType(accountSummary);
-            String ownershipType = credaegisProperties.getOwnershipType(accountSummary);
-            String accountName = accountSummary.substring(0, accountSummary.indexOf(accountType));
-            String accountNumber = accountSummary.substring(
-                    accountSummary.indexOf(accountType) + accountType.length(),
-                    accountSummary.indexOf(ownershipType));
-            leadDto.setAccountNo(accountNumber);
-            leadDto.setAccountName(accountName);
-            leadDto.setAccountType(accountType);
-            leadDto.setOwnership(ownershipType);
+                //Account details extraction
+                String accountDetails = CibilUtility.getStringBetween(accountInfo, CibilConstants.ACCOUNT_DETAILS,
+                        CibilConstants.ACCOUNT_PAYMENT_START);
+                String sanctionedAmountStr = "";
+                String currentBalStr = "";
+                String amtOverdueStr = "";
+                String creditStatus = "";
+                String latestPaymentDone = "";
+                String highCreditStr = "";
+                String dateReportedStr = "";
+                String writtenOffAmountTotalStr = "";
+                String writtenOffAmountPrincipalStr = "";
+                String settlementAmountStr = "";
+                String suitFiled = "";
 
-            //Account details extraction
-            String accountDetails = CibilUtility.getStringBetween(accountInfo, CibilConstants.ACCOUNT_DETAILS,
-                    CibilConstants.ACCOUNT_PAYMENT_START);
-            String sanctionedAmountStr = "";
-            String currentBalStr = "";
-            String amtOverdueStr = "";
-            String creditStatus = "";
-            String latestPaymentDone = "";
-            String highCreditStr = "";
-            String dateReportedStr = "";
-            String writtenOffAmountTotalStr = "";
-            String writtenOffAmountPrincipalStr = "";
-            String settlementAmountStr = "";
-            String suitFiled = "";
+                Long sanctionedAmount = 0L;
+                Long currentBal = 0L;
+                Long amtOverdue = 0L;
+                Long highCredit = 0L;
+                Date dateReported = null;
+                Long writtenOffAmountTotal = 0L;
+                Long writtenOffAmountPrincipal = 0L;
+                Long settlementAmount = 0L;
 
-            Long sanctionedAmount = 0L;
-            Long currentBal = 0L;
-            Long amtOverdue = 0L;
-            Long highCredit = 0L;
-            Date dateReported = null;
-            Long writtenOffAmountTotal = 0L;
-            Long writtenOffAmountPrincipal = 0L;
-            Long settlementAmount = 0L;
+                if (accountType.equalsIgnoreCase(CibilConstants.ACCOUNT_TYPE_CREDIT_CARD) &&
+                        accountDetails.contains(CibilConstants.ACCOUNT_DETAILS_HIGH_CREDIT)) {
+                    sanctionedAmountStr = CibilUtility.getStringBetween(accountDetails,
+                            CibilConstants.ACCOUNT_DETAILS_CREDIT_LIMIT,
+                            CibilConstants.ACCOUNT_DETAILS_HIGH_CREDIT);
 
-            if (accountType.equalsIgnoreCase(CibilConstants.ACCOUNT_TYPE_CREDIT_CARD) &&
-                accountDetails.contains(CibilConstants.ACCOUNT_DETAILS_HIGH_CREDIT)){
-                 sanctionedAmountStr = CibilUtility.getStringBetween(accountDetails,
-                         CibilConstants.ACCOUNT_DETAILS_CREDIT_LIMIT,
-                         CibilConstants.ACCOUNT_DETAILS_HIGH_CREDIT);
+                    highCreditStr = CibilUtility.getStringBetween(accountDetails,
+                            CibilConstants.ACCOUNT_DETAILS_HIGH_CREDIT,
+                            CibilConstants.ACCOUNT_DETAILS_CURRENT_BALANCE);
+                } else {
+                    sanctionedAmountStr = CibilUtility.getStringBetween(accountDetails,
+                            CibilConstants.ACCOUNT_DETAILS_SANCTIONED_AMOUNT,
+                            CibilConstants.ACCOUNT_DETAILS_CURRENT_BALANCE);
+                }
 
-                 highCreditStr = CibilUtility.getStringBetween(accountDetails,
-                         CibilConstants.ACCOUNT_DETAILS_HIGH_CREDIT,
-                         CibilConstants.ACCOUNT_DETAILS_CURRENT_BALANCE);
-            } else {
-                sanctionedAmountStr = CibilUtility.getStringBetween(accountDetails,
-                        CibilConstants.ACCOUNT_DETAILS_SANCTIONED_AMOUNT,
-                        CibilConstants.ACCOUNT_DETAILS_CURRENT_BALANCE);
+                currentBalStr = CibilUtility.getStringBetween(accountDetails,
+                        CibilConstants.ACCOUNT_DETAILS_CURRENT_BALANCE,
+                        CibilConstants.ACCOUNT_DETAILS_CASH_LIMIT);
+
+                amtOverdueStr = CibilUtility.getStringBetween(accountDetails,
+                        CibilConstants.ACCOUNT_DETAILS_AMOUNT_OVERDUE,
+                        CibilConstants.ACCOUNT_DETAILS_INTEREST_RATE);
+
+                creditStatus = CibilUtility.getStringBetween(accountDetails,
+                        CibilConstants.ACCOUNT_DETAILS_CREDIT_STATUS,
+                        CibilConstants.ACCOUNT_DETAILS_WRITTENOFF_AMOUNT_TOTAL);
+                creditStatus = creditStatus.replaceAll("-", "");
+
+                dateReportedStr = CibilUtility.getStringBetween(accountDetails,
+                        CibilConstants.ACCOUNT_DETAILS_DATE_REPORTED,
+                        CibilConstants.ACCOUNT_DETAILS_COLLATERAL_VALUE);
+
+                writtenOffAmountTotalStr = CibilUtility.getStringBetween(accountDetails,
+                        CibilConstants.ACCOUNT_DETAILS_WRITTENOFF_AMOUNT_TOTAL,
+                        CibilConstants.ACCOUNT_DETAILS_WRITTENOFF_AMOUNT_PRINCIPAL);
+
+                writtenOffAmountPrincipalStr = CibilUtility.getStringBetween(accountDetails,
+                        CibilConstants.ACCOUNT_DETAILS_WRITTENOFF_AMOUNT_PRINCIPAL,
+                        CibilConstants.ACCOUNT_DETAILS_WRITTENOFF_SETTLEMENT_AMOUNT);
+
+                settlementAmountStr = CibilUtility.getStringBetween(accountDetails,
+                        CibilConstants.ACCOUNT_DETAILS_WRITTENOFF_SETTLEMENT_AMOUNT,
+                        CibilConstants.ACCOUNT_PAYMENT);
+
+                suitFiled = CibilUtility.getStringBetween(accountDetails,
+                        CibilConstants.ACCOUNT_DETAILS_SUIT_FILED,
+                        CibilConstants.ACCOUNT_DETAILS_CREDIT_STATUS);
+                suitFiled = suitFiled.replaceAll("-", "");
+                dateReported = CibilUtility.ddmmyyyyToDate(dateReportedStr);
+                writtenOffAmountTotal = CibilUtility.convertStringToLong(writtenOffAmountTotalStr);
+                writtenOffAmountPrincipal = CibilUtility.convertStringToLong(writtenOffAmountPrincipalStr);
+                settlementAmount = CibilUtility.convertStringToLong(settlementAmountStr);
+                sanctionedAmount = CibilUtility.convertStringToLong(sanctionedAmountStr);
+                highCredit = CibilUtility.convertStringToLong(highCreditStr);
+                currentBal = CibilUtility.convertStringToLong(currentBalStr);
+                amtOverdue = CibilUtility.convertStringToLong(amtOverdueStr);
+                latestPaymentDone = getLastPaymentDone(accountInfo);
+                leadDto.setProblemStatement(getRecentDefaultPayment(accountInfo));
+                leadDto.setAmountOverdue(amtOverdue);
+                leadDto.setCreditStatus(creditStatus);
+                leadDto.setCurrentBalance(currentBal);
+                leadDto.setLatestPaymentDone(latestPaymentDone);
+                leadDto.setSanctionedAmount(sanctionedAmount);
+                leadDto.setHighCredit(highCredit);
+                leadDto.setDateReported(dateReported);
+                leadDto.setWrittenOffAmountTotal(writtenOffAmountTotal);
+                leadDto.setWrittenOffAmountPrincipal(writtenOffAmountPrincipal);
+                leadDto.setSettlementAmount(settlementAmount);
+                leadDto.setSuitFiled(suitFiled);
+            } catch (Exception e){
+                logger.debug("Error while reading account information - "+ accountSummary, e);
+                leadDto.setAccountName(CibilConstants.ERROR);
+                leadDto.setAccountNo(accountSummary);
             }
-
-            currentBalStr = CibilUtility.getStringBetween(accountDetails,
-                    CibilConstants.ACCOUNT_DETAILS_CURRENT_BALANCE,
-                    CibilConstants.ACCOUNT_DETAILS_CASH_LIMIT);
-
-            amtOverdueStr = CibilUtility.getStringBetween(accountDetails,
-                    CibilConstants.ACCOUNT_DETAILS_AMOUNT_OVERDUE,
-                    CibilConstants.ACCOUNT_DETAILS_INTEREST_RATE);
-
-            creditStatus = CibilUtility.getStringBetween(accountDetails,
-                    CibilConstants.ACCOUNT_DETAILS_CREDIT_STATUS,
-                    CibilConstants.ACCOUNT_DETAILS_WRITTENOFF_AMOUNT_TOTAL);
-            creditStatus = creditStatus.replaceAll("-","");
-
-            dateReportedStr = CibilUtility.getStringBetween(accountDetails,
-                    CibilConstants.ACCOUNT_DETAILS_DATE_REPORTED,
-                    CibilConstants.ACCOUNT_DETAILS_COLLATERAL_VALUE);
-
-            writtenOffAmountTotalStr = CibilUtility.getStringBetween(accountDetails,
-                    CibilConstants.ACCOUNT_DETAILS_WRITTENOFF_AMOUNT_TOTAL,
-                    CibilConstants.ACCOUNT_DETAILS_WRITTENOFF_AMOUNT_PRINCIPAL);
-
-            writtenOffAmountPrincipalStr = CibilUtility.getStringBetween(accountDetails,
-                    CibilConstants.ACCOUNT_DETAILS_WRITTENOFF_AMOUNT_PRINCIPAL,
-                    CibilConstants.ACCOUNT_DETAILS_WRITTENOFF_SETTLEMENT_AMOUNT);
-
-            settlementAmountStr = CibilUtility.getStringBetween(accountDetails,
-                    CibilConstants.ACCOUNT_DETAILS_WRITTENOFF_SETTLEMENT_AMOUNT,
-                    CibilConstants.ACCOUNT_PAYMENT);
-
-            suitFiled = CibilUtility.getStringBetween(accountDetails,
-                    CibilConstants.ACCOUNT_DETAILS_SUIT_FILED,
-                    CibilConstants.ACCOUNT_DETAILS_CREDIT_STATUS);
-            suitFiled = suitFiled.replaceAll("-","");
-            dateReported = CibilUtility.ddmmyyyyToDate(dateReportedStr);
-            writtenOffAmountTotal = CibilUtility.convertStringToLong(writtenOffAmountTotalStr);
-            writtenOffAmountPrincipal = CibilUtility.convertStringToLong(writtenOffAmountPrincipalStr);
-            settlementAmount = CibilUtility.convertStringToLong(settlementAmountStr);
-            sanctionedAmount = CibilUtility.convertStringToLong(sanctionedAmountStr);
-            highCredit = CibilUtility.convertStringToLong(highCreditStr);
-            currentBal = CibilUtility.convertStringToLong(currentBalStr);
-            amtOverdue = CibilUtility.convertStringToLong(amtOverdueStr);
-            latestPaymentDone = getLastPaymentDone(accountInfo);
-            leadDto.setProblemStatement(getRecentDefaultPayment(accountInfo));
-            leadDto.setAmountOverdue(amtOverdue);
-            leadDto.setCreditStatus(creditStatus);
-            leadDto.setCurrentBalance(currentBal);
-            leadDto.setLatestPaymentDone(latestPaymentDone);
-            leadDto.setSanctionedAmount(sanctionedAmount);
-            leadDto.setHighCredit(highCredit);
-            leadDto.setDateReported(dateReported);
-            leadDto.setWrittenOffAmountTotal(writtenOffAmountTotal);
-            leadDto.setWrittenOffAmountPrincipal(writtenOffAmountPrincipal);
-            leadDto.setSettlementAmount(settlementAmount);
-            leadDto.setSuitFiled(suitFiled);
             leadDtoList.add(leadDto);
         });
         return leadDtoList;

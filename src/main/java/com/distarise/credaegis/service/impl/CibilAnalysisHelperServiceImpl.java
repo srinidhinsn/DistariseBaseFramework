@@ -23,7 +23,7 @@ public class CibilAnalysisHelperServiceImpl implements CreditAnalysisHelperServi
     public String getPanNo(String pdf) {
         String panNumber = CibilUtility.getStringBetween(pdf.replaceAll("\\s+", ""),
                 CibilConstants.PERSON_PAN.replaceAll("\\s+", ""),
-                CibilConstants.PERSON_BREAK);
+                10);
         return panNumber;
     }
 

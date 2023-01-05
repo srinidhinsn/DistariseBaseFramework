@@ -140,9 +140,11 @@ public class BaseServiceImpl implements BaseService {
                 if (componentDto.getType().equalsIgnoreCase(AUTO_ACTION)){
                     try {
                         Class actionClass = Class.forName(componentDto.getKeyOrAction());
+                        logger.debug("Executing action class start - "+actionClass);
                         BaseAction abstractBaseAction = (BaseAction) applicationContext.getBean(actionClass);
                         abstractBaseAction.executeAction(request);
                         abstractBaseAction.executeAction();
+                        logger.debug("Executing action class end - "+actionClass);
                     }catch (ClassNotFoundException cnf){
                         logger.error(cnf.getMessage());
                     } catch (Exception e){
